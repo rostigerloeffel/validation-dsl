@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.isax.validation.dsl.sdk"
+      label="com.isax.validation.dsl.sdk"
+      version="0.0.1.qualifier"
+      provider-name="iSAX GmbH &amp; Co. KG">
+
+   <plugin
+         id="com.isax.validation.dsl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.isax.validation.dsl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
