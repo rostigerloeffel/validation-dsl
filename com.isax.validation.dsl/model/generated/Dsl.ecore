@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dsl" nsURI="http://www.isax.com/validation/dsl/Dsl" nsPrefix="dsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Validator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sentences" upperBound="-1"
+        eType="#//Sentence" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sentence"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StartOnSentence" eSuperTypes="#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//NodeDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionSentence" eSuperTypes="#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantification" eType="#//Quantification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifier" eType="#//RelationQualifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//TargetDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintSentence" eSuperTypes="#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifications" eType="#//QuantificationList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" eType="#//NodeReferenceList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateDefinitionSentence" eSuperTypes="#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//ParameterList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="collection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectors" eType="#//SelectorList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeReferenceList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" unique="false" upperBound="-1"
+        eType="#//NodeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" eType="#//Axis"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//NodeDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" eType="#//AssignmentList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectorList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectors" eType="#//SelectorListDef"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectorListDef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectors" upperBound="-1"
+        eType="#//Selector" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PredicateExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PredicateExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="negated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="call" eType="#//PredicateCall"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inner" eType="#//PredicateExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateCall">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyRelationPredicate" eSuperTypes="#//PredicateCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PropertyExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relation" eType="#//PropertyRelation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PropertyExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionSentencePredicate" eSuperTypes="#//PredicateCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sentence" eType="#//DefinitionSentence"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateReference" eSuperTypes="#//PredicateCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//PredicateDefinitionSentence"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="#//ArgumentList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Argument">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArgumentList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Argument" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//PropertyReferenceExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//PropertyExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+        eType="#//Assignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Quantification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantor" eType="#//Quantor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeSet" eType="#//NodeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QuantificationList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifications" upperBound="-1"
+        eType="#//Quantification" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyValueExpression" eSuperTypes="#//PropertyExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyReferenceExpression" eSuperTypes="#//PropertyExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Quantor">
+    <eLiterals name="Each" literal="each"/>
+    <eLiterals name="Any" value="1" literal="any"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RelationQualifier">
+    <eLiterals name="Must" literal="must have"/>
+    <eLiterals name="MustNot" value="1" literal="must not have"/>
+    <eLiterals name="Can" value="2" literal="can have"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Axis">
+    <eLiterals name="Parent" literal="parent"/>
+    <eLiterals name="Child" value="1" literal="child"/>
+    <eLiterals name="Ancestor" value="2" literal="ancestor"/>
+    <eLiterals name="Descendant" value="3" literal="descendant"/>
+    <eLiterals name="Parents" value="4" literal="multiple parents"/>
+    <eLiterals name="Children" value="5" literal="multiple children"/>
+    <eLiterals name="Ancestors" value="6" literal="multiple ancestors"/>
+    <eLiterals name="Descendants" value="7" literal="multiple descendants"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertyRelation">
+    <eLiterals name="Equals" literal="equals"/>
+    <eLiterals name="NotEquals" value="1" literal="not equals"/>
+    <eLiterals name="Greater" value="2" literal="greater than"/>
+    <eLiterals name="Lesser" value="3" literal="lesser than"/>
+    <eLiterals name="GreaterEquals" value="4" literal="greater or equals than"/>
+    <eLiterals name="LesserEquals" value="5" literal="lesser or equals than"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//PredicateExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//PredicateExpression"/>
+</ecore:EPackage>
