@@ -512,22 +512,13 @@ public interface DslPackage extends EPackage
   int PREDICATE_EXPRESSION__LHS = 0;
 
   /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PREDICATE_EXPRESSION__RHS = 1;
-
-  /**
    * The feature id for the '<em><b>Negated</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PREDICATE_EXPRESSION__NEGATED = 2;
+  int PREDICATE_EXPRESSION__NEGATED = 1;
 
   /**
    * The feature id for the '<em><b>Call</b></em>' containment reference.
@@ -536,7 +527,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PREDICATE_EXPRESSION__CALL = 3;
+  int PREDICATE_EXPRESSION__CALL = 2;
 
   /**
    * The feature id for the '<em><b>Inner</b></em>' containment reference.
@@ -545,7 +536,16 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PREDICATE_EXPRESSION__INNER = 4;
+  int PREDICATE_EXPRESSION__INNER = 3;
+
+  /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDICATE_EXPRESSION__RHS = 4;
 
   /**
    * The number of structural features of the '<em>Predicate Expression</em>' class.
@@ -1077,15 +1077,6 @@ public interface DslPackage extends EPackage
   int AND_EXPRESSION__LHS = PREDICATE_EXPRESSION__LHS;
 
   /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_EXPRESSION__RHS = PREDICATE_EXPRESSION__RHS;
-
-  /**
    * The feature id for the '<em><b>Negated</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1111,6 +1102,15 @@ public interface DslPackage extends EPackage
    * @ordered
    */
   int AND_EXPRESSION__INNER = PREDICATE_EXPRESSION__INNER;
+
+  /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_EXPRESSION__RHS = PREDICATE_EXPRESSION__RHS;
 
   /**
    * The number of structural features of the '<em>And Expression</em>' class.
@@ -1141,15 +1141,6 @@ public interface DslPackage extends EPackage
   int OR_EXPRESSION__LHS = PREDICATE_EXPRESSION__LHS;
 
   /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_EXPRESSION__RHS = PREDICATE_EXPRESSION__RHS;
-
-  /**
    * The feature id for the '<em><b>Negated</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1177,6 +1168,15 @@ public interface DslPackage extends EPackage
   int OR_EXPRESSION__INNER = PREDICATE_EXPRESSION__INNER;
 
   /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__RHS = PREDICATE_EXPRESSION__RHS;
+
+  /**
    * The number of structural features of the '<em>Or Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1186,6 +1186,70 @@ public interface DslPackage extends EPackage
   int OR_EXPRESSION_FEATURE_COUNT = PREDICATE_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.ImpliesExpressionImpl <em>Implies Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.isax.validation.dsl.dsl.impl.ImpliesExpressionImpl
+   * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getImpliesExpression()
+   * @generated
+   */
+  int IMPLIES_EXPRESSION = 30;
+
+  /**
+   * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION__LHS = PREDICATE_EXPRESSION__LHS;
+
+  /**
+   * The feature id for the '<em><b>Negated</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION__NEGATED = PREDICATE_EXPRESSION__NEGATED;
+
+  /**
+   * The feature id for the '<em><b>Call</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION__CALL = PREDICATE_EXPRESSION__CALL;
+
+  /**
+   * The feature id for the '<em><b>Inner</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION__INNER = PREDICATE_EXPRESSION__INNER;
+
+  /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION__RHS = PREDICATE_EXPRESSION__RHS;
+
+  /**
+   * The number of structural features of the '<em>Implies Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_EXPRESSION_FEATURE_COUNT = PREDICATE_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1193,7 +1257,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
    * @generated
    */
-  int QUANTOR = 30;
+  int QUANTOR = 31;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationQualifier <em>Relation Qualifier</em>}' enum.
@@ -1203,7 +1267,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationQualifier()
    * @generated
    */
-  int RELATION_QUALIFIER = 31;
+  int RELATION_QUALIFIER = 32;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.Axis <em>Axis</em>}' enum.
@@ -1213,7 +1277,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAxis()
    * @generated
    */
-  int AXIS = 32;
+  int AXIS = 33;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1223,7 +1287,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
    * @generated
    */
-  int PROPERTY_RELATION = 33;
+  int PROPERTY_RELATION = 34;
 
 
   /**
@@ -1621,17 +1685,6 @@ public interface DslPackage extends EPackage
   EReference getPredicateExpression_Lhs();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see com.isax.validation.dsl.dsl.PredicateExpression#getRhs()
-   * @see #getPredicateExpression()
-   * @generated
-   */
-  EReference getPredicateExpression_Rhs();
-
-  /**
    * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.PredicateExpression#isNegated <em>Negated</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1663,6 +1716,17 @@ public interface DslPackage extends EPackage
    * @generated
    */
   EReference getPredicateExpression_Inner();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Rhs</em>'.
+   * @see com.isax.validation.dsl.dsl.PredicateExpression#getRhs()
+   * @see #getPredicateExpression()
+   * @generated
+   */
+  EReference getPredicateExpression_Rhs();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.PredicateCall <em>Predicate Call</em>}'.
@@ -2066,6 +2130,16 @@ public interface DslPackage extends EPackage
   EClass getOrExpression();
 
   /**
+   * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.ImpliesExpression <em>Implies Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implies Expression</em>'.
+   * @see com.isax.validation.dsl.dsl.ImpliesExpression
+   * @generated
+   */
+  EClass getImpliesExpression();
+
+  /**
    * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2451,14 +2525,6 @@ public interface DslPackage extends EPackage
     EReference PREDICATE_EXPRESSION__LHS = eINSTANCE.getPredicateExpression_Lhs();
 
     /**
-     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PREDICATE_EXPRESSION__RHS = eINSTANCE.getPredicateExpression_Rhs();
-
-    /**
      * The meta object literal for the '<em><b>Negated</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2481,6 +2547,14 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EReference PREDICATE_EXPRESSION__INNER = eINSTANCE.getPredicateExpression_Inner();
+
+    /**
+     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PREDICATE_EXPRESSION__RHS = eINSTANCE.getPredicateExpression_Rhs();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.PredicateCallImpl <em>Predicate Call</em>}' class.
@@ -2819,6 +2893,16 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EClass OR_EXPRESSION = eINSTANCE.getOrExpression();
+
+    /**
+     * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.ImpliesExpressionImpl <em>Implies Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.isax.validation.dsl.dsl.impl.ImpliesExpressionImpl
+     * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getImpliesExpression()
+     * @generated
+     */
+    EClass IMPLIES_EXPRESSION = eINSTANCE.getImpliesExpression();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.

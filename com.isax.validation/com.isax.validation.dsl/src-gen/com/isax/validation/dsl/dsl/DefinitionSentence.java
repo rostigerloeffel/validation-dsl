@@ -10,13 +10,13 @@ package com.isax.validation.dsl.dsl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getQuantification <em>Quantification</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getNode <em>Node</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getDefinitionSentence()
  * @model

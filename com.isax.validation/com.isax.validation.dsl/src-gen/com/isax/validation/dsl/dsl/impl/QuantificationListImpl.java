@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.QuantificationListImpl#getQuantifications <em>Quantifications</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

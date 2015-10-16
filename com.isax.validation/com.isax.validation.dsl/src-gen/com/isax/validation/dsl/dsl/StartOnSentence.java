@@ -10,10 +10,10 @@ package com.isax.validation.dsl.dsl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.StartOnSentence#getDefinition <em>Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getStartOnSentence()
  * @model

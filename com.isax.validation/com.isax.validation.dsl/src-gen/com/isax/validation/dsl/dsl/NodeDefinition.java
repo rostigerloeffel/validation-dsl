@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.NodeDefinition#getName <em>Name</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.NodeDefinition#isCollection <em>Collection</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.NodeDefinition#getSelectors <em>Selectors</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getNodeDefinition()
  * @model

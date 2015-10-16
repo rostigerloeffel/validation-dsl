@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.NodeDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.NodeDefinitionImpl#isCollection <em>Collection</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.NodeDefinitionImpl#getSelectors <em>Selectors</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

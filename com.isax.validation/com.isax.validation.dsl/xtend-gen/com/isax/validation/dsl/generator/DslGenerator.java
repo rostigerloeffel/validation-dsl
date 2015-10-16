@@ -4,18 +4,19 @@
 package com.isax.validation.dsl.generator;
 
 import com.google.common.base.Objects;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.isax.validation.dsl.DslRuntimeModule;
+import com.google.inject.Inject;
+import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
+import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.Parameter;
 import com.isax.validation.dsl.dsl.ParameterList;
+import com.isax.validation.dsl.dsl.PredicateCall;
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
 import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
@@ -54,9 +55,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class DslGenerator implements IGenerator {
-  private final static Injector injector = Guice.createInjector(new DslRuntimeModule());
-  
-  private final static ISerializer serializer = DslGenerator.injector.<ISerializer>getInstance(ISerializer.class);
+  @Inject
+  private ISerializer serializer;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
@@ -78,17 +78,79 @@ public class DslGenerator implements IGenerator {
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    _builder.append("@FunctionalInterface");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private interface Predicate {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("boolean test();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private boolean eval(Predicate predicate) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return predicate.test();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("public boolean validate(Node node) {");
     _builder.newLine();
     {
       EList<Sentence> _sentences = validator.getSentences();
       for(final Sentence sentence : _sentences) {
         {
-          if ((!(sentence instanceof PredicateDefinitionSentence))) {
+          if ((sentence instanceof StartOnSentence)) {
             _builder.append("\t\t");
             CharSequence _sentenceStatements = this.sentenceStatements(sentence);
             _builder.append(_sentenceStatements, "\t\t");
             _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      EList<Sentence> _sentences_1 = validator.getSentences();
+      for(final Sentence sentence_1 : _sentences_1) {
+        {
+          if ((sentence_1 instanceof DefinitionSentence)) {
+            _builder.append("\t\t");
+            CharSequence _sentenceStatements_1 = this.sentenceStatements(sentence_1);
+            _builder.append(_sentenceStatements_1, "\t\t");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("{");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("boolean satisfied = ");
+            TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
+            NodeDefinition _definition = _target.getDefinition();
+            RelationQualifier _qualifier = ((DefinitionSentence)sentence_1).getQualifier();
+            String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
+            _builder.append(_qualifierSatisfiedStatement, "\t\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("if (!satisfied) return satisfied;");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("}");
+            _builder.newLine();
             _builder.append("\t\t");
             _builder.newLine();
           }
@@ -101,13 +163,13 @@ public class DslGenerator implements IGenerator {
     _builder.append("\t");
     _builder.newLine();
     {
-      EList<Sentence> _sentences_1 = validator.getSentences();
-      for(final Sentence sentence_1 : _sentences_1) {
+      EList<Sentence> _sentences_2 = validator.getSentences();
+      for(final Sentence sentence_2 : _sentences_2) {
         {
-          if ((sentence_1 instanceof PredicateDefinitionSentence)) {
+          if ((sentence_2 instanceof PredicateDefinitionSentence)) {
             _builder.append("\t");
-            CharSequence _sentenceStatements_1 = this.sentenceStatements(sentence_1);
-            _builder.append(_sentenceStatements_1, "\t");
+            CharSequence _sentenceStatements_2 = this.sentenceStatements(sentence_2);
+            _builder.append(_sentenceStatements_2, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.newLine();
@@ -122,11 +184,18 @@ public class DslGenerator implements IGenerator {
   
   protected CharSequence _sentenceStatements(final StartOnSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    String _serialize = this.serializer.serialize(sentence);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    _builder.append(_replaceAll_1, "");
+    _builder.newLineIfNotEmpty();
     _builder.append("Node ");
     NodeDefinition _definition = sentence.getDefinition();
     String _name = _definition.getName();
     _builder.append(_name, "");
-    _builder.append(" = element;");
+    _builder.append(" = node;");
     _builder.newLineIfNotEmpty();
     _builder.append("if (");
     NodeDefinition _definition_1 = sentence.getDefinition();
@@ -153,6 +222,13 @@ public class DslGenerator implements IGenerator {
   
   protected CharSequence _sentenceStatements(final DefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    String _serialize = this.serializer.serialize(sentence);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    _builder.append(_replaceAll_1, "");
+    _builder.newLineIfNotEmpty();
     {
       NodeDefinition _node = sentence.getNode();
       boolean _notEquals = (!Objects.equal(_node, null));
@@ -176,11 +252,25 @@ public class DslGenerator implements IGenerator {
   
   protected CharSequence _sentenceStatements(final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    String _serialize = this.serializer.serialize(sentence);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    _builder.append(_replaceAll_1, "");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
   protected CharSequence _sentenceStatements(final PredicateDefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    String _serialize = this.serializer.serialize(sentence);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    _builder.append(_replaceAll_1, "");
+    _builder.newLineIfNotEmpty();
     _builder.append("private boolean ");
     String _name = sentence.getName();
     _builder.append(_name, "");
@@ -213,27 +303,6 @@ public class DslGenerator implements IGenerator {
     CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition, _axis, _node, _selectors, _predicate);
     _builder.append(_nodeAssignmentStatement, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("boolean satisfied = ");
-    TargetDefinition _target_4 = sentence.getTarget();
-    NodeDefinition _definition_2 = _target_4.getDefinition();
-    String _name = _definition_2.getName();
-    _builder.append(_name, "\t");
-    _builder.append(" ");
-    TargetDefinition _target_5 = sentence.getTarget();
-    NodeDefinition _definition_3 = _target_5.getDefinition();
-    RelationQualifier _qualifier = sentence.getQualifier();
-    String _qualifierSatisfiedAssignment = this.qualifierSatisfiedAssignment(_definition_3, _qualifier);
-    _builder.append(_qualifierSatisfiedAssignment, "\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("if (!satisfied) return satisfied;");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
     return _builder;
   }
   
@@ -294,8 +363,6 @@ public class DslGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
     _builder.append("if (!satisfied) return satisfied;");
     _builder.newLine();
     _builder.append("}");
@@ -303,22 +370,44 @@ public class DslGenerator implements IGenerator {
     return _builder;
   }
   
+  public CharSequence evaluationStatement(final DefinitionSentence sentence) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      NodeDefinition _node = sentence.getNode();
+      boolean _notEquals = (!Objects.equal(_node, null));
+      if (_notEquals) {
+        CharSequence _singleNodeDefinition = this.singleNodeDefinition(sentence);
+        _builder.append(_singleNodeDefinition, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Quantification _quantification = sentence.getQuantification();
+      boolean _notEquals_1 = (!Objects.equal(_quantification, null));
+      if (_notEquals_1) {
+        CharSequence _quantifiedDefinition = this.quantifiedDefinition(sentence);
+        _builder.append(_quantifiedDefinition, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
   public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final Axis axis, final NodeDefinition source, final SelectorList types, final PredicateExpression predicate) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Node ");
-    String _name = assignee.getName();
-    _builder.append(_name, "");
+    String _nodeDeclarationStatement = this.nodeDeclarationStatement(assignee);
+    _builder.append(_nodeDeclarationStatement, "");
     _builder.append(" = ");
-    String _name_1 = axis.getName();
-    String _lowerCase = _name_1.toLowerCase();
+    String _name = axis.getName();
+    String _lowerCase = _name.toLowerCase();
     _builder.append(_lowerCase, "");
     _builder.append("(");
-    String _name_2 = source.getName();
-    _builder.append(_name_2, "");
+    String _name_1 = source.getName();
+    _builder.append(_name_1, "");
     _builder.append(", ");
     String _selectorExpression = this.selectorExpression(types);
     _builder.append(_selectorExpression, "");
-    _builder.append(", (WElement element) -> {");
+    _builder.append(", (Node node) -> {");
     _builder.newLineIfNotEmpty();
     {
       boolean _equals = Objects.equal(predicate, null);
@@ -328,7 +417,8 @@ public class DslGenerator implements IGenerator {
         _builder.newLine();
       } else {
         _builder.append("\t");
-        CharSequence _predicateExpression = this.predicateExpression(predicate);
+        _builder.append("return ");
+        Object _predicateExpression = this.predicateExpression(predicate);
         _builder.append(_predicateExpression, "\t");
         _builder.newLineIfNotEmpty();
       }
@@ -338,17 +428,85 @@ public class DslGenerator implements IGenerator {
     return _builder;
   }
   
+  public String nodeDeclarationStatement(final NodeDefinition assignee) {
+    boolean _isCollection = assignee.isCollection();
+    if (_isCollection) {
+      String _name = assignee.getName();
+      return ("NodeSet " + _name);
+    } else {
+      String _name_1 = assignee.getName();
+      return ("Node " + _name_1);
+    }
+  }
+  
   public String qualifierSatisfiedAssignment(final NodeDefinition node, final RelationQualifier qualifier) {
-    if (qualifier != null) {
-      switch (qualifier) {
-        case CAN:
-          return "true";
-        case MUST:
-          return "!= null";
-        case MUST_NOT:
-          return "== null";
-        default:
-          break;
+    boolean _isCollection = node.isCollection();
+    if (_isCollection) {
+      if (qualifier != null) {
+        switch (qualifier) {
+          case CAN:
+            return "true";
+          case MUST:
+            return ".isEmpty()";
+          case MUST_NOT:
+            return ".isEmpty()";
+          default:
+            break;
+        }
+      }
+    } else {
+      if (qualifier != null) {
+        switch (qualifier) {
+          case CAN:
+            return "true";
+          case MUST:
+            return " != null";
+          case MUST_NOT:
+            return " == null";
+          default:
+            break;
+        }
+      }
+    }
+    return null;
+  }
+  
+  public String qualifierSatisfiedStatement(final NodeDefinition node, final RelationQualifier qualifier) {
+    boolean _isCollection = node.isCollection();
+    if (_isCollection) {
+      if (qualifier != null) {
+        switch (qualifier) {
+          case CAN:
+            return this.qualifierSatisfiedAssignment(node, qualifier);
+          case MUST:
+            String _name = node.getName();
+            String _plus = ("!" + _name);
+            String _qualifierSatisfiedAssignment = this.qualifierSatisfiedAssignment(node, qualifier);
+            return (_plus + _qualifierSatisfiedAssignment);
+          case MUST_NOT:
+            String _name_1 = node.getName();
+            String _qualifierSatisfiedAssignment_1 = this.qualifierSatisfiedAssignment(node, qualifier);
+            return (_name_1 + _qualifierSatisfiedAssignment_1);
+          default:
+            break;
+        }
+      }
+    } else {
+      if (qualifier != null) {
+        switch (qualifier) {
+          case CAN:
+            return this.qualifierSatisfiedAssignment(node, qualifier);
+          case MUST:
+            String _name_2 = node.getName();
+            String _qualifierSatisfiedAssignment_2 = this.qualifierSatisfiedAssignment(node, qualifier);
+            return (_name_2 + _qualifierSatisfiedAssignment_2);
+          case MUST_NOT:
+            String _name_3 = node.getName();
+            String _qualifierSatisfiedAssignment_3 = this.qualifierSatisfiedAssignment(node, qualifier);
+            return (_name_3 + _qualifierSatisfiedAssignment_3);
+          default:
+            break;
+        }
       }
     }
     return null;
@@ -408,11 +566,52 @@ public class DslGenerator implements IGenerator {
     }
   }
   
-  protected CharSequence _predicateExpression(final PredicateExpression expression) {
+  protected Object _predicateExpression(final PredicateExpression expression) {
+    if ((expression instanceof AndExpression)) {
+      return this.andExpression(((AndExpression) expression));
+    }
+    PredicateCall _call = expression.getCall();
+    boolean _notEquals = (!Objects.equal(_call, null));
+    if (_notEquals) {
+      PredicateCall _call_1 = expression.getCall();
+      return this.predicateCall(_call_1);
+    }
+    PredicateExpression _inner = expression.getInner();
+    boolean _notEquals_1 = (!Objects.equal(_inner, null));
+    if (_notEquals_1) {
+      PredicateExpression _inner_1 = expression.getInner();
+      return this.predicateExpression(_inner_1);
+    }
+    PredicateExpression _lhs = expression.getLhs();
+    boolean _notEquals_2 = (!Objects.equal(_lhs, null));
+    if (_notEquals_2) {
+      PredicateExpression _lhs_1 = expression.getLhs();
+      return this.predicateExpression(_lhs_1);
+    }
     return null;
   }
   
-  protected CharSequence _predicateExpression(final PropertyRelationPredicate predicate) {
+  public Object predicateExpressionEval(final PredicateExpression expression) {
+    PredicateCall _call = expression.getCall();
+    boolean _notEquals = (!Objects.equal(_call, null));
+    if (_notEquals) {
+      PredicateCall _call_1 = expression.getCall();
+      return this.predicateCallEval(_call_1);
+    }
+    PredicateExpression _lhs = expression.getLhs();
+    boolean _notEquals_1 = (!Objects.equal(_lhs, null));
+    if (_notEquals_1) {
+      PredicateExpression _lhs_1 = expression.getLhs();
+      return this.predicateExpressionEval(_lhs_1);
+    }
+    return null;
+  }
+  
+  protected Object _predicateExpression(final ImpliesExpression implies) {
+    return null;
+  }
+  
+  protected Object _predicateExpression(final PropertyRelationPredicate predicate) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("PredicateUtil.");
     PropertyRelation _relation = predicate.getRelation();
@@ -430,12 +629,16 @@ public class DslGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _predicateExpression(final DefinitionSentencePredicate predicate) {
+  protected Object _predicateExpression(final DefinitionSentencePredicate predicate) {
     StringConcatenation _builder = new StringConcatenation();
+    DefinitionSentence _sentence = predicate.getSentence();
+    Object _sentenceStatements = this.sentenceStatements(_sentence);
+    _builder.append(_sentenceStatements, "");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
-  protected CharSequence _predicateExpression(final PredicateReference reference) {
+  protected Object _predicateExpression(final PredicateReference reference) {
     StringConcatenation _builder = new StringConcatenation();
     PredicateDefinitionSentence _reference = reference.getReference();
     String _name = _reference.getName();
@@ -447,6 +650,85 @@ public class DslGenerator implements IGenerator {
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  public CharSequence andExpression(final AndExpression and) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("eval(() -> {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("boolean satisfied = true;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    PredicateExpression _lhs = and.getLhs();
+    Object _predicateExpression = this.predicateExpression(_lhs);
+    _builder.append(_predicateExpression, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("satisfied &= ");
+    PredicateExpression _lhs_1 = and.getLhs();
+    Object _predicateExpressionEval = this.predicateExpressionEval(_lhs_1);
+    _builder.append(_predicateExpressionEval, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    PredicateExpression _rhs = and.getRhs();
+    Object _predicateExpression_1 = this.predicateExpression(_rhs);
+    _builder.append(_predicateExpression_1, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("satisfied &= ");
+    PredicateExpression _rhs_1 = and.getRhs();
+    Object _predicateExpressionEval_1 = this.predicateExpressionEval(_rhs_1);
+    _builder.append(_predicateExpressionEval_1, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return satisfied;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _predicateCall(final PropertyRelationPredicate relation) {
+    return null;
+  }
+  
+  protected CharSequence _predicateCallEval(final PropertyRelationPredicate relation) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
+  }
+  
+  protected CharSequence _predicateCall(final DefinitionSentencePredicate definition) {
+    StringConcatenation _builder = new StringConcatenation();
+    DefinitionSentence _sentence = definition.getSentence();
+    Object _sentenceStatements = this.sentenceStatements(_sentence);
+    _builder.append(_sentenceStatements, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected CharSequence _predicateCallEval(final DefinitionSentencePredicate definition) {
+    StringConcatenation _builder = new StringConcatenation();
+    DefinitionSentence _sentence = definition.getSentence();
+    TargetDefinition _target = _sentence.getTarget();
+    NodeDefinition _definition = _target.getDefinition();
+    DefinitionSentence _sentence_1 = definition.getSentence();
+    RelationQualifier _qualifier = _sentence_1.getQualifier();
+    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
+    _builder.append(_qualifierSatisfiedStatement, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected CharSequence _predicateCall(final PredicateReference reference) {
+    return null;
   }
   
   public String argumentList(final ArgumentList list) {
@@ -501,9 +783,11 @@ public class DslGenerator implements IGenerator {
     }
   }
   
-  public CharSequence predicateExpression(final EObject predicate) {
+  public Object predicateExpression(final EObject predicate) {
     if (predicate instanceof DefinitionSentencePredicate) {
       return _predicateExpression((DefinitionSentencePredicate)predicate);
+    } else if (predicate instanceof ImpliesExpression) {
+      return _predicateExpression((ImpliesExpression)predicate);
     } else if (predicate instanceof PredicateReference) {
       return _predicateExpression((PredicateReference)predicate);
     } else if (predicate instanceof PropertyRelationPredicate) {
@@ -513,6 +797,30 @@ public class DslGenerator implements IGenerator {
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(predicate).toString());
+    }
+  }
+  
+  public CharSequence predicateCall(final PredicateCall definition) {
+    if (definition instanceof DefinitionSentencePredicate) {
+      return _predicateCall((DefinitionSentencePredicate)definition);
+    } else if (definition instanceof PredicateReference) {
+      return _predicateCall((PredicateReference)definition);
+    } else if (definition instanceof PropertyRelationPredicate) {
+      return _predicateCall((PropertyRelationPredicate)definition);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(definition).toString());
+    }
+  }
+  
+  public CharSequence predicateCallEval(final PredicateCall definition) {
+    if (definition instanceof DefinitionSentencePredicate) {
+      return _predicateCallEval((DefinitionSentencePredicate)definition);
+    } else if (definition instanceof PropertyRelationPredicate) {
+      return _predicateCallEval((PropertyRelationPredicate)definition);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(definition).toString());
     }
   }
 }

@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getQuantifications <em>Quantifications</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

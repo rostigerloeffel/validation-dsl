@@ -13,6 +13,7 @@ import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.DslFactory;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.NodeReferenceList;
 import com.isax.validation.dsl.dsl.OrExpression;
@@ -264,6 +265,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * @generated
    */
   private EClass orExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass impliesExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -731,19 +739,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPredicateExpression_Rhs()
-  {
-    return (EReference)predicateExpressionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getPredicateExpression_Negated()
   {
-    return (EAttribute)predicateExpressionEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)predicateExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -753,7 +751,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    */
   public EReference getPredicateExpression_Call()
   {
-    return (EReference)predicateExpressionEClass.getEStructuralFeatures().get(3);
+    return (EReference)predicateExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -762,6 +760,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * @generated
    */
   public EReference getPredicateExpression_Inner()
+  {
+    return (EReference)predicateExpressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPredicateExpression_Rhs()
   {
     return (EReference)predicateExpressionEClass.getEStructuralFeatures().get(4);
   }
@@ -1151,6 +1159,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getImpliesExpression()
+  {
+    return impliesExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EEnum getQuantor()
   {
     return quantorEEnum;
@@ -1265,10 +1283,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     predicateExpressionEClass = createEClass(PREDICATE_EXPRESSION);
     createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__LHS);
-    createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__RHS);
     createEAttribute(predicateExpressionEClass, PREDICATE_EXPRESSION__NEGATED);
     createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__CALL);
     createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__INNER);
+    createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__RHS);
 
     predicateCallEClass = createEClass(PREDICATE_CALL);
     createEAttribute(predicateCallEClass, PREDICATE_CALL__LABEL);
@@ -1325,6 +1343,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     orExpressionEClass = createEClass(OR_EXPRESSION);
 
+    impliesExpressionEClass = createEClass(IMPLIES_EXPRESSION);
+
     // Create enums
     quantorEEnum = createEEnum(QUANTOR);
     relationQualifierEEnum = createEEnum(RELATION_QUALIFIER);
@@ -1372,6 +1392,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     propertyReferenceExpressionEClass.getESuperTypes().add(this.getPropertyExpression());
     andExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
     orExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
+    impliesExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(validatorEClass, Validator.class, "Validator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1423,10 +1444,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(predicateExpressionEClass, PredicateExpression.class, "PredicateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPredicateExpression_Lhs(), this.getPredicateExpression(), null, "lhs", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPredicateExpression_Rhs(), this.getPredicateExpression(), null, "rhs", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPredicateExpression_Negated(), ecorePackage.getEBoolean(), "negated", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPredicateExpression_Call(), this.getPredicateCall(), null, "call", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPredicateExpression_Inner(), this.getPredicateExpression(), null, "inner", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPredicateExpression_Rhs(), this.getPredicateExpression(), null, "rhs", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(predicateCallEClass, PredicateCall.class, "PredicateCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPredicateCall_Label(), ecorePackage.getEString(), "label", null, 0, 1, PredicateCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1482,6 +1503,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEClass(andExpressionEClass, AndExpression.class, "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(impliesExpressionEClass, ImpliesExpression.class, "ImpliesExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(quantorEEnum, Quantor.class, "Quantor");

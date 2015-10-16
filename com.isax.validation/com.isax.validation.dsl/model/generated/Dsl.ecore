@@ -66,12 +66,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="PredicateExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PredicateExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PredicateExpression"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="negated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="call" eType="#//PredicateCall"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inner" eType="#//PredicateExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PredicateExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateCall">
@@ -165,4 +165,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//PredicateExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//PredicateExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpliesExpression" eSuperTypes="#//PredicateExpression"/>
 </ecore:EPackage>

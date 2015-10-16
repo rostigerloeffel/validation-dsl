@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.QuantificationImpl#getQuantor <em>Quantor</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.QuantificationImpl#getNode <em>Node</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.QuantificationImpl#getNodeSet <em>Node Set</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

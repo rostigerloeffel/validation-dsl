@@ -10,7 +10,7 @@ Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;
 
 StartOnSentence:
-	'start' 'on' definition=NodeDefinition;
+	'start on' definition=NodeDefinition;
 
 DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 
@@ -21,7 +21,7 @@ ConstraintSentence:
 	'for'
 	quantifications=QuantificationList? 
 	nodes=NodeReferenceList? 
-	('holds' 'that' | ':')
+	('holds that' | ':')
 	predicate=PredicateExpression;
 
 PredicateDefinitionSentence:
@@ -36,14 +36,14 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis definition=NodeDefinition ('where' 'holds' '{' predicate=PredicateExpression '}')? ('with' 'property' '{' assignments=AssignmentList '}')?;
+	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' assignments=AssignmentList '}')?;
 
 
 SelectorList:
 	('being' selectors=SelectorListDef) | ('(' selectors=SelectorListDef ')');
 
 SelectorListDef:
-	selectors+=Selector ((',' | 'or') selectors+=Selector)*;
+	selectors+=Selector ('or' selectors+=Selector)*;
 
 Selector:
 	type=ID;
@@ -59,7 +59,7 @@ OrExpression returns PredicateExpression:
 	ImpliesExpression ({OrExpression.lhs=current} 'or' rhs=ImpliesExpression)*;
 
 ImpliesExpression returns PredicateExpression:
-	lhs=PrimaryExpression (('implies' | '=>') rhs=PrimaryExpression)?;
+	lhs=PrimaryExpression ({ImpliesExpression.lhs=current} ('implies' | '=>') rhs=PrimaryExpression)?;
 
 PrimaryExpression returns PredicateExpression:
 	(negated?='not')? (call=PredicateCall | ('(' inner=PredicateExpression ')'));
@@ -73,6 +73,7 @@ PropertyRelationPredicate:
 DefinitionSentencePredicate:
 	sentence=DefinitionSentence;
 
+// Don't handle function-like calls manually, use Xbase instead
 PredicateReference:
 	reference=[PredicateDefinitionSentence]
 	arguments=ArgumentList;

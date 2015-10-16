@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.Quantification#getQuantor <em>Quantor</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Quantification#getNode <em>Node</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Quantification#getNodeSet <em>Node Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getQuantification()
  * @model

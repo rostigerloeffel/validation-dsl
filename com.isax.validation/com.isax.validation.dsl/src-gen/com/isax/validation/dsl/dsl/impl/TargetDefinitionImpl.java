@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getAxis <em>Axis</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getDefinition <em>Definition</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getAssignments <em>Assignments</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

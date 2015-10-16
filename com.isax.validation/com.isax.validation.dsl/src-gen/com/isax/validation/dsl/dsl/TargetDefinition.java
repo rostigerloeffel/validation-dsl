@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getAxis <em>Axis</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getDefinition <em>Definition</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition()
  * @model

@@ -3,8 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.isax.validation.dsl/src-gen" editDirectory="/com.isax.validation.dsl.edit/src"
     editorDirectory="/com.isax.validation.dsl.editor/src" modelPluginID="com.isax.validation.dsl"
     forceOverwrite="true" modelName="Dsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="com.isax.validation.dsl.edit"
-    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.10">
+    complianceLevel="6.0" copyrightFields="false" editPluginID="com.isax.validation.dsl.edit"
+    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.11">
   <genPackages prefix="Dsl" basePackage="com.isax.validation.dsl" disposableProviderFactory="true"
       fileExtensions="validator" ecorePackage="Dsl.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//Quantor">
@@ -82,10 +82,10 @@
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//PredicateExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateExpression/lhs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateExpression/rhs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//PredicateExpression/negated"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateExpression/call"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateExpression/inner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateExpression/rhs"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//PredicateCall">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//PredicateCall/label"/>
@@ -139,5 +139,6 @@
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//AndExpression"/>
     <genClasses ecoreClass="Dsl.ecore#//OrExpression"/>
+    <genClasses ecoreClass="Dsl.ecore#//ImpliesExpression"/>
   </genPackages>
 </genmodel:GenModel>

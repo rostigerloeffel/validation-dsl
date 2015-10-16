@@ -10,12 +10,12 @@ package com.isax.validation.dsl.dsl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getQuantifications <em>Quantifications</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getNodes <em>Nodes</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getConstraintSentence()
  * @model

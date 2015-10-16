@@ -293,6 +293,15 @@ public interface DslFactory extends EFactory
   OrExpression createOrExpression();
 
   /**
+   * Returns a new object of class '<em>Implies Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implies Expression</em>'.
+   * @generated
+   */
+  ImpliesExpression createImpliesExpression();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

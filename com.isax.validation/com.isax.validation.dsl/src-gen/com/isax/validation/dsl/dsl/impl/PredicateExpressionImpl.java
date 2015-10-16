@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#getLhs <em>Lhs</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#getRhs <em>Rhs</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#isNegated <em>Negated</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#getCall <em>Call</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#getInner <em>Inner</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -43,16 +43,6 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
    * @ordered
    */
   protected PredicateExpression lhs;
-
-  /**
-   * The cached value of the '{@link #getRhs() <em>Rhs</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRhs()
-   * @generated
-   * @ordered
-   */
-  protected PredicateExpression rhs;
 
   /**
    * The default value of the '{@link #isNegated() <em>Negated</em>}' attribute.
@@ -93,6 +83,16 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
    * @ordered
    */
   protected PredicateExpression inner;
+
+  /**
+   * The cached value of the '{@link #getRhs() <em>Rhs</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRhs()
+   * @generated
+   * @ordered
+   */
+  protected PredicateExpression rhs;
 
   /**
    * <!-- begin-user-doc -->
@@ -161,54 +161,6 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_EXPRESSION__LHS, newLhs, newLhs));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PredicateExpression getRhs()
-  {
-    return rhs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetRhs(PredicateExpression newRhs, NotificationChain msgs)
-  {
-    PredicateExpression oldRhs = rhs;
-    rhs = newRhs;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_EXPRESSION__RHS, oldRhs, newRhs);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRhs(PredicateExpression newRhs)
-  {
-    if (newRhs != rhs)
-    {
-      NotificationChain msgs = null;
-      if (rhs != null)
-        msgs = ((InternalEObject)rhs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_EXPRESSION__RHS, null, msgs);
-      if (newRhs != null)
-        msgs = ((InternalEObject)newRhs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_EXPRESSION__RHS, null, msgs);
-      msgs = basicSetRhs(newRhs, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_EXPRESSION__RHS, newRhs, newRhs));
   }
 
   /**
@@ -335,6 +287,54 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
+  public PredicateExpression getRhs()
+  {
+    return rhs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetRhs(PredicateExpression newRhs, NotificationChain msgs)
+  {
+    PredicateExpression oldRhs = rhs;
+    rhs = newRhs;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_EXPRESSION__RHS, oldRhs, newRhs);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRhs(PredicateExpression newRhs)
+  {
+    if (newRhs != rhs)
+    {
+      NotificationChain msgs = null;
+      if (rhs != null)
+        msgs = ((InternalEObject)rhs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_EXPRESSION__RHS, null, msgs);
+      if (newRhs != null)
+        msgs = ((InternalEObject)newRhs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_EXPRESSION__RHS, null, msgs);
+      msgs = basicSetRhs(newRhs, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_EXPRESSION__RHS, newRhs, newRhs));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -342,12 +342,12 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
     {
       case DslPackage.PREDICATE_EXPRESSION__LHS:
         return basicSetLhs(null, msgs);
-      case DslPackage.PREDICATE_EXPRESSION__RHS:
-        return basicSetRhs(null, msgs);
       case DslPackage.PREDICATE_EXPRESSION__CALL:
         return basicSetCall(null, msgs);
       case DslPackage.PREDICATE_EXPRESSION__INNER:
         return basicSetInner(null, msgs);
+      case DslPackage.PREDICATE_EXPRESSION__RHS:
+        return basicSetRhs(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -364,14 +364,14 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
     {
       case DslPackage.PREDICATE_EXPRESSION__LHS:
         return getLhs();
-      case DslPackage.PREDICATE_EXPRESSION__RHS:
-        return getRhs();
       case DslPackage.PREDICATE_EXPRESSION__NEGATED:
         return isNegated();
       case DslPackage.PREDICATE_EXPRESSION__CALL:
         return getCall();
       case DslPackage.PREDICATE_EXPRESSION__INNER:
         return getInner();
+      case DslPackage.PREDICATE_EXPRESSION__RHS:
+        return getRhs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -389,9 +389,6 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
       case DslPackage.PREDICATE_EXPRESSION__LHS:
         setLhs((PredicateExpression)newValue);
         return;
-      case DslPackage.PREDICATE_EXPRESSION__RHS:
-        setRhs((PredicateExpression)newValue);
-        return;
       case DslPackage.PREDICATE_EXPRESSION__NEGATED:
         setNegated((Boolean)newValue);
         return;
@@ -400,6 +397,9 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
         return;
       case DslPackage.PREDICATE_EXPRESSION__INNER:
         setInner((PredicateExpression)newValue);
+        return;
+      case DslPackage.PREDICATE_EXPRESSION__RHS:
+        setRhs((PredicateExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -418,9 +418,6 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
       case DslPackage.PREDICATE_EXPRESSION__LHS:
         setLhs((PredicateExpression)null);
         return;
-      case DslPackage.PREDICATE_EXPRESSION__RHS:
-        setRhs((PredicateExpression)null);
-        return;
       case DslPackage.PREDICATE_EXPRESSION__NEGATED:
         setNegated(NEGATED_EDEFAULT);
         return;
@@ -429,6 +426,9 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
         return;
       case DslPackage.PREDICATE_EXPRESSION__INNER:
         setInner((PredicateExpression)null);
+        return;
+      case DslPackage.PREDICATE_EXPRESSION__RHS:
+        setRhs((PredicateExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -446,14 +446,14 @@ public class PredicateExpressionImpl extends MinimalEObjectImpl.Container implem
     {
       case DslPackage.PREDICATE_EXPRESSION__LHS:
         return lhs != null;
-      case DslPackage.PREDICATE_EXPRESSION__RHS:
-        return rhs != null;
       case DslPackage.PREDICATE_EXPRESSION__NEGATED:
         return negated != NEGATED_EDEFAULT;
       case DslPackage.PREDICATE_EXPRESSION__CALL:
         return call != null;
       case DslPackage.PREDICATE_EXPRESSION__INNER:
         return inner != null;
+      case DslPackage.PREDICATE_EXPRESSION__RHS:
+        return rhs != null;
     }
     return super.eIsSet(featureID);
   }

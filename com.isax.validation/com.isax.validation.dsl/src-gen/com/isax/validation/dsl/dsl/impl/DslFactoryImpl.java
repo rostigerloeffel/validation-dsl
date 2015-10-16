@@ -95,6 +95,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
       case DslPackage.PROPERTY_REFERENCE_EXPRESSION: return createPropertyReferenceExpression();
       case DslPackage.AND_EXPRESSION: return createAndExpression();
       case DslPackage.OR_EXPRESSION: return createOrExpression();
+      case DslPackage.IMPLIES_EXPRESSION: return createImpliesExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -474,6 +475,17 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
   {
     OrExpressionImpl orExpression = new OrExpressionImpl();
     return orExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImpliesExpression createImpliesExpression()
+  {
+    ImpliesExpressionImpl impliesExpression = new ImpliesExpressionImpl();
+    return impliesExpression;
   }
 
   /**

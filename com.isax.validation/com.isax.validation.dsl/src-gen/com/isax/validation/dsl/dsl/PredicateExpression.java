@@ -11,14 +11,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#getLhs <em>Lhs</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#isNegated <em>Negated</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#getCall <em>Call</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#getInner <em>Inner</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateExpression()
  * @model
@@ -51,32 +51,6 @@ public interface PredicateExpression extends EObject
    * @generated
    */
   void setLhs(PredicateExpression value);
-
-  /**
-   * Returns the value of the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Rhs</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Rhs</em>' containment reference.
-   * @see #setRhs(PredicateExpression)
-   * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateExpression_Rhs()
-   * @model containment="true"
-   * @generated
-   */
-  PredicateExpression getRhs();
-
-  /**
-   * Sets the value of the '{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Rhs</em>' containment reference.
-   * @see #getRhs()
-   * @generated
-   */
-  void setRhs(PredicateExpression value);
 
   /**
    * Returns the value of the '<em><b>Negated</b></em>' attribute.
@@ -155,5 +129,31 @@ public interface PredicateExpression extends EObject
    * @generated
    */
   void setInner(PredicateExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Rhs</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Rhs</em>' containment reference.
+   * @see #setRhs(PredicateExpression)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateExpression_Rhs()
+   * @model containment="true"
+   * @generated
+   */
+  PredicateExpression getRhs();
+
+  /**
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.PredicateExpression#getRhs <em>Rhs</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Rhs</em>' containment reference.
+   * @see #getRhs()
+   * @generated
+   */
+  void setRhs(PredicateExpression value);
 
 } // PredicateExpression

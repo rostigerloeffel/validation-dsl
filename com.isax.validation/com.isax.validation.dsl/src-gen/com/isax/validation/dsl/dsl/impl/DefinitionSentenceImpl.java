@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getQuantification <em>Quantification</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getNode <em>Node</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

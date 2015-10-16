@@ -10,12 +10,12 @@ package com.isax.validation.dsl.dsl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.PropertyRelationPredicate#getLhs <em>Lhs</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PropertyRelationPredicate#getRelation <em>Relation</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PropertyRelationPredicate#getRhs <em>Rhs</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getPropertyRelationPredicate()
  * @model

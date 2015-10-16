@@ -10,12 +10,12 @@ package com.isax.validation.dsl.dsl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getName <em>Name</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getParameters <em>Parameters</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateDefinitionSentence()
  * @model
