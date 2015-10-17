@@ -13,9 +13,9 @@ import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
 import com.isax.validation.dsl.dsl.ImpliesExpression
 import com.isax.validation.dsl.dsl.NodeDefinition
+import com.isax.validation.dsl.dsl.OrExpression
 import com.isax.validation.dsl.dsl.Parameter
 import com.isax.validation.dsl.dsl.ParameterList
-import com.isax.validation.dsl.dsl.PredicateCall
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
 import com.isax.validation.dsl.dsl.PredicateReference
@@ -153,18 +153,21 @@ class DslGenerator implements IGenerator {
 		«ENDIF»
 	'''
 
-	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types, PredicateExpression predicate) '''
+	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types,
+		PredicateExpression predicate) '''
 		«nodeDeclarationStatement(assignee)» = «axis.getName().toLowerCase»(«source.name», «selectorExpression(types)», (Node node) -> {
 			«IF predicate == null»
 				return true;
 			«ELSE»
-				return «predicateExpression(predicate)»
+				return eval(() -> { 
+					«predicateExpression(predicate)»
+				}
 			«ENDIF»
 		});
 	'''
 
 	def nodeDeclarationStatement(NodeDefinition assignee) {
-		if(assignee.collection) {
+		if (assignee.collection) {
 			return "NodeSet " + assignee.name;
 		} else {
 			return "Node " + assignee.name;
@@ -172,7 +175,7 @@ class DslGenerator implements IGenerator {
 	}
 
 	def qualifierSatisfiedAssignment(NodeDefinition node, RelationQualifier qualifier) {
-		if(node.collection) {
+		if (node.collection) {
 			switch (qualifier) {
 				case CAN: return "true"
 				case MUST: return ".isEmpty()"
@@ -188,7 +191,7 @@ class DslGenerator implements IGenerator {
 	}
 
 	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier) {
-		if(node.collection) {
+		if (node.collection) {
 			switch (qualifier) {
 				case CAN: return qualifierSatisfiedAssignment(node, qualifier)
 				case MUST: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
@@ -219,26 +222,43 @@ class DslGenerator implements IGenerator {
 	}
 
 	def selectorExpression(SelectorList list) {
-		if(list != null && list.selectors != null) {
+		if (list != null && list.selectors != null) {
 			return list.selectors.selectors.join('_', [Selector s|s.type.toUpperCase()]) + '_TYPES'
 		} else {
 			return ""
 		}
 	}
 
+//	def dispatch predicateExpression(PredicateExpression expression) {
+//		if (expression.negated) "!" else "" +
+//			switch (expression) {
+//				AndExpression: andExpression(expression as AndExpression)
+//				OrExpression: orExpression(expression as OrExpression)
+//				ImpliesExpression: impliesExpression(expression as ImpliesExpression)
+//				case expression.call != null: predicateCall(expression.call)
+//				case expression.inner != null: predicateExpression(expression.inner)
+//				case expression.lhs != null: predicateExpression(expression.lhs)
+//			}
+//	}
+
+
+
 	def dispatch predicateExpression(PredicateExpression expression) {
-		if(expression instanceof AndExpression) return andExpression(expression as AndExpression)
-
-		// '!' + predicateExpression(expression.inner)
-		if(expression.call != null) return predicateCall(expression.call)
-		if(expression.inner != null) return predicateExpression(expression.inner)
-		if(expression.lhs != null) return predicateExpression(expression.lhs)
+		if (expression.call != null) return predicateCall(expression.call)
+		if (expression.lhs != null) return predicateExpression(expression.lhs)
+		if (expression.rhs != null) return predicateExpression(expression.rhs)
 	}
+	
+	def dispatch predicateExpression(AndExpression and) '''
+		«andExpression(and)»
+	'''
+	
+	def dispatch predicateExpression(OrExpression or) '''
+		«orExpression(or)»
+	'''
 
-	def predicateExpressionEval(PredicateExpression expression) {
-		if(expression.call != null) return predicateCallEval(expression.call)
-		if(expression.lhs != null) return predicateExpressionEval(expression.lhs)
-	}
+//	def predicateExpressionEval(PredicateExpression expression) '''
+//	'''
 
 	def dispatch predicateExpression(ImpliesExpression implies) {
 	}
@@ -254,44 +274,58 @@ class DslGenerator implements IGenerator {
 	def dispatch predicateExpression(PredicateReference reference) '''
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
-
+	
 	def andExpression(AndExpression and) '''
 		eval(() -> {
-			boolean satisfied = true;
-			
-			«predicateExpression(and.lhs)»
-			satisfied &= «predicateExpressionEval(and.lhs)»
-			
-			«predicateExpression(and.rhs)»
-			satisfied &= «predicateExpressionEval(and.rhs)»
-			
+			boolean satisfied = true;			
+			«IF and.lhs != null»satisfied &= «predicateExpression(and.lhs)»«ENDIF»		
+			satisfied &= «predicateExpression(and.rhs)»
 			return satisfied;
-		}
+		});
+	'''
+	
+	def orExpression(OrExpression or) '''
+		eval(() -> {
+			boolean satisfied = false;			
+			«IF or.lhs != null»satisfied |= «predicateExpression(or.lhs)»«ENDIF»		
+			satisfied |= «predicateExpression(or.rhs)»
+			return satisfied;
+		});
+	'''
+	
+	def impliesExpression(ImpliesExpression implies) '''
+		eval(() -> {
+			boolean satisfied = false;			
+			«IF implies.lhs != null»satisfied |= «predicateExpression(implies.lhs)»«ENDIF»		
+			satisfied |= !«predicateExpression(implies.rhs)»
+			return satisfied;
+		});
 	'''
 
-	def dispatch predicateCall(PropertyRelationPredicate relation) {
-	}
 
-	def dispatch predicateCallEval(PropertyRelationPredicate relation) '''
+	def dispatch predicateCall(PropertyRelationPredicate relation) '''
 	'''
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
-		«sentenceStatements(definition.sentence)»
+		eval(() -> {
+			«sentenceStatements(definition.sentence)»
+			return «qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»
+		});
 	'''
 
-	def dispatch predicateCallEval(DefinitionSentencePredicate definition) '''
-		«qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
-	'''
+//	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
+//		«qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
+//	'''
 
-	def dispatch predicateCall(PredicateReference reference) {
-	}
+	def dispatch predicateCall(PredicateReference reference) '''
+	'''
 
 	def argumentList(ArgumentList list) {
 		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
 	}
 
 	def parameterList(ParameterList list) {
-		if(list != null)
+		if (list != null)
 			list.parameters.join(", ", [ Parameter parameter |
 				if(parameter.node.isCollection) "Collection<Node>" else "Node" + " " + parameter.node.name
 			])
