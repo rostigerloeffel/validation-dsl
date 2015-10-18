@@ -72,11 +72,12 @@ class DslGenerator implements IGenerator {
 				«FOR sentence : validator.sentences»
 					«IF sentence instanceof DefinitionSentence»
 						«sentenceStatements(sentence)»
+						«IF sentence.quantification == null»
 						{
 							boolean satisfied = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
 							if (!satisfied) return satisfied;
 						}
-						
+						«ENDIF»
 					«ENDIF»
 				«ENDFOR»
 			}
@@ -140,19 +141,10 @@ class DslGenerator implements IGenerator {
 			boolean satisfied = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for («sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
 				«nodeAssignmentStatement(sentence.getTarget.definition, sentence.getTarget.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.predicate)»
-				satisfied «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedAssignment(sentence.getTarget.definition, sentence.qualifier)»;
+				satisfied «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
 			if (!satisfied) return satisfied;
 		}
-	'''
-
-	def evaluationStatement(DefinitionSentence sentence) '''
-		«IF sentence.node != null»
-			«singleNodeDefinition(sentence)»
-		«ENDIF»
-		«IF sentence.quantification != null»
-			«quantifiedDefinition(sentence)»
-		«ENDIF»
 	'''
 
 	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types,

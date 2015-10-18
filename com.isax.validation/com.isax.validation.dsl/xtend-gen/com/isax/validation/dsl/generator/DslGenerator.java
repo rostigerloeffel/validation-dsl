@@ -132,28 +132,32 @@ public class DslGenerator implements IGenerator {
             CharSequence _sentenceStatements_1 = this.sentenceStatements(sentence_1);
             _builder.append(_sentenceStatements_1, "\t\t");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
-            _builder.append("{");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("boolean satisfied = ");
-            TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
-            NodeDefinition _definition = _target.getDefinition();
-            RelationQualifier _qualifier = ((DefinitionSentence)sentence_1).getQualifier();
-            String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
-            _builder.append(_qualifierSatisfiedStatement, "\t\t\t");
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("if (!satisfied) return satisfied;");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("}");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.newLine();
+            {
+              Quantification _quantification = ((DefinitionSentence)sentence_1).getQuantification();
+              boolean _equals = Objects.equal(_quantification, null);
+              if (_equals) {
+                _builder.append("\t\t");
+                _builder.append("{");
+                _builder.newLine();
+                _builder.append("\t\t");
+                _builder.append("\t");
+                _builder.append("boolean satisfied = ");
+                TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
+                NodeDefinition _definition = _target.getDefinition();
+                RelationQualifier _qualifier = ((DefinitionSentence)sentence_1).getQualifier();
+                String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
+                _builder.append(_qualifierSatisfiedStatement, "\t\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t\t");
+                _builder.append("\t");
+                _builder.append("if (!satisfied) return satisfied;");
+                _builder.newLine();
+                _builder.append("\t\t");
+                _builder.append("}");
+                _builder.newLine();
+              }
+            }
           }
         }
       }
@@ -358,8 +362,8 @@ public class DslGenerator implements IGenerator {
     TargetDefinition _target_4 = sentence.getTarget();
     NodeDefinition _definition_2 = _target_4.getDefinition();
     RelationQualifier _qualifier_1 = sentence.getQualifier();
-    String _qualifierSatisfiedAssignment = this.qualifierSatisfiedAssignment(_definition_2, _qualifier_1);
-    _builder.append(_qualifierSatisfiedAssignment, "\t\t");
+    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition_2, _qualifier_1);
+    _builder.append(_qualifierSatisfiedStatement, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -370,29 +374,6 @@ public class DslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence evaluationStatement(final DefinitionSentence sentence) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      NodeDefinition _node = sentence.getNode();
-      boolean _notEquals = (!Objects.equal(_node, null));
-      if (_notEquals) {
-        CharSequence _singleNodeDefinition = this.singleNodeDefinition(sentence);
-        _builder.append(_singleNodeDefinition, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      Quantification _quantification = sentence.getQuantification();
-      boolean _notEquals_1 = (!Objects.equal(_quantification, null));
-      if (_notEquals_1) {
-        CharSequence _quantifiedDefinition = this.quantifiedDefinition(sentence);
-        _builder.append(_quantifiedDefinition, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
     return _builder;
   }
   
