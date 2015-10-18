@@ -404,8 +404,8 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_1_0_1(), semanticObject.getNode());
-		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_3_0(), semanticObject.getProperty());
+		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_0_0_1(), semanticObject.getNode());
+		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0(), semanticObject.getProperty());
 		feeder.finish();
 	}
 	
@@ -430,7 +430,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

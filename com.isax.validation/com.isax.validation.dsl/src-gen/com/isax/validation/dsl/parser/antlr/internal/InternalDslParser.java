@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'start on'", "'for'", "'holds that'", "':'", "'define'", "'as'", "'*'", "','", "'where holds'", "'{'", "'}'", "'with property'", "'being'", "'('", "')'", "'or'", "'and'", "'implies'", "'=>'", "'not'", "'['", "']'", "'becomes'", "':='", "'in'", "'v'", "'n'", "'.'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'start on'", "'for'", "'holds that'", "':'", "'define'", "'as'", "'*'", "','", "'where holds'", "'{'", "'}'", "'with property'", "'being'", "'('", "')'", "'or'", "'and'", "'implies'", "'=>'", "'not'", "'['", "']'", "'becomes'", "':='", "'in'", "'.'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -33,9 +33,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final int T__11=11;
     public static final int T__55=55;
     public static final int T__12=12;
-    public static final int T__56=56;
     public static final int T__13=13;
-    public static final int T__57=57;
     public static final int T__14=14;
     public static final int T__51=51;
     public static final int T__52=52;
@@ -175,7 +173,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==RULE_ID||(LA1_0>=11 && LA1_0<=12)||LA1_0==15||(LA1_0>=39 && LA1_0<=40)) ) {
+                if ( (LA1_0==RULE_ID||(LA1_0>=11 && LA1_0<=12)||LA1_0==15||(LA1_0>=37 && LA1_0<=38)) ) {
                     alt1=1;
                 }
 
@@ -304,8 +302,8 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 }
                 break;
             case RULE_ID:
-            case 39:
-            case 40:
+            case 37:
+            case 38:
                 {
                 alt2=2;
                 }
@@ -591,7 +589,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( ((LA3_0>=39 && LA3_0<=40)) ) {
+            if ( ((LA3_0>=37 && LA3_0<=38)) ) {
                 alt3=1;
             }
             else if ( (LA3_0==RULE_ID) ) {
@@ -821,7 +819,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=39 && LA4_0<=40)) ) {
+            if ( ((LA4_0>=37 && LA4_0<=38)) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -2090,13 +2088,13 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     if ( (LA15_2==RULE_ID) ) {
                         int LA15_3 = input.LA(3);
 
-                        if ( (LA15_3==EOF||(LA15_3>=11 && LA15_3<=12)||(LA15_3>=14 && LA15_3<=16)||(LA15_3>=18 && LA15_3<=19)||(LA15_3>=21 && LA15_3<=22)||(LA15_3>=25 && LA15_3<=29)||LA15_3==31||LA15_3==35||(LA15_3>=39 && LA15_3<=40)) ) {
+                        if ( (LA15_3==EOF||(LA15_3>=11 && LA15_3<=12)||(LA15_3>=14 && LA15_3<=16)||(LA15_3>=18 && LA15_3<=19)||(LA15_3>=21 && LA15_3<=22)||(LA15_3>=25 && LA15_3<=29)||LA15_3==31||LA15_3==35||(LA15_3>=37 && LA15_3<=38)) ) {
                             alt15=1;
                         }
                         else if ( (LA15_3==RULE_ID) ) {
                             int LA15_5 = input.LA(4);
 
-                            if ( ((LA15_5>=41 && LA15_5<=43)) ) {
+                            if ( ((LA15_5>=39 && LA15_5<=41)) ) {
                                 alt15=1;
                             }
 
@@ -3004,7 +3002,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             int alt22=2;
             int LA22_0 = input.LA(1);
 
-            if ( (LA22_0==RULE_ID||(LA22_0>=36 && LA22_0<=37)||(LA22_0>=39 && LA22_0<=40)) ) {
+            if ( ((LA22_0>=RULE_ID && LA22_0<=RULE_STRING)||(LA22_0>=37 && LA22_0<=38)) ) {
                 alt22=1;
             }
             else if ( (LA22_0==24) ) {
@@ -3191,34 +3189,44 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1202:2: (this_PropertyRelationPredicate_0= rulePropertyRelationPredicate | this_DefinitionSentencePredicate_1= ruleDefinitionSentencePredicate | this_PredicateReference_2= rulePredicateReference )
             int alt23=3;
             switch ( input.LA(1) ) {
-            case 36:
-            case 37:
+            case RULE_STRING:
                 {
                 alt23=1;
                 }
                 break;
-            case 39:
-            case 40:
-                {
-                alt23=2;
-                }
-                break;
             case RULE_ID:
                 {
-                int LA23_3 = input.LA(2);
-
-                if ( (LA23_3==RULE_ID) ) {
+                switch ( input.LA(2) ) {
+                case RULE_ID:
+                    {
                     alt23=3;
-                }
-                else if ( ((LA23_3>=41 && LA23_3<=43)) ) {
+                    }
+                    break;
+                case 39:
+                case 40:
+                case 41:
+                    {
                     alt23=2;
-                }
-                else {
+                    }
+                    break;
+                case 36:
+                    {
+                    alt23=1;
+                    }
+                    break;
+                default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 23, 3, input);
+                        new NoViableAltException("", 23, 2, input);
 
                     throw nvae;
                 }
+
+                }
+                break;
+            case 37:
+            case 38:
+                {
+                alt23=2;
                 }
                 break;
             default:
@@ -4201,13 +4209,13 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     if ( (LA26_2==RULE_ID) ) {
                         int LA26_3 = input.LA(3);
 
-                        if ( (LA26_3==EOF||(LA26_3>=11 && LA26_3<=12)||LA26_3==15||LA26_3==18||LA26_3==21||(LA26_3>=25 && LA26_3<=29)||LA26_3==31||(LA26_3>=39 && LA26_3<=40)) ) {
+                        if ( (LA26_3==EOF||(LA26_3>=11 && LA26_3<=12)||LA26_3==15||LA26_3==18||LA26_3==21||(LA26_3>=25 && LA26_3<=29)||LA26_3==31||(LA26_3>=37 && LA26_3<=38)) ) {
                             alt26=1;
                         }
                         else if ( (LA26_3==RULE_ID) ) {
                             int LA26_5 = input.LA(4);
 
-                            if ( ((LA26_5>=41 && LA26_5<=43)) ) {
+                            if ( ((LA26_5>=39 && LA26_5<=41)) ) {
                                 alt26=1;
                             }
 
@@ -5020,10 +5028,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             int alt30=2;
             int LA30_0 = input.LA(1);
 
-            if ( (LA30_0==36) ) {
+            if ( (LA30_0==RULE_STRING) ) {
                 alt30=1;
             }
-            else if ( (LA30_0==37) ) {
+            else if ( (LA30_0==RULE_ID) ) {
                 alt30=2;
             }
             else {
@@ -5126,35 +5134,27 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePropertyValueExpression"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1937:1: rulePropertyValueExpression returns [EObject current=null] : (otherlv_0= 'v' ( (lv_value_1_0= RULE_STRING ) ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1937:1: rulePropertyValueExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject rulePropertyValueExpression() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
-        Token lv_value_1_0=null;
+        Token lv_value_0_0=null;
 
          enterRule(); 
             
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1940:28: ( (otherlv_0= 'v' ( (lv_value_1_0= RULE_STRING ) ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1941:1: (otherlv_0= 'v' ( (lv_value_1_0= RULE_STRING ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1940:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1941:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1941:1: (otherlv_0= 'v' ( (lv_value_1_0= RULE_STRING ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1941:3: otherlv_0= 'v' ( (lv_value_1_0= RULE_STRING ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1941:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1942:1: (lv_value_0_0= RULE_STRING )
             {
-            otherlv_0=(Token)match(input,36,FOLLOW_36_in_rulePropertyValueExpression4249); 
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1942:1: (lv_value_0_0= RULE_STRING )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1943:3: lv_value_0_0= RULE_STRING
+            {
+            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyValueExpression4253); 
 
-                	newLeafNode(otherlv_0, grammarAccess.getPropertyValueExpressionAccess().getVKeyword_0());
-                
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1945:1: ( (lv_value_1_0= RULE_STRING ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1946:1: (lv_value_1_0= RULE_STRING )
-            {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1946:1: (lv_value_1_0= RULE_STRING )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1947:3: lv_value_1_0= RULE_STRING
-            {
-            lv_value_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyValueExpression4266); 
-
-            			newLeafNode(lv_value_1_0, grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
@@ -5163,12 +5163,9 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"value",
-                    		lv_value_1_0, 
+                    		lv_value_0_0, 
                     		"STRING");
             	    
-
-            }
-
 
             }
 
@@ -5193,7 +5190,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePropertyReferenceExpression"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1971:1: entryRulePropertyReferenceExpression returns [EObject current=null] : iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1967:1: entryRulePropertyReferenceExpression returns [EObject current=null] : iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF ;
     public final EObject entryRulePropertyReferenceExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5201,17 +5198,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1972:2: (iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1973:2: iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1968:2: (iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1969:2: iv_rulePropertyReferenceExpression= rulePropertyReferenceExpression EOF
             {
              newCompositeNode(grammarAccess.getPropertyReferenceExpressionRule()); 
-            pushFollow(FOLLOW_rulePropertyReferenceExpression_in_entryRulePropertyReferenceExpression4307);
+            pushFollow(FOLLOW_rulePropertyReferenceExpression_in_entryRulePropertyReferenceExpression4293);
             iv_rulePropertyReferenceExpression=rulePropertyReferenceExpression();
 
             state._fsp--;
 
              current =iv_rulePropertyReferenceExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyReferenceExpression4317); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyReferenceExpression4303); 
 
             }
 
@@ -5229,42 +5226,37 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePropertyReferenceExpression"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1980:1: rulePropertyReferenceExpression returns [EObject current=null] : (otherlv_0= 'n' ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (lv_Property_3_0= RULE_ID ) ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1976:1: rulePropertyReferenceExpression returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '.' ( (lv_Property_2_0= RULE_ID ) ) ) ;
     public final EObject rulePropertyReferenceExpression() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
-        Token otherlv_2=null;
-        Token lv_Property_3_0=null;
+        Token lv_Property_2_0=null;
 
          enterRule(); 
             
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1983:28: ( (otherlv_0= 'n' ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (lv_Property_3_0= RULE_ID ) ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1984:1: (otherlv_0= 'n' ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (lv_Property_3_0= RULE_ID ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1979:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '.' ( (lv_Property_2_0= RULE_ID ) ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1980:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '.' ( (lv_Property_2_0= RULE_ID ) ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1984:1: (otherlv_0= 'n' ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (lv_Property_3_0= RULE_ID ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1984:3: otherlv_0= 'n' ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (lv_Property_3_0= RULE_ID ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1980:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '.' ( (lv_Property_2_0= RULE_ID ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1980:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '.' ( (lv_Property_2_0= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,37,FOLLOW_37_in_rulePropertyReferenceExpression4354); 
-
-                	newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceExpressionAccess().getNKeyword_0());
-                
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1988:1: ( (otherlv_1= RULE_ID ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1989:1: (otherlv_1= RULE_ID )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1980:2: ( (otherlv_0= RULE_ID ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1981:1: (otherlv_0= RULE_ID )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1989:1: (otherlv_1= RULE_ID )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1990:3: otherlv_1= RULE_ID
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1981:1: (otherlv_0= RULE_ID )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1982:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getPropertyReferenceExpressionRule());
             	        }
                     
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4374); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4348); 
 
-            		newLeafNode(otherlv_1, grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionCrossReference_1_0()); 
+            		newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionCrossReference_0_0()); 
             	
 
             }
@@ -5272,19 +5264,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,38,FOLLOW_38_in_rulePropertyReferenceExpression4386); 
+            otherlv_1=(Token)match(input,36,FOLLOW_36_in_rulePropertyReferenceExpression4360); 
 
-                	newLeafNode(otherlv_2, grammarAccess.getPropertyReferenceExpressionAccess().getFullStopKeyword_2());
+                	newLeafNode(otherlv_1, grammarAccess.getPropertyReferenceExpressionAccess().getFullStopKeyword_1());
                 
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2005:1: ( (lv_Property_3_0= RULE_ID ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2006:1: (lv_Property_3_0= RULE_ID )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1997:1: ( (lv_Property_2_0= RULE_ID ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1998:1: (lv_Property_2_0= RULE_ID )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2006:1: (lv_Property_3_0= RULE_ID )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2007:3: lv_Property_3_0= RULE_ID
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1998:1: (lv_Property_2_0= RULE_ID )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:1999:3: lv_Property_2_0= RULE_ID
             {
-            lv_Property_3_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4403); 
+            lv_Property_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4377); 
 
-            			newLeafNode(lv_Property_3_0, grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_3_0()); 
+            			newLeafNode(lv_Property_2_0, grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
@@ -5293,7 +5285,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"Property",
-                    		lv_Property_3_0, 
+                    		lv_Property_2_0, 
                     		"ID");
             	    
 
@@ -5323,7 +5315,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQuantor"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2031:1: ruleQuantor returns [Enumerator current=null] : ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2023:1: ruleQuantor returns [Enumerator current=null] : ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) ) ;
     public final Enumerator ruleQuantor() throws RecognitionException {
         Enumerator current = null;
 
@@ -5332,17 +5324,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2033:28: ( ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2034:1: ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2025:28: ( ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2026:1: ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2034:1: ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2026:1: ( (enumLiteral_0= 'each' ) | (enumLiteral_1= 'any' ) )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==39) ) {
+            if ( (LA31_0==37) ) {
                 alt31=1;
             }
-            else if ( (LA31_0==40) ) {
+            else if ( (LA31_0==38) ) {
                 alt31=2;
             }
             else {
@@ -5353,12 +5345,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt31) {
                 case 1 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2034:2: (enumLiteral_0= 'each' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2026:2: (enumLiteral_0= 'each' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2034:2: (enumLiteral_0= 'each' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2034:4: enumLiteral_0= 'each'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2026:2: (enumLiteral_0= 'each' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2026:4: enumLiteral_0= 'each'
                     {
-                    enumLiteral_0=(Token)match(input,39,FOLLOW_39_in_ruleQuantor4458); 
+                    enumLiteral_0=(Token)match(input,37,FOLLOW_37_in_ruleQuantor4432); 
 
                             current = grammarAccess.getQuantorAccess().getEachEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getQuantorAccess().getEachEnumLiteralDeclaration_0()); 
@@ -5370,12 +5362,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2040:6: (enumLiteral_1= 'any' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2032:6: (enumLiteral_1= 'any' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2040:6: (enumLiteral_1= 'any' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2040:8: enumLiteral_1= 'any'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2032:6: (enumLiteral_1= 'any' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2032:8: enumLiteral_1= 'any'
                     {
-                    enumLiteral_1=(Token)match(input,40,FOLLOW_40_in_ruleQuantor4475); 
+                    enumLiteral_1=(Token)match(input,38,FOLLOW_38_in_ruleQuantor4449); 
 
                             current = grammarAccess.getQuantorAccess().getAnyEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getQuantorAccess().getAnyEnumLiteralDeclaration_1()); 
@@ -5407,7 +5399,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelationQualifier"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2050:1: ruleRelationQualifier returns [Enumerator current=null] : ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2042:1: ruleRelationQualifier returns [Enumerator current=null] : ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) ) ;
     public final Enumerator ruleRelationQualifier() throws RecognitionException {
         Enumerator current = null;
 
@@ -5417,23 +5409,23 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2052:28: ( ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2053:1: ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2044:28: ( ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2045:1: ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2053:1: ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2045:1: ( (enumLiteral_0= 'must have' ) | (enumLiteral_1= 'must not have' ) | (enumLiteral_2= 'can have' ) )
             int alt32=3;
             switch ( input.LA(1) ) {
-            case 41:
+            case 39:
                 {
                 alt32=1;
                 }
                 break;
-            case 42:
+            case 40:
                 {
                 alt32=2;
                 }
                 break;
-            case 43:
+            case 41:
                 {
                 alt32=3;
                 }
@@ -5447,12 +5439,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             switch (alt32) {
                 case 1 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2053:2: (enumLiteral_0= 'must have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2045:2: (enumLiteral_0= 'must have' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2053:2: (enumLiteral_0= 'must have' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2053:4: enumLiteral_0= 'must have'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2045:2: (enumLiteral_0= 'must have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2045:4: enumLiteral_0= 'must have'
                     {
-                    enumLiteral_0=(Token)match(input,41,FOLLOW_41_in_ruleRelationQualifier4520); 
+                    enumLiteral_0=(Token)match(input,39,FOLLOW_39_in_ruleRelationQualifier4494); 
 
                             current = grammarAccess.getRelationQualifierAccess().getMustEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getRelationQualifierAccess().getMustEnumLiteralDeclaration_0()); 
@@ -5464,12 +5456,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2059:6: (enumLiteral_1= 'must not have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2051:6: (enumLiteral_1= 'must not have' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2059:6: (enumLiteral_1= 'must not have' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2059:8: enumLiteral_1= 'must not have'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2051:6: (enumLiteral_1= 'must not have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2051:8: enumLiteral_1= 'must not have'
                     {
-                    enumLiteral_1=(Token)match(input,42,FOLLOW_42_in_ruleRelationQualifier4537); 
+                    enumLiteral_1=(Token)match(input,40,FOLLOW_40_in_ruleRelationQualifier4511); 
 
                             current = grammarAccess.getRelationQualifierAccess().getMustNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getRelationQualifierAccess().getMustNotEnumLiteralDeclaration_1()); 
@@ -5481,12 +5473,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2065:6: (enumLiteral_2= 'can have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2057:6: (enumLiteral_2= 'can have' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2065:6: (enumLiteral_2= 'can have' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2065:8: enumLiteral_2= 'can have'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2057:6: (enumLiteral_2= 'can have' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2057:8: enumLiteral_2= 'can have'
                     {
-                    enumLiteral_2=(Token)match(input,43,FOLLOW_43_in_ruleRelationQualifier4554); 
+                    enumLiteral_2=(Token)match(input,41,FOLLOW_41_in_ruleRelationQualifier4528); 
 
                             current = grammarAccess.getRelationQualifierAccess().getCanEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getRelationQualifierAccess().getCanEnumLiteralDeclaration_2()); 
@@ -5518,7 +5510,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAxis"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2075:1: ruleAxis returns [Enumerator current=null] : ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2067:1: ruleAxis returns [Enumerator current=null] : ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) ) ;
     public final Enumerator ruleAxis() throws RecognitionException {
         Enumerator current = null;
 
@@ -5533,48 +5525,48 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2077:28: ( ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2078:1: ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2069:28: ( ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2070:1: ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2078:1: ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2070:1: ( (enumLiteral_0= 'parent' ) | (enumLiteral_1= 'child' ) | (enumLiteral_2= 'ancestor' ) | (enumLiteral_3= 'descendant' ) | (enumLiteral_4= 'multiple parents' ) | (enumLiteral_5= 'multiple children' ) | (enumLiteral_6= 'multiple ancestors' ) | (enumLiteral_7= 'multiple descendants' ) )
             int alt33=8;
             switch ( input.LA(1) ) {
-            case 44:
+            case 42:
                 {
                 alt33=1;
                 }
                 break;
-            case 45:
+            case 43:
                 {
                 alt33=2;
                 }
                 break;
-            case 46:
+            case 44:
                 {
                 alt33=3;
                 }
                 break;
-            case 47:
+            case 45:
                 {
                 alt33=4;
                 }
                 break;
-            case 48:
+            case 46:
                 {
                 alt33=5;
                 }
                 break;
-            case 49:
+            case 47:
                 {
                 alt33=6;
                 }
                 break;
-            case 50:
+            case 48:
                 {
                 alt33=7;
                 }
                 break;
-            case 51:
+            case 49:
                 {
                 alt33=8;
                 }
@@ -5588,12 +5580,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             switch (alt33) {
                 case 1 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2078:2: (enumLiteral_0= 'parent' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2070:2: (enumLiteral_0= 'parent' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2078:2: (enumLiteral_0= 'parent' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2078:4: enumLiteral_0= 'parent'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2070:2: (enumLiteral_0= 'parent' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2070:4: enumLiteral_0= 'parent'
                     {
-                    enumLiteral_0=(Token)match(input,44,FOLLOW_44_in_ruleAxis4599); 
+                    enumLiteral_0=(Token)match(input,42,FOLLOW_42_in_ruleAxis4573); 
 
                             current = grammarAccess.getAxisAccess().getParentEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getAxisAccess().getParentEnumLiteralDeclaration_0()); 
@@ -5605,12 +5597,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2084:6: (enumLiteral_1= 'child' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2076:6: (enumLiteral_1= 'child' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2084:6: (enumLiteral_1= 'child' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2084:8: enumLiteral_1= 'child'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2076:6: (enumLiteral_1= 'child' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2076:8: enumLiteral_1= 'child'
                     {
-                    enumLiteral_1=(Token)match(input,45,FOLLOW_45_in_ruleAxis4616); 
+                    enumLiteral_1=(Token)match(input,43,FOLLOW_43_in_ruleAxis4590); 
 
                             current = grammarAccess.getAxisAccess().getChildEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getAxisAccess().getChildEnumLiteralDeclaration_1()); 
@@ -5622,12 +5614,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2090:6: (enumLiteral_2= 'ancestor' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2082:6: (enumLiteral_2= 'ancestor' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2090:6: (enumLiteral_2= 'ancestor' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2090:8: enumLiteral_2= 'ancestor'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2082:6: (enumLiteral_2= 'ancestor' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2082:8: enumLiteral_2= 'ancestor'
                     {
-                    enumLiteral_2=(Token)match(input,46,FOLLOW_46_in_ruleAxis4633); 
+                    enumLiteral_2=(Token)match(input,44,FOLLOW_44_in_ruleAxis4607); 
 
                             current = grammarAccess.getAxisAccess().getAncestorEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getAxisAccess().getAncestorEnumLiteralDeclaration_2()); 
@@ -5639,12 +5631,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2096:6: (enumLiteral_3= 'descendant' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2088:6: (enumLiteral_3= 'descendant' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2096:6: (enumLiteral_3= 'descendant' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2096:8: enumLiteral_3= 'descendant'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2088:6: (enumLiteral_3= 'descendant' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2088:8: enumLiteral_3= 'descendant'
                     {
-                    enumLiteral_3=(Token)match(input,47,FOLLOW_47_in_ruleAxis4650); 
+                    enumLiteral_3=(Token)match(input,45,FOLLOW_45_in_ruleAxis4624); 
 
                             current = grammarAccess.getAxisAccess().getDescendantEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getAxisAccess().getDescendantEnumLiteralDeclaration_3()); 
@@ -5656,12 +5648,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2102:6: (enumLiteral_4= 'multiple parents' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2094:6: (enumLiteral_4= 'multiple parents' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2102:6: (enumLiteral_4= 'multiple parents' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2102:8: enumLiteral_4= 'multiple parents'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2094:6: (enumLiteral_4= 'multiple parents' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2094:8: enumLiteral_4= 'multiple parents'
                     {
-                    enumLiteral_4=(Token)match(input,48,FOLLOW_48_in_ruleAxis4667); 
+                    enumLiteral_4=(Token)match(input,46,FOLLOW_46_in_ruleAxis4641); 
 
                             current = grammarAccess.getAxisAccess().getParentsEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getAxisAccess().getParentsEnumLiteralDeclaration_4()); 
@@ -5673,12 +5665,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2108:6: (enumLiteral_5= 'multiple children' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2100:6: (enumLiteral_5= 'multiple children' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2108:6: (enumLiteral_5= 'multiple children' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2108:8: enumLiteral_5= 'multiple children'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2100:6: (enumLiteral_5= 'multiple children' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2100:8: enumLiteral_5= 'multiple children'
                     {
-                    enumLiteral_5=(Token)match(input,49,FOLLOW_49_in_ruleAxis4684); 
+                    enumLiteral_5=(Token)match(input,47,FOLLOW_47_in_ruleAxis4658); 
 
                             current = grammarAccess.getAxisAccess().getChildrenEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getAxisAccess().getChildrenEnumLiteralDeclaration_5()); 
@@ -5690,12 +5682,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2114:6: (enumLiteral_6= 'multiple ancestors' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2106:6: (enumLiteral_6= 'multiple ancestors' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2114:6: (enumLiteral_6= 'multiple ancestors' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2114:8: enumLiteral_6= 'multiple ancestors'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2106:6: (enumLiteral_6= 'multiple ancestors' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2106:8: enumLiteral_6= 'multiple ancestors'
                     {
-                    enumLiteral_6=(Token)match(input,50,FOLLOW_50_in_ruleAxis4701); 
+                    enumLiteral_6=(Token)match(input,48,FOLLOW_48_in_ruleAxis4675); 
 
                             current = grammarAccess.getAxisAccess().getAncestorsEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getAxisAccess().getAncestorsEnumLiteralDeclaration_6()); 
@@ -5707,12 +5699,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2120:6: (enumLiteral_7= 'multiple descendants' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2112:6: (enumLiteral_7= 'multiple descendants' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2120:6: (enumLiteral_7= 'multiple descendants' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2120:8: enumLiteral_7= 'multiple descendants'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2112:6: (enumLiteral_7= 'multiple descendants' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2112:8: enumLiteral_7= 'multiple descendants'
                     {
-                    enumLiteral_7=(Token)match(input,51,FOLLOW_51_in_ruleAxis4718); 
+                    enumLiteral_7=(Token)match(input,49,FOLLOW_49_in_ruleAxis4692); 
 
                             current = grammarAccess.getAxisAccess().getDescendantsEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getAxisAccess().getDescendantsEnumLiteralDeclaration_7()); 
@@ -5744,7 +5736,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePropertyRelation"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2130:1: rulePropertyRelation returns [Enumerator current=null] : ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2122:1: rulePropertyRelation returns [Enumerator current=null] : ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) ) ;
     public final Enumerator rulePropertyRelation() throws RecognitionException {
         Enumerator current = null;
 
@@ -5757,38 +5749,38 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2132:28: ( ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2133:1: ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2124:28: ( ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2125:1: ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2133:1: ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2125:1: ( (enumLiteral_0= 'equals' ) | (enumLiteral_1= 'not equals' ) | (enumLiteral_2= 'greater than' ) | (enumLiteral_3= 'lesser than' ) | (enumLiteral_4= 'greater or equals than' ) | (enumLiteral_5= 'lesser or equals than' ) )
             int alt34=6;
             switch ( input.LA(1) ) {
-            case 52:
+            case 50:
                 {
                 alt34=1;
                 }
                 break;
-            case 53:
+            case 51:
                 {
                 alt34=2;
                 }
                 break;
-            case 54:
+            case 52:
                 {
                 alt34=3;
                 }
                 break;
-            case 55:
+            case 53:
                 {
                 alt34=4;
                 }
                 break;
-            case 56:
+            case 54:
                 {
                 alt34=5;
                 }
                 break;
-            case 57:
+            case 55:
                 {
                 alt34=6;
                 }
@@ -5802,12 +5794,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             switch (alt34) {
                 case 1 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2133:2: (enumLiteral_0= 'equals' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2125:2: (enumLiteral_0= 'equals' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2133:2: (enumLiteral_0= 'equals' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2133:4: enumLiteral_0= 'equals'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2125:2: (enumLiteral_0= 'equals' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2125:4: enumLiteral_0= 'equals'
                     {
-                    enumLiteral_0=(Token)match(input,52,FOLLOW_52_in_rulePropertyRelation4763); 
+                    enumLiteral_0=(Token)match(input,50,FOLLOW_50_in_rulePropertyRelation4737); 
 
                             current = grammarAccess.getPropertyRelationAccess().getEqualsEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getPropertyRelationAccess().getEqualsEnumLiteralDeclaration_0()); 
@@ -5819,12 +5811,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2139:6: (enumLiteral_1= 'not equals' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2131:6: (enumLiteral_1= 'not equals' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2139:6: (enumLiteral_1= 'not equals' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2139:8: enumLiteral_1= 'not equals'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2131:6: (enumLiteral_1= 'not equals' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2131:8: enumLiteral_1= 'not equals'
                     {
-                    enumLiteral_1=(Token)match(input,53,FOLLOW_53_in_rulePropertyRelation4780); 
+                    enumLiteral_1=(Token)match(input,51,FOLLOW_51_in_rulePropertyRelation4754); 
 
                             current = grammarAccess.getPropertyRelationAccess().getNotEqualsEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getPropertyRelationAccess().getNotEqualsEnumLiteralDeclaration_1()); 
@@ -5836,12 +5828,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2145:6: (enumLiteral_2= 'greater than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2137:6: (enumLiteral_2= 'greater than' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2145:6: (enumLiteral_2= 'greater than' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2145:8: enumLiteral_2= 'greater than'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2137:6: (enumLiteral_2= 'greater than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2137:8: enumLiteral_2= 'greater than'
                     {
-                    enumLiteral_2=(Token)match(input,54,FOLLOW_54_in_rulePropertyRelation4797); 
+                    enumLiteral_2=(Token)match(input,52,FOLLOW_52_in_rulePropertyRelation4771); 
 
                             current = grammarAccess.getPropertyRelationAccess().getGreaterEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getPropertyRelationAccess().getGreaterEnumLiteralDeclaration_2()); 
@@ -5853,12 +5845,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2151:6: (enumLiteral_3= 'lesser than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2143:6: (enumLiteral_3= 'lesser than' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2151:6: (enumLiteral_3= 'lesser than' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2151:8: enumLiteral_3= 'lesser than'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2143:6: (enumLiteral_3= 'lesser than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2143:8: enumLiteral_3= 'lesser than'
                     {
-                    enumLiteral_3=(Token)match(input,55,FOLLOW_55_in_rulePropertyRelation4814); 
+                    enumLiteral_3=(Token)match(input,53,FOLLOW_53_in_rulePropertyRelation4788); 
 
                             current = grammarAccess.getPropertyRelationAccess().getLesserEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getPropertyRelationAccess().getLesserEnumLiteralDeclaration_3()); 
@@ -5870,12 +5862,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2157:6: (enumLiteral_4= 'greater or equals than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2149:6: (enumLiteral_4= 'greater or equals than' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2157:6: (enumLiteral_4= 'greater or equals than' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2157:8: enumLiteral_4= 'greater or equals than'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2149:6: (enumLiteral_4= 'greater or equals than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2149:8: enumLiteral_4= 'greater or equals than'
                     {
-                    enumLiteral_4=(Token)match(input,56,FOLLOW_56_in_rulePropertyRelation4831); 
+                    enumLiteral_4=(Token)match(input,54,FOLLOW_54_in_rulePropertyRelation4805); 
 
                             current = grammarAccess.getPropertyRelationAccess().getGreaterEqualsEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getPropertyRelationAccess().getGreaterEqualsEnumLiteralDeclaration_4()); 
@@ -5887,12 +5879,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2163:6: (enumLiteral_5= 'lesser or equals than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2155:6: (enumLiteral_5= 'lesser or equals than' )
                     {
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2163:6: (enumLiteral_5= 'lesser or equals than' )
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2163:8: enumLiteral_5= 'lesser or equals than'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2155:6: (enumLiteral_5= 'lesser or equals than' )
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:2155:8: enumLiteral_5= 'lesser or equals than'
                     {
-                    enumLiteral_5=(Token)match(input,57,FOLLOW_57_in_rulePropertyRelation4848); 
+                    enumLiteral_5=(Token)match(input,55,FOLLOW_55_in_rulePropertyRelation4822); 
 
                             current = grammarAccess.getPropertyRelationAccess().getLesserEqualsEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getPropertyRelationAccess().getLesserEqualsEnumLiteralDeclaration_5()); 
@@ -5929,7 +5921,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleValidator_in_entryRuleValidator75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValidator85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSentence_in_ruleValidator130 = new BitSet(new long[]{0x0000018000009812L});
+    public static final BitSet FOLLOW_ruleSentence_in_ruleValidator130 = new BitSet(new long[]{0x0000006000009812L});
     public static final BitSet FOLLOW_ruleSentence_in_entryRuleSentence166 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSentence176 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStartOnSentence_in_ruleSentence223 = new BitSet(new long[]{0x0000000000000002L});
@@ -5942,25 +5934,25 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleNodeDefinition_in_ruleStartOnSentence407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDefinitionSentence_in_entryRuleDefinitionSentence443 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDefinitionSentence453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQuantification_in_ruleDefinitionSentence500 = new BitSet(new long[]{0x00000E0000000000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDefinitionSentence526 = new BitSet(new long[]{0x00000E0000000000L});
-    public static final BitSet FOLLOW_ruleRelationQualifier_in_ruleDefinitionSentence548 = new BitSet(new long[]{0x000FF00000000000L});
+    public static final BitSet FOLLOW_ruleQuantification_in_ruleDefinitionSentence500 = new BitSet(new long[]{0x0000038000000000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDefinitionSentence526 = new BitSet(new long[]{0x0000038000000000L});
+    public static final BitSet FOLLOW_ruleRelationQualifier_in_ruleDefinitionSentence548 = new BitSet(new long[]{0x0003FC0000000000L});
     public static final BitSet FOLLOW_ruleTargetDefinition_in_ruleDefinitionSentence569 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConstraintSentence_in_entryRuleConstraintSentence605 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConstraintSentence615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleConstraintSentence652 = new BitSet(new long[]{0x0000018000006010L});
+    public static final BitSet FOLLOW_12_in_ruleConstraintSentence652 = new BitSet(new long[]{0x0000006000006010L});
     public static final BitSet FOLLOW_ruleQuantificationList_in_ruleConstraintSentence673 = new BitSet(new long[]{0x0000000000006010L});
     public static final BitSet FOLLOW_ruleNodeReferenceList_in_ruleConstraintSentence695 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_13_in_ruleConstraintSentence709 = new BitSet(new long[]{0x000001B041000010L});
-    public static final BitSet FOLLOW_14_in_ruleConstraintSentence727 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_13_in_ruleConstraintSentence709 = new BitSet(new long[]{0x0000006041000030L});
+    public static final BitSet FOLLOW_14_in_ruleConstraintSentence727 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_rulePredicateExpression_in_ruleConstraintSentence749 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePredicateDefinitionSentence_in_entryRulePredicateDefinitionSentence785 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePredicateDefinitionSentence795 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_15_in_rulePredicateDefinitionSentence832 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_rulePredicateDefinitionSentence849 = new BitSet(new long[]{0x0000000000014010L});
     public static final BitSet FOLLOW_ruleParameterList_in_rulePredicateDefinitionSentence875 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_16_in_rulePredicateDefinitionSentence889 = new BitSet(new long[]{0x000001B041000010L});
-    public static final BitSet FOLLOW_14_in_rulePredicateDefinitionSentence907 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_16_in_rulePredicateDefinitionSentence889 = new BitSet(new long[]{0x0000006041000030L});
+    public static final BitSet FOLLOW_14_in_rulePredicateDefinitionSentence907 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_rulePredicateExpression_in_rulePredicateDefinitionSentence929 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNodeDefinition_in_entryRuleNodeDefinition965 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleNodeDefinition975 = new BitSet(new long[]{0x0000000000000002L});
@@ -5977,11 +5969,11 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAxis_in_ruleTargetDefinition1294 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleNodeDefinition_in_ruleTargetDefinition1315 = new BitSet(new long[]{0x0000000000480002L});
     public static final BitSet FOLLOW_19_in_ruleTargetDefinition1328 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleTargetDefinition1340 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_20_in_ruleTargetDefinition1340 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_rulePredicateExpression_in_ruleTargetDefinition1361 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_21_in_ruleTargetDefinition1373 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_22_in_ruleTargetDefinition1388 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleTargetDefinition1400 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_20_in_ruleTargetDefinition1400 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_ruleAssignmentList_in_ruleTargetDefinition1421 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_21_in_ruleTargetDefinition1433 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSelectorList_in_entryRuleSelectorList1471 = new BitSet(new long[]{0x0000000000000000L});
@@ -6005,25 +5997,25 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAndExpression_in_entryRuleAndExpression1939 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAndExpression1949 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleOrExpression_in_ruleAndExpression1996 = new BitSet(new long[]{0x0000000008040002L});
-    public static final BitSet FOLLOW_27_in_ruleAndExpression2018 = new BitSet(new long[]{0x000001B041000010L});
-    public static final BitSet FOLLOW_18_in_ruleAndExpression2036 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_27_in_ruleAndExpression2018 = new BitSet(new long[]{0x0000006041000030L});
+    public static final BitSet FOLLOW_18_in_ruleAndExpression2036 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_ruleOrExpression_in_ruleAndExpression2058 = new BitSet(new long[]{0x0000000008040002L});
     public static final BitSet FOLLOW_ruleOrExpression_in_entryRuleOrExpression2096 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOrExpression2106 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleOrExpression2153 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_ruleOrExpression2174 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_26_in_ruleOrExpression2174 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleOrExpression2195 = new BitSet(new long[]{0x0000000004000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_entryRuleImpliesExpression2233 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleImpliesExpression2243 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleImpliesExpression2289 = new BitSet(new long[]{0x0000000030000002L});
-    public static final BitSet FOLLOW_28_in_ruleImpliesExpression2312 = new BitSet(new long[]{0x000001B041000010L});
-    public static final BitSet FOLLOW_29_in_ruleImpliesExpression2330 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_28_in_ruleImpliesExpression2312 = new BitSet(new long[]{0x0000006041000030L});
+    public static final BitSet FOLLOW_29_in_ruleImpliesExpression2330 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleImpliesExpression2352 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression2390 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression2400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rulePrimaryExpression2443 = new BitSet(new long[]{0x000001B001000010L});
+    public static final BitSet FOLLOW_30_in_rulePrimaryExpression2443 = new BitSet(new long[]{0x0000006001000030L});
     public static final BitSet FOLLOW_rulePredicateCall_in_rulePrimaryExpression2479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rulePrimaryExpression2498 = new BitSet(new long[]{0x000001B041000010L});
+    public static final BitSet FOLLOW_24_in_rulePrimaryExpression2498 = new BitSet(new long[]{0x0000006041000030L});
     public static final BitSet FOLLOW_rulePredicateExpression_in_rulePrimaryExpression2519 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_25_in_rulePrimaryExpression2531 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePredicateCall_in_entryRulePredicateCall2569 = new BitSet(new long[]{0x0000000000000000L});
@@ -6036,8 +6028,8 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_32_in_rulePredicateCall2728 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyRelationPredicate_in_entryRulePropertyRelationPredicate2766 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePropertyRelationPredicate2776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyExpression_in_rulePropertyRelationPredicate2822 = new BitSet(new long[]{0x03F0000000000000L});
-    public static final BitSet FOLLOW_rulePropertyRelation_in_rulePropertyRelationPredicate2843 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_rulePropertyExpression_in_rulePropertyRelationPredicate2822 = new BitSet(new long[]{0x00FC000000000000L});
+    public static final BitSet FOLLOW_rulePropertyRelation_in_rulePropertyRelationPredicate2843 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_rulePropertyExpression_in_rulePropertyRelationPredicate2864 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDefinitionSentencePredicate_in_entryRuleDefinitionSentencePredicate2900 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDefinitionSentencePredicate2910 = new BitSet(new long[]{0x0000000000000002L});
@@ -6065,13 +6057,13 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssignment_in_entryRuleAssignment3537 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignment3547 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyReferenceExpression_in_ruleAssignment3593 = new BitSet(new long[]{0x0000000600000000L});
-    public static final BitSet FOLLOW_33_in_ruleAssignment3606 = new BitSet(new long[]{0x0000003000000000L});
-    public static final BitSet FOLLOW_34_in_ruleAssignment3624 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_33_in_ruleAssignment3606 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_34_in_ruleAssignment3624 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_rulePropertyExpression_in_ruleAssignment3646 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentList_in_entryRuleAssignmentList3682 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignmentList3692 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignment_in_ruleAssignmentList3738 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleAssignmentList3751 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_18_in_ruleAssignmentList3751 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_ruleAssignment_in_ruleAssignmentList3772 = new BitSet(new long[]{0x0000000000040002L});
     public static final BitSet FOLLOW_ruleQuantification_in_entryRuleQuantification3810 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQuantification3820 = new BitSet(new long[]{0x0000000000000002L});
@@ -6082,7 +6074,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleQuantificationList_in_entryRuleQuantificationList3955 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQuantificationList3965 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQuantification_in_ruleQuantificationList4011 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleQuantificationList4024 = new BitSet(new long[]{0x0000018000000000L});
+    public static final BitSet FOLLOW_18_in_ruleQuantificationList4024 = new BitSet(new long[]{0x0000006000000000L});
     public static final BitSet FOLLOW_ruleQuantification_in_ruleQuantificationList4045 = new BitSet(new long[]{0x0000000000040002L});
     public static final BitSet FOLLOW_rulePropertyExpression_in_entryRulePropertyExpression4083 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePropertyExpression4093 = new BitSet(new long[]{0x0000000000000002L});
@@ -6090,32 +6082,30 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePropertyReferenceExpression_in_rulePropertyExpression4167 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyValueExpression_in_entryRulePropertyValueExpression4202 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePropertyValueExpression4212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rulePropertyValueExpression4249 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyValueExpression4266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyReferenceExpression_in_entryRulePropertyReferenceExpression4307 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyReferenceExpression4317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rulePropertyReferenceExpression4354 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4374 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_rulePropertyReferenceExpression4386 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleQuantor4458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleQuantor4475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleRelationQualifier4520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleRelationQualifier4537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ruleRelationQualifier4554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleAxis4599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleAxis4616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleAxis4633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleAxis4650 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleAxis4667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleAxis4684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleAxis4701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleAxis4718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rulePropertyRelation4763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_rulePropertyRelation4780 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rulePropertyRelation4797 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rulePropertyRelation4814 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rulePropertyRelation4831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rulePropertyRelation4848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyValueExpression4253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyReferenceExpression_in_entryRulePropertyReferenceExpression4293 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyReferenceExpression4303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4348 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_rulePropertyReferenceExpression4360 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReferenceExpression4377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleQuantor4432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleQuantor4449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleRelationQualifier4494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleRelationQualifier4511 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleRelationQualifier4528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleAxis4573 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleAxis4590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleAxis4607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleAxis4624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleAxis4641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleAxis4658 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleAxis4675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleAxis4692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rulePropertyRelation4737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rulePropertyRelation4754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rulePropertyRelation4771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rulePropertyRelation4788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rulePropertyRelation4805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rulePropertyRelation4822 = new BitSet(new long[]{0x0000000000000002L});
 
 }

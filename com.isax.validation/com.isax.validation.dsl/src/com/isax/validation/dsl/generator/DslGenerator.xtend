@@ -19,7 +19,10 @@ import com.isax.validation.dsl.dsl.ParameterList
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
 import com.isax.validation.dsl.dsl.PredicateReference
+import com.isax.validation.dsl.dsl.PropertyReferenceExpression
+import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
+import com.isax.validation.dsl.dsl.PropertyValueExpression
 import com.isax.validation.dsl.dsl.Quantor
 import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Selector
@@ -65,8 +68,7 @@ class DslGenerator implements IGenerator {
 						«sentenceStatements(sentence)»
 						
 					«ENDIF»
-				«ENDFOR»
-				
+				«ENDFOR»		
 				«FOR sentence : validator.sentences»
 					«IF sentence instanceof DefinitionSentence»
 						«sentenceStatements(sentence)»
@@ -78,7 +80,7 @@ class DslGenerator implements IGenerator {
 					«ENDIF»
 				«ENDFOR»
 			}
-			
+		
 			«FOR sentence : validator.sentences»
 				«IF sentence instanceof PredicateDefinitionSentence»
 					«sentenceStatements(sentence)»
@@ -121,7 +123,7 @@ class DslGenerator implements IGenerator {
 	) '''
 		// «serializer.serialize(sentence).trim.replaceAll("\\n", "").replaceAll("\\r", "")»
 		private boolean «sentence.name»(«parameterList(sentence.parameters)») {
-			return true;
+			return «predicateExpression(sentence.predicate)»
 		}
 	'''
 
@@ -229,19 +231,6 @@ class DslGenerator implements IGenerator {
 		}
 	}
 
-//	def dispatch predicateExpression(PredicateExpression expression) {
-//		if (expression.negated) "!" else "" +
-//			switch (expression) {
-//				AndExpression: andExpression(expression as AndExpression)
-//				OrExpression: orExpression(expression as OrExpression)
-//				ImpliesExpression: impliesExpression(expression as ImpliesExpression)
-//				case expression.call != null: predicateCall(expression.call)
-//				case expression.inner != null: predicateExpression(expression.inner)
-//				case expression.lhs != null: predicateExpression(expression.lhs)
-//			}
-//	}
-
-
 
 	def dispatch predicateExpression(PredicateExpression expression) {
 		if (expression.call != null) return predicateCall(expression.call)
@@ -250,18 +239,31 @@ class DslGenerator implements IGenerator {
 	}
 	
 	def dispatch predicateExpression(AndExpression and) '''
-		«andExpression(and)»
+		eval(() -> {
+			boolean satisfied = true;			
+			«IF and.lhs != null»satisfied &= «predicateExpression(and.lhs)»«ENDIF»		
+			satisfied &= «predicateExpression(and.rhs)»
+			return satisfied;
+		});
 	'''
 	
 	def dispatch predicateExpression(OrExpression or) '''
-		«orExpression(or)»
+		eval(() -> {
+			boolean satisfied = false;			
+			«IF or.lhs != null»satisfied |= «predicateExpression(or.lhs)»«ENDIF»		
+			satisfied |= «predicateExpression(or.rhs)»
+			return satisfied;
+		});
 	'''
 
-//	def predicateExpressionEval(PredicateExpression expression) '''
-//	'''
-
-	def dispatch predicateExpression(ImpliesExpression implies) {
-	}
+	def dispatch predicateExpression(ImpliesExpression implies) '''
+		eval(() -> {
+			boolean satisfied = false;			
+			«IF implies.lhs != null»satisfied |= «predicateExpression(implies.lhs)»«ENDIF»		
+			satisfied |= !«predicateExpression(implies.rhs)»
+			return satisfied;
+		});
+	'''
 
 	def dispatch predicateExpression(PropertyRelationPredicate predicate) '''
 		PredicateUtil.«predicate.relation.getName().toFirstLower»(«predicate.lhs», «predicate.rhs»);
@@ -274,54 +276,43 @@ class DslGenerator implements IGenerator {
 	def dispatch predicateExpression(PredicateReference reference) '''
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
-	
-	def andExpression(AndExpression and) '''
-		eval(() -> {
-			boolean satisfied = true;			
-			«IF and.lhs != null»satisfied &= «predicateExpression(and.lhs)»«ENDIF»		
-			satisfied &= «predicateExpression(and.rhs)»
-			return satisfied;
-		});
-	'''
-	
-	def orExpression(OrExpression or) '''
-		eval(() -> {
-			boolean satisfied = false;			
-			«IF or.lhs != null»satisfied |= «predicateExpression(or.lhs)»«ENDIF»		
-			satisfied |= «predicateExpression(or.rhs)»
-			return satisfied;
-		});
-	'''
-	
-	def impliesExpression(ImpliesExpression implies) '''
-		eval(() -> {
-			boolean satisfied = false;			
-			«IF implies.lhs != null»satisfied |= «predicateExpression(implies.lhs)»«ENDIF»		
-			satisfied |= !«predicateExpression(implies.rhs)»
-			return satisfied;
-		});
-	'''
-
 
 	def dispatch predicateCall(PropertyRelationPredicate relation) '''
+		compare(«propertyExpression(relation.lhs)», «propertyRelation(relation.relation)», «propertyExpression(relation.rhs)»);
 	'''
+
+	def dispatch propertyExpression(PropertyValueExpression expression) {
+		expression.value
+	}
+
+	def dispatch propertyExpression(PropertyReferenceExpression expression) {
+		"property(" + expression.node.name + ", " + expression.property + ")"
+	}
+	
+	def propertyRelation(PropertyRelation relation) {
+		switch (relation) {
+			case EQUALS: "EQUALS"
+			case GREATER: "GREATER"
+			case GREATER_EQUALS: "GREATER_EQUALS"
+			case LESSER: "LESSER"
+			case LESSER_EQUALS: "LESSER_EQUALS"
+			case NOT_EQUALS: "NOT_EQUALS"
+		}
+	}
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
 		eval(() -> {
 			«sentenceStatements(definition.sentence)»
-			return «qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»
+			return «qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
 		});
 	'''
-
-//	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
-//		«qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
-//	'''
-
+	
 	def dispatch predicateCall(PredicateReference reference) '''
+		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
 
 	def argumentList(ArgumentList list) {
-		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
+		if (list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
 	}
 
 	def parameterList(ParameterList list) {

@@ -153,8 +153,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPredicatePredicateExpressionParserRuleCall_4_0 = (RuleCall)cPredicateAssignment_4.eContents().get(0);
 		
 		//ConstraintSentence:
-		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
-		//	predicate=PredicateExpression;
+		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
 		@Override public ParserRule getRule() { return rule; }
 
 		//"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression
@@ -1112,66 +1111,54 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class PropertyValueExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyValueExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cVKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueSTRINGTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//PropertyValueExpression:
-		//	"v" value=STRING;
+		//	value=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"v" value=STRING
-		public Group getGroup() { return cGroup; }
-
-		//"v"
-		public Keyword getVKeyword_0() { return cVKeyword_0; }
-
 		//value=STRING
-		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		public Assignment getValueAssignment() { return cValueAssignment; }
 
 		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
 	public class PropertyReferenceExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReferenceExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNodeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cNodeNodeDefinitionCrossReference_1_0 = (CrossReference)cNodeAssignment_1.eContents().get(0);
-		private final RuleCall cNodeNodeDefinitionIDTerminalRuleCall_1_0_1 = (RuleCall)cNodeNodeDefinitionCrossReference_1_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPropertyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPropertyIDTerminalRuleCall_3_0 = (RuleCall)cPropertyAssignment_3.eContents().get(0);
+		private final Assignment cNodeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cNodeNodeDefinitionCrossReference_0_0 = (CrossReference)cNodeAssignment_0.eContents().get(0);
+		private final RuleCall cNodeNodeDefinitionIDTerminalRuleCall_0_0_1 = (RuleCall)cNodeNodeDefinitionCrossReference_0_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
 		
 		//PropertyReferenceExpression:
-		//	"n" node=[NodeDefinition] "." Property=ID;
+		//	node=[NodeDefinition] "." Property=ID;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"n" node=[NodeDefinition] "." Property=ID
+		//node=[NodeDefinition] "." Property=ID
 		public Group getGroup() { return cGroup; }
 
-		//"n"
-		public Keyword getNKeyword_0() { return cNKeyword_0; }
-
 		//node=[NodeDefinition]
-		public Assignment getNodeAssignment_1() { return cNodeAssignment_1; }
+		public Assignment getNodeAssignment_0() { return cNodeAssignment_0; }
 
 		//[NodeDefinition]
-		public CrossReference getNodeNodeDefinitionCrossReference_1_0() { return cNodeNodeDefinitionCrossReference_1_0; }
+		public CrossReference getNodeNodeDefinitionCrossReference_0_0() { return cNodeNodeDefinitionCrossReference_0_0; }
 
 		//ID
-		public RuleCall getNodeNodeDefinitionIDTerminalRuleCall_1_0_1() { return cNodeNodeDefinitionIDTerminalRuleCall_1_0_1; }
+		public RuleCall getNodeNodeDefinitionIDTerminalRuleCall_0_0_1() { return cNodeNodeDefinitionIDTerminalRuleCall_0_0_1; }
 
 		//"."
-		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 
 		//Property=ID
-		public Assignment getPropertyAssignment_3() { return cPropertyAssignment_3; }
+		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
 
 		//ID
-		public RuleCall getPropertyIDTerminalRuleCall_3_0() { return cPropertyIDTerminalRuleCall_3_0; }
+		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
 	}
 	
 	
@@ -1531,8 +1518,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstraintSentence:
-	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
-	//	predicate=PredicateExpression;
+	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
 	public ConstraintSentenceElements getConstraintSentenceAccess() {
 		return pConstraintSentence;
 	}
@@ -1794,7 +1780,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyValueExpression:
-	//	"v" value=STRING;
+	//	value=STRING;
 	public PropertyValueExpressionElements getPropertyValueExpressionAccess() {
 		return pPropertyValueExpression;
 	}
@@ -1804,7 +1790,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyReferenceExpression:
-	//	"n" node=[NodeDefinition] "." Property=ID;
+	//	node=[NodeDefinition] "." Property=ID;
 	public PropertyReferenceExpressionElements getPropertyReferenceExpressionAccess() {
 		return pPropertyReferenceExpression;
 	}

@@ -88,7 +88,6 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQuantificationAccess().getGroup(), "rule__Quantification__Group__0");
 					put(grammarAccess.getQuantificationListAccess().getGroup(), "rule__QuantificationList__Group__0");
 					put(grammarAccess.getQuantificationListAccess().getGroup_1(), "rule__QuantificationList__Group_1__0");
-					put(grammarAccess.getPropertyValueExpressionAccess().getGroup(), "rule__PropertyValueExpression__Group__0");
 					put(grammarAccess.getPropertyReferenceExpressionAccess().getGroup(), "rule__PropertyReferenceExpression__Group__0");
 					put(grammarAccess.getValidatorAccess().getSentencesAssignment(), "rule__Validator__SentencesAssignment");
 					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_1(), "rule__StartOnSentence__DefinitionAssignment_1");
@@ -145,9 +144,9 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQuantificationAccess().getNodeSetAssignment_3(), "rule__Quantification__NodeSetAssignment_3");
 					put(grammarAccess.getQuantificationListAccess().getQuantificationsAssignment_0(), "rule__QuantificationList__QuantificationsAssignment_0");
 					put(grammarAccess.getQuantificationListAccess().getQuantificationsAssignment_1_1(), "rule__QuantificationList__QuantificationsAssignment_1_1");
-					put(grammarAccess.getPropertyValueExpressionAccess().getValueAssignment_1(), "rule__PropertyValueExpression__ValueAssignment_1");
-					put(grammarAccess.getPropertyReferenceExpressionAccess().getNodeAssignment_1(), "rule__PropertyReferenceExpression__NodeAssignment_1");
-					put(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyAssignment_3(), "rule__PropertyReferenceExpression__PropertyAssignment_3");
+					put(grammarAccess.getPropertyValueExpressionAccess().getValueAssignment(), "rule__PropertyValueExpression__ValueAssignment");
+					put(grammarAccess.getPropertyReferenceExpressionAccess().getNodeAssignment_0(), "rule__PropertyReferenceExpression__NodeAssignment_0");
+					put(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyAssignment_2(), "rule__PropertyReferenceExpression__PropertyAssignment_2");
 				}
 			};
 		}

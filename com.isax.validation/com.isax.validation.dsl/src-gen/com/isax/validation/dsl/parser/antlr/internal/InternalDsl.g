@@ -1938,15 +1938,11 @@ rulePropertyValueExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='v' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getPropertyValueExpressionAccess().getVKeyword_0());
-    }
 (
 (
-		lv_value_1_0=RULE_STRING
+		lv_value_0_0=RULE_STRING
 		{
-			newLeafNode(lv_value_1_0, grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_1_0()); 
+			newLeafNode(lv_value_0_0, grammarAccess.getPropertyValueExpressionAccess().getValueSTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1955,12 +1951,12 @@ rulePropertyValueExpression returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"value",
-        		lv_value_1_0, 
+        		lv_value_0_0, 
         		"STRING");
 	    }
 
 )
-))
+)
 ;
 
 
@@ -1981,32 +1977,28 @@ rulePropertyReferenceExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='n' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceExpressionAccess().getNKeyword_0());
-    }
-(
+((
 (
 		{
 			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPropertyReferenceExpressionRule());
 	        }
         }
-	otherlv_1=RULE_ID
+	otherlv_0=RULE_ID
 	{
-		newLeafNode(otherlv_1, grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionCrossReference_1_0()); 
+		newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionCrossReference_0_0()); 
 	}
 
 )
-)	otherlv_2='.' 
+)	otherlv_1='.' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getPropertyReferenceExpressionAccess().getFullStopKeyword_2());
+    	newLeafNode(otherlv_1, grammarAccess.getPropertyReferenceExpressionAccess().getFullStopKeyword_1());
     }
 (
 (
-		lv_Property_3_0=RULE_ID
+		lv_Property_2_0=RULE_ID
 		{
-			newLeafNode(lv_Property_3_0, grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_3_0()); 
+			newLeafNode(lv_Property_2_0, grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -2015,7 +2007,7 @@ rulePropertyReferenceExpression returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"Property",
-        		lv_Property_3_0, 
+        		lv_Property_2_0, 
         		"ID");
 	    }
 
