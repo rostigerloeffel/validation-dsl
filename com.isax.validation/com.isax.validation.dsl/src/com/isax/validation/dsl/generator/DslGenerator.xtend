@@ -29,6 +29,7 @@ import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
@@ -46,6 +47,10 @@ class DslGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val validatorName = resource.URI.segmentsList.last.split('\\.').head
 		fsa.generateFile(validatorName + '.java', generateValidator(validatorName, resource.contents.head as Validator))
+	}
+
+	def serialize(EObject object) {
+		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
 
 	def generateValidator(
@@ -95,7 +100,7 @@ class DslGenerator implements IGenerator {
 	def dispatch sentenceStatements(
 		StartOnSentence sentence
 	) '''
-		// «serializer.serialize(sentence).trim.replaceAll("\\n", "").replaceAll("\\r", "")»
+		// «serialize(sentence)»
 		Node «sentence.definition.name» = node;
 		if («sentence.definition.name» == null || !hasType(«sentence.definition.name», «selectorExpression(sentence.definition.selectors)»)) {
 			return true;
@@ -105,7 +110,7 @@ class DslGenerator implements IGenerator {
 	def dispatch sentenceStatements(
 		DefinitionSentence sentence
 	) '''
-		// «serializer.serialize(sentence).trim.replaceAll("\\n", "").replaceAll("\\r", "")»
+		// «serialize(sentence)»
 		«IF sentence.node != null»
 			«singleNodeDefinition(sentence)»
 		«ENDIF»
@@ -117,13 +122,13 @@ class DslGenerator implements IGenerator {
 	def dispatch sentenceStatements(
 		ConstraintSentence sentence
 	) '''
-		// «serializer.serialize(sentence).trim.replaceAll("\\n", "").replaceAll("\\r", "")»
+		// «serialize(sentence)»
 	'''
 
 	def dispatch sentenceStatements(
 		PredicateDefinitionSentence sentence
 	) '''
-		// «serializer.serialize(sentence).trim.replaceAll("\\n", "").replaceAll("\\r", "")»
+		// «serialize(sentence)»
 		private boolean «sentence.name»(«parameterList(sentence.parameters)») {
 			return «predicateExpression(sentence.predicate)»
 		}

@@ -74,6 +74,14 @@ public class DslGenerator implements IGenerator {
     fsa.generateFile((validatorName + ".java"), _generateValidator);
   }
   
+  public String serialize(final EObject object) {
+    String _serialize = this.serializer.serialize(object);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    return _replaceAll_1.replaceAll("\\s+", " ");
+  }
+  
   public CharSequence generateValidator(final String validatorName, final Validator validator) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class ");
@@ -191,11 +199,8 @@ public class DslGenerator implements IGenerator {
   protected CharSequence _sentenceStatements(final StartOnSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serializer.serialize(sentence);
-    String _trim = _serialize.trim();
-    String _replaceAll = _trim.replaceAll("\\n", "");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
-    _builder.append(_replaceAll_1, "");
+    String _serialize = this.serialize(sentence);
+    _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("Node ");
     NodeDefinition _definition = sentence.getDefinition();
@@ -229,11 +234,8 @@ public class DslGenerator implements IGenerator {
   protected CharSequence _sentenceStatements(final DefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serializer.serialize(sentence);
-    String _trim = _serialize.trim();
-    String _replaceAll = _trim.replaceAll("\\n", "");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
-    _builder.append(_replaceAll_1, "");
+    String _serialize = this.serialize(sentence);
+    _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     {
       NodeDefinition _node = sentence.getNode();
@@ -259,11 +261,8 @@ public class DslGenerator implements IGenerator {
   protected CharSequence _sentenceStatements(final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serializer.serialize(sentence);
-    String _trim = _serialize.trim();
-    String _replaceAll = _trim.replaceAll("\\n", "");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
-    _builder.append(_replaceAll_1, "");
+    String _serialize = this.serialize(sentence);
+    _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -271,11 +270,8 @@ public class DslGenerator implements IGenerator {
   protected CharSequence _sentenceStatements(final PredicateDefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serializer.serialize(sentence);
-    String _trim = _serialize.trim();
-    String _replaceAll = _trim.replaceAll("\\n", "");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
-    _builder.append(_replaceAll_1, "");
+    String _serialize = this.serialize(sentence);
+    _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("private boolean ");
     String _name = sentence.getName();
