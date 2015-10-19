@@ -27,6 +27,7 @@ import com.isax.validation.dsl.dsl.PropertyRelation;
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
 import com.isax.validation.dsl.dsl.PropertyValueExpression;
 import com.isax.validation.dsl.dsl.Quantification;
+import com.isax.validation.dsl.dsl.QuantificationList;
 import com.isax.validation.dsl.dsl.Quantor;
 import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.Selector;
@@ -85,7 +86,8 @@ public class DslGenerator implements IGenerator {
   public CharSequence generateValidator(final String validatorName, final Validator validator) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class ");
-    _builder.append(validatorName, "");
+    String _firstUpper = StringExtensions.toFirstUpper(validatorName);
+    _builder.append(_firstUpper, "");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -180,10 +182,26 @@ public class DslGenerator implements IGenerator {
       EList<Sentence> _sentences_2 = validator.getSentences();
       for(final Sentence sentence_2 : _sentences_2) {
         {
-          if ((sentence_2 instanceof PredicateDefinitionSentence)) {
+          if ((sentence_2 instanceof ConstraintSentence)) {
             _builder.append("\t");
             CharSequence _sentenceStatements_2 = this.sentenceStatements(sentence_2);
             _builder.append(_sentenceStatements_2, "\t");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    {
+      EList<Sentence> _sentences_3 = validator.getSentences();
+      for(final Sentence sentence_3 : _sentences_3) {
+        {
+          if ((sentence_3 instanceof PredicateDefinitionSentence)) {
+            _builder.append("\t");
+            CharSequence _sentenceStatements_3 = this.sentenceStatements(sentence_3);
+            _builder.append(_sentenceStatements_3, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.newLine();
@@ -264,6 +282,69 @@ public class DslGenerator implements IGenerator {
     String _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
+    {
+      QuantificationList _quantifications = sentence.getQuantifications();
+      boolean _notEquals = (!Objects.equal(_quantifications, null));
+      if (_notEquals) {
+        QuantificationList _quantifications_1 = sentence.getQuantifications();
+        CharSequence _beginQuantifications = this.beginQuantifications(_quantifications_1, 0);
+        _builder.append(_beginQuantifications, "");
+        _builder.newLineIfNotEmpty();
+        QuantificationList _quantifications_2 = sentence.getQuantifications();
+        QuantificationList _quantifications_3 = sentence.getQuantifications();
+        EList<Quantification> _quantifications_4 = _quantifications_3.getQuantifications();
+        int _size = _quantifications_4.size();
+        CharSequence _endQuantifications = this.endQuantifications(_quantifications_2, _size);
+        _builder.append(_endQuantifications, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence beginQuantifications(final QuantificationList quantifications, final int index) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("for (Node ");
+    EList<Quantification> _quantifications = quantifications.getQuantifications();
+    Quantification _get = _quantifications.get(index);
+    NodeDefinition _node = _get.getNode();
+    String _name = _node.getName();
+    _builder.append(_name, "");
+    _builder.append(" : ");
+    EList<Quantification> _quantifications_1 = quantifications.getQuantifications();
+    Quantification _get_1 = _quantifications_1.get(index);
+    NodeDefinition _nodeSet = _get_1.getNodeSet();
+    String _name_1 = _nodeSet.getName();
+    _builder.append(_name_1, "");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Quantification> _quantifications_2 = quantifications.getQuantifications();
+      int _size = _quantifications_2.size();
+      int _minus = (_size - 1);
+      boolean _lessThan = (index < _minus);
+      if (_lessThan) {
+        _builder.append("\t");
+        CharSequence _beginQuantifications = this.beginQuantifications(quantifications, (index + 1));
+        _builder.append(_beginQuantifications, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence endQuantifications(final QuantificationList quantifications, final int index) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((index > 0)) {
+        _builder.append("\t");
+        CharSequence _endQuantifications = this.endQuantifications(quantifications, (index - 1));
+        _builder.append(_endQuantifications, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
     return _builder;
   }
   
@@ -678,24 +759,6 @@ public class DslGenerator implements IGenerator {
     return _builder;
   }
   
-  protected Object _predicateExpression(final PropertyRelationPredicate predicate) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("PredicateUtil.");
-    PropertyRelation _relation = predicate.getRelation();
-    String _name = _relation.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name);
-    _builder.append(_firstLower, "");
-    _builder.append("(");
-    PropertyExpression _lhs = predicate.getLhs();
-    _builder.append(_lhs, "");
-    _builder.append(", ");
-    PropertyExpression _rhs = predicate.getRhs();
-    _builder.append(_rhs, "");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
   protected Object _predicateExpression(final DefinitionSentencePredicate predicate) {
     StringConcatenation _builder = new StringConcatenation();
     DefinitionSentence _sentence = predicate.getSentence();
@@ -883,8 +946,6 @@ public class DslGenerator implements IGenerator {
       return _predicateExpression((OrExpression)and);
     } else if (and instanceof PredicateReference) {
       return _predicateExpression((PredicateReference)and);
-    } else if (and instanceof PropertyRelationPredicate) {
-      return _predicateExpression((PropertyRelationPredicate)and);
     } else if (and instanceof PredicateExpression) {
       return _predicateExpression((PredicateExpression)and);
     } else {

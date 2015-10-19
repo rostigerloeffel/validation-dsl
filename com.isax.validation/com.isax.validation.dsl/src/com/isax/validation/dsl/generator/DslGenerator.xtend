@@ -23,6 +23,7 @@ import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
 import com.isax.validation.dsl.dsl.PropertyValueExpression
+import com.isax.validation.dsl.dsl.QuantificationList
 import com.isax.validation.dsl.dsl.Quantor
 import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Selector
@@ -57,7 +58,7 @@ class DslGenerator implements IGenerator {
 		String validatorName,
 		Validator validator
 	) '''
-		class «validatorName» {
+		class «validatorName.toFirstUpper» {
 			@FunctionalInterface
 			private interface Predicate {
 				boolean test();
@@ -87,6 +88,13 @@ class DslGenerator implements IGenerator {
 					«ENDIF»
 				«ENDFOR»
 			}
+
+			«FOR sentence : validator.sentences»
+				«IF sentence instanceof ConstraintSentence»
+					«sentenceStatements(sentence)»
+					
+				«ENDIF»
+			«ENDFOR»
 		
 			«FOR sentence : validator.sentences»
 				«IF sentence instanceof PredicateDefinitionSentence»
@@ -123,6 +131,24 @@ class DslGenerator implements IGenerator {
 		ConstraintSentence sentence
 	) '''
 		// «serialize(sentence)»
+		«IF sentence.quantifications != null»
+			«beginQuantifications(sentence.quantifications, 0)»
+			«endQuantifications(sentence.quantifications, sentence.quantifications.quantifications.size)»
+		«ENDIF»
+	'''
+
+	def CharSequence beginQuantifications(QuantificationList quantifications, int index) '''
+		for (Node «quantifications.quantifications.get(index).node.name» : «quantifications.quantifications.get(index).nodeSet.name») {
+			«IF index < quantifications.quantifications.size - 1» 
+				«beginQuantifications(quantifications, index + 1)»
+			«ENDIF»
+	'''
+
+	def CharSequence endQuantifications(QuantificationList quantifications, int index) '''
+			«IF index > 0» 
+				«endQuantifications(quantifications, index - 1)»
+			«ENDIF»
+		}
 	'''
 
 	def dispatch sentenceStatements(
@@ -260,10 +286,6 @@ class DslGenerator implements IGenerator {
 			satisfied |= !«predicateExpression(implies.rhs)»
 			return satisfied;
 		});
-	'''
-
-	def dispatch predicateExpression(PropertyRelationPredicate predicate) '''
-		PredicateUtil.«predicate.relation.getName().toFirstLower»(«predicate.lhs», «predicate.rhs»);
 	'''
 
 	def dispatch predicateExpression(DefinitionSentencePredicate predicate) '''
