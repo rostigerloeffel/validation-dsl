@@ -156,6 +156,8 @@ public class DslGenerator implements IGenerator {
                 _builder.append("\t\t");
                 _builder.append("}");
                 _builder.newLine();
+                _builder.append("\t\t");
+                _builder.newLine();
               }
             }
           }
@@ -325,7 +327,7 @@ public class DslGenerator implements IGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("for (");
+    _builder.append("for (Node ");
     Quantification _quantification = sentence.getQuantification();
     NodeDefinition _node = _quantification.getNode();
     String _name = _node.getName();
@@ -401,16 +403,10 @@ public class DslGenerator implements IGenerator {
         _builder.newLine();
       } else {
         _builder.append("\t");
-        _builder.append("return eval(() -> { ");
-        _builder.newLine();
-        _builder.append("\t");
-        _builder.append("\t");
+        _builder.append("return ");
         Object _predicateExpression = this.predicateExpression(predicate);
-        _builder.append(_predicateExpression, "\t\t");
+        _builder.append(_predicateExpression, "\t");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
       }
     }
     _builder.append("});");
@@ -557,11 +553,11 @@ public class DslGenerator implements IGenerator {
   }
   
   protected Object _predicateExpression(final PredicateExpression expression) {
-    PredicateCall _call = expression.getCall();
-    boolean _notEquals = (!Objects.equal(_call, null));
+    PredicateExpression _inner = expression.getInner();
+    boolean _notEquals = (!Objects.equal(_inner, null));
     if (_notEquals) {
-      PredicateCall _call_1 = expression.getCall();
-      return this.predicateCall(_call_1);
+      PredicateExpression _inner_1 = expression.getInner();
+      return this.predicateExpression(_inner_1);
     }
     PredicateExpression _lhs = expression.getLhs();
     boolean _notEquals_1 = (!Objects.equal(_lhs, null));
@@ -574,6 +570,12 @@ public class DslGenerator implements IGenerator {
     if (_notEquals_2) {
       PredicateExpression _rhs_1 = expression.getRhs();
       return this.predicateExpression(_rhs_1);
+    }
+    PredicateCall _call = expression.getCall();
+    boolean _notEquals_3 = (!Objects.equal(_call, null));
+    if (_notEquals_3) {
+      PredicateCall _call_1 = expression.getCall();
+      return this.predicateCall(_call_1);
     }
     return null;
   }

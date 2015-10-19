@@ -77,6 +77,7 @@ class DslGenerator implements IGenerator {
 							boolean satisfied = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
 							if (!satisfied) return satisfied;
 						}
+						
 						«ENDIF»
 					«ENDIF»
 				«ENDFOR»
@@ -139,7 +140,7 @@ class DslGenerator implements IGenerator {
 	) '''
 		{
 			boolean satisfied = «initialQualifierSatisfaction(sentence.qualifier)»;
-			for («sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
+			for (Node «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
 				«nodeAssignmentStatement(sentence.getTarget.definition, sentence.getTarget.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.predicate)»
 				satisfied «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
@@ -153,9 +154,7 @@ class DslGenerator implements IGenerator {
 			«IF predicate == null»
 				return true;
 			«ELSE»
-				return eval(() -> { 
-					«predicateExpression(predicate)»
-				}
+				return «predicateExpression(predicate)»
 			«ENDIF»
 		});
 	'''
@@ -225,9 +224,10 @@ class DslGenerator implements IGenerator {
 
 
 	def dispatch predicateExpression(PredicateExpression expression) {
-		if (expression.call != null) return predicateCall(expression.call)
+		if (expression.inner != null) return predicateExpression(expression.inner)		
 		if (expression.lhs != null) return predicateExpression(expression.lhs)
 		if (expression.rhs != null) return predicateExpression(expression.rhs)
+		if (expression.call != null) return predicateCall(expression.call)
 	}
 	
 	def dispatch predicateExpression(AndExpression and) '''
