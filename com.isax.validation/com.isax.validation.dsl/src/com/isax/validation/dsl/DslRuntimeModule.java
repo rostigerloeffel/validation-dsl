@@ -3,9 +3,20 @@
  */
 package com.isax.validation.dsl;
 
+import org.eclipse.xtext.generator.IGenerator;
+
+import com.isax.validation.dsl.generator.DslGenerator;
+
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntimeModule {
+	
+	@Override
+	public Class<? extends IGenerator> bindIGenerator() {
+		return DslGenerator.class;
+	}
+	
+	
 
 }

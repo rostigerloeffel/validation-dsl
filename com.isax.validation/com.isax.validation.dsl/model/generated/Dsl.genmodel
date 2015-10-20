@@ -4,7 +4,7 @@
     editorDirectory="/com.isax.validation.dsl.editor/src" modelPluginID="com.isax.validation.dsl"
     forceOverwrite="true" modelName="Dsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="com.isax.validation.dsl.edit"
-    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.11">
+    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.11" usedGenPackages="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase">
   <genPackages prefix="Dsl" basePackage="com.isax.validation.dsl" disposableProviderFactory="true"
       fileExtensions="validator" ecorePackage="Dsl.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//Quantor">
@@ -69,7 +69,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//TargetDefinition/axis"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/definition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/predicate"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/xblock"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//SelectorList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//SelectorList/selectors"/>

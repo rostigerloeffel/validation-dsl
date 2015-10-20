@@ -33,4 +33,5 @@ Export-Package: com.isax.validation.dsl,
  com.isax.validation.dsl.validation,
  com.isax.validation.dsl.scoping,
  com.isax.validation.dsl.generator,
- com.isax.validation.dsl.formatting
+ com.isax.validation.dsl.formatting,
+ com.isax.validation.dsl.jvmmodel

@@ -2,7 +2,6 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
-import com.isax.validation.dsl.dsl.AssignmentList;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
@@ -18,6 +17,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.xbase.XExpression;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Target Definition</b></em>'.
@@ -29,7 +30,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getAxis <em>Axis</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getDefinition <em>Definition</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getPredicate <em>Predicate</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.TargetDefinitionImpl#getXblock <em>Xblock</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,14 +78,14 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
   protected PredicateExpression predicate;
 
   /**
-   * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference.
+   * The cached value of the '{@link #getXblock() <em>Xblock</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAssignments()
+   * @see #getXblock()
    * @generated
    * @ordered
    */
-  protected AssignmentList assignments;
+  protected XExpression xblock;
 
   /**
    * <!-- begin-user-doc -->
@@ -231,9 +232,9 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public AssignmentList getAssignments()
+  public XExpression getXblock()
   {
-    return assignments;
+    return xblock;
   }
 
   /**
@@ -241,13 +242,13 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAssignments(AssignmentList newAssignments, NotificationChain msgs)
+  public NotificationChain basicSetXblock(XExpression newXblock, NotificationChain msgs)
   {
-    AssignmentList oldAssignments = assignments;
-    assignments = newAssignments;
+    XExpression oldXblock = xblock;
+    xblock = newXblock;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.TARGET_DEFINITION__ASSIGNMENTS, oldAssignments, newAssignments);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.TARGET_DEFINITION__XBLOCK, oldXblock, newXblock);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -258,20 +259,20 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAssignments(AssignmentList newAssignments)
+  public void setXblock(XExpression newXblock)
   {
-    if (newAssignments != assignments)
+    if (newXblock != xblock)
     {
       NotificationChain msgs = null;
-      if (assignments != null)
-        msgs = ((InternalEObject)assignments).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.TARGET_DEFINITION__ASSIGNMENTS, null, msgs);
-      if (newAssignments != null)
-        msgs = ((InternalEObject)newAssignments).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.TARGET_DEFINITION__ASSIGNMENTS, null, msgs);
-      msgs = basicSetAssignments(newAssignments, msgs);
+      if (xblock != null)
+        msgs = ((InternalEObject)xblock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.TARGET_DEFINITION__XBLOCK, null, msgs);
+      if (newXblock != null)
+        msgs = ((InternalEObject)newXblock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.TARGET_DEFINITION__XBLOCK, null, msgs);
+      msgs = basicSetXblock(newXblock, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TARGET_DEFINITION__ASSIGNMENTS, newAssignments, newAssignments));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TARGET_DEFINITION__XBLOCK, newXblock, newXblock));
   }
 
   /**
@@ -288,8 +289,8 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
         return basicSetDefinition(null, msgs);
       case DslPackage.TARGET_DEFINITION__PREDICATE:
         return basicSetPredicate(null, msgs);
-      case DslPackage.TARGET_DEFINITION__ASSIGNMENTS:
-        return basicSetAssignments(null, msgs);
+      case DslPackage.TARGET_DEFINITION__XBLOCK:
+        return basicSetXblock(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -310,8 +311,8 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
         return getDefinition();
       case DslPackage.TARGET_DEFINITION__PREDICATE:
         return getPredicate();
-      case DslPackage.TARGET_DEFINITION__ASSIGNMENTS:
-        return getAssignments();
+      case DslPackage.TARGET_DEFINITION__XBLOCK:
+        return getXblock();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -335,8 +336,8 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
       case DslPackage.TARGET_DEFINITION__PREDICATE:
         setPredicate((PredicateExpression)newValue);
         return;
-      case DslPackage.TARGET_DEFINITION__ASSIGNMENTS:
-        setAssignments((AssignmentList)newValue);
+      case DslPackage.TARGET_DEFINITION__XBLOCK:
+        setXblock((XExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -361,8 +362,8 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
       case DslPackage.TARGET_DEFINITION__PREDICATE:
         setPredicate((PredicateExpression)null);
         return;
-      case DslPackage.TARGET_DEFINITION__ASSIGNMENTS:
-        setAssignments((AssignmentList)null);
+      case DslPackage.TARGET_DEFINITION__XBLOCK:
+        setXblock((XExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -384,8 +385,8 @@ public class TargetDefinitionImpl extends MinimalEObjectImpl.Container implement
         return definition != null;
       case DslPackage.TARGET_DEFINITION__PREDICATE:
         return predicate != null;
-      case DslPackage.TARGET_DEFINITION__ASSIGNMENTS:
-        return assignments != null;
+      case DslPackage.TARGET_DEFINITION__XBLOCK:
+        return xblock != null;
     }
     return super.eIsSet(featureID);
   }

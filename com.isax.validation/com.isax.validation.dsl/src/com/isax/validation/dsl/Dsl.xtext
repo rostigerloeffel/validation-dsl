@@ -1,4 +1,4 @@
-grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.common.Terminals
+grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.xbase.Xbase
 
 generate dsl "http://www.isax.com/validation/dsl/Dsl"
 
@@ -35,7 +35,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' assignments=AssignmentList '}')?;
+	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' /*assignments=AssignmentList*/ xblock = XBlockExpression '}')? ;
 
 
 SelectorList:

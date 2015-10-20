@@ -391,13 +391,13 @@ public interface DslPackage extends EPackage
   int TARGET_DEFINITION__PREDICATE = 2;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference.
+   * The feature id for the '<em><b>Xblock</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION__ASSIGNMENTS = 3;
+  int TARGET_DEFINITION__XBLOCK = 3;
 
   /**
    * The number of structural features of the '<em>Target Definition</em>' class.
@@ -1590,15 +1590,15 @@ public interface DslPackage extends EPackage
   EReference getTargetDefinition_Predicate();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}'.
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getXblock <em>Xblock</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Assignments</em>'.
-   * @see com.isax.validation.dsl.dsl.TargetDefinition#getAssignments()
+   * @return the meta object for the containment reference '<em>Xblock</em>'.
+   * @see com.isax.validation.dsl.dsl.TargetDefinition#getXblock()
    * @see #getTargetDefinition()
    * @generated
    */
-  EReference getTargetDefinition_Assignments();
+  EReference getTargetDefinition_Xblock();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.SelectorList <em>Selector List</em>}'.
@@ -2445,12 +2445,12 @@ public interface DslPackage extends EPackage
     EReference TARGET_DEFINITION__PREDICATE = eINSTANCE.getTargetDefinition_Predicate();
 
     /**
-     * The meta object literal for the '<em><b>Assignments</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Xblock</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TARGET_DEFINITION__ASSIGNMENTS = eINSTANCE.getTargetDefinition_Assignments();
+    EReference TARGET_DEFINITION__XBLOCK = eINSTANCE.getTargetDefinition_Xblock();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.SelectorListImpl <em>Selector List</em>}' class.

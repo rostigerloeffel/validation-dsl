@@ -24,7 +24,6 @@ import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
 import com.isax.validation.dsl.dsl.PropertyValueExpression
 import com.isax.validation.dsl.dsl.Quantification
-import com.isax.validation.dsl.dsl.QuantificationList
 import com.isax.validation.dsl.dsl.Quantor
 import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Selector
@@ -37,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 
 /**
  * Generates code from your model files on save.
@@ -46,6 +46,7 @@ import org.eclipse.xtext.serializer.ISerializer
 class DslGenerator implements IGenerator {
 
 	@Inject ISerializer serializer;
+	@Inject XbaseCompiler compiler;
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val validatorName = resource.URI.segmentsList.last.split('\\.').head
@@ -187,6 +188,10 @@ class DslGenerator implements IGenerator {
 		DefinitionSentence sentence
 	) '''
 		«nodeAssignmentStatement(sentence.target.definition, sentence.target.axis, sentence.node, sentence.target.definition.selectors, sentence.target.predicate)»
+		
+		«IF sentence.target.xblock != null»
+			«compiler.toJavaExpression(sentence.target.xblock, null)»
+		«ENDIF»
 	'''
 
 	def quantifiedDefinition(
@@ -360,7 +365,7 @@ class DslGenerator implements IGenerator {
 	def parameterList(ParameterList list) {
 		if (list != null)
 			list.parameters.join(", ", [ Parameter parameter |
-				if (parameter.node.isCollection) "Collection<Node>" else "Node" + " " + parameter.node.name
+				(if (parameter.node.isCollection) "NodeSet" else "Node") + " " + parameter.node.name
 			])
 	}
 }

@@ -49,7 +49,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" eType="#//AssignmentList"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xblock" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorList">

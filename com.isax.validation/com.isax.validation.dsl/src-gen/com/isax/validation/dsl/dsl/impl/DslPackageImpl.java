@@ -48,6 +48,8 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.xtext.xbase.XbasePackage;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -349,6 +351,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     isInited = true;
 
+    // Initialize simple dependencies
+    XbasePackage.eINSTANCE.eClass();
+
     // Create package meta-data objects
     theDslPackage.createPackageContents();
 
@@ -649,7 +654,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTargetDefinition_Assignments()
+  public EReference getTargetDefinition_Xblock()
   {
     return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(3);
   }
@@ -1270,7 +1275,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     createEAttribute(targetDefinitionEClass, TARGET_DEFINITION__AXIS);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__DEFINITION);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__PREDICATE);
-    createEReference(targetDefinitionEClass, TARGET_DEFINITION__ASSIGNMENTS);
+    createEReference(targetDefinitionEClass, TARGET_DEFINITION__XBLOCK);
 
     selectorListEClass = createEClass(SELECTOR_LIST);
     createEReference(selectorListEClass, SELECTOR_LIST__SELECTORS);
@@ -1376,6 +1381,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Obtain other dependent packages
+    XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
+
     // Create type parameters
 
     // Set bounds for type parameters
@@ -1431,7 +1439,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEAttribute(getTargetDefinition_Axis(), this.getAxis(), "axis", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Definition(), this.getNodeDefinition(), null, "definition", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Predicate(), this.getPredicateExpression(), null, "predicate", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTargetDefinition_Assignments(), this.getAssignmentList(), null, "assignments", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTargetDefinition_Xblock(), theXbasePackage.getXExpression(), null, "xblock", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectorListEClass, SelectorList.class, "SelectorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSelectorList_Selectors(), this.getSelectorListDef(), null, "selectors", null, 0, 1, SelectorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
