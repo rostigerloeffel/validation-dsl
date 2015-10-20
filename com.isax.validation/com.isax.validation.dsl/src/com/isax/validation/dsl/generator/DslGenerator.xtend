@@ -131,10 +131,15 @@ class DslGenerator implements IGenerator {
 		ConstraintSentence sentence
 	) '''
 		// «serialize(sentence)»
-		«IF sentence.quantifications != null»
-			«beginQuantifications(sentence.quantifications, 0)»
-			«endQuantifications(sentence.quantifications, sentence.quantifications.quantifications.size)»
-		«ENDIF»
+		{
+			boolean satisfied = false;
+			«IF sentence.quantifications != null»
+				«beginQuantifications(sentence.quantifications, 0)»
+					«predicateExpression(sentence.predicate)»
+				«endQuantifications(sentence.quantifications, sentence.quantifications.quantifications.size)»
+			«ENDIF»
+			if (!satisfied) return satisfied;
+		}
 	'''
 
 	def CharSequence beginQuantifications(QuantificationList quantifications, int index) '''
@@ -145,7 +150,7 @@ class DslGenerator implements IGenerator {
 	'''
 
 	def CharSequence endQuantifications(QuantificationList quantifications, int index) '''
-			«IF index > 0» 
+			«IF index > 1» 
 				«endQuantifications(quantifications, index - 1)»
 			«ENDIF»
 		}

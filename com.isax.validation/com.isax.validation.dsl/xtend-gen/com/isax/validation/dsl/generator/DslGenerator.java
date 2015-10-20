@@ -282,23 +282,41 @@ public class DslGenerator implements IGenerator {
     String _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
+    _builder.append("{");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("boolean satisfied = false;");
+    _builder.newLine();
     {
       QuantificationList _quantifications = sentence.getQuantifications();
       boolean _notEquals = (!Objects.equal(_quantifications, null));
       if (_notEquals) {
+        _builder.append("\t");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
         CharSequence _beginQuantifications = this.beginQuantifications(_quantifications_1, 0);
-        _builder.append(_beginQuantifications, "");
+        _builder.append(_beginQuantifications, "\t");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        PredicateExpression _predicate = sentence.getPredicate();
+        Object _predicateExpression = this.predicateExpression(_predicate);
+        _builder.append(_predicateExpression, "\t\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
         QuantificationList _quantifications_2 = sentence.getQuantifications();
         QuantificationList _quantifications_3 = sentence.getQuantifications();
         EList<Quantification> _quantifications_4 = _quantifications_3.getQuantifications();
         int _size = _quantifications_4.size();
         CharSequence _endQuantifications = this.endQuantifications(_quantifications_2, _size);
-        _builder.append(_endQuantifications, "");
+        _builder.append(_endQuantifications, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.append("if (!satisfied) return satisfied;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
     return _builder;
   }
   
@@ -336,7 +354,7 @@ public class DslGenerator implements IGenerator {
   public CharSequence endQuantifications(final QuantificationList quantifications, final int index) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      if ((index > 0)) {
+      if ((index > 1)) {
         _builder.append("\t");
         CharSequence _endQuantifications = this.endQuantifications(quantifications, (index - 1));
         _builder.append(_endQuantifications, "\t");
