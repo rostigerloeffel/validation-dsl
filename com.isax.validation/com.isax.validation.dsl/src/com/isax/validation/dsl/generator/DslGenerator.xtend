@@ -23,6 +23,7 @@ import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
 import com.isax.validation.dsl.dsl.PropertyValueExpression
+import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.QuantificationList
 import com.isax.validation.dsl.dsl.Quantor
 import com.isax.validation.dsl.dsl.RelationQualifier
@@ -30,6 +31,7 @@ import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
+import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -132,28 +134,44 @@ class DslGenerator implements IGenerator {
 	) '''
 		// «serialize(sentence)»
 		{
-			boolean satisfied = false;
 			«IF sentence.quantifications != null»
-				«beginQuantifications(sentence.quantifications, 0)»
-					«predicateExpression(sentence.predicate)»
-				«endQuantifications(sentence.quantifications, sentence.quantifications.quantifications.size)»
+				boolean satisfied = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
+				if (!satisfied) return false;
 			«ENDIF»
-			if (!satisfied) return satisfied;
 		}
 	'''
 
-	def CharSequence beginQuantifications(QuantificationList quantifications, int index) '''
-		for (Node «quantifications.quantifications.get(index).node.name» : «quantifications.quantifications.get(index).nodeSet.name») {
-			«IF index < quantifications.quantifications.size - 1» 
-				«beginQuantifications(quantifications, index + 1)»
+	def constraintDispatch(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+		«IF index < quantifications.size»
+			«IF quantifications.get(index).quantor == Quantor.EACH»
+				«constraintQuantorEach(quantifications, index, sentence)»
+			«ELSEIF quantifications.get(index).quantor == Quantor.ANY»
+				«constraintQuantorAny(quantifications, index, sentence)»
 			«ENDIF»
+		«ELSE»
+			«predicateExpression(sentence.predicate)»
+		«ENDIF»
 	'''
-
-	def CharSequence endQuantifications(QuantificationList quantifications, int index) '''
-			«IF index > 1» 
-				«endQuantifications(quantifications, index - 1)»
-			«ENDIF»
-		}
+	
+	
+	def constraintQuantorEach(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+		eval(() -> {
+			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+				boolean satisfied = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (!satisfied) return false;
+			}
+			return true;
+		});
+	'''
+	
+	def constraintQuantorAny(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+		eval(() -> {
+			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+				boolean satisfied = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (satisfied) return true;
+			}
+			return false;
+		});
 	'''
 
 	def dispatch sentenceStatements(
@@ -342,7 +360,7 @@ class DslGenerator implements IGenerator {
 	def parameterList(ParameterList list) {
 		if (list != null)
 			list.parameters.join(", ", [ Parameter parameter |
-				if(parameter.node.isCollection) "Collection<Node>" else "Node" + " " + parameter.node.name
+				if (parameter.node.isCollection) "Collection<Node>" else "Node" + " " + parameter.node.name
 			])
 	}
 }

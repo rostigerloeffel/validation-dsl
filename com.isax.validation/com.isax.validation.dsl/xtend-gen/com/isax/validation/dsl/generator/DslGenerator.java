@@ -284,84 +284,130 @@ public class DslGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("{");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.append("boolean satisfied = false;");
-    _builder.newLine();
     {
       QuantificationList _quantifications = sentence.getQuantifications();
       boolean _notEquals = (!Objects.equal(_quantifications, null));
       if (_notEquals) {
         _builder.append("\t");
+        _builder.append("boolean satisfied = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
-        CharSequence _beginQuantifications = this.beginQuantifications(_quantifications_1, 0);
-        _builder.append(_beginQuantifications, "\t");
+        EList<Quantification> _quantifications_2 = _quantifications_1.getQuantifications();
+        CharSequence _constraintDispatch = this.constraintDispatch(_quantifications_2, 0, sentence);
+        _builder.append(_constraintDispatch, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("\t");
+        _builder.append("if (!satisfied) return false;");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence constraintDispatch(final List<Quantification> quantifications, final int index, final ConstraintSentence sentence) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _size = quantifications.size();
+      boolean _lessThan = (index < _size);
+      if (_lessThan) {
+        {
+          Quantification _get = quantifications.get(index);
+          Quantor _quantor = _get.getQuantor();
+          boolean _equals = Objects.equal(_quantor, Quantor.EACH);
+          if (_equals) {
+            CharSequence _constraintQuantorEach = this.constraintQuantorEach(quantifications, index, sentence);
+            _builder.append(_constraintQuantorEach, "");
+            _builder.newLineIfNotEmpty();
+          } else {
+            Quantification _get_1 = quantifications.get(index);
+            Quantor _quantor_1 = _get_1.getQuantor();
+            boolean _equals_1 = Objects.equal(_quantor_1, Quantor.ANY);
+            if (_equals_1) {
+              CharSequence _constraintQuantorAny = this.constraintQuantorAny(quantifications, index, sentence);
+              _builder.append(_constraintQuantorAny, "");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      } else {
         PredicateExpression _predicate = sentence.getPredicate();
         Object _predicateExpression = this.predicateExpression(_predicate);
-        _builder.append(_predicateExpression, "\t\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        QuantificationList _quantifications_2 = sentence.getQuantifications();
-        QuantificationList _quantifications_3 = sentence.getQuantifications();
-        EList<Quantification> _quantifications_4 = _quantifications_3.getQuantifications();
-        int _size = _quantifications_4.size();
-        CharSequence _endQuantifications = this.endQuantifications(_quantifications_2, _size);
-        _builder.append(_endQuantifications, "\t");
+        _builder.append(_predicateExpression, "");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t");
-    _builder.append("if (!satisfied) return satisfied;");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
     return _builder;
   }
   
-  public CharSequence beginQuantifications(final QuantificationList quantifications, final int index) {
+  public CharSequence constraintQuantorEach(final List<Quantification> quantifications, final int index, final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("eval(() -> {");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("for (Node ");
-    EList<Quantification> _quantifications = quantifications.getQuantifications();
-    Quantification _get = _quantifications.get(index);
+    Quantification _get = quantifications.get(index);
     NodeDefinition _node = _get.getNode();
     String _name = _node.getName();
-    _builder.append(_name, "");
+    _builder.append(_name, "\t");
     _builder.append(" : ");
-    EList<Quantification> _quantifications_1 = quantifications.getQuantifications();
-    Quantification _get_1 = _quantifications_1.get(index);
+    Quantification _get_1 = quantifications.get(index);
     NodeDefinition _nodeSet = _get_1.getNodeSet();
     String _name_1 = _nodeSet.getName();
-    _builder.append(_name_1, "");
+    _builder.append(_name_1, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
-    {
-      EList<Quantification> _quantifications_2 = quantifications.getQuantifications();
-      int _size = _quantifications_2.size();
-      int _minus = (_size - 1);
-      boolean _lessThan = (index < _minus);
-      if (_lessThan) {
-        _builder.append("\t");
-        CharSequence _beginQuantifications = this.beginQuantifications(quantifications, (index + 1));
-        _builder.append(_beginQuantifications, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    _builder.append("\t\t");
+    _builder.append("boolean satisfied = ");
+    Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
+    _builder.append(_constraintDispatch, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (!satisfied) return false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("});");
+    _builder.newLine();
     return _builder;
   }
   
-  public CharSequence endQuantifications(final QuantificationList quantifications, final int index) {
+  public CharSequence constraintQuantorAny(final List<Quantification> quantifications, final int index, final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((index > 1)) {
-        _builder.append("\t");
-        CharSequence _endQuantifications = this.endQuantifications(quantifications, (index - 1));
-        _builder.append(_endQuantifications, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    _builder.append("eval(() -> {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("for (Node ");
+    Quantification _get = quantifications.get(index);
+    NodeDefinition _node = _get.getNode();
+    String _name = _node.getName();
+    _builder.append(_name, "\t");
+    _builder.append(" : ");
+    Quantification _get_1 = quantifications.get(index);
+    NodeDefinition _nodeSet = _get_1.getNodeSet();
+    String _name_1 = _nodeSet.getName();
+    _builder.append(_name_1, "\t");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("boolean satisfied = ");
+    Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
+    _builder.append(_constraintDispatch, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (satisfied) return true;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return false;");
+    _builder.newLine();
+    _builder.append("});");
     _builder.newLine();
     return _builder;
   }
