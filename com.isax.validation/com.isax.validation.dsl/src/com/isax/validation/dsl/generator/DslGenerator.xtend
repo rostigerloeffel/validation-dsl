@@ -29,14 +29,29 @@ import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
+import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.common.types.TypesFactory
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
+import org.eclipse.xtext.documentation.IFileHeaderProvider
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.generator.trace.ITraceURIConverter
+import org.eclipse.xtext.resource.ILocationInFileProvider
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.xbase.XExpression
+import org.eclipse.xtext.xbase.compiler.GeneratorConfig
+import org.eclipse.xtext.xbase.compiler.IGeneratorConfigProvider
+import org.eclipse.xtext.xbase.compiler.ImportManager
+import org.eclipse.xtext.xbase.compiler.JvmModelGenerator
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
+import org.eclipse.xtext.xbase.compiler.output.TreeAppendable
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
+import org.eclipse.xtext.xbase.featurecalls.IdentifiableSimpleNameProvider
+import org.eclipse.xtext.common.types.JvmIdentifiableElement
 
 /**
  * Generates code from your model files on save.
@@ -46,8 +61,7 @@ import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 class DslGenerator implements IGenerator {
 
 	@Inject ISerializer serializer;
-	@Inject XbaseCompiler compiler;
-
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val validatorName = resource.URI.segmentsList.last.split('\\.').head
 		fsa.generateFile(validatorName + '.java', generateValidator(validatorName, resource.contents.head as Validator))
@@ -188,10 +202,6 @@ class DslGenerator implements IGenerator {
 		DefinitionSentence sentence
 	) '''
 		«nodeAssignmentStatement(sentence.target.definition, sentence.target.axis, sentence.node, sentence.target.definition.selectors, sentence.target.predicate)»
-		
-		«IF sentence.target.xblock != null»
-			«compiler.toJavaExpression(sentence.target.xblock, null)»
-		«ENDIF»
 	'''
 
 	def quantifiedDefinition(

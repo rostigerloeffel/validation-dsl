@@ -3,10 +3,9 @@
  */
 package com.isax.validation.dsl.scoping
 
-import com.isax.validation.dsl.dsl.DefinitionSentence
-import com.isax.validation.dsl.util.DslUtil
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.scoping.Scopes
+import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 /**
@@ -17,6 +16,10 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
  *
  */
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	override IScope getScope(EObject context, EReference reference) {
+		super.getScope(context, reference)
+	}
 	
 //	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
 //		Scopes.scopeFor(DslUtil.findPreviouslyDefinedNodes(sentence))

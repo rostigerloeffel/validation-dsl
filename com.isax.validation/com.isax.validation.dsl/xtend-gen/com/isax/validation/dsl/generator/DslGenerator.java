@@ -47,8 +47,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.serializer.ISerializer;
-import org.eclipse.xtext.xbase.XExpression;
-import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -63,9 +61,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 public class DslGenerator implements IGenerator {
   @Inject
   private ISerializer serializer;
-  
-  @Inject
-  private XbaseCompiler compiler;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
@@ -458,18 +453,6 @@ public class DslGenerator implements IGenerator {
     CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition, _axis, _node, _selectors, _predicate);
     _builder.append(_nodeAssignmentStatement, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    {
-      TargetDefinition _target_4 = sentence.getTarget();
-      XExpression _xblock = _target_4.getXblock();
-      boolean _notEquals = (!Objects.equal(_xblock, null));
-      if (_notEquals) {
-        TargetDefinition _target_5 = sentence.getTarget();
-        XExpression _xblock_1 = _target_5.getXblock();
-        this.compiler.toJavaExpression(_xblock_1, null);
-        _builder.newLineIfNotEmpty();
-      }
-    }
     return _builder;
   }
   

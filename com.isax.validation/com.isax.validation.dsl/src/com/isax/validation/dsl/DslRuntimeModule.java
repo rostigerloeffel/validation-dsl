@@ -12,11 +12,9 @@ import com.isax.validation.dsl.generator.DslGenerator;
  */
 public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntimeModule {
 	
-	@Override
-	public Class<? extends IGenerator> bindIGenerator() {
-		return DslGenerator.class;
-	}
+//	@Override
+//	public Class<? extends IGenerator> bindIGenerator() {
+//		return DslGenerator.class;
+//	}
 	
-	
-
 }
