@@ -1,9 +1,14 @@
 package com.isax.validation.dsl.jvmmodel
 
 import com.google.inject.Inject
+import com.isax.validation.dsl.api.NodePredicates
+import com.isax.validation.dsl.api.ResolvingNode
+import com.isax.validation.dsl.api.ResolvingNodeSet
+import com.isax.validation.dsl.api.Traverser
 import com.isax.validation.dsl.dsl.AndExpression
 import com.isax.validation.dsl.dsl.Argument
 import com.isax.validation.dsl.dsl.ArgumentList
+import com.isax.validation.dsl.dsl.AssignmentXExpression
 import com.isax.validation.dsl.dsl.Axis
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
@@ -35,7 +40,6 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.serializer.ISerializer
-import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor.IPostIndexingInitializing
@@ -91,6 +95,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			predicateDecl.annotations += annotationRef(typeof(FunctionalInterface))
 			members += predicateDecl
 
+			members += validator.toField("traverser$", typeRef(typeof(Traverser))) [
+				visibility = JvmVisibility.PRIVATE
+			]
+			members += validator.toField("predicates$", typeRef(typeof(NodePredicates))) [
+				visibility = JvmVisibility.PRIVATE
+			]
+			
+			members += compileStartOnDefinition(validator)
+			members += compileNodeDefinitions(validator)
+
 			members += validator.toMethod("eval", typeRef("boolean")) [
 				visibility = JvmVisibility.PRIVATE
 				parameters += validator.toParameter("predicate", typeRef("Predicate"))
@@ -99,12 +113,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 			members += validator.toMethod("validate", typeRef("boolean")) [
 				visibility = JvmVisibility.PUBLIC
-				parameters += validator.toParameter("node", typeRef("Node"))
+				parameters += validator.toParameter("node$", typeRef("ResolvingNode"))
 				body = '''«compileBody(validator)»'''
 			]
 
 			members += compilePredicates(validator)
 			members += compileXExpressionPredicates(validator)
+			members += compileXExpressionAssignments(validator)
 		]
 	}
 
@@ -124,8 +139,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«sentenceStatements(sentence)»
 			«IF sentence.quantification == null»
 				{
-					boolean satisfied = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
-					if (!satisfied) return satisfied;
+					boolean satisfied$«sentence.hashCode» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+					if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
 				}
 				
 			«ENDIF»
@@ -147,12 +162,35 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 «««		«ENDFOR»
 	'''
 
+	def compileStartOnDefinition(Validator validator) {
+		validator.sentences
+			.filter(typeof(StartOnSentence))
+			.map[it | it.toField(it.definition.name, 
+				if (it.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+			)]
+	}
+	
+	def compileNodeDefinitions(Validator validator) {
+		validator.sentences
+			.filter(typeof(DefinitionSentence))
+			.map[it | it.toField(it.target.definition.name, 
+				if (it.target.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+			)]
+	}
+
 	def compileXExpressionPredicates(Validator validator) {
 		validator.eAllContents.toSet
-			.filter(typeof(XExpression))
-			.filter[EObject o | !(o.eContainer instanceof XExpression)]
-			.map[XExpression e | e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
-				body = e 
+			.filter(typeof(PredicateXExpression))
+			.map[PredicateXExpression e | e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
+				body = e.expression 
+			]]
+	}
+	
+	def compileXExpressionAssignments(Validator validator) {
+		validator.eAllContents.toSet
+			.filter(typeof(AssignmentXExpression))
+			.map[AssignmentXExpression e | e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
+				body = e.expression 
 			]]
 	}
 
@@ -169,10 +207,10 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch sentenceStatements(
 		StartOnSentence sentence
-	) '''
+	) '''	
 		// «serialize(sentence)»
-		Node «sentence.definition.name» = node;
-		if («sentence.definition.name» == null || !hasType(«sentence.definition.name», «selectorExpression(sentence.definition.selectors)»)) {
+		«sentence.definition.name» = node$;
+		if («sentence.definition.name» == null || !predicates$.hasType(«sentence.definition.name», "«sentence.definition.selectors.selectors.selectors.join("\", \"", [Selector s | s.type])»")) {
 			return true;
 		}
 	'''
@@ -195,8 +233,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		// «serialize(sentence)»
 		{
 			«IF sentence.quantifications != null»
-				boolean satisfied = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
-				if (!satisfied) return false;
+				boolean satisfied$«sentence.hashCode» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
+				if (!satisfied$«sentence.hashCode») return false;
 			«ENDIF»
 		}
 	'''
@@ -215,9 +253,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def constraintQuantorEach(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
 		eval(() -> {
-			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
-				boolean satisfied = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (!satisfied) return false;
+			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+				boolean satisfied$«quantifications.get(index).node.name.hashCode» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (!satisfied$«quantifications.get(index).node.name.hashCode») return false;
 			}
 			return true;
 		});
@@ -227,9 +265,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		ConstraintSentence sentence
 	) '''
 		eval(() -> {
-			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
-				boolean satisfied = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (satisfied) return true;
+			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+				boolean satisfied$«quantifications.get(index).node.name.hashCode» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (satisfied$«quantifications.get(index).node.name.hashCode») return true;
 			}
 			return false;
 		});
@@ -254,46 +292,41 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		DefinitionSentence sentence
 	) '''
 		{
-			boolean satisfied = «initialQualifierSatisfaction(sentence.qualifier)»;
-			for (Node «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
+			boolean satisfied$«sentence.hashCode» = «initialQualifierSatisfaction(sentence.qualifier)»;
+			for (ResolvingNode «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
 				«nodeAssignmentStatement(sentence.getTarget.definition, sentence.getTarget.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.predicate)»
-				satisfied «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
+				satisfied$«sentence.hashCode» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
-			if (!satisfied) return satisfied;
+			if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
 		}
 	'''
 
 	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types,
 		PredicateExpression predicate) '''
-		«nodeDeclarationStatement(assignee)» = «axis.getName().toLowerCase»(«source.name», «selectorExpression(types)», (Node node) -> {
-			«IF predicate == null»
-				return true;
-			«ELSE»
-				return «predicateExpression(predicate)»
+		«assignee.name» = traverser$.«axis.getName().toLowerCase»(«source.name», (ResolvingNode node$«assignee.hashCode») -> {
+			boolean satisfied$«assignee.hashCode» = true;
+			«IF types != null»
+				satisfied$«assignee.hashCode» &= predicates$.hasType(node$«assignee.hashCode», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
 			«ENDIF»
+			«IF predicate != null»
+				satisfied$«assignee.hashCode» &= «predicateExpression(predicate)»
+			«ENDIF»
+			return satisfied$«assignee.hashCode»;
 		});
 	'''
-
-	def nodeDeclarationStatement(NodeDefinition assignee) {
-		if (assignee.collection) {
-			return "NodeSet " + assignee.name;
-		} else {
-			return "Node " + assignee.name;
-		}
-	}
 
 	def qualifierSatisfiedAssignment(NodeDefinition node, RelationQualifier qualifier) {
 		if (node.collection) {
 			switch (qualifier) {
 				case CAN: return "true"
-				case MUST: return ".isEmpty()"
-				case MUST_NOT: return ".isEmpty()"
+				case MUST: return ".hasCandidates()"
+				case MUST_NOT: return ".hasCandidates()"
 			}
 		} else {
 			switch (qualifier) {
 				case CAN: return "true"
-				case MUST: return " != null"
-				case MUST_NOT: return " == null"
+				case MUST: return ".hasCandidates()"
+				case MUST_NOT: return ".hasCandidates()"
 			}
 		}
 	}
@@ -302,14 +335,14 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		if (node.collection) {
 			switch (qualifier) {
 				case CAN: return qualifierSatisfiedAssignment(node, qualifier)
-				case MUST: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
-				case MUST_NOT: return node.name + qualifierSatisfiedAssignment(node, qualifier)
+				case MUST: return node.name + qualifierSatisfiedAssignment(node, qualifier)
+				case MUST_NOT: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
 			}
 		} else {
 			switch (qualifier) {
 				case CAN: return qualifierSatisfiedAssignment(node, qualifier)
 				case MUST: return node.name + qualifierSatisfiedAssignment(node, qualifier)
-				case MUST_NOT: return node.name + qualifierSatisfiedAssignment(node, qualifier)
+				case MUST_NOT: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
 			}
 		}
 	}
@@ -329,45 +362,37 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 
-	def selectorExpression(SelectorList list) {
-		if (list != null && list.selectors != null) {
-			return list.selectors.selectors.join('_', [Selector s|s.type.toUpperCase()]) + '_TYPES'
-		} else {
-			return ""
-		}
-	}
-
 	def dispatch predicateExpression(PredicateExpression expression) {
-		if(expression.inner != null) return predicateExpression(expression.inner)
-		if(expression.lhs != null) return predicateExpression(expression.lhs)
-		if(expression.rhs != null) return predicateExpression(expression.rhs)
-		if(expression.call != null) return predicateCall(expression.call)
+		if (expression.inner != null) return predicateExpression(expression.inner)
+		if (expression.lhs != null) return predicateExpression(expression.lhs)
+		if (expression.rhs != null) return predicateExpression(expression.rhs)
+		if (expression.call != null) return predicateCall(expression.call)
 	}
 
 	def dispatch predicateExpression(AndExpression and) '''
 		eval(() -> {
-			boolean satisfied = true;			
-			«IF and.lhs != null»satisfied &= «predicateExpression(and.lhs)»«ENDIF»		
-			satisfied &= «predicateExpression(and.rhs)»
-			return satisfied;
+			boolean satisfied$«and.hashCode» = true;			
+			«IF and.lhs != null»satisfied$«and.hashCode» &= «predicateExpression(and.lhs)»«ENDIF»		
+			satisfied$«and.hashCode» &= «predicateExpression(and.rhs)»
+			return satisfied$«and.hashCode»;
 		});
 	'''
 
 	def dispatch predicateExpression(OrExpression or) '''
 		eval(() -> {
-			boolean satisfied = false;			
-			«IF or.lhs != null»satisfied |= «predicateExpression(or.lhs)»«ENDIF»		
-			satisfied |= «predicateExpression(or.rhs)»
-			return satisfied;
+			boolean satisfied$«or.hashCode» = false;			
+			«IF or.lhs != null»satisfied$«or.hashCode» |= «predicateExpression(or.lhs)»«ENDIF»		
+			satisfied$«or.hashCode» |= «predicateExpression(or.rhs)»
+			return satisfied$«or.hashCode»;
 		});
 	'''
 
 	def dispatch predicateExpression(ImpliesExpression implies) '''
 		eval(() -> {
-			boolean satisfied = false;			
-			«IF implies.lhs != null»satisfied |= «predicateExpression(implies.lhs)»«ENDIF»		
-			satisfied |= !«predicateExpression(implies.rhs)»
-			return satisfied;
+			boolean satisfied$«implies.hashCode» = false;			
+			«IF implies.lhs != null»satisfied$«implies.hashCode» |= «predicateExpression(implies.lhs)»«ENDIF»		
+			satisfied$«implies.hashCode» |= !«predicateExpression(implies.rhs)»
+			return satisfied$«implies.hashCode»;
 		});
 	'''
 
@@ -426,7 +451,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def parameterList(ParameterList list) {
 		if (list != null)
 			list.parameters.join(", ", [ Parameter parameter |
-				(if(parameter.node.isCollection) "NodeSet" else "Node") + " " + parameter.node.name
+				(if(parameter.node.isCollection) "ResolvingNodeSet" else "ResolvingNode") + " " + parameter.node.name
 			])
 	}
 }

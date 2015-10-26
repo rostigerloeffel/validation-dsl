@@ -3,9 +3,14 @@ package com.isax.validation.dsl.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import com.isax.validation.dsl.api.NodePredicates;
+import com.isax.validation.dsl.api.ResolvingNode;
+import com.isax.validation.dsl.api.ResolvingNodeSet;
+import com.isax.validation.dsl.api.Traverser;
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
+import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
@@ -47,6 +52,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
+import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmMember;
@@ -128,12 +134,32 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       EList<JvmMember> _members = it.getMembers();
       this._jvmTypesBuilder.<JvmGenericType>operator_add(_members, predicateDecl);
       EList<JvmMember> _members_1 = it.getMembers();
-      JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef("boolean");
-      final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+      JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(Traverser.class);
+      final Procedure1<JvmField> _function_2 = (JvmField it_1) -> {
+        it_1.setVisibility(JvmVisibility.PRIVATE);
+      };
+      JvmField _field = this._jvmTypesBuilder.toField(validator, "traverser$", _typeRef, _function_2);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members_1, _field);
+      EList<JvmMember> _members_2 = it.getMembers();
+      JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(NodePredicates.class);
+      final Procedure1<JvmField> _function_3 = (JvmField it_1) -> {
+        it_1.setVisibility(JvmVisibility.PRIVATE);
+      };
+      JvmField _field_1 = this._jvmTypesBuilder.toField(validator, "predicates$", _typeRef_1, _function_3);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members_2, _field_1);
+      EList<JvmMember> _members_3 = it.getMembers();
+      Iterable<JvmField> _compileStartOnDefinition = this.compileStartOnDefinition(validator);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_3, _compileStartOnDefinition);
+      EList<JvmMember> _members_4 = it.getMembers();
+      Iterable<JvmField> _compileNodeDefinitions = this.compileNodeDefinitions(validator);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_4, _compileNodeDefinitions);
+      EList<JvmMember> _members_5 = it.getMembers();
+      JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef("boolean");
+      final Procedure1<JvmOperation> _function_4 = (JvmOperation it_1) -> {
         it_1.setVisibility(JvmVisibility.PRIVATE);
         EList<JvmFormalParameter> _parameters = it_1.getParameters();
-        JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef("Predicate");
-        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, "predicate", _typeRef_1);
+        JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef("Predicate");
+        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, "predicate", _typeRef_3);
         this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
@@ -143,15 +169,15 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         };
         this._jvmTypesBuilder.setBody(it_1, _client);
       };
-      JvmOperation _method = this._jvmTypesBuilder.toMethod(validator, "eval", _typeRef, _function_2);
-      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
-      EList<JvmMember> _members_2 = it.getMembers();
-      JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef("boolean");
-      final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(validator, "eval", _typeRef_2, _function_4);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_5, _method);
+      EList<JvmMember> _members_6 = it.getMembers();
+      JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef("boolean");
+      final Procedure1<JvmOperation> _function_5 = (JvmOperation it_1) -> {
         it_1.setVisibility(JvmVisibility.PUBLIC);
         EList<JvmFormalParameter> _parameters = it_1.getParameters();
-        JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef("Node");
-        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, "node", _typeRef_2);
+        JvmTypeReference _typeRef_4 = this._typeReferenceBuilder.typeRef("ResolvingNode");
+        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, "node$", _typeRef_4);
         this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
@@ -162,14 +188,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         };
         this._jvmTypesBuilder.setBody(it_1, _client);
       };
-      JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(validator, "validate", _typeRef_1, _function_3);
-      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
-      EList<JvmMember> _members_3 = it.getMembers();
+      JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(validator, "validate", _typeRef_3, _function_5);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_6, _method_1);
+      EList<JvmMember> _members_7 = it.getMembers();
       ArrayList<JvmMember> _compilePredicates = this.compilePredicates(validator);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_3, _compilePredicates);
-      EList<JvmMember> _members_4 = it.getMembers();
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_7, _compilePredicates);
+      EList<JvmMember> _members_8 = it.getMembers();
       Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_4, _compileXExpressionPredicates);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_8, _compileXExpressionPredicates);
+      EList<JvmMember> _members_9 = it.getMembers();
+      Iterable<JvmOperation> _compileXExpressionAssignments = this.compileXExpressionAssignments(validator);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_9, _compileXExpressionAssignments);
     };
     acceptor.<JvmGenericType>accept(_class, _function);
   }
@@ -212,7 +241,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append("{");
                 _builder.newLine();
                 _builder.append("\t");
-                _builder.append("boolean satisfied = ");
+                _builder.append("boolean satisfied$");
+                int _hashCode = ((DefinitionSentence)sentence_1).hashCode();
+                _builder.append(_hashCode, "\t");
+                _builder.append(" = ");
                 TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
                 NodeDefinition _definition = _target.getDefinition();
                 RelationQualifier _qualifier = ((DefinitionSentence)sentence_1).getQualifier();
@@ -221,8 +253,14 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
-                _builder.append("if (!satisfied) return satisfied;");
-                _builder.newLine();
+                _builder.append("if (!satisfied$");
+                int _hashCode_1 = ((DefinitionSentence)sentence_1).hashCode();
+                _builder.append(_hashCode_1, "\t");
+                _builder.append(") return satisfied$");
+                int _hashCode_2 = ((DefinitionSentence)sentence_1).hashCode();
+                _builder.append(_hashCode_2, "\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
                 _builder.append("}");
                 _builder.newLine();
                 _builder.newLine();
@@ -250,25 +288,79 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
+  public Iterable<JvmField> compileStartOnDefinition(final Validator validator) {
+    EList<Sentence> _sentences = validator.getSentences();
+    Iterable<StartOnSentence> _filter = Iterables.<StartOnSentence>filter(_sentences, StartOnSentence.class);
+    final Function1<StartOnSentence, JvmField> _function = (StartOnSentence it) -> {
+      NodeDefinition _definition = it.getDefinition();
+      String _name = _definition.getName();
+      JvmTypeReference _xifexpression = null;
+      NodeDefinition _definition_1 = it.getDefinition();
+      boolean _isCollection = _definition_1.isCollection();
+      if (_isCollection) {
+        _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+      } else {
+        _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+      }
+      return this._jvmTypesBuilder.toField(it, _name, _xifexpression);
+    };
+    return IterableExtensions.<StartOnSentence, JvmField>map(_filter, _function);
+  }
+  
+  public Iterable<JvmField> compileNodeDefinitions(final Validator validator) {
+    EList<Sentence> _sentences = validator.getSentences();
+    Iterable<DefinitionSentence> _filter = Iterables.<DefinitionSentence>filter(_sentences, DefinitionSentence.class);
+    final Function1<DefinitionSentence, JvmField> _function = (DefinitionSentence it) -> {
+      TargetDefinition _target = it.getTarget();
+      NodeDefinition _definition = _target.getDefinition();
+      String _name = _definition.getName();
+      JvmTypeReference _xifexpression = null;
+      TargetDefinition _target_1 = it.getTarget();
+      NodeDefinition _definition_1 = _target_1.getDefinition();
+      boolean _isCollection = _definition_1.isCollection();
+      if (_isCollection) {
+        _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+      } else {
+        _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+      }
+      return this._jvmTypesBuilder.toField(it, _name, _xifexpression);
+    };
+    return IterableExtensions.<DefinitionSentence, JvmField>map(_filter, _function);
+  }
+  
   public Iterable<JvmOperation> compileXExpressionPredicates(final Validator validator) {
     TreeIterator<EObject> _eAllContents = validator.eAllContents();
     Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
-    Iterable<XExpression> _filter = Iterables.<XExpression>filter(_set, XExpression.class);
-    final Function1<EObject, Boolean> _function = (EObject o) -> {
-      EObject _eContainer = o.eContainer();
-      return Boolean.valueOf((!(_eContainer instanceof XExpression)));
-    };
-    Iterable<XExpression> _filter_1 = IterableExtensions.<XExpression>filter(_filter, _function);
-    final Function1<XExpression, JvmOperation> _function_1 = (XExpression e) -> {
+    Iterable<PredicateXExpression> _filter = Iterables.<PredicateXExpression>filter(_set, PredicateXExpression.class);
+    final Function1<PredicateXExpression, JvmOperation> _function = (PredicateXExpression e) -> {
       int _hashCode = e.hashCode();
       String _plus = ("predicate$" + Integer.valueOf(_hashCode));
       JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef("boolean");
-      final Procedure1<JvmOperation> _function_2 = (JvmOperation it) -> {
-        this._jvmTypesBuilder.setBody(it, e);
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+        XExpression _expression = e.getExpression();
+        this._jvmTypesBuilder.setBody(it, _expression);
       };
-      return this._jvmTypesBuilder.toMethod(e, _plus, _typeRef, _function_2);
+      return this._jvmTypesBuilder.toMethod(e, _plus, _typeRef, _function_1);
     };
-    return IterableExtensions.<XExpression, JvmOperation>map(_filter_1, _function_1);
+    return IterableExtensions.<PredicateXExpression, JvmOperation>map(_filter, _function);
+  }
+  
+  public Iterable<JvmOperation> compileXExpressionAssignments(final Validator validator) {
+    TreeIterator<EObject> _eAllContents = validator.eAllContents();
+    Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
+    Iterable<AssignmentXExpression> _filter = Iterables.<AssignmentXExpression>filter(_set, AssignmentXExpression.class);
+    final Function1<AssignmentXExpression, JvmOperation> _function = (AssignmentXExpression e) -> {
+      int _hashCode = e.hashCode();
+      String _plus = ("assignment$" + Integer.valueOf(_hashCode));
+      XExpression _expression = e.getExpression();
+      JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_expression);
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+        XExpression _expression_1 = e.getExpression();
+        this._jvmTypesBuilder.setBody(it, _expression_1);
+      };
+      return this._jvmTypesBuilder.toMethod(e, _plus, _inferredType, _function_1);
+    };
+    return IterableExtensions.<AssignmentXExpression, JvmOperation>map(_filter, _function);
   }
   
   public ArrayList<JvmMember> compilePredicates(final Validator validator) {
@@ -298,26 +390,30 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("Node ");
     NodeDefinition _definition = sentence.getDefinition();
     String _name = _definition.getName();
     _builder.append(_name, "");
-    _builder.append(" = node;");
+    _builder.append(" = node$;");
     _builder.newLineIfNotEmpty();
     _builder.append("if (");
     NodeDefinition _definition_1 = sentence.getDefinition();
     String _name_1 = _definition_1.getName();
     _builder.append(_name_1, "");
-    _builder.append(" == null || !hasType(");
+    _builder.append(" == null || !predicates$.hasType(");
     NodeDefinition _definition_2 = sentence.getDefinition();
     String _name_2 = _definition_2.getName();
     _builder.append(_name_2, "");
-    _builder.append(", ");
+    _builder.append(", \"");
     NodeDefinition _definition_3 = sentence.getDefinition();
     SelectorList _selectors = _definition_3.getSelectors();
-    String _selectorExpression = this.selectorExpression(_selectors);
-    _builder.append(_selectorExpression, "");
-    _builder.append(")) {");
+    SelectorListDef _selectors_1 = _selectors.getSelectors();
+    EList<Selector> _selectors_2 = _selectors_1.getSelectors();
+    final Function1<Selector, CharSequence> _function = (Selector s) -> {
+      return s.getType();
+    };
+    String _join = IterableExtensions.<Selector>join(_selectors_2, "\", \"", _function);
+    _builder.append(_join, "");
+    _builder.append("\")) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return true;");
@@ -367,15 +463,21 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_quantifications, null));
       if (_notEquals) {
         _builder.append("\t");
-        _builder.append("boolean satisfied = ");
+        _builder.append("boolean satisfied$");
+        int _hashCode = sentence.hashCode();
+        _builder.append(_hashCode, "\t");
+        _builder.append(" = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
         EList<Quantification> _quantifications_2 = _quantifications_1.getQuantifications();
         CharSequence _constraintDispatch = this.constraintDispatch(_quantifications_2, 0, sentence);
         _builder.append(_constraintDispatch, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("if (!satisfied) return false;");
-        _builder.newLine();
+        _builder.append("if (!satisfied$");
+        int _hashCode_1 = sentence.hashCode();
+        _builder.append(_hashCode_1, "\t");
+        _builder.append(") return false;");
+        _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("}");
@@ -423,7 +525,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (Node ");
+    _builder.append("for (ResolvingNode ");
     Quantification _get = quantifications.get(index);
     NodeDefinition _node = _get.getNode();
     String _name = _node.getName();
@@ -436,13 +538,25 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("boolean satisfied = ");
+    _builder.append("boolean satisfied$");
+    Quantification _get_2 = quantifications.get(index);
+    NodeDefinition _node_1 = _get_2.getNode();
+    String _name_2 = _node_1.getName();
+    int _hashCode = _name_2.hashCode();
+    _builder.append(_hashCode, "\t\t");
+    _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("if (!satisfied) return false;");
-    _builder.newLine();
+    _builder.append("if (!satisfied$");
+    Quantification _get_3 = quantifications.get(index);
+    NodeDefinition _node_2 = _get_3.getNode();
+    String _name_3 = _node_2.getName();
+    int _hashCode_1 = _name_3.hashCode();
+    _builder.append(_hashCode_1, "\t\t");
+    _builder.append(") return false;");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -459,7 +573,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (Node ");
+    _builder.append("for (ResolvingNode ");
     Quantification _get = quantifications.get(index);
     NodeDefinition _node = _get.getNode();
     String _name = _node.getName();
@@ -472,13 +586,25 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("boolean satisfied = ");
+    _builder.append("boolean satisfied$");
+    Quantification _get_2 = quantifications.get(index);
+    NodeDefinition _node_1 = _get_2.getNode();
+    String _name_2 = _node_1.getName();
+    int _hashCode = _name_2.hashCode();
+    _builder.append(_hashCode, "\t\t");
+    _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("if (satisfied) return true;");
-    _builder.newLine();
+    _builder.append("if (satisfied$");
+    Quantification _get_3 = quantifications.get(index);
+    NodeDefinition _node_2 = _get_3.getNode();
+    String _name_3 = _node_2.getName();
+    int _hashCode_1 = _name_3.hashCode();
+    _builder.append(_hashCode_1, "\t\t");
+    _builder.append(") return true;");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -539,14 +665,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("boolean satisfied = ");
+    _builder.append("boolean satisfied$");
+    int _hashCode = sentence.hashCode();
+    _builder.append(_hashCode, "\t");
+    _builder.append(" = ");
     RelationQualifier _qualifier = sentence.getQualifier();
     String _initialQualifierSatisfaction = this.initialQualifierSatisfaction(_qualifier);
     _builder.append(_initialQualifierSatisfaction, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("for (Node ");
+    _builder.append("for (ResolvingNode ");
     Quantification _quantification = sentence.getQuantification();
     NodeDefinition _node = _quantification.getNode();
     String _name = _node.getName();
@@ -574,7 +703,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append(_nodeAssignmentStatement, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("satisfied ");
+    _builder.append("satisfied$");
+    int _hashCode_1 = sentence.hashCode();
+    _builder.append(_hashCode_1, "\t\t");
+    _builder.append(" ");
     Quantification _quantification_3 = sentence.getQuantification();
     Quantor _quantor = _quantification_3.getQuantor();
     String _quantorSatisfactionRelation = this.quantorSatisfactionRelation(_quantor);
@@ -591,8 +723,14 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("if (!satisfied) return satisfied;");
-    _builder.newLine();
+    _builder.append("if (!satisfied$");
+    int _hashCode_2 = sentence.hashCode();
+    _builder.append(_hashCode_2, "\t");
+    _builder.append(") return satisfied$");
+    int _hashCode_3 = sentence.hashCode();
+    _builder.append(_hashCode_3, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     return _builder;
@@ -600,48 +738,70 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   
   public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final Axis axis, final NodeDefinition source, final SelectorList types, final PredicateExpression predicate) {
     StringConcatenation _builder = new StringConcatenation();
-    String _nodeDeclarationStatement = this.nodeDeclarationStatement(assignee);
-    _builder.append(_nodeDeclarationStatement, "");
-    _builder.append(" = ");
-    String _name = axis.getName();
-    String _lowerCase = _name.toLowerCase();
+    String _name = assignee.getName();
+    _builder.append(_name, "");
+    _builder.append(" = traverser$.");
+    String _name_1 = axis.getName();
+    String _lowerCase = _name_1.toLowerCase();
     _builder.append(_lowerCase, "");
     _builder.append("(");
-    String _name_1 = source.getName();
-    _builder.append(_name_1, "");
-    _builder.append(", ");
-    String _selectorExpression = this.selectorExpression(types);
-    _builder.append(_selectorExpression, "");
-    _builder.append(", (Node node) -> {");
+    String _name_2 = source.getName();
+    _builder.append(_name_2, "");
+    _builder.append(", (ResolvingNode node$");
+    int _hashCode = assignee.hashCode();
+    _builder.append(_hashCode, "");
+    _builder.append(") -> {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("boolean satisfied$");
+    int _hashCode_1 = assignee.hashCode();
+    _builder.append(_hashCode_1, "\t");
+    _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
     {
-      boolean _equals = Objects.equal(predicate, null);
-      if (_equals) {
+      boolean _notEquals = (!Objects.equal(types, null));
+      if (_notEquals) {
         _builder.append("\t");
-        _builder.append("return true;");
-        _builder.newLine();
-      } else {
+        _builder.append("satisfied$");
+        int _hashCode_2 = assignee.hashCode();
+        _builder.append(_hashCode_2, "\t");
+        _builder.append(" &= predicates$.hasType(node$");
+        int _hashCode_3 = assignee.hashCode();
+        _builder.append(_hashCode_3, "\t");
+        _builder.append(", \"");
+        SelectorListDef _selectors = types.getSelectors();
+        EList<Selector> _selectors_1 = _selectors.getSelectors();
+        final Function1<Selector, CharSequence> _function = (Selector s) -> {
+          return s.getType();
+        };
+        String _join = IterableExtensions.<Selector>join(_selectors_1, "\", \"", _function);
+        _builder.append(_join, "\t");
+        _builder.append("\");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      boolean _notEquals_1 = (!Objects.equal(predicate, null));
+      if (_notEquals_1) {
         _builder.append("\t");
-        _builder.append("return ");
+        _builder.append("satisfied$");
+        int _hashCode_4 = assignee.hashCode();
+        _builder.append(_hashCode_4, "\t");
+        _builder.append(" &= ");
         Object _predicateExpression = this.predicateExpression(predicate);
         _builder.append(_predicateExpression, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.append("return satisfied$");
+    int _hashCode_5 = assignee.hashCode();
+    _builder.append(_hashCode_5, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("});");
     _builder.newLine();
     return _builder;
-  }
-  
-  public String nodeDeclarationStatement(final NodeDefinition assignee) {
-    boolean _isCollection = assignee.isCollection();
-    if (_isCollection) {
-      String _name = assignee.getName();
-      return ("NodeSet " + _name);
-    } else {
-      String _name_1 = assignee.getName();
-      return ("Node " + _name_1);
-    }
   }
   
   public String qualifierSatisfiedAssignment(final NodeDefinition node, final RelationQualifier qualifier) {
@@ -652,9 +812,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           case CAN:
             return "true";
           case MUST:
-            return ".isEmpty()";
+            return ".hasCandidates()";
           case MUST_NOT:
-            return ".isEmpty()";
+            return ".hasCandidates()";
           default:
             break;
         }
@@ -665,9 +825,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           case CAN:
             return "true";
           case MUST:
-            return " != null";
+            return ".hasCandidates()";
           case MUST_NOT:
-            return " == null";
+            return ".hasCandidates()";
           default:
             break;
         }
@@ -685,13 +845,13 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
             return this.qualifierSatisfiedAssignment(node, qualifier);
           case MUST:
             String _name = node.getName();
-            String _plus = ("!" + _name);
             String _qualifierSatisfiedAssignment = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_plus + _qualifierSatisfiedAssignment);
+            return (_name + _qualifierSatisfiedAssignment);
           case MUST_NOT:
             String _name_1 = node.getName();
+            String _plus = ("!" + _name_1);
             String _qualifierSatisfiedAssignment_1 = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_name_1 + _qualifierSatisfiedAssignment_1);
+            return (_plus + _qualifierSatisfiedAssignment_1);
           default:
             break;
         }
@@ -707,8 +867,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
             return (_name_2 + _qualifierSatisfiedAssignment_2);
           case MUST_NOT:
             String _name_3 = node.getName();
+            String _plus_1 = ("!" + _name_3);
             String _qualifierSatisfiedAssignment_3 = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_name_3 + _qualifierSatisfiedAssignment_3);
+            return (_plus_1 + _qualifierSatisfiedAssignment_3);
           default:
             break;
         }
@@ -747,30 +908,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return null;
   }
   
-  public String selectorExpression(final SelectorList list) {
-    boolean _and = false;
-    boolean _notEquals = (!Objects.equal(list, null));
-    if (!_notEquals) {
-      _and = false;
-    } else {
-      SelectorListDef _selectors = list.getSelectors();
-      boolean _notEquals_1 = (!Objects.equal(_selectors, null));
-      _and = _notEquals_1;
-    }
-    if (_and) {
-      SelectorListDef _selectors_1 = list.getSelectors();
-      EList<Selector> _selectors_2 = _selectors_1.getSelectors();
-      final Function1<Selector, CharSequence> _function = (Selector s) -> {
-        String _type = s.getType();
-        return _type.toUpperCase();
-      };
-      String _join = IterableExtensions.<Selector>join(_selectors_2, "_", _function);
-      return (_join + "_TYPES");
-    } else {
-      return "";
-    }
-  }
-  
   protected Object _predicateExpression(final PredicateExpression expression) {
     PredicateExpression _inner = expression.getInner();
     boolean _notEquals = (!Objects.equal(_inner, null));
@@ -804,14 +941,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("boolean satisfied = true;\t\t\t");
-    _builder.newLine();
+    _builder.append("boolean satisfied$");
+    int _hashCode = and.hashCode();
+    _builder.append(_hashCode, "\t");
+    _builder.append(" = true;\t\t\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
       PredicateExpression _lhs = and.getLhs();
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
-        _builder.append("satisfied &= ");
+        _builder.append("satisfied$");
+        int _hashCode_1 = and.hashCode();
+        _builder.append(_hashCode_1, "\t");
+        _builder.append(" &= ");
         PredicateExpression _lhs_1 = and.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
         _builder.append(_predicateExpression, "\t");
@@ -820,14 +963,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("satisfied &= ");
+    _builder.append("satisfied$");
+    int _hashCode_2 = and.hashCode();
+    _builder.append(_hashCode_2, "\t");
+    _builder.append(" &= ");
     PredicateExpression _rhs = and.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
     _builder.append(_predicateExpression_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("return satisfied;");
-    _builder.newLine();
+    _builder.append("return satisfied$");
+    int _hashCode_3 = and.hashCode();
+    _builder.append(_hashCode_3, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("});");
     _builder.newLine();
     return _builder;
@@ -838,14 +987,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("boolean satisfied = false;\t\t\t");
-    _builder.newLine();
+    _builder.append("boolean satisfied$");
+    int _hashCode = or.hashCode();
+    _builder.append(_hashCode, "\t");
+    _builder.append(" = false;\t\t\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
       PredicateExpression _lhs = or.getLhs();
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
-        _builder.append("satisfied |= ");
+        _builder.append("satisfied$");
+        int _hashCode_1 = or.hashCode();
+        _builder.append(_hashCode_1, "\t");
+        _builder.append(" |= ");
         PredicateExpression _lhs_1 = or.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
         _builder.append(_predicateExpression, "\t");
@@ -854,14 +1009,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("satisfied |= ");
+    _builder.append("satisfied$");
+    int _hashCode_2 = or.hashCode();
+    _builder.append(_hashCode_2, "\t");
+    _builder.append(" |= ");
     PredicateExpression _rhs = or.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
     _builder.append(_predicateExpression_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("return satisfied;");
-    _builder.newLine();
+    _builder.append("return satisfied$");
+    int _hashCode_3 = or.hashCode();
+    _builder.append(_hashCode_3, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("});");
     _builder.newLine();
     return _builder;
@@ -872,14 +1033,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("boolean satisfied = false;\t\t\t");
-    _builder.newLine();
+    _builder.append("boolean satisfied$");
+    int _hashCode = implies.hashCode();
+    _builder.append(_hashCode, "\t");
+    _builder.append(" = false;\t\t\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
       PredicateExpression _lhs = implies.getLhs();
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
-        _builder.append("satisfied |= ");
+        _builder.append("satisfied$");
+        int _hashCode_1 = implies.hashCode();
+        _builder.append(_hashCode_1, "\t");
+        _builder.append(" |= ");
         PredicateExpression _lhs_1 = implies.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
         _builder.append(_predicateExpression, "\t");
@@ -888,14 +1055,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("satisfied |= !");
+    _builder.append("satisfied$");
+    int _hashCode_2 = implies.hashCode();
+    _builder.append(_hashCode_2, "\t");
+    _builder.append(" |= !");
     PredicateExpression _rhs = implies.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
     _builder.append(_predicateExpression_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("return satisfied;");
-    _builder.newLine();
+    _builder.append("return satisfied$");
+    int _hashCode_3 = implies.hashCode();
+    _builder.append(_hashCode_3, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("});");
     _builder.newLine();
     return _builder;
@@ -1060,9 +1233,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         NodeDefinition _node = parameter.getNode();
         boolean _isCollection = _node.isCollection();
         if (_isCollection) {
-          _xifexpression_1 = "NodeSet";
+          _xifexpression_1 = "ResolvingNodeSet";
         } else {
-          _xifexpression_1 = "Node";
+          _xifexpression_1 = "ResolvingNode";
         }
         String _plus = (_xifexpression_1 + " ");
         NodeDefinition _node_1 = parameter.getNode();

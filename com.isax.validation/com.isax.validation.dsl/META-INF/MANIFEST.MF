@@ -23,15 +23,16 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.isax.validation.dsl,
- com.isax.validation.dsl.services,
+ com.isax.validation.dsl.api,
  com.isax.validation.dsl.dsl,
  com.isax.validation.dsl.dsl.impl,
  com.isax.validation.dsl.dsl.util,
- com.isax.validation.dsl.serializer,
+ com.isax.validation.dsl.formatting,
+ com.isax.validation.dsl.generator,
+ com.isax.validation.dsl.jvmmodel,
  com.isax.validation.dsl.parser.antlr,
  com.isax.validation.dsl.parser.antlr.internal,
- com.isax.validation.dsl.validation,
  com.isax.validation.dsl.scoping,
- com.isax.validation.dsl.generator,
- com.isax.validation.dsl.formatting,
- com.isax.validation.dsl.jvmmodel
+ com.isax.validation.dsl.serializer,
+ com.isax.validation.dsl.services,
+ com.isax.validation.dsl.validation
