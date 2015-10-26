@@ -285,6 +285,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       }
     }
     _builder.newLine();
+    _builder.append("return true;");
+    _builder.newLine();
     return _builder;
   }
   
@@ -1201,8 +1203,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   protected CharSequence _predicateCall(final PredicateXExpression expression) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("predicate$");
-    XExpression _expression = expression.getExpression();
-    int _hashCode = _expression.hashCode();
+    int _hashCode = expression.hashCode();
     _builder.append(_hashCode, "");
     _builder.append("();");
     _builder.newLineIfNotEmpty();

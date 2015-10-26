@@ -128,38 +128,33 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def compileBody(Validator validator) '''		
-	«FOR sentence : validator.sentences»
-		«IF sentence instanceof StartOnSentence»
-			«sentenceStatements(sentence)»
-			
-		«ENDIF»
-	«ENDFOR»		
-	«FOR sentence : validator.sentences»
-		«IF sentence instanceof DefinitionSentence»
-			«sentenceStatements(sentence)»
-			«IF sentence.quantification == null»
-				{
-					boolean satisfied$«sentence.hashCode» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
-					if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
-				}
+		«FOR sentence : validator.sentences»
+			«IF sentence instanceof StartOnSentence»
+				«sentenceStatements(sentence)»
 				
 			«ENDIF»
-		«ENDIF»
-	«ENDFOR»
-	
-	«FOR sentence : validator.sentences»
-		«IF sentence instanceof ConstraintSentence»
-			«sentenceStatements(sentence)»
-			
-		«ENDIF»
-	«ENDFOR»
-	
-	«««		«FOR sentence : validator.sentences»
-«««			«IF sentence instanceof PredicateDefinitionSentence»
-«««				«sentenceStatements(sentence)»
-«««				
-«««			«ENDIF»
-«««		«ENDFOR»
+		«ENDFOR»		
+		«FOR sentence : validator.sentences»
+			«IF sentence instanceof DefinitionSentence»
+				«sentenceStatements(sentence)»
+				«IF sentence.quantification == null»
+					{
+						boolean satisfied$«sentence.hashCode» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+						if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
+					}
+					
+				«ENDIF»
+			«ENDIF»
+		«ENDFOR»
+		
+		«FOR sentence : validator.sentences»
+			«IF sentence instanceof ConstraintSentence»
+				«sentenceStatements(sentence)»
+				
+			«ENDIF»
+		«ENDFOR»
+
+		return true;
 	'''
 
 	def compileStartOnDefinition(Validator validator) {
@@ -441,7 +436,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def dispatch predicateCall(PredicateXExpression expression) '''
-		predicate$«expression.expression.hashCode»();
+		predicate$«expression.hashCode»();
 	'''
 
 	def argumentList(ArgumentList list) {
