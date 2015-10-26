@@ -270,7 +270,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         }
       }
     }
-    _builder.newLine();
     {
       EList<Sentence> _sentences_2 = validator.getSentences();
       for(final Sentence sentence_2 : _sentences_2) {
@@ -284,7 +283,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         }
       }
     }
-    _builder.newLine();
     _builder.append("return true;");
     _builder.newLine();
     return _builder;
@@ -806,75 +804,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
-  public String qualifierSatisfiedAssignment(final NodeDefinition node, final RelationQualifier qualifier) {
-    boolean _isCollection = node.isCollection();
-    if (_isCollection) {
-      if (qualifier != null) {
-        switch (qualifier) {
-          case CAN:
-            return "true";
-          case MUST:
-            return ".hasCandidates()";
-          case MUST_NOT:
-            return ".hasCandidates()";
-          default:
-            break;
-        }
-      }
-    } else {
-      if (qualifier != null) {
-        switch (qualifier) {
-          case CAN:
-            return "true";
-          case MUST:
-            return ".hasCandidates()";
-          case MUST_NOT:
-            return ".hasCandidates()";
-          default:
-            break;
-        }
-      }
-    }
-    return null;
-  }
-  
   public String qualifierSatisfiedStatement(final NodeDefinition node, final RelationQualifier qualifier) {
-    boolean _isCollection = node.isCollection();
-    if (_isCollection) {
-      if (qualifier != null) {
-        switch (qualifier) {
-          case CAN:
-            return this.qualifierSatisfiedAssignment(node, qualifier);
-          case MUST:
-            String _name = node.getName();
-            String _qualifierSatisfiedAssignment = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_name + _qualifierSatisfiedAssignment);
-          case MUST_NOT:
-            String _name_1 = node.getName();
-            String _plus = ("!" + _name_1);
-            String _qualifierSatisfiedAssignment_1 = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_plus + _qualifierSatisfiedAssignment_1);
-          default:
-            break;
-        }
-      }
-    } else {
-      if (qualifier != null) {
-        switch (qualifier) {
-          case CAN:
-            return this.qualifierSatisfiedAssignment(node, qualifier);
-          case MUST:
-            String _name_2 = node.getName();
-            String _qualifierSatisfiedAssignment_2 = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_name_2 + _qualifierSatisfiedAssignment_2);
-          case MUST_NOT:
-            String _name_3 = node.getName();
-            String _plus_1 = ("!" + _name_3);
-            String _qualifierSatisfiedAssignment_3 = this.qualifierSatisfiedAssignment(node, qualifier);
-            return (_plus_1 + _qualifierSatisfiedAssignment_3);
-          default:
-            break;
-        }
+    if (qualifier != null) {
+      switch (qualifier) {
+        case CAN:
+          return "true";
+        case MUST:
+          String _name = node.getName();
+          return (_name + ".hasCandidates()");
+        case MUST_NOT:
+          String _name_1 = node.getName();
+          String _plus = ("!" + _name_1);
+          return (_plus + ".hasCandidates()");
+        default:
+          break;
       }
     }
     return null;

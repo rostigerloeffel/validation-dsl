@@ -145,15 +145,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 					
 				«ENDIF»
 			«ENDIF»
-		«ENDFOR»
-		
+		«ENDFOR»	
 		«FOR sentence : validator.sentences»
 			«IF sentence instanceof ConstraintSentence»
 				«sentenceStatements(sentence)»
 				
 			«ENDIF»
 		«ENDFOR»
-
 		return true;
 	'''
 
@@ -310,35 +308,11 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		});
 	'''
 
-	def qualifierSatisfiedAssignment(NodeDefinition node, RelationQualifier qualifier) {
-		if (node.collection) {
-			switch (qualifier) {
-				case CAN: return "true"
-				case MUST: return ".hasCandidates()"
-				case MUST_NOT: return ".hasCandidates()"
-			}
-		} else {
-			switch (qualifier) {
-				case CAN: return "true"
-				case MUST: return ".hasCandidates()"
-				case MUST_NOT: return ".hasCandidates()"
-			}
-		}
-	}
-
 	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier) {
-		if (node.collection) {
-			switch (qualifier) {
-				case CAN: return qualifierSatisfiedAssignment(node, qualifier)
-				case MUST: return node.name + qualifierSatisfiedAssignment(node, qualifier)
-				case MUST_NOT: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
-			}
-		} else {
-			switch (qualifier) {
-				case CAN: return qualifierSatisfiedAssignment(node, qualifier)
-				case MUST: return node.name + qualifierSatisfiedAssignment(node, qualifier)
-				case MUST_NOT: return "!" + node.name + qualifierSatisfiedAssignment(node, qualifier)
-			}
+		switch (qualifier) {
+			case CAN: return "true"
+			case MUST: return node.name + ".hasCandidates()"
+			case MUST_NOT: return "!" + node.name + ".hasCandidates()"
 		}
 	}
 
