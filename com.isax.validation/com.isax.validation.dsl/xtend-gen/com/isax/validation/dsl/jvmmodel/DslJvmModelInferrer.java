@@ -41,7 +41,6 @@ import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -191,7 +190,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(validator, "validate", _typeRef_3, _function_5);
       this._jvmTypesBuilder.<JvmOperation>operator_add(_members_6, _method_1);
       EList<JvmMember> _members_7 = it.getMembers();
-      ArrayList<JvmMember> _compilePredicates = this.compilePredicates(validator);
+      Iterable<JvmOperation> _compilePredicates = this.compilePredicates(validator);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_7, _compilePredicates);
       EList<JvmMember> _members_8 = it.getMembers();
       Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
@@ -328,6 +327,29 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return IterableExtensions.<DefinitionSentence, JvmField>map(_filter, _function);
   }
   
+  public Iterable<JvmOperation> compilePredicates(final Validator validator) {
+    EList<Sentence> _sentences = validator.getSentences();
+    Iterable<PredicateDefinitionSentence> _filter = Iterables.<PredicateDefinitionSentence>filter(_sentences, PredicateDefinitionSentence.class);
+    final Function1<PredicateDefinitionSentence, JvmOperation> _function = (PredicateDefinitionSentence s) -> {
+      String _name = s.getName();
+      JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef("boolean");
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return ");
+            PredicateExpression _predicate = s.getPredicate();
+            Object _predicateExpression = DslJvmModelInferrer.this.predicateExpression(_predicate);
+            _builder.append(_predicateExpression, "");
+          }
+        };
+        this._jvmTypesBuilder.setBody(it, _client);
+      };
+      return this._jvmTypesBuilder.toMethod(s, _name, _typeRef, _function_1);
+    };
+    return IterableExtensions.<PredicateDefinitionSentence, JvmOperation>map(_filter, _function);
+  }
+  
   public Iterable<JvmOperation> compileXExpressionPredicates(final Validator validator) {
     TreeIterator<EObject> _eAllContents = validator.eAllContents();
     Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
@@ -361,27 +383,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       return this._jvmTypesBuilder.toMethod(e, _plus, _inferredType, _function_1);
     };
     return IterableExtensions.<AssignmentXExpression, JvmOperation>map(_filter, _function);
-  }
-  
-  public ArrayList<JvmMember> compilePredicates(final Validator validator) {
-    ArrayList<JvmMember> _xblockexpression = null;
-    {
-      final ArrayList<JvmMember> compiledPredicates = new ArrayList<JvmMember>();
-      EList<Sentence> _sentences = validator.getSentences();
-      for (final Sentence sentence : _sentences) {
-        if ((sentence instanceof PredicateDefinitionSentence)) {
-          final PredicateDefinitionSentence predicate = ((PredicateDefinitionSentence) sentence);
-          String _name = predicate.getName();
-          JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef("boolean");
-          final Procedure1<JvmOperation> _function = (JvmOperation it) -> {
-          };
-          JvmOperation _method = this._jvmTypesBuilder.toMethod(validator, _name, _typeRef, _function);
-          compiledPredicates.add(_method);
-        }
-      }
-      _xblockexpression = compiledPredicates;
-    }
-    return _xblockexpression;
   }
   
   protected CharSequence _sentenceStatements(final StartOnSentence sentence) {

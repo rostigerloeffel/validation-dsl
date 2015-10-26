@@ -170,6 +170,14 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				if (it.target.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
 			)]
 	}
+	
+	def compilePredicates(Validator validator) {
+		validator.sentences
+			.filter(typeof(PredicateDefinitionSentence))
+			.map[s | s.toMethod(s.name, typeRef("boolean"))[
+				body = '''return «predicateExpression(s.predicate)»'''
+			]]
+	}
 
 	def compileXExpressionPredicates(Validator validator) {
 		validator.eAllContents.toSet
@@ -185,17 +193,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			.map[AssignmentXExpression e | e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
 				body = e.expression 
 			]]
-	}
-
-	def compilePredicates(Validator validator) {
-		val compiledPredicates = new ArrayList<JvmMember>()
-		for (sentence : validator.sentences) {
-			if (sentence instanceof PredicateDefinitionSentence) {
-				val predicate = sentence as PredicateDefinitionSentence
-				compiledPredicates += validator.toMethod(predicate.name, typeRef("boolean"))[]
-			}
-		}
-		compiledPredicates
 	}
 
 	def dispatch sentenceStatements(
