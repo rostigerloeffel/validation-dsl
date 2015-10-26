@@ -129,7 +129,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'becomes' | ':='
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     reference=PropertyReferenceExpression (ambiguity) expression=PropertyExpression
+	 *     reference=PropertyReferenceExpression (ambiguity) expression=AssignmentExpression
 	 */
 	protected void emit_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

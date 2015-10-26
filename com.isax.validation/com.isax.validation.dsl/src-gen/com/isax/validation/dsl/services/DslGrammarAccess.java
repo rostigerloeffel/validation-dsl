@@ -154,8 +154,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPredicatePredicateExpressionParserRuleCall_4_0 = (RuleCall)cPredicateAssignment_4.eContents().get(0);
 		
 		//ConstraintSentence:
-		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
-		//	predicate=PredicateExpression;
+		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
 		@Override public ParserRule getRule() { return rule; }
 
 		//"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression
@@ -340,17 +339,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cWithPropertyKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cXblockAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cXblockXBlockExpressionParserRuleCall_3_2_0 = (RuleCall)cXblockAssignment_3_2.eContents().get(0);
+		private final Assignment cAssignmentsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cAssignmentsAssignmentListParserRuleCall_3_2_0 = (RuleCall)cAssignmentsAssignment_3_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		
 		//TargetDefinition:
 		//	axis=Axis definition=NodeDefinition ("where holds" "{" predicate=PredicateExpression "}")? ("with property" "{"
-		//	/ *assignments=AssignmentList* / xblock=XBlockExpression "}")?;
+		//	assignments=AssignmentList "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//axis=Axis definition=NodeDefinition ("where holds" "{" predicate=PredicateExpression "}")? ("with property" "{"
-		/// *assignments=AssignmentList* / xblock=XBlockExpression "}")?
+		//assignments=AssignmentList "}")?
 		public Group getGroup() { return cGroup; }
 
 		//axis=Axis
@@ -383,7 +382,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2_3() { return cRightCurlyBracketKeyword_2_3; }
 
-		//("with property" "{" / *assignments=AssignmentList* / xblock=XBlockExpression "}")?
+		//("with property" "{" assignments=AssignmentList "}")?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//"with property"
@@ -392,11 +391,11 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
 
-		/// *assignments=AssignmentList* / xblock=XBlockExpression
-		public Assignment getXblockAssignment_3_2() { return cXblockAssignment_3_2; }
+		//assignments=AssignmentList
+		public Assignment getAssignmentsAssignment_3_2() { return cAssignmentsAssignment_3_2; }
 
-		//XBlockExpression
-		public RuleCall getXblockXBlockExpressionParserRuleCall_3_2_0() { return cXblockXBlockExpressionParserRuleCall_3_2_0; }
+		//AssignmentList
+		public RuleCall getAssignmentsAssignmentListParserRuleCall_3_2_0() { return cAssignmentsAssignmentListParserRuleCall_3_2_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3_3() { return cRightCurlyBracketKeyword_3_3; }
@@ -701,6 +700,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyRelationPredicateParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cDefinitionSentencePredicateParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cPredicateReferenceParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
+		private final RuleCall cPredicateXExpressionParserRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cLabelAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -708,13 +708,15 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//PredicateCall:
-		//	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference) ("[" label=ID "]")?;
+		//	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ("[" label=ID
+		//	"]")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference) ("[" label=ID "]")?
+		//(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ("[" label=ID
+		//"]")?
 		public Group getGroup() { return cGroup; }
 
-		//PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference
+		//PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//PropertyRelationPredicate
@@ -725,6 +727,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PredicateReference
 		public RuleCall getPredicateReferenceParserRuleCall_0_2() { return cPredicateReferenceParserRuleCall_0_2; }
+
+		//PredicateXExpression
+		public RuleCall getPredicateXExpressionParserRuleCall_0_3() { return cPredicateXExpressionParserRuleCall_0_3; }
 
 		//("[" label=ID "]")?
 		public Group getGroup_1() { return cGroup_1; }
@@ -740,6 +745,22 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+	}
+
+	public class PredicateXExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PredicateXExpression");
+		private final Assignment cExpressionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cExpressionXBlockExpressionParserRuleCall_0 = (RuleCall)cExpressionAssignment.eContents().get(0);
+		
+		//PredicateXExpression:
+		//	expression=XBlockExpression;
+		@Override public ParserRule getRule() { return rule; }
+
+		//expression=XBlockExpression
+		public Assignment getExpressionAssignment() { return cExpressionAssignment; }
+
+		//XBlockExpression
+		public RuleCall getExpressionXBlockExpressionParserRuleCall_0() { return cExpressionXBlockExpressionParserRuleCall_0; }
 	}
 
 	public class PropertyRelationPredicateElements extends AbstractParserRuleElementFinder {
@@ -943,13 +964,13 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBecomesKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cExpressionPropertyExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
+		private final RuleCall cExpressionAssignmentExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//	reference=PropertyReferenceExpression ("becomes" | ":=") expression=PropertyExpression;
+		//	reference=PropertyReferenceExpression ("becomes" | ":=") expression=AssignmentExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//reference=PropertyReferenceExpression ("becomes" | ":=") expression=PropertyExpression
+		//reference=PropertyReferenceExpression ("becomes" | ":=") expression=AssignmentExpression
 		public Group getGroup() { return cGroup; }
 
 		//reference=PropertyReferenceExpression
@@ -967,11 +988,11 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1_1() { return cColonEqualsSignKeyword_1_1; }
 
-		//expression=PropertyExpression
+		//expression=AssignmentExpression
 		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
-		//PropertyExpression
-		public RuleCall getExpressionPropertyExpressionParserRuleCall_2_0() { return cExpressionPropertyExpressionParserRuleCall_2_0; }
+		//AssignmentExpression
+		public RuleCall getExpressionAssignmentExpressionParserRuleCall_2_0() { return cExpressionAssignmentExpressionParserRuleCall_2_0; }
 	}
 
 	public class AssignmentListElements extends AbstractParserRuleElementFinder {
@@ -1008,6 +1029,42 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Assignment
 		public RuleCall getAssignmentsAssignmentParserRuleCall_1_1_0() { return cAssignmentsAssignmentParserRuleCall_1_1_0; }
+	}
+
+	public class AssignmentExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssignmentExpression");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPropertyExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAssignmentXExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//AssignmentExpression:
+		//	PropertyExpression | AssignmentXExpression;
+		@Override public ParserRule getRule() { return rule; }
+
+		//PropertyExpression | AssignmentXExpression
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//PropertyExpression
+		public RuleCall getPropertyExpressionParserRuleCall_0() { return cPropertyExpressionParserRuleCall_0; }
+
+		//AssignmentXExpression
+		public RuleCall getAssignmentXExpressionParserRuleCall_1() { return cAssignmentXExpressionParserRuleCall_1; }
+	}
+
+	public class AssignmentXExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssignmentXExpression");
+		private final Assignment cExpressionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cExpressionXBlockExpressionParserRuleCall_0 = (RuleCall)cExpressionAssignment.eContents().get(0);
+		
+		//AssignmentXExpression:
+		//	expression=XBlockExpression;
+		@Override public ParserRule getRule() { return rule; }
+
+		//expression=XBlockExpression
+		public Assignment getExpressionAssignment() { return cExpressionAssignment; }
+
+		//XBlockExpression
+		public RuleCall getExpressionXBlockExpressionParserRuleCall_0() { return cExpressionXBlockExpressionParserRuleCall_0; }
 	}
 
 	public class QuantificationElements extends AbstractParserRuleElementFinder {
@@ -1385,6 +1442,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ImpliesExpressionElements pImpliesExpression;
 	private final PrimaryExpressionElements pPrimaryExpression;
 	private final PredicateCallElements pPredicateCall;
+	private final PredicateXExpressionElements pPredicateXExpression;
 	private final PropertyRelationPredicateElements pPropertyRelationPredicate;
 	private final DefinitionSentencePredicateElements pDefinitionSentencePredicate;
 	private final PredicateReferenceElements pPredicateReference;
@@ -1394,6 +1452,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ArgumentListElements pArgumentList;
 	private final AssignmentElements pAssignment;
 	private final AssignmentListElements pAssignmentList;
+	private final AssignmentExpressionElements pAssignmentExpression;
+	private final AssignmentXExpressionElements pAssignmentXExpression;
 	private final QuantificationElements pQuantification;
 	private final QuantificationListElements pQuantificationList;
 	private final PropertyExpressionElements pPropertyExpression;
@@ -1431,6 +1491,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pImpliesExpression = new ImpliesExpressionElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
 		this.pPredicateCall = new PredicateCallElements();
+		this.pPredicateXExpression = new PredicateXExpressionElements();
 		this.pPropertyRelationPredicate = new PropertyRelationPredicateElements();
 		this.pDefinitionSentencePredicate = new DefinitionSentencePredicateElements();
 		this.pPredicateReference = new PredicateReferenceElements();
@@ -1440,6 +1501,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pArgumentList = new ArgumentListElements();
 		this.pAssignment = new AssignmentElements();
 		this.pAssignmentList = new AssignmentListElements();
+		this.pAssignmentExpression = new AssignmentExpressionElements();
+		this.pAssignmentXExpression = new AssignmentXExpressionElements();
 		this.pQuantification = new QuantificationElements();
 		this.pQuantificationList = new QuantificationListElements();
 		this.pPropertyExpression = new PropertyExpressionElements();
@@ -1519,8 +1582,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstraintSentence:
-	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
-	//	predicate=PredicateExpression;
+	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
 	public ConstraintSentenceElements getConstraintSentenceAccess() {
 		return pConstraintSentence;
 	}
@@ -1561,7 +1623,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//TargetDefinition:
 	//	axis=Axis definition=NodeDefinition ("where holds" "{" predicate=PredicateExpression "}")? ("with property" "{"
-	//	/ *assignments=AssignmentList* / xblock=XBlockExpression "}")?;
+	//	assignments=AssignmentList "}")?;
 	public TargetDefinitionElements getTargetDefinitionAccess() {
 		return pTargetDefinition;
 	}
@@ -1651,13 +1713,24 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PredicateCall:
-	//	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference) ("[" label=ID "]")?;
+	//	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ("[" label=ID
+	//	"]")?;
 	public PredicateCallElements getPredicateCallAccess() {
 		return pPredicateCall;
 	}
 	
 	public ParserRule getPredicateCallRule() {
 		return getPredicateCallAccess().getRule();
+	}
+
+	//PredicateXExpression:
+	//	expression=XBlockExpression;
+	public PredicateXExpressionElements getPredicateXExpressionAccess() {
+		return pPredicateXExpression;
+	}
+	
+	public ParserRule getPredicateXExpressionRule() {
+		return getPredicateXExpressionAccess().getRule();
 	}
 
 	//PropertyRelationPredicate:
@@ -1731,7 +1804,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//	reference=PropertyReferenceExpression ("becomes" | ":=") expression=PropertyExpression;
+	//	reference=PropertyReferenceExpression ("becomes" | ":=") expression=AssignmentExpression;
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -1748,6 +1821,26 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getAssignmentListRule() {
 		return getAssignmentListAccess().getRule();
+	}
+
+	//AssignmentExpression:
+	//	PropertyExpression | AssignmentXExpression;
+	public AssignmentExpressionElements getAssignmentExpressionAccess() {
+		return pAssignmentExpression;
+	}
+	
+	public ParserRule getAssignmentExpressionRule() {
+		return getAssignmentExpressionAccess().getRule();
+	}
+
+	//AssignmentXExpression:
+	//	expression=XBlockExpression;
+	public AssignmentXExpressionElements getAssignmentXExpressionAccess() {
+		return pAssignmentXExpression;
+	}
+	
+	public ParserRule getAssignmentXExpressionRule() {
+		return getAssignmentXExpressionAccess().getRule();
 	}
 
 	//Quantification:
@@ -2087,8 +2180,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//	feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign) value=XAssignment | =>
 	//	({XMemberFeatureCall.memberCallTarget=current} ("." | nullSafe?="?." | explicitStatic?="::")) ("<"
 	//	typeArguments+=JvmArgumentTypeReference ("," typeArguments+=JvmArgumentTypeReference)* ">")?
-	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure
-	//	| memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
+	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure |
+	//	memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
 	public XbaseGrammarAccess.XMemberFeatureCallElements getXMemberFeatureCallAccess() {
 		return gaXbase.getXMemberFeatureCallAccess();
 	}
@@ -2203,8 +2296,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XSwitchExpression returns XExpression:
 	//	{XSwitchExpression} "switch" (=> ("(" declaredParam=JvmFormalParameter ":") switch=XExpression ")" | =>
-	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":"
-	//	default=XExpression)? "}";
+	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":" default=XExpression)?
+	//	"}";
 	public XbaseGrammarAccess.XSwitchExpressionElements getXSwitchExpressionAccess() {
 		return gaXbase.getXSwitchExpressionAccess();
 	}
@@ -2486,8 +2579,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	/// **
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
-	// * /
-	//StaticQualifier:
+	// * / StaticQualifier:
 	//	(ValidID "::")+;
 	public XbaseGrammarAccess.StaticQualifierElements getStaticQualifierAccess() {
 		return gaXbase.getStaticQualifierAccess();

@@ -58,12 +58,12 @@ public interface Assignment extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expression</em>' containment reference.
-   * @see #setExpression(PropertyExpression)
+   * @see #setExpression(AssignmentExpression)
    * @see com.isax.validation.dsl.dsl.DslPackage#getAssignment_Expression()
    * @model containment="true"
    * @generated
    */
-  PropertyExpression getExpression();
+  AssignmentExpression getExpression();
 
   /**
    * Sets the value of the '{@link com.isax.validation.dsl.dsl.Assignment#getExpression <em>Expression</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface Assignment extends EObject
    * @see #getExpression()
    * @generated
    */
-  void setExpression(PropertyExpression value);
+  void setExpression(AssignmentExpression value);
 
 } // Assignment

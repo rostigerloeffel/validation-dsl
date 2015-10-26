@@ -2,7 +2,6 @@
  */
 package com.isax.validation.dsl.dsl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PropertyExpression extends EObject
+public interface PropertyExpression extends AssignmentExpression
 {
 } // PropertyExpression

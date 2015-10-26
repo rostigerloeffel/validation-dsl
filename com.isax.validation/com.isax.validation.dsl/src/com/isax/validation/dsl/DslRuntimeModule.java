@@ -3,9 +3,11 @@
  */
 package com.isax.validation.dsl;
 
-import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
+import org.eclipse.xtext.scoping.IScopeProvider;
 
-import com.isax.validation.dsl.generator.DslGenerator;
+import com.isax.validation.dsl.scoping.DslContextScopeProvider;
+import com.isax.validation.dsl.scoping.DslScopeProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -16,5 +18,16 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 //	public Class<? extends IGenerator> bindIGenerator() {
 //		return DslGenerator.class;
 //	}
+	
+//	@Override
+//	public Class<? extends IScopeProvider> bindIScopeProvider() {
+//		return DslScopeProvider.class;
+//	}
+	
+//	@Override
+//	public Class<? extends AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
+//		return DslContextScopeProvider.class;
+//	}
+	
 	
 }

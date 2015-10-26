@@ -3,8 +3,8 @@
 package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.Assignment;
+import com.isax.validation.dsl.dsl.AssignmentExpression;
 import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.PropertyExpression;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -50,7 +50,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * @generated
    * @ordered
    */
-  protected PropertyExpression expression;
+  protected AssignmentExpression expression;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +126,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyExpression getExpression()
+  public AssignmentExpression getExpression()
   {
     return expression;
   }
@@ -136,9 +136,9 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpression(PropertyExpression newExpression, NotificationChain msgs)
+  public NotificationChain basicSetExpression(AssignmentExpression newExpression, NotificationChain msgs)
   {
-    PropertyExpression oldExpression = expression;
+    AssignmentExpression oldExpression = expression;
     expression = newExpression;
     if (eNotificationRequired())
     {
@@ -153,7 +153,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExpression(PropertyExpression newExpression)
+  public void setExpression(AssignmentExpression newExpression)
   {
     if (newExpression != expression)
     {
@@ -219,7 +219,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
         setReference((PropertyReferenceExpression)newValue);
         return;
       case DslPackage.ASSIGNMENT__EXPRESSION:
-        setExpression((PropertyExpression)newValue);
+        setExpression((AssignmentExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,7 +239,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
         setReference((PropertyReferenceExpression)null);
         return;
       case DslPackage.ASSIGNMENT__EXPRESSION:
-        setExpression((PropertyExpression)null);
+        setExpression((AssignmentExpression)null);
         return;
     }
     super.eUnset(featureID);

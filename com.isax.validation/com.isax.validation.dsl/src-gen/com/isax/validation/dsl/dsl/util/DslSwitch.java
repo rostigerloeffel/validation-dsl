@@ -174,6 +174,14 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DslPackage.PREDICATE_XEXPRESSION:
+      {
+        PredicateXExpression predicateXExpression = (PredicateXExpression)theEObject;
+        T result = casePredicateXExpression(predicateXExpression);
+        if (result == null) result = casePredicateCall(predicateXExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DslPackage.PROPERTY_RELATION_PREDICATE:
       {
         PropertyRelationPredicate propertyRelationPredicate = (PropertyRelationPredicate)theEObject;
@@ -240,6 +248,21 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DslPackage.ASSIGNMENT_EXPRESSION:
+      {
+        AssignmentExpression assignmentExpression = (AssignmentExpression)theEObject;
+        T result = caseAssignmentExpression(assignmentExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DslPackage.ASSIGNMENT_XEXPRESSION:
+      {
+        AssignmentXExpression assignmentXExpression = (AssignmentXExpression)theEObject;
+        T result = caseAssignmentXExpression(assignmentXExpression);
+        if (result == null) result = caseAssignmentExpression(assignmentXExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DslPackage.QUANTIFICATION:
       {
         Quantification quantification = (Quantification)theEObject;
@@ -258,6 +281,7 @@ public class DslSwitch<T> extends Switch<T>
       {
         PropertyExpression propertyExpression = (PropertyExpression)theEObject;
         T result = casePropertyExpression(propertyExpression);
+        if (result == null) result = caseAssignmentExpression(propertyExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -266,6 +290,7 @@ public class DslSwitch<T> extends Switch<T>
         PropertyValueExpression propertyValueExpression = (PropertyValueExpression)theEObject;
         T result = casePropertyValueExpression(propertyValueExpression);
         if (result == null) result = casePropertyExpression(propertyValueExpression);
+        if (result == null) result = caseAssignmentExpression(propertyValueExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -274,6 +299,7 @@ public class DslSwitch<T> extends Switch<T>
         PropertyReferenceExpression propertyReferenceExpression = (PropertyReferenceExpression)theEObject;
         T result = casePropertyReferenceExpression(propertyReferenceExpression);
         if (result == null) result = casePropertyExpression(propertyReferenceExpression);
+        if (result == null) result = caseAssignmentExpression(propertyReferenceExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -530,6 +556,22 @@ public class DslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Predicate XExpression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Predicate XExpression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePredicateXExpression(PredicateXExpression object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Property Relation Predicate</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -669,6 +711,38 @@ public class DslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAssignmentList(AssignmentList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssignmentExpression(AssignmentExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assignment XExpression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assignment XExpression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssignmentXExpression(AssignmentXExpression object)
   {
     return null;
   }

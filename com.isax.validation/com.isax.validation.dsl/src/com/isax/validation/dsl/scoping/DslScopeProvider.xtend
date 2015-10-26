@@ -18,11 +18,12 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 	
 	override IScope getScope(EObject context, EReference reference) {
+		println("getScope")
 		super.getScope(context, reference)
 	}
 	
 //	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
-//		Scopes.scopeFor(DslUtil.findPreviouslyDefinedNodes(sentence))
+//		Scopes.scopeFor(DslUtil.findPrevuslyDefinedNodes(sentence))
 //	}
 	
 }

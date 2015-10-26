@@ -10,6 +10,7 @@ import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
 import com.isax.validation.dsl.dsl.Assignment;
 import com.isax.validation.dsl.dsl.AssignmentList;
+import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
@@ -23,6 +24,7 @@ import com.isax.validation.dsl.dsl.ParameterList;
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
 import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
+import com.isax.validation.dsl.dsl.PredicateXExpression;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
 import com.isax.validation.dsl.dsl.PropertyValueExpression;
@@ -116,6 +118,9 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 			case DslPackage.ASSIGNMENT_LIST:
 				sequence_AssignmentList(context, (AssignmentList) semanticObject); 
 				return; 
+			case DslPackage.ASSIGNMENT_XEXPRESSION:
+				sequence_AssignmentXExpression(context, (AssignmentXExpression) semanticObject); 
+				return; 
 			case DslPackage.CONSTRAINT_SENTENCE:
 				sequence_ConstraintSentence(context, (ConstraintSentence) semanticObject); 
 				return; 
@@ -176,6 +181,16 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				}
 				else if(context == grammarAccess.getPredicateReferenceRule()) {
 					sequence_PredicateReference(context, (PredicateReference) semanticObject); 
+					return; 
+				}
+				else break;
+			case DslPackage.PREDICATE_XEXPRESSION:
+				if(context == grammarAccess.getPredicateCallRule()) {
+					sequence_PredicateCall_PredicateXExpression(context, (PredicateXExpression) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getPredicateXExpressionRule()) {
+					sequence_PredicateXExpression(context, (PredicateXExpression) semanticObject); 
 					return; 
 				}
 				else break;
@@ -494,7 +509,23 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (reference=PropertyReferenceExpression expression=PropertyExpression)
+	 *     expression=XBlockExpression
+	 */
+	protected void sequence_AssignmentXExpression(EObject context, AssignmentXExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT_XEXPRESSION__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT_XEXPRESSION__EXPRESSION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getAssignmentXExpressionAccess().getExpressionXBlockExpressionParserRuleCall_0(), semanticObject.getExpression());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (reference=PropertyReferenceExpression expression=AssignmentExpression)
 	 */
 	protected void sequence_Assignment(EObject context, Assignment semanticObject) {
 		if(errorAcceptor != null) {
@@ -506,7 +537,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getAssignmentAccess().getReferencePropertyReferenceExpressionParserRuleCall_0_0(), semanticObject.getReference());
-		feeder.accept(grammarAccess.getAssignmentAccess().getExpressionPropertyExpressionParserRuleCall_2_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getAssignmentAccess().getExpressionAssignmentExpressionParserRuleCall_2_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
 	
@@ -628,6 +659,15 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (expression=XBlockExpression label=ID?)
+	 */
+	protected void sequence_PredicateCall_PredicateXExpression(EObject context, PredicateXExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (lhs=PropertyExpression relation=PropertyRelation rhs=PropertyExpression label=ID?)
 	 */
 	protected void sequence_PredicateCall_PropertyRelationPredicate(EObject context, PropertyRelationPredicate semanticObject) {
@@ -649,6 +689,15 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (reference=[PredicateDefinitionSentence|ID] arguments=ArgumentList)
 	 */
 	protected void sequence_PredicateReference(EObject context, PredicateReference semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expression=XBlockExpression
+	 */
+	protected void sequence_PredicateXExpression(EObject context, PredicateXExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -789,7 +838,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (axis=Axis definition=NodeDefinition predicate=PredicateExpression? xblock=XBlockExpression?)
+	 *     (axis=Axis definition=NodeDefinition predicate=PredicateExpression? assignments=AssignmentList?)
 	 */
 	protected void sequence_TargetDefinition(EObject context, TargetDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

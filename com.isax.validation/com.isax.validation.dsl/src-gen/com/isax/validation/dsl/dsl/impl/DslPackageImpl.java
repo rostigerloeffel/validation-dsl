@@ -6,7 +6,9 @@ import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
 import com.isax.validation.dsl.dsl.Assignment;
+import com.isax.validation.dsl.dsl.AssignmentExpression;
 import com.isax.validation.dsl.dsl.AssignmentList;
+import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
@@ -23,6 +25,7 @@ import com.isax.validation.dsl.dsl.PredicateCall;
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
 import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
+import com.isax.validation.dsl.dsl.PredicateXExpression;
 import com.isax.validation.dsl.dsl.PropertyExpression;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.PropertyRelation;
@@ -161,6 +164,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass predicateXExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass propertyRelationPredicateEClass = null;
 
   /**
@@ -218,6 +228,20 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * @generated
    */
   private EClass assignmentListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignmentExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignmentXExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -654,7 +678,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTargetDefinition_Xblock()
+  public EReference getTargetDefinition_Assignments()
   {
     return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(3);
   }
@@ -797,6 +821,26 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
   public EAttribute getPredicateCall_Label()
   {
     return (EAttribute)predicateCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPredicateXExpression()
+  {
+    return predicateXExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPredicateXExpression_Expression()
+  {
+    return (EReference)predicateXExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1017,6 +1061,36 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
   public EReference getAssignmentList_Assignments()
   {
     return (EReference)assignmentListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssignmentExpression()
+  {
+    return assignmentExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssignmentXExpression()
+  {
+    return assignmentXExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssignmentXExpression_Expression()
+  {
+    return (EReference)assignmentXExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1275,7 +1349,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     createEAttribute(targetDefinitionEClass, TARGET_DEFINITION__AXIS);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__DEFINITION);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__PREDICATE);
-    createEReference(targetDefinitionEClass, TARGET_DEFINITION__XBLOCK);
+    createEReference(targetDefinitionEClass, TARGET_DEFINITION__ASSIGNMENTS);
 
     selectorListEClass = createEClass(SELECTOR_LIST);
     createEReference(selectorListEClass, SELECTOR_LIST__SELECTORS);
@@ -1295,6 +1369,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     predicateCallEClass = createEClass(PREDICATE_CALL);
     createEAttribute(predicateCallEClass, PREDICATE_CALL__LABEL);
+
+    predicateXExpressionEClass = createEClass(PREDICATE_XEXPRESSION);
+    createEReference(predicateXExpressionEClass, PREDICATE_XEXPRESSION__EXPRESSION);
 
     propertyRelationPredicateEClass = createEClass(PROPERTY_RELATION_PREDICATE);
     createEReference(propertyRelationPredicateEClass, PROPERTY_RELATION_PREDICATE__LHS);
@@ -1326,6 +1403,11 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     assignmentListEClass = createEClass(ASSIGNMENT_LIST);
     createEReference(assignmentListEClass, ASSIGNMENT_LIST__ASSIGNMENTS);
+
+    assignmentExpressionEClass = createEClass(ASSIGNMENT_EXPRESSION);
+
+    assignmentXExpressionEClass = createEClass(ASSIGNMENT_XEXPRESSION);
+    createEReference(assignmentXExpressionEClass, ASSIGNMENT_XEXPRESSION__EXPRESSION);
 
     quantificationEClass = createEClass(QUANTIFICATION);
     createEAttribute(quantificationEClass, QUANTIFICATION__QUANTOR);
@@ -1393,9 +1475,12 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     definitionSentenceEClass.getESuperTypes().add(this.getSentence());
     constraintSentenceEClass.getESuperTypes().add(this.getSentence());
     predicateDefinitionSentenceEClass.getESuperTypes().add(this.getSentence());
+    predicateXExpressionEClass.getESuperTypes().add(this.getPredicateCall());
     propertyRelationPredicateEClass.getESuperTypes().add(this.getPredicateCall());
     definitionSentencePredicateEClass.getESuperTypes().add(this.getPredicateCall());
     predicateReferenceEClass.getESuperTypes().add(this.getPredicateCall());
+    assignmentXExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
+    propertyExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
     propertyValueExpressionEClass.getESuperTypes().add(this.getPropertyExpression());
     propertyReferenceExpressionEClass.getESuperTypes().add(this.getPropertyExpression());
     andExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
@@ -1439,7 +1524,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEAttribute(getTargetDefinition_Axis(), this.getAxis(), "axis", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Definition(), this.getNodeDefinition(), null, "definition", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Predicate(), this.getPredicateExpression(), null, "predicate", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTargetDefinition_Xblock(), theXbasePackage.getXExpression(), null, "xblock", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTargetDefinition_Assignments(), this.getAssignmentList(), null, "assignments", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectorListEClass, SelectorList.class, "SelectorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSelectorList_Selectors(), this.getSelectorListDef(), null, "selectors", null, 0, 1, SelectorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1459,6 +1544,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(predicateCallEClass, PredicateCall.class, "PredicateCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPredicateCall_Label(), ecorePackage.getEString(), "label", null, 0, 1, PredicateCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(predicateXExpressionEClass, PredicateXExpression.class, "PredicateXExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPredicateXExpression_Expression(), theXbasePackage.getXExpression(), null, "expression", null, 0, 1, PredicateXExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyRelationPredicateEClass, PropertyRelationPredicate.class, "PropertyRelationPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPropertyRelationPredicate_Lhs(), this.getPropertyExpression(), null, "lhs", null, 0, 1, PropertyRelationPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1486,10 +1574,15 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssignment_Reference(), this.getPropertyReferenceExpression(), null, "reference", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAssignment_Expression(), this.getPropertyExpression(), null, "expression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignment_Expression(), this.getAssignmentExpression(), null, "expression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assignmentListEClass, AssignmentList.class, "AssignmentList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssignmentList_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, AssignmentList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(assignmentExpressionEClass, AssignmentExpression.class, "AssignmentExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(assignmentXExpressionEClass, AssignmentXExpression.class, "AssignmentXExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssignmentXExpression_Expression(), theXbasePackage.getXExpression(), null, "expression", null, 0, 1, AssignmentXExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(quantificationEClass, Quantification.class, "Quantification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getQuantification_Quantor(), this.getQuantor(), "quantor", null, 0, 1, Quantification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

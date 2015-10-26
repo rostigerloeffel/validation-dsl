@@ -49,7 +49,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="xblock" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" eType="#//AssignmentList"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorList">
@@ -76,6 +76,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateCall">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateXExpression" eSuperTypes="#//PredicateCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyRelationPredicate" eSuperTypes="#//PredicateCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PropertyExpression"
@@ -111,12 +115,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="Assignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//PropertyReferenceExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//PropertyExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//AssignmentExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
         eType="#//Assignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentXExpression" eSuperTypes="#//AssignmentExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Quantification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantor" eType="#//Quantor"/>
@@ -128,7 +137,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantifications" upperBound="-1"
         eType="#//Quantification" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpression" eSuperTypes="#//AssignmentExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyValueExpression" eSuperTypes="#//PropertyExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

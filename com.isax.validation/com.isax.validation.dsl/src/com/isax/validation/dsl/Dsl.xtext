@@ -2,6 +2,7 @@ grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.xbase.Xbase
 
 generate dsl "http://www.isax.com/validation/dsl/Dsl"
 
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 
 Validator:
@@ -37,7 +38,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' /*assignments=AssignmentList*/ xblock = XBlockExpression '}')? ;
+	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' assignments=AssignmentList '}')? ;
 
 
 SelectorList:
@@ -66,7 +67,10 @@ PrimaryExpression returns PredicateExpression:
 	(negated?='not')? (call=PredicateCall | ('(' inner=PredicateExpression ')'));
 
 PredicateCall:
-	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference) ('[' label=ID ']')?;
+	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ('[' label=ID ']')?;
+	
+PredicateXExpression:
+	expression = XBlockExpression;	
 	
 PropertyRelationPredicate:
 	lhs=PropertyExpression relation=PropertyRelation rhs=PropertyExpression;
@@ -93,11 +97,16 @@ ArgumentList:
 
 
 Assignment:
-	reference=PropertyReferenceExpression ('becomes' | ':=') expression=PropertyExpression;
+	reference=PropertyReferenceExpression ('becomes' | ':=') expression=AssignmentExpression;
 
 AssignmentList:
 	assignments+=Assignment (',' assignments+=Assignment)*;
 
+AssignmentExpression:
+	PropertyExpression | AssignmentXExpression;
+	
+AssignmentXExpression:
+	expression = XBlockExpression;
 
 Quantification:
 	quantor=Quantor node=NodeDefinition 'in' nodeSet=[NodeDefinition];

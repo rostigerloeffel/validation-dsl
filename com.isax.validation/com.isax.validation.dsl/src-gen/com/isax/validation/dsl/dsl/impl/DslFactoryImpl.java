@@ -79,6 +79,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
       case DslPackage.SELECTOR: return createSelector();
       case DslPackage.PREDICATE_EXPRESSION: return createPredicateExpression();
       case DslPackage.PREDICATE_CALL: return createPredicateCall();
+      case DslPackage.PREDICATE_XEXPRESSION: return createPredicateXExpression();
       case DslPackage.PROPERTY_RELATION_PREDICATE: return createPropertyRelationPredicate();
       case DslPackage.DEFINITION_SENTENCE_PREDICATE: return createDefinitionSentencePredicate();
       case DslPackage.PREDICATE_REFERENCE: return createPredicateReference();
@@ -88,6 +89,8 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
       case DslPackage.ARGUMENT_LIST: return createArgumentList();
       case DslPackage.ASSIGNMENT: return createAssignment();
       case DslPackage.ASSIGNMENT_LIST: return createAssignmentList();
+      case DslPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
+      case DslPackage.ASSIGNMENT_XEXPRESSION: return createAssignmentXExpression();
       case DslPackage.QUANTIFICATION: return createQuantification();
       case DslPackage.QUANTIFICATION_LIST: return createQuantificationList();
       case DslPackage.PROPERTY_EXPRESSION: return createPropertyExpression();
@@ -306,6 +309,17 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PredicateXExpression createPredicateXExpression()
+  {
+    PredicateXExpressionImpl predicateXExpression = new PredicateXExpressionImpl();
+    return predicateXExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PropertyRelationPredicate createPropertyRelationPredicate()
   {
     PropertyRelationPredicateImpl propertyRelationPredicate = new PropertyRelationPredicateImpl();
@@ -398,6 +412,28 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
   {
     AssignmentListImpl assignmentList = new AssignmentListImpl();
     return assignmentList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignmentExpression createAssignmentExpression()
+  {
+    AssignmentExpressionImpl assignmentExpression = new AssignmentExpressionImpl();
+    return assignmentExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignmentXExpression createAssignmentXExpression()
+  {
+    AssignmentXExpressionImpl assignmentXExpression = new AssignmentXExpressionImpl();
+    return assignmentXExpression;
   }
 
   /**

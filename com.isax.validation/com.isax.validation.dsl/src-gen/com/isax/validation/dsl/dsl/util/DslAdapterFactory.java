@@ -145,6 +145,11 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createPredicateCallAdapter();
       }
       @Override
+      public Adapter casePredicateXExpression(PredicateXExpression object)
+      {
+        return createPredicateXExpressionAdapter();
+      }
+      @Override
       public Adapter casePropertyRelationPredicate(PropertyRelationPredicate object)
       {
         return createPropertyRelationPredicateAdapter();
@@ -188,6 +193,16 @@ public class DslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAssignmentList(AssignmentList object)
       {
         return createAssignmentListAdapter();
+      }
+      @Override
+      public Adapter caseAssignmentExpression(AssignmentExpression object)
+      {
+        return createAssignmentExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAssignmentXExpression(AssignmentXExpression object)
+      {
+        return createAssignmentXExpressionAdapter();
       }
       @Override
       public Adapter caseQuantification(Quantification object)
@@ -462,6 +477,21 @@ public class DslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.PredicateXExpression <em>Predicate XExpression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.isax.validation.dsl.dsl.PredicateXExpression
+   * @generated
+   */
+  public Adapter createPredicateXExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.PropertyRelationPredicate <em>Property Relation Predicate</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -592,6 +622,36 @@ public class DslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAssignmentListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.AssignmentExpression <em>Assignment Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.isax.validation.dsl.dsl.AssignmentExpression
+   * @generated
+   */
+  public Adapter createAssignmentExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.AssignmentXExpression <em>Assignment XExpression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.isax.validation.dsl.dsl.AssignmentXExpression
+   * @generated
+   */
+  public Adapter createAssignmentXExpressionAdapter()
   {
     return null;
   }

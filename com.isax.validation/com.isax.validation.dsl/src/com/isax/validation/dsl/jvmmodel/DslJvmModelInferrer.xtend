@@ -16,6 +16,7 @@ import com.isax.validation.dsl.dsl.ParameterList
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
 import com.isax.validation.dsl.dsl.PredicateReference
+import com.isax.validation.dsl.dsl.PredicateXExpression
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
@@ -34,6 +35,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor.IPostIndexingInitializing
@@ -41,15 +43,15 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
- *
+ * 
  * <p>The JVM model should contain all elements that would appear in the Java code 
  * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>     
  */
 class DslJvmModelInferrer extends AbstractModelInferrer {
 
-    /**
-     * convenience API to build and initialize JVM types and their members.
-     */
+	/**
+	 * convenience API to build and initialize JVM types and their members.
+	 */
 	@Inject extension JvmTypesBuilder
 	@Inject ISerializer serializer;
 
@@ -78,7 +80,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	 *            rely on linking using the index if isPreIndexingPhase is
 	 *            <code>true</code>.
 	 */
-   	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [
 			val predicateDecl = validator.toInterface("Predicate") [
 				visibility = JvmVisibility.PRIVATE
@@ -88,73 +90,82 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			]
 			predicateDecl.annotations += annotationRef(typeof(FunctionalInterface))
 			members += predicateDecl
-			
+
 			members += validator.toMethod("eval", typeRef("boolean")) [
 				visibility = JvmVisibility.PRIVATE
 				parameters += validator.toParameter("predicate", typeRef("Predicate"))
 				body = '''return predicate.test();'''
 			]
-			
+
 			members += validator.toMethod("validate", typeRef("boolean")) [
 				visibility = JvmVisibility.PUBLIC
 				parameters += validator.toParameter("node", typeRef("Node"))
 				body = '''«compileBody(validator)»'''
 			]
-			
+
 			members += compilePredicates(validator)
+			members += compileXExpressionPredicates(validator)
 		]
-   	}
-   	
-   	def serialize(EObject object) {
+	}
+
+	def serialize(EObject object) {
 		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
-   	 	
-   	def compileBody(Validator validator) '''		
-		«FOR sentence : validator.sentences»
-			«IF sentence instanceof StartOnSentence»
-				«sentenceStatements(sentence)»
-				
-			«ENDIF»
-		«ENDFOR»		
-		«FOR sentence : validator.sentences»
-			«IF sentence instanceof DefinitionSentence»
-				«sentenceStatements(sentence)»
-				«IF sentence.quantification == null»
+
+	def compileBody(Validator validator) '''		
+	«FOR sentence : validator.sentences»
+		«IF sentence instanceof StartOnSentence»
+			«sentenceStatements(sentence)»
+			
+		«ENDIF»
+	«ENDFOR»		
+	«FOR sentence : validator.sentences»
+		«IF sentence instanceof DefinitionSentence»
+			«sentenceStatements(sentence)»
+			«IF sentence.quantification == null»
 				{
 					boolean satisfied = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
 					if (!satisfied) return satisfied;
 				}
 				
-				«ENDIF»
 			«ENDIF»
-		«ENDFOR»
-
-		«FOR sentence : validator.sentences»
-			«IF sentence instanceof ConstraintSentence»
-				«sentenceStatements(sentence)»
-				
-			«ENDIF»
-		«ENDFOR»
-		
-«««		«FOR sentence : validator.sentences»
+		«ENDIF»
+	«ENDFOR»
+	
+	«FOR sentence : validator.sentences»
+		«IF sentence instanceof ConstraintSentence»
+			«sentenceStatements(sentence)»
+			
+		«ENDIF»
+	«ENDFOR»
+	
+	«««		«FOR sentence : validator.sentences»
 «««			«IF sentence instanceof PredicateDefinitionSentence»
 «««				«sentenceStatements(sentence)»
 «««				
 «««			«ENDIF»
 «««		«ENDFOR»
 	'''
-	
+
+	def compileXExpressionPredicates(Validator validator) {
+		validator.eAllContents.toSet
+			.filter(typeof(XExpression))
+			.filter[EObject o | !(o.eContainer instanceof XExpression)]
+			.map[XExpression e | e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
+				body = e 
+			]]
+	}
+
 	def compilePredicates(Validator validator) {
 		val compiledPredicates = new ArrayList<JvmMember>()
 		for (sentence : validator.sentences) {
 			if (sentence instanceof PredicateDefinitionSentence) {
 				val predicate = sentence as PredicateDefinitionSentence
-				compiledPredicates += validator.toMethod(predicate.name, typeRef("boolean")) []
-			}	
-		}		
+				compiledPredicates += validator.toMethod(predicate.name, typeRef("boolean"))[]
+			}
+		}
 		compiledPredicates
 	}
-	
 
 	def dispatch sentenceStatements(
 		StartOnSentence sentence
@@ -201,8 +212,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«predicateExpression(sentence.predicate)»
 		«ENDIF»
 	'''
-	
-	
+
 	def constraintQuantorEach(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
 		eval(() -> {
 			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
@@ -212,8 +222,10 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			return true;
 		});
 	'''
-	
-	def constraintQuantorAny(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+
+	def constraintQuantorAny(List<Quantification> quantifications, int index,
+		ConstraintSentence sentence
+	) '''
 		eval(() -> {
 			for (Node «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
 				boolean satisfied = «constraintDispatch(quantifications, index + 1, sentence)»
@@ -325,14 +337,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 
-
 	def dispatch predicateExpression(PredicateExpression expression) {
-		if (expression.inner != null) return predicateExpression(expression.inner)		
-		if (expression.lhs != null) return predicateExpression(expression.lhs)
-		if (expression.rhs != null) return predicateExpression(expression.rhs)
-		if (expression.call != null) return predicateCall(expression.call)
+		if(expression.inner != null) return predicateExpression(expression.inner)
+		if(expression.lhs != null) return predicateExpression(expression.lhs)
+		if(expression.rhs != null) return predicateExpression(expression.rhs)
+		if(expression.call != null) return predicateCall(expression.call)
 	}
-	
+
 	def dispatch predicateExpression(AndExpression and) '''
 		eval(() -> {
 			boolean satisfied = true;			
@@ -341,7 +352,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			return satisfied;
 		});
 	'''
-	
+
 	def dispatch predicateExpression(OrExpression or) '''
 		eval(() -> {
 			boolean satisfied = false;			
@@ -368,7 +379,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
 
-	def dispatch predicateCall(PropertyRelationPredicate relation) '''
+	def dispatch predicateCall(
+		PropertyRelationPredicate relation
+	) '''
 		compare(«propertyExpression(relation.lhs)», «propertyRelation(relation.relation)», «propertyExpression(relation.rhs)»);
 	'''
 
@@ -379,7 +392,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch propertyExpression(PropertyReferenceExpression expression) {
 		"property(" + expression.node.name + ", " + expression.property + ")"
 	}
-	
+
 	def propertyRelation(PropertyRelation relation) {
 		switch (relation) {
 			case EQUALS: "EQUALS"
@@ -397,19 +410,23 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			return «qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
 		});
 	'''
-	
+
 	def dispatch predicateCall(PredicateReference reference) '''
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
 
+	def dispatch predicateCall(PredicateXExpression expression) '''
+		predicate$«expression.expression.hashCode»();
+	'''
+
 	def argumentList(ArgumentList list) {
-		if (list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
+		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
 	}
 
 	def parameterList(ParameterList list) {
 		if (list != null)
 			list.parameters.join(", ", [ Parameter parameter |
-				(if (parameter.node.isCollection) "NodeSet" else "Node") + " " + parameter.node.name
+				(if(parameter.node.isCollection) "NodeSet" else "Node") + " " + parameter.node.name
 			])
 	}
 }

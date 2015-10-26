@@ -1,6 +1,7 @@
 package com.isax.validation.dsl.jvmmodel;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
@@ -18,6 +19,7 @@ import com.isax.validation.dsl.dsl.PredicateCall;
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
 import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
+import com.isax.validation.dsl.dsl.PredicateXExpression;
 import com.isax.validation.dsl.dsl.PropertyExpression;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.PropertyRelation;
@@ -37,7 +39,9 @@ import com.isax.validation.dsl.dsl.Validator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
@@ -50,6 +54,7 @@ import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor.IPostIndexingInitializing;
@@ -57,6 +62,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
@@ -161,6 +167,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       EList<JvmMember> _members_3 = it.getMembers();
       ArrayList<JvmMember> _compilePredicates = this.compilePredicates(validator);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_3, _compilePredicates);
+      EList<JvmMember> _members_4 = it.getMembers();
+      Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_4, _compileXExpressionPredicates);
     };
     acceptor.<JvmGenericType>accept(_class, _function);
   }
@@ -239,6 +248,27 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     }
     _builder.newLine();
     return _builder;
+  }
+  
+  public Iterable<JvmOperation> compileXExpressionPredicates(final Validator validator) {
+    TreeIterator<EObject> _eAllContents = validator.eAllContents();
+    Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
+    Iterable<XExpression> _filter = Iterables.<XExpression>filter(_set, XExpression.class);
+    final Function1<EObject, Boolean> _function = (EObject o) -> {
+      EObject _eContainer = o.eContainer();
+      return Boolean.valueOf((!(_eContainer instanceof XExpression)));
+    };
+    Iterable<XExpression> _filter_1 = IterableExtensions.<XExpression>filter(_filter, _function);
+    final Function1<XExpression, JvmOperation> _function_1 = (XExpression e) -> {
+      int _hashCode = e.hashCode();
+      String _plus = ("predicate$" + Integer.valueOf(_hashCode));
+      JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef("boolean");
+      final Procedure1<JvmOperation> _function_2 = (JvmOperation it) -> {
+        this._jvmTypesBuilder.setBody(it, e);
+      };
+      return this._jvmTypesBuilder.toMethod(e, _plus, _typeRef, _function_2);
+    };
+    return IterableExtensions.<XExpression, JvmOperation>map(_filter_1, _function_1);
   }
   
   public ArrayList<JvmMember> compilePredicates(final Validator validator) {
@@ -995,6 +1025,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
+  protected CharSequence _predicateCall(final PredicateXExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("predicate$");
+    XExpression _expression = expression.getExpression();
+    int _hashCode = _expression.hashCode();
+    _builder.append(_hashCode, "");
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   public String argumentList(final ArgumentList list) {
     String _xifexpression = null;
     boolean _notEquals = (!Objects.equal(list, null));
@@ -1085,6 +1126,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       return _predicateCall((DefinitionSentencePredicate)definition);
     } else if (definition instanceof PredicateReference) {
       return _predicateCall((PredicateReference)definition);
+    } else if (definition instanceof PredicateXExpression) {
+      return _predicateCall((PredicateXExpression)definition);
     } else if (definition instanceof PropertyRelationPredicate) {
       return _predicateCall((PropertyRelationPredicate)definition);
     } else {

@@ -149,6 +149,15 @@ public interface DslFactory extends EFactory
   PredicateCall createPredicateCall();
 
   /**
+   * Returns a new object of class '<em>Predicate XExpression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Predicate XExpression</em>'.
+   * @generated
+   */
+  PredicateXExpression createPredicateXExpression();
+
+  /**
    * Returns a new object of class '<em>Property Relation Predicate</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -228,6 +237,24 @@ public interface DslFactory extends EFactory
    * @generated
    */
   AssignmentList createAssignmentList();
+
+  /**
+   * Returns a new object of class '<em>Assignment Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assignment Expression</em>'.
+   * @generated
+   */
+  AssignmentExpression createAssignmentExpression();
+
+  /**
+   * Returns a new object of class '<em>Assignment XExpression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assignment XExpression</em>'.
+   * @generated
+   */
+  AssignmentXExpression createAssignmentXExpression();
 
   /**
    * Returns a new object of class '<em>Quantification</em>'.

@@ -391,13 +391,13 @@ public interface DslPackage extends EPackage
   int TARGET_DEFINITION__PREDICATE = 2;
 
   /**
-   * The feature id for the '<em><b>Xblock</b></em>' containment reference.
+   * The feature id for the '<em><b>Assignments</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION__XBLOCK = 3;
+  int TARGET_DEFINITION__ASSIGNMENTS = 3;
 
   /**
    * The number of structural features of the '<em>Target Definition</em>' class.
@@ -585,6 +585,43 @@ public interface DslPackage extends EPackage
   int PREDICATE_CALL_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PredicateXExpressionImpl <em>Predicate XExpression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.isax.validation.dsl.dsl.impl.PredicateXExpressionImpl
+   * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateXExpression()
+   * @generated
+   */
+  int PREDICATE_XEXPRESSION = 14;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDICATE_XEXPRESSION__LABEL = PREDICATE_CALL__LABEL;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDICATE_XEXPRESSION__EXPRESSION = PREDICATE_CALL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Predicate XExpression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDICATE_XEXPRESSION_FEATURE_COUNT = PREDICATE_CALL_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PropertyRelationPredicateImpl <em>Property Relation Predicate</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -592,7 +629,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelationPredicate()
    * @generated
    */
-  int PROPERTY_RELATION_PREDICATE = 14;
+  int PROPERTY_RELATION_PREDICATE = 15;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -647,7 +684,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getDefinitionSentencePredicate()
    * @generated
    */
-  int DEFINITION_SENTENCE_PREDICATE = 15;
+  int DEFINITION_SENTENCE_PREDICATE = 16;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -684,7 +721,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateReference()
    * @generated
    */
-  int PREDICATE_REFERENCE = 16;
+  int PREDICATE_REFERENCE = 17;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -730,7 +767,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 17;
+  int PARAMETER = 18;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' containment reference.
@@ -758,7 +795,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getParameterList()
    * @generated
    */
-  int PARAMETER_LIST = 18;
+  int PARAMETER_LIST = 19;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -786,7 +823,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getArgument()
    * @generated
    */
-  int ARGUMENT = 19;
+  int ARGUMENT = 20;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -814,7 +851,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getArgumentList()
    * @generated
    */
-  int ARGUMENT_LIST = 20;
+  int ARGUMENT_LIST = 21;
 
   /**
    * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -842,7 +879,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 21;
+  int ASSIGNMENT = 22;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -879,7 +916,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentList()
    * @generated
    */
-  int ASSIGNMENT_LIST = 22;
+  int ASSIGNMENT_LIST = 23;
 
   /**
    * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
@@ -900,6 +937,53 @@ public interface DslPackage extends EPackage
   int ASSIGNMENT_LIST_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.isax.validation.dsl.dsl.impl.AssignmentExpressionImpl
+   * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentExpression()
+   * @generated
+   */
+  int ASSIGNMENT_EXPRESSION = 24;
+
+  /**
+   * The number of structural features of the '<em>Assignment Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentXExpressionImpl <em>Assignment XExpression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.isax.validation.dsl.dsl.impl.AssignmentXExpressionImpl
+   * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentXExpression()
+   * @generated
+   */
+  int ASSIGNMENT_XEXPRESSION = 25;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_XEXPRESSION__EXPRESSION = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Assignment XExpression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_XEXPRESSION_FEATURE_COUNT = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.QuantificationImpl <em>Quantification</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -907,7 +991,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantification()
    * @generated
    */
-  int QUANTIFICATION = 23;
+  int QUANTIFICATION = 26;
 
   /**
    * The feature id for the '<em><b>Quantor</b></em>' attribute.
@@ -953,7 +1037,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantificationList()
    * @generated
    */
-  int QUANTIFICATION_LIST = 24;
+  int QUANTIFICATION_LIST = 27;
 
   /**
    * The feature id for the '<em><b>Quantifications</b></em>' containment reference list.
@@ -981,7 +1065,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyExpression()
    * @generated
    */
-  int PROPERTY_EXPRESSION = 25;
+  int PROPERTY_EXPRESSION = 28;
 
   /**
    * The number of structural features of the '<em>Property Expression</em>' class.
@@ -990,7 +1074,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_EXPRESSION_FEATURE_COUNT = 0;
+  int PROPERTY_EXPRESSION_FEATURE_COUNT = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PropertyValueExpressionImpl <em>Property Value Expression</em>}' class.
@@ -1000,7 +1084,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyValueExpression()
    * @generated
    */
-  int PROPERTY_VALUE_EXPRESSION = 26;
+  int PROPERTY_VALUE_EXPRESSION = 29;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1028,7 +1112,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyReferenceExpression()
    * @generated
    */
-  int PROPERTY_REFERENCE_EXPRESSION = 27;
+  int PROPERTY_REFERENCE_EXPRESSION = 30;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -1065,7 +1149,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 28;
+  int AND_EXPRESSION = 31;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1129,7 +1213,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 29;
+  int OR_EXPRESSION = 32;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1193,7 +1277,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getImpliesExpression()
    * @generated
    */
-  int IMPLIES_EXPRESSION = 30;
+  int IMPLIES_EXPRESSION = 33;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1257,7 +1341,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
    * @generated
    */
-  int QUANTOR = 31;
+  int QUANTOR = 34;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationQualifier <em>Relation Qualifier</em>}' enum.
@@ -1267,7 +1351,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationQualifier()
    * @generated
    */
-  int RELATION_QUALIFIER = 32;
+  int RELATION_QUALIFIER = 35;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.Axis <em>Axis</em>}' enum.
@@ -1277,7 +1361,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAxis()
    * @generated
    */
-  int AXIS = 33;
+  int AXIS = 36;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1287,7 +1371,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
    * @generated
    */
-  int PROPERTY_RELATION = 34;
+  int PROPERTY_RELATION = 37;
 
 
   /**
@@ -1590,15 +1674,15 @@ public interface DslPackage extends EPackage
   EReference getTargetDefinition_Predicate();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getXblock <em>Xblock</em>}'.
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Xblock</em>'.
-   * @see com.isax.validation.dsl.dsl.TargetDefinition#getXblock()
+   * @return the meta object for the containment reference '<em>Assignments</em>'.
+   * @see com.isax.validation.dsl.dsl.TargetDefinition#getAssignments()
    * @see #getTargetDefinition()
    * @generated
    */
-  EReference getTargetDefinition_Xblock();
+  EReference getTargetDefinition_Assignments();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.SelectorList <em>Selector List</em>}'.
@@ -1748,6 +1832,27 @@ public interface DslPackage extends EPackage
    * @generated
    */
   EAttribute getPredicateCall_Label();
+
+  /**
+   * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.PredicateXExpression <em>Predicate XExpression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Predicate XExpression</em>'.
+   * @see com.isax.validation.dsl.dsl.PredicateXExpression
+   * @generated
+   */
+  EClass getPredicateXExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PredicateXExpression#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see com.isax.validation.dsl.dsl.PredicateXExpression#getExpression()
+   * @see #getPredicateXExpression()
+   * @generated
+   */
+  EReference getPredicateXExpression_Expression();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.PropertyRelationPredicate <em>Property Relation Predicate</em>}'.
@@ -1981,6 +2086,37 @@ public interface DslPackage extends EPackage
    * @generated
    */
   EReference getAssignmentList_Assignments();
+
+  /**
+   * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.AssignmentExpression <em>Assignment Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assignment Expression</em>'.
+   * @see com.isax.validation.dsl.dsl.AssignmentExpression
+   * @generated
+   */
+  EClass getAssignmentExpression();
+
+  /**
+   * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.AssignmentXExpression <em>Assignment XExpression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assignment XExpression</em>'.
+   * @see com.isax.validation.dsl.dsl.AssignmentXExpression
+   * @generated
+   */
+  EClass getAssignmentXExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.AssignmentXExpression#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see com.isax.validation.dsl.dsl.AssignmentXExpression#getExpression()
+   * @see #getAssignmentXExpression()
+   * @generated
+   */
+  EReference getAssignmentXExpression_Expression();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.Quantification <em>Quantification</em>}'.
@@ -2445,12 +2581,12 @@ public interface DslPackage extends EPackage
     EReference TARGET_DEFINITION__PREDICATE = eINSTANCE.getTargetDefinition_Predicate();
 
     /**
-     * The meta object literal for the '<em><b>Xblock</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Assignments</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TARGET_DEFINITION__XBLOCK = eINSTANCE.getTargetDefinition_Xblock();
+    EReference TARGET_DEFINITION__ASSIGNMENTS = eINSTANCE.getTargetDefinition_Assignments();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.SelectorListImpl <em>Selector List</em>}' class.
@@ -2573,6 +2709,24 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EAttribute PREDICATE_CALL__LABEL = eINSTANCE.getPredicateCall_Label();
+
+    /**
+     * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.PredicateXExpressionImpl <em>Predicate XExpression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.isax.validation.dsl.dsl.impl.PredicateXExpressionImpl
+     * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateXExpression()
+     * @generated
+     */
+    EClass PREDICATE_XEXPRESSION = eINSTANCE.getPredicateXExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PREDICATE_XEXPRESSION__EXPRESSION = eINSTANCE.getPredicateXExpression_Expression();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.PropertyRelationPredicateImpl <em>Property Relation Predicate</em>}' class.
@@ -2767,6 +2921,34 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EReference ASSIGNMENT_LIST__ASSIGNMENTS = eINSTANCE.getAssignmentList_Assignments();
+
+    /**
+     * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.isax.validation.dsl.dsl.impl.AssignmentExpressionImpl
+     * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentExpression()
+     * @generated
+     */
+    EClass ASSIGNMENT_EXPRESSION = eINSTANCE.getAssignmentExpression();
+
+    /**
+     * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentXExpressionImpl <em>Assignment XExpression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.isax.validation.dsl.dsl.impl.AssignmentXExpressionImpl
+     * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentXExpression()
+     * @generated
+     */
+    EClass ASSIGNMENT_XEXPRESSION = eINSTANCE.getAssignmentXExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSIGNMENT_XEXPRESSION__EXPRESSION = eINSTANCE.getAssignmentXExpression_Expression();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.QuantificationImpl <em>Quantification</em>}' class.
