@@ -373,7 +373,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch predicateCall(
 		PropertyRelationPredicate relation
 	) '''
-		compare(«propertyExpression(relation.lhs)», «propertyRelation(relation.relation)», «propertyExpression(relation.rhs)»);
+		predicates$.«relation.relation.getName().toFirstLower»(«propertyExpression(relation.lhs)», «propertyExpression(relation.rhs)»);
 	'''
 
 	def dispatch propertyExpression(PropertyValueExpression expression) {
@@ -381,18 +381,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch propertyExpression(PropertyReferenceExpression expression) {
-		"property(" + expression.node.name + ", " + expression.property + ")"
-	}
-
-	def propertyRelation(PropertyRelation relation) {
-		switch (relation) {
-			case EQUALS: "EQUALS"
-			case GREATER: "GREATER"
-			case GREATER_EQUALS: "GREATER_EQUALS"
-			case LESSER: "LESSER"
-			case LESSER_EQUALS: "LESSER_EQUALS"
-			case NOT_EQUALS: "NOT_EQUALS"
-		}
+		"property(" + expression.node.name + ", " + "\"" + expression.property + "\"" + ")"
 	}
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''

@@ -69,6 +69,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * <p>Infers a JVM model from the source model.</p>
@@ -1045,14 +1046,15 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   
   protected CharSequence _predicateCall(final PropertyRelationPredicate relation) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("compare(");
+    _builder.append("predicates$.");
+    PropertyRelation _relation = relation.getRelation();
+    String _name = _relation.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name);
+    _builder.append(_firstLower, "");
+    _builder.append("(");
     PropertyExpression _lhs = relation.getLhs();
     String _propertyExpression = this.propertyExpression(_lhs);
     _builder.append(_propertyExpression, "");
-    _builder.append(", ");
-    PropertyRelation _relation = relation.getRelation();
-    String _propertyRelation = this.propertyRelation(_relation);
-    _builder.append(_propertyRelation, "");
     _builder.append(", ");
     PropertyExpression _rhs = relation.getRhs();
     String _propertyExpression_1 = this.propertyExpression(_rhs);
@@ -1071,38 +1073,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _name = _node.getName();
     String _plus = ("property(" + _name);
     String _plus_1 = (_plus + ", ");
+    String _plus_2 = (_plus_1 + "\"");
     String _property = expression.getProperty();
-    String _plus_2 = (_plus_1 + _property);
-    return (_plus_2 + ")");
-  }
-  
-  public String propertyRelation(final PropertyRelation relation) {
-    String _switchResult = null;
-    if (relation != null) {
-      switch (relation) {
-        case EQUALS:
-          _switchResult = "EQUALS";
-          break;
-        case GREATER:
-          _switchResult = "GREATER";
-          break;
-        case GREATER_EQUALS:
-          _switchResult = "GREATER_EQUALS";
-          break;
-        case LESSER:
-          _switchResult = "LESSER";
-          break;
-        case LESSER_EQUALS:
-          _switchResult = "LESSER_EQUALS";
-          break;
-        case NOT_EQUALS:
-          _switchResult = "NOT_EQUALS";
-          break;
-        default:
-          break;
-      }
-    }
-    return _switchResult;
+    String _plus_3 = (_plus_2 + _property);
+    String _plus_4 = (_plus_3 + "\"");
+    return (_plus_4 + ")");
   }
   
   protected CharSequence _predicateCall(final DefinitionSentencePredicate definition) {
