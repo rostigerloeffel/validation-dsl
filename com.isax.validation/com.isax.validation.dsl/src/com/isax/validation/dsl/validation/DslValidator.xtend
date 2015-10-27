@@ -3,10 +3,11 @@
  */
 package com.isax.validation.dsl.validation
 
-import com.google.common.collect.Iterables
-import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.Axis
 import com.isax.validation.dsl.dsl.DslPackage
+import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.StartOnSentence
+import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
 import com.isax.validation.dsl.util.DslUtil
 import java.util.ArrayList
@@ -20,7 +21,7 @@ import org.eclipse.xtext.validation.Check
 class DslValidator extends AbstractDslValidator {
 
 	@Check
-	def checkHasOnlyOneStartOnSentence(Validator validator) {
+	def hasOnlyOneStartOnSentence(Validator validator) {
 		val sentences = new ArrayList<StartOnSentence>();
 		for (sentence : validator.sentences) {
 			if (sentence instanceof StartOnSentence) {
@@ -32,6 +33,26 @@ class DslValidator extends AbstractDslValidator {
 			for (sentence : sentences) {
 				error("Validator may have only one 'start on' sentence!", sentence, null)	
 			}
+		}
+	}
+	
+	@Check
+	def refersSet(Quantification quantification) {
+		if (!quantification.nodeSet.collection) {
+			error("Quantification node set (" + quantification.nodeSet.name + ") is not a set!", quantification, DslPackage.eINSTANCE.quantification_NodeSet)
+		}
+	}
+	
+	
+	@Check
+	def definesSet(TargetDefinition target) {
+		if (!target.definition.collection &&
+			(target.axis == Axis.ANCESTORS || target.axis == Axis.DESCENDANTS || target.axis == Axis.CHILDREN || target.axis == Axis.PARENTS)) {
+			error("Usage of 'multiple' implies node-set target!", target.definition, DslPackage.eINSTANCE.nodeDefinition_Name)
+		}
+		if (target.definition.collection &&
+			(target.axis == Axis.ANCESTOR || target.axis == Axis.DESCENDANT || target.axis == Axis.CHILD || target.axis == Axis.PARENT)) {
+			error("Usage of 'non-multiple' qualifier implies single node target!", target.definition, DslPackage.eINSTANCE.nodeDefinition_Name)
 		}
 	}
 	

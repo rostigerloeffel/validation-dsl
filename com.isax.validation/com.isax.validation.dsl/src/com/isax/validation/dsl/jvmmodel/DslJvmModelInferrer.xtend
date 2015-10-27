@@ -1,6 +1,7 @@
 package com.isax.validation.dsl.jvmmodel
 
 import com.google.inject.Inject
+import com.isax.validation.dsl.api.AbstractValidator
 import com.isax.validation.dsl.api.NodePredicates
 import com.isax.validation.dsl.api.ResolvingNode
 import com.isax.validation.dsl.api.ResolvingNodeSet
@@ -16,14 +17,11 @@ import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
 import com.isax.validation.dsl.dsl.ImpliesExpression
 import com.isax.validation.dsl.dsl.NodeDefinition
 import com.isax.validation.dsl.dsl.OrExpression
-import com.isax.validation.dsl.dsl.Parameter
-import com.isax.validation.dsl.dsl.ParameterList
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
 import com.isax.validation.dsl.dsl.PredicateReference
 import com.isax.validation.dsl.dsl.PredicateXExpression
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression
-import com.isax.validation.dsl.dsl.PropertyRelation
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate
 import com.isax.validation.dsl.dsl.PropertyValueExpression
 import com.isax.validation.dsl.dsl.Quantification
@@ -33,11 +31,9 @@ import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
-import java.util.ArrayList
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
@@ -86,32 +82,20 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	 */
 	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [
-			val predicateDecl = validator.toInterface("Predicate") [
-				visibility = JvmVisibility.PRIVATE
-				members += validator.toMethod("test", typeRef("boolean")) [
-					abstract = true
-				]
-			]
-			predicateDecl.annotations += annotationRef(typeof(FunctionalInterface))
-			members += predicateDecl
-
+			superTypes += typeRef(typeof(AbstractValidator))
+			
 			members += validator.toField("traverser$", typeRef(typeof(Traverser))) [
 				visibility = JvmVisibility.PRIVATE
 			]
 			members += validator.toField("predicates$", typeRef(typeof(NodePredicates))) [
 				visibility = JvmVisibility.PRIVATE
 			]
-			
+
 			members += compileStartOnDefinition(validator)
 			members += compileNodeDefinitions(validator)
 
-			members += validator.toMethod("eval", typeRef("boolean")) [
-				visibility = JvmVisibility.PRIVATE
-				parameters += validator.toParameter("predicate", typeRef("Predicate"))
-				body = '''return predicate.test();'''
-			]
-
 			members += validator.toMethod("validate", typeRef("boolean")) [
+				annotations += annotationRef(typeof(Override))
 				visibility = JvmVisibility.PUBLIC
 				parameters += validator.toParameter("node$", typeRef("ResolvingNode"))
 				body = '''«compileBody(validator)»'''
@@ -156,43 +140,47 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def compileStartOnDefinition(Validator validator) {
-		validator.sentences
-			.filter(typeof(StartOnSentence))
-			.map[it | it.toField(it.definition.name, 
-				if (it.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
-			)]
+		validator.sentences.filter(typeof(StartOnSentence)).map [ it |
+			it.toField(
+				it.definition.name,
+				if(it.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+			)
+		]
 	}
-	
+
 	def compileNodeDefinitions(Validator validator) {
-		validator.sentences
-			.filter(typeof(DefinitionSentence))
-			.map[it | it.toField(it.target.definition.name, 
-				if (it.target.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
-			)]
+		validator.sentences.filter(typeof(DefinitionSentence)).map [ it |
+			it.toField(
+				it.target.definition.name,
+				if(it.target.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+			)
+		]
 	}
-	
+
 	def compilePredicates(Validator validator) {
-		validator.sentences
-			.filter(typeof(PredicateDefinitionSentence))
-			.map[s | s.toMethod(s.name, typeRef("boolean"))[
+		validator.sentences.filter(typeof(PredicateDefinitionSentence)).map [ s |
+			s.toMethod(s.name, typeRef("boolean")) [
+				visibility = JvmVisibility.PRIVATE
+				parameters += s.parameters?.parameters.map[ p | p.toParameter(p.node.name, if (p.node.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))) ]			
 				body = '''return «predicateExpression(s.predicate)»'''
-			]]
+			]
+		]
 	}
 
 	def compileXExpressionPredicates(Validator validator) {
-		validator.eAllContents.toSet
-			.filter(typeof(PredicateXExpression))
-			.map[PredicateXExpression e | e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
-				body = e.expression 
-			]]
+		validator.eAllContents.toSet.filter(typeof(PredicateXExpression)).map [ PredicateXExpression e |
+			e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
+				body = e.expression
+			]
+		]
 	}
-	
+
 	def compileXExpressionAssignments(Validator validator) {
-		validator.eAllContents.toSet
-			.filter(typeof(AssignmentXExpression))
-			.map[AssignmentXExpression e | e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
-				body = e.expression 
-			]]
+		validator.eAllContents.toSet.filter(typeof(AssignmentXExpression)).map [ AssignmentXExpression e |
+			e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
+				body = e.expression
+			]
+		]
 	}
 
 	def dispatch sentenceStatements(
@@ -241,7 +229,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«ENDIF»
 	'''
 
-	def constraintQuantorEach(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+	def constraintQuantorEach(List<Quantification> quantifications, int index,
+		ConstraintSentence sentence
+	) '''
 		eval(() -> {
 			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
 				boolean satisfied$«quantifications.get(index).node.name.hashCode» = «constraintDispatch(quantifications, index + 1, sentence)»
@@ -251,7 +241,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		});
 	'''
 
-	def constraintQuantorAny(List<Quantification> quantifications, int index,
+	def constraintQuantorAny(
+		List<Quantification> quantifications,
+		int index,
 		ConstraintSentence sentence
 	) '''
 		eval(() -> {
@@ -261,15 +253,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			}
 			return false;
 		});
-	'''
-
-	def dispatch sentenceStatements(
-		PredicateDefinitionSentence sentence
-	) '''
-		// «serialize(sentence)»
-		private boolean «sentence.name»(«parameterList(sentence.parameters)») {
-			return «predicateExpression(sentence.predicate)»
-		}
 	'''
 
 	def singleNodeDefinition(
@@ -291,8 +274,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	'''
 
-	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types,
-		PredicateExpression predicate) '''
+	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types, PredicateExpression predicate) '''
 		«assignee.name» = traverser$.«axis.getName().toLowerCase»(«source.name», (ResolvingNode node$«assignee.hashCode») -> {
 			boolean satisfied$«assignee.hashCode» = true;
 			«IF types != null»
@@ -329,10 +311,10 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch predicateExpression(PredicateExpression expression) {
-		if (expression.inner != null) return predicateExpression(expression.inner)
-		if (expression.lhs != null) return predicateExpression(expression.lhs)
-		if (expression.rhs != null) return predicateExpression(expression.rhs)
-		if (expression.call != null) return predicateCall(expression.call)
+		if(expression.inner != null) return predicateExpression(expression.inner)
+		if(expression.lhs != null) return predicateExpression(expression.lhs)
+		if(expression.rhs != null) return predicateExpression(expression.rhs)
+		if(expression.call != null) return predicateCall(expression.call)
 	}
 
 	def dispatch predicateExpression(AndExpression and) '''
@@ -362,10 +344,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		});
 	'''
 
-	def dispatch predicateExpression(DefinitionSentencePredicate predicate) '''
-		«sentenceStatements(predicate.sentence)»
-	'''
-
 	def dispatch predicateExpression(PredicateReference reference) '''
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
@@ -381,13 +359,15 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch propertyExpression(PropertyReferenceExpression expression) {
-		"property(" + expression.node.name + ", " + "\"" + expression.property + "\"" + ")"
+		expression.node.name + ".getProperty(" + "\"" + expression.property + "\"" + ")"
 	}
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
 		eval(() -> {
+			«val defined = definition.sentence.target.definition»
+			«IF defined.collection»ResolvingNodeSet«ELSE»ResolvingNode«ENDIF» «defined.name»;
 			«sentenceStatements(definition.sentence)»
-			return «qualifierSatisfiedStatement(definition.sentence.target.definition, definition.sentence.qualifier)»;
+			return «qualifierSatisfiedStatement(defined, definition.sentence.qualifier)»;
 		});
 	'''
 
@@ -402,12 +382,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def argumentList(ArgumentList list) {
 		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.name])
 	}
-
-	def parameterList(ParameterList list) {
-		if (list != null)
-			list.parameters.join(", ", [ Parameter parameter |
-				(if(parameter.node.isCollection) "ResolvingNodeSet" else "ResolvingNode") + " " + parameter.node.name
-			])
-	}
 }
+
 

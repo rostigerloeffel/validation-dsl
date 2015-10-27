@@ -3,12 +3,20 @@
  */
 package com.isax.validation.dsl.validation;
 
+import com.google.common.base.Objects;
+import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
+import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
 import com.isax.validation.dsl.validation.AbstractDslValidator;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -19,7 +27,7 @@ import org.eclipse.xtext.validation.Check;
 @SuppressWarnings("all")
 public class DslValidator extends AbstractDslValidator {
   @Check
-  public void checkHasOnlyOneStartOnSentence(final Validator validator) {
+  public void hasOnlyOneStartOnSentence(final Validator validator) {
     final ArrayList<StartOnSentence> sentences = new ArrayList<StartOnSentence>();
     EList<Sentence> _sentences = validator.getSentences();
     for (final Sentence sentence : _sentences) {
@@ -33,6 +41,104 @@ public class DslValidator extends AbstractDslValidator {
       for (final StartOnSentence sentence_1 : sentences) {
         this.error("Validator may have only one \'start on\' sentence!", sentence_1, null);
       }
+    }
+  }
+  
+  @Check
+  public void refersSet(final Quantification quantification) {
+    NodeDefinition _nodeSet = quantification.getNodeSet();
+    boolean _isCollection = _nodeSet.isCollection();
+    boolean _not = (!_isCollection);
+    if (_not) {
+      NodeDefinition _nodeSet_1 = quantification.getNodeSet();
+      String _name = _nodeSet_1.getName();
+      String _plus = ("Quantification node set (" + _name);
+      String _plus_1 = (_plus + ") is not a set!");
+      EReference _quantification_NodeSet = DslPackage.eINSTANCE.getQuantification_NodeSet();
+      this.error(_plus_1, quantification, _quantification_NodeSet);
+    }
+  }
+  
+  @Check
+  public void definesSet(final TargetDefinition target) {
+    boolean _and = false;
+    NodeDefinition _definition = target.getDefinition();
+    boolean _isCollection = _definition.isCollection();
+    boolean _not = (!_isCollection);
+    if (!_not) {
+      _and = false;
+    } else {
+      boolean _or = false;
+      boolean _or_1 = false;
+      boolean _or_2 = false;
+      Axis _axis = target.getAxis();
+      boolean _equals = Objects.equal(_axis, Axis.ANCESTORS);
+      if (_equals) {
+        _or_2 = true;
+      } else {
+        Axis _axis_1 = target.getAxis();
+        boolean _equals_1 = Objects.equal(_axis_1, Axis.DESCENDANTS);
+        _or_2 = _equals_1;
+      }
+      if (_or_2) {
+        _or_1 = true;
+      } else {
+        Axis _axis_2 = target.getAxis();
+        boolean _equals_2 = Objects.equal(_axis_2, Axis.CHILDREN);
+        _or_1 = _equals_2;
+      }
+      if (_or_1) {
+        _or = true;
+      } else {
+        Axis _axis_3 = target.getAxis();
+        boolean _equals_3 = Objects.equal(_axis_3, Axis.PARENTS);
+        _or = _equals_3;
+      }
+      _and = _or;
+    }
+    if (_and) {
+      NodeDefinition _definition_1 = target.getDefinition();
+      EAttribute _nodeDefinition_Name = DslPackage.eINSTANCE.getNodeDefinition_Name();
+      this.error("Usage of \'multiple\' implies node-set target!", _definition_1, _nodeDefinition_Name);
+    }
+    boolean _and_1 = false;
+    NodeDefinition _definition_2 = target.getDefinition();
+    boolean _isCollection_1 = _definition_2.isCollection();
+    if (!_isCollection_1) {
+      _and_1 = false;
+    } else {
+      boolean _or_3 = false;
+      boolean _or_4 = false;
+      boolean _or_5 = false;
+      Axis _axis_4 = target.getAxis();
+      boolean _equals_4 = Objects.equal(_axis_4, Axis.ANCESTOR);
+      if (_equals_4) {
+        _or_5 = true;
+      } else {
+        Axis _axis_5 = target.getAxis();
+        boolean _equals_5 = Objects.equal(_axis_5, Axis.DESCENDANT);
+        _or_5 = _equals_5;
+      }
+      if (_or_5) {
+        _or_4 = true;
+      } else {
+        Axis _axis_6 = target.getAxis();
+        boolean _equals_6 = Objects.equal(_axis_6, Axis.CHILD);
+        _or_4 = _equals_6;
+      }
+      if (_or_4) {
+        _or_3 = true;
+      } else {
+        Axis _axis_7 = target.getAxis();
+        boolean _equals_7 = Objects.equal(_axis_7, Axis.PARENT);
+        _or_3 = _equals_7;
+      }
+      _and_1 = _or_3;
+    }
+    if (_and_1) {
+      NodeDefinition _definition_3 = target.getDefinition();
+      EAttribute _nodeDefinition_Name_1 = DslPackage.eINSTANCE.getNodeDefinition_Name();
+      this.error("Usage of \'non-multiple\' qualifier implies single node target!", _definition_3, _nodeDefinition_Name_1);
     }
   }
 }

@@ -9,20 +9,24 @@ import java.util.ArrayList
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 class DslUtil {
-	
+
 	def static findPreviouslyDefinedNodes(Sentence sentence) {
 		val definitions = new ArrayList<NodeDefinition>();
 		val validator = EcoreUtil.getRootContainer(sentence) as Validator;
-		
-		for (Sentence sentence2 : validator.sentences) {					
-			definitions.add(
-				switch sentence2 {
-					StartOnSentence: sentence2.definition
-					DefinitionSentence case sentence2.node != null: sentence2.getTarget.definition
-					default: null 
-				});
 
-			if (sentence2.equals(sentence)) return definitions.filterNull
+		for (Sentence sentence2 : validator.sentences) {
+			definitions.add(switch sentence2 {
+				StartOnSentence: sentence2.definition
+				DefinitionSentence case sentence2.node != null: sentence2.getTarget.definition
+				default: null
+			});
+
+			if(sentence2.equals(sentence)) return definitions.filterNull
 		}
+	}
+
+	def findDeclaration(NodeDefinition definition) {
+		val validator = EcoreUtil.getRootContainer(definition) as Validator
+		validator.sentences.filter(typeof(DefinitionSentence)).filter[s|s.target.definition.name.equals(definition.name)]
 	}
 }
