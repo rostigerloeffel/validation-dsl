@@ -6,6 +6,7 @@ import com.isax.validation.dsl.dsl.Sentence
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
 import java.util.ArrayList
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 class DslUtil {
@@ -28,5 +29,12 @@ class DslUtil {
 	def findDeclaration(NodeDefinition definition) {
 		val validator = EcoreUtil.getRootContainer(definition) as Validator
 		validator.sentences.filter(typeof(DefinitionSentence)).filter[s|s.target.definition.name.equals(definition.name)]
+	}
+	
+	def depth(EObject object) {
+		var i = 0;
+		var parent = object
+		while ((parent = parent.eContainer) != null) i++
+		i
 	}
 }

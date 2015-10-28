@@ -74,4 +74,17 @@ public class DslUtil {
     }
     return _xblockexpression;
   }
+  
+  public int depth(final EObject object) {
+    int _xblockexpression = (int) 0;
+    {
+      int i = 0;
+      EObject parent = object;
+      while ((!Objects.equal((parent = parent.eContainer()), null))) {
+        i++;
+      }
+      _xblockexpression = i;
+    }
+    return _xblockexpression;
+  }
 }

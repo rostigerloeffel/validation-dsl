@@ -42,6 +42,7 @@ import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
+import com.isax.validation.dsl.util.DslUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +52,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
-import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -63,7 +63,6 @@ import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor.IPostIndexingInitializing;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -73,17 +72,11 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
-/**
- * <p>Infers a JVM model from the source model.</p>
- * 
- * <p>The JVM model should contain all elements that would appear in the Java code
- * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>
- */
 @SuppressWarnings("all")
 public class DslJvmModelInferrer extends AbstractModelInferrer {
-  /**
-   * convenience API to build and initialize JVM types and their members.
-   */
+  @Extension
+  private DslUtil dslUtil = new DslUtil();
+  
   @Inject
   @Extension
   private JvmTypesBuilder _jvmTypesBuilder;
@@ -91,31 +84,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   @Inject
   private ISerializer serializer;
   
-  /**
-   * The dispatch method {@code infer} is called for each instance of the
-   * given element's type that is contained in a resource.
-   * 
-   * @param element
-   *            the model to create one or more
-   *            {@link JvmDeclaredType declared
-   *            types} from.
-   * @param acceptor
-   *            each created
-   *            {@link JvmDeclaredType type}
-   *            without a container should be passed to the acceptor in order
-   *            get attached to the current resource. The acceptor's
-   *            {@link IJvmDeclaredTypeAcceptor#accept(org.eclipse.xtext.common.types.JvmDeclaredType)
-   *            accept(..)} method takes the constructed empty type for the
-   *            pre-indexing phase. This one is further initialized in the
-   *            indexing phase using the closure you pass to the returned
-   *            {@link IPostIndexingInitializing#initializeLater(org.eclipse.xtext.xbase.lib.Procedures.Procedure1)
-   *            initializeLater(..)}.
-   * @param isPreIndexingPhase
-   *            whether the method is called in a pre-indexing phase, i.e.
-   *            when the global index is not yet fully updated. You must not
-   *            rely on linking using the index if isPreIndexingPhase is
-   *            <code>true</code>.
-   */
   protected void _infer(final Validator validator, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     JvmGenericType _class = this._jvmTypesBuilder.toClass(validator, "de.dbsystem.avb.Test");
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
@@ -216,8 +184,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLine();
                 _builder.append("\t");
                 _builder.append("boolean satisfied$");
-                int _hashCode = ((DefinitionSentence)sentence_1).hashCode();
-                _builder.append(_hashCode, "\t");
+                int _depth = this.dslUtil.depth(sentence_1);
+                _builder.append(_depth, "\t");
                 _builder.append(" = ");
                 TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
                 NodeDefinition _definition = _target.getDefinition();
@@ -228,11 +196,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("if (!satisfied$");
-                int _hashCode_1 = ((DefinitionSentence)sentence_1).hashCode();
-                _builder.append(_hashCode_1, "\t");
+                int _depth_1 = this.dslUtil.depth(sentence_1);
+                _builder.append(_depth_1, "\t");
                 _builder.append(") return satisfied$");
-                int _hashCode_2 = ((DefinitionSentence)sentence_1).hashCode();
-                _builder.append(_hashCode_2, "\t");
+                int _depth_2 = this.dslUtil.depth(sentence_1);
+                _builder.append(_depth_2, "\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
                 _builder.append("}");
@@ -462,8 +430,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals) {
         _builder.append("\t");
         _builder.append("boolean satisfied$");
-        int _hashCode = sentence.hashCode();
-        _builder.append(_hashCode, "\t");
+        int _depth = this.dslUtil.depth(sentence);
+        _builder.append(_depth, "\t");
         _builder.append(" = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
         EList<Quantification> _quantifications_2 = _quantifications_1.getQuantifications();
@@ -472,8 +440,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("if (!satisfied$");
-        int _hashCode_1 = sentence.hashCode();
-        _builder.append(_hashCode_1, "\t");
+        int _depth_1 = this.dslUtil.depth(sentence);
+        _builder.append(_depth_1, "\t");
         _builder.append(") return false;");
         _builder.newLineIfNotEmpty();
       }
@@ -539,9 +507,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    String _name_2 = _node_1.getName();
-    int _hashCode = _name_2.hashCode();
-    _builder.append(_hashCode, "\t\t");
+    int _depth = this.dslUtil.depth(_node_1);
+    _builder.append(_depth, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
@@ -550,9 +517,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (!satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    String _name_3 = _node_2.getName();
-    int _hashCode_1 = _name_3.hashCode();
-    _builder.append(_hashCode_1, "\t\t");
+    int _depth_1 = this.dslUtil.depth(_node_2);
+    _builder.append(_depth_1, "\t\t");
     _builder.append(") return false;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -587,9 +553,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    String _name_2 = _node_1.getName();
-    int _hashCode = _name_2.hashCode();
-    _builder.append(_hashCode, "\t\t");
+    int _depth = this.dslUtil.depth(_node_1);
+    _builder.append(_depth, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
@@ -598,9 +563,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    String _name_3 = _node_2.getName();
-    int _hashCode_1 = _name_3.hashCode();
-    _builder.append(_hashCode_1, "\t\t");
+    int _depth_1 = this.dslUtil.depth(_node_2);
+    _builder.append(_depth_1, "\t\t");
     _builder.append(") return true;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -638,8 +602,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _hashCode = sentence.hashCode();
-    _builder.append(_hashCode, "\t");
+    int _depth = this.dslUtil.depth(sentence);
+    _builder.append(_depth, "\t");
     _builder.append(" = ");
     RelationQualifier _qualifier = sentence.getQualifier();
     String _initialQualifierSatisfaction = this.initialQualifierSatisfaction(_qualifier);
@@ -676,8 +640,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("satisfied$");
-    int _hashCode_1 = sentence.hashCode();
-    _builder.append(_hashCode_1, "\t\t");
+    int _depth_1 = this.dslUtil.depth(sentence);
+    _builder.append(_depth_1, "\t\t");
     _builder.append(" ");
     Quantification _quantification_3 = sentence.getQuantification();
     Quantor _quantor = _quantification_3.getQuantor();
@@ -696,11 +660,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("if (!satisfied$");
-    int _hashCode_2 = sentence.hashCode();
-    _builder.append(_hashCode_2, "\t");
+    int _depth_2 = this.dslUtil.depth(sentence);
+    _builder.append(_depth_2, "\t");
     _builder.append(") return satisfied$");
-    int _hashCode_3 = sentence.hashCode();
-    _builder.append(_hashCode_3, "\t");
+    int _depth_3 = this.dslUtil.depth(sentence);
+    _builder.append(_depth_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
@@ -720,14 +684,14 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _name_2 = source.getName();
     _builder.append(_name_2, "");
     _builder.append(", (ResolvingNode node$");
-    int _hashCode = assignee.hashCode();
-    _builder.append(_hashCode, "");
+    int _depth = this.dslUtil.depth(assignee);
+    _builder.append(_depth, "");
     _builder.append(") -> {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _hashCode_1 = assignee.hashCode();
-    _builder.append(_hashCode_1, "\t");
+    int _depth_1 = this.dslUtil.depth(assignee);
+    _builder.append(_depth_1, "\t");
     _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
     {
@@ -735,11 +699,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _hashCode_2 = assignee.hashCode();
-        _builder.append(_hashCode_2, "\t");
+        int _depth_2 = this.dslUtil.depth(assignee);
+        _builder.append(_depth_2, "\t");
         _builder.append(" &= predicates$.hasType(node$");
-        int _hashCode_3 = assignee.hashCode();
-        _builder.append(_hashCode_3, "\t");
+        int _depth_3 = this.dslUtil.depth(assignee);
+        _builder.append(_depth_3, "\t");
         _builder.append(", \"");
         SelectorListDef _selectors = types.getSelectors();
         EList<Selector> _selectors_1 = _selectors.getSelectors();
@@ -757,8 +721,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals_1) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _hashCode_4 = assignee.hashCode();
-        _builder.append(_hashCode_4, "\t");
+        int _depth_4 = this.dslUtil.depth(assignee);
+        _builder.append(_depth_4, "\t");
         _builder.append(" &= ");
         Object _predicateExpression = this.predicateExpression(predicate);
         _builder.append(_predicateExpression, "\t");
@@ -767,8 +731,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     }
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _hashCode_5 = assignee.hashCode();
-    _builder.append(_hashCode_5, "\t");
+    int _depth_5 = this.dslUtil.depth(assignee);
+    _builder.append(_depth_5, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -859,8 +823,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _hashCode = and.hashCode();
-    _builder.append(_hashCode, "\t");
+    int _depth = this.dslUtil.depth(and);
+    _builder.append(_depth, "\t");
     _builder.append(" = true;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -869,8 +833,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _hashCode_1 = and.hashCode();
-        _builder.append(_hashCode_1, "\t");
+        int _depth_1 = this.dslUtil.depth(and);
+        _builder.append(_depth_1, "\t");
         _builder.append(" &= ");
         PredicateExpression _lhs_1 = and.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -881,8 +845,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _hashCode_2 = and.hashCode();
-    _builder.append(_hashCode_2, "\t");
+    int _depth_2 = this.dslUtil.depth(and);
+    _builder.append(_depth_2, "\t");
     _builder.append(" &= ");
     PredicateExpression _rhs = and.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -890,8 +854,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _hashCode_3 = and.hashCode();
-    _builder.append(_hashCode_3, "\t");
+    int _depth_3 = this.dslUtil.depth(and);
+    _builder.append(_depth_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -905,8 +869,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _hashCode = or.hashCode();
-    _builder.append(_hashCode, "\t");
+    int _depth = this.dslUtil.depth(or);
+    _builder.append(_depth, "\t");
     _builder.append(" = false;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -915,8 +879,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _hashCode_1 = or.hashCode();
-        _builder.append(_hashCode_1, "\t");
+        int _depth_1 = this.dslUtil.depth(or);
+        _builder.append(_depth_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = or.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -927,8 +891,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _hashCode_2 = or.hashCode();
-    _builder.append(_hashCode_2, "\t");
+    int _depth_2 = this.dslUtil.depth(or);
+    _builder.append(_depth_2, "\t");
     _builder.append(" |= ");
     PredicateExpression _rhs = or.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -936,8 +900,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _hashCode_3 = or.hashCode();
-    _builder.append(_hashCode_3, "\t");
+    int _depth_3 = this.dslUtil.depth(or);
+    _builder.append(_depth_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -951,8 +915,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _hashCode = implies.hashCode();
-    _builder.append(_hashCode, "\t");
+    int _depth = this.dslUtil.depth(implies);
+    _builder.append(_depth, "\t");
     _builder.append(" = false;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -961,8 +925,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _hashCode_1 = implies.hashCode();
-        _builder.append(_hashCode_1, "\t");
+        int _depth_1 = this.dslUtil.depth(implies);
+        _builder.append(_depth_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = implies.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -973,8 +937,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _hashCode_2 = implies.hashCode();
-    _builder.append(_hashCode_2, "\t");
+    int _depth_2 = this.dslUtil.depth(implies);
+    _builder.append(_depth_2, "\t");
     _builder.append(" |= !");
     PredicateExpression _rhs = implies.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -982,8 +946,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _hashCode_3 = implies.hashCode();
-    _builder.append(_hashCode_3, "\t");
+    int _depth_3 = this.dslUtil.depth(implies);
+    _builder.append(_depth_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");

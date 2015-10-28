@@ -31,55 +31,22 @@ import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
+import com.isax.validation.dsl.util.DslUtil
 import java.util.List
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor.IPostIndexingInitializing
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
-/**
- * <p>Infers a JVM model from the source model.</p> 
- * 
- * <p>The JVM model should contain all elements that would appear in the Java code 
- * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>     
- */
 class DslJvmModelInferrer extends AbstractModelInferrer {
 
-	/**
-	 * convenience API to build and initialize JVM types and their members.
-	 */
+	extension DslUtil dslUtil = new DslUtil 
+
 	@Inject extension JvmTypesBuilder
 	@Inject ISerializer serializer;
 
-	/**
-	 * The dispatch method {@code infer} is called for each instance of the
-	 * given element's type that is contained in a resource.
-	 * 
-	 * @param element
-	 *            the model to create one or more
-	 *            {@link JvmDeclaredType declared
-	 *            types} from.
-	 * @param acceptor
-	 *            each created
-	 *            {@link JvmDeclaredType type}
-	 *            without a container should be passed to the acceptor in order
-	 *            get attached to the current resource. The acceptor's
-	 *            {@link IJvmDeclaredTypeAcceptor#accept(org.eclipse.xtext.common.types.JvmDeclaredType)
-	 *            accept(..)} method takes the constructed empty type for the
-	 *            pre-indexing phase. This one is further initialized in the
-	 *            indexing phase using the closure you pass to the returned
-	 *            {@link IPostIndexingInitializing#initializeLater(org.eclipse.xtext.xbase.lib.Procedures.Procedure1)
-	 *            initializeLater(..)}.
-	 * @param isPreIndexingPhase
-	 *            whether the method is called in a pre-indexing phase, i.e.
-	 *            when the global index is not yet fully updated. You must not
-	 *            rely on linking using the index if isPreIndexingPhase is
-	 *            <code>true</code>.
-	 */
 	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [
 			superTypes += typeRef(typeof(AbstractValidator))
@@ -123,8 +90,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				«sentenceStatements(sentence)»
 				«IF sentence.quantification == null»
 					{
-						boolean satisfied$«sentence.hashCode» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
-						if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
+						boolean satisfied$«sentence.depth» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+						if (!satisfied$«sentence.depth») return satisfied$«sentence.depth»;
 					}
 					
 				«ENDIF»
@@ -211,8 +178,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		// «serialize(sentence)»
 		{
 			«IF sentence.quantifications != null»
-				boolean satisfied$«sentence.hashCode» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
-				if (!satisfied$«sentence.hashCode») return false;
+				boolean satisfied$«sentence.depth» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
+				if (!satisfied$«sentence.depth») return false;
 			«ENDIF»
 		}
 	'''
@@ -234,8 +201,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		eval(() -> {
 			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
-				boolean satisfied$«quantifications.get(index).node.name.hashCode» = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (!satisfied$«quantifications.get(index).node.name.hashCode») return false;
+				boolean satisfied$«quantifications.get(index).node.depth» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (!satisfied$«quantifications.get(index).node.depth») return false;
 			}
 			return true;
 		});
@@ -248,8 +215,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		eval(() -> {
 			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
-				boolean satisfied$«quantifications.get(index).node.name.hashCode» = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (satisfied$«quantifications.get(index).node.name.hashCode») return true;
+				boolean satisfied$«quantifications.get(index).node.depth» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (satisfied$«quantifications.get(index).node.depth») return true;
 			}
 			return false;
 		});
@@ -265,25 +232,25 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		DefinitionSentence sentence
 	) '''
 		{
-			boolean satisfied$«sentence.hashCode» = «initialQualifierSatisfaction(sentence.qualifier)»;
+			boolean satisfied$«sentence.depth» = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for (ResolvingNode «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
 				«nodeAssignmentStatement(sentence.getTarget.definition, sentence.getTarget.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.predicate)»
-				satisfied$«sentence.hashCode» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
+				satisfied$«sentence.depth» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
-			if (!satisfied$«sentence.hashCode») return satisfied$«sentence.hashCode»;
+			if (!satisfied$«sentence.depth») return satisfied$«sentence.depth»;
 		}
 	'''
 
 	def nodeAssignmentStatement(NodeDefinition assignee, Axis axis, NodeDefinition source, SelectorList types, PredicateExpression predicate) '''
-		«assignee.name» = traverser$.«axis.getName().toLowerCase»(«source.name», (ResolvingNode node$«assignee.hashCode») -> {
-			boolean satisfied$«assignee.hashCode» = true;
+		«assignee.name» = traverser$.«axis.getName().toLowerCase»(«source.name», (ResolvingNode node$«assignee.depth») -> {
+			boolean satisfied$«assignee.depth» = true;
 			«IF types != null»
-				satisfied$«assignee.hashCode» &= predicates$.hasType(node$«assignee.hashCode», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
+				satisfied$«assignee.depth» &= predicates$.hasType(node$«assignee.depth», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
 			«ENDIF»
 			«IF predicate != null»
-				satisfied$«assignee.hashCode» &= «predicateExpression(predicate)»
+				satisfied$«assignee.depth» &= «predicateExpression(predicate)»
 			«ENDIF»
-			return satisfied$«assignee.hashCode»;
+			return satisfied$«assignee.depth»;
 		});
 	'''
 
@@ -319,28 +286,28 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch predicateExpression(AndExpression and) '''
 		eval(() -> {
-			boolean satisfied$«and.hashCode» = true;			
-			«IF and.lhs != null»satisfied$«and.hashCode» &= «predicateExpression(and.lhs)»«ENDIF»		
-			satisfied$«and.hashCode» &= «predicateExpression(and.rhs)»
-			return satisfied$«and.hashCode»;
+			boolean satisfied$«and.depth» = true;			
+			«IF and.lhs != null»satisfied$«and.depth» &= «predicateExpression(and.lhs)»«ENDIF»		
+			satisfied$«and.depth» &= «predicateExpression(and.rhs)»
+			return satisfied$«and.depth»;
 		});
 	'''
 
 	def dispatch predicateExpression(OrExpression or) '''
 		eval(() -> {
-			boolean satisfied$«or.hashCode» = false;			
-			«IF or.lhs != null»satisfied$«or.hashCode» |= «predicateExpression(or.lhs)»«ENDIF»		
-			satisfied$«or.hashCode» |= «predicateExpression(or.rhs)»
-			return satisfied$«or.hashCode»;
+			boolean satisfied$«or.depth» = false;			
+			«IF or.lhs != null»satisfied$«or.depth» |= «predicateExpression(or.lhs)»«ENDIF»		
+			satisfied$«or.depth» |= «predicateExpression(or.rhs)»
+			return satisfied$«or.depth»;
 		});
 	'''
 
 	def dispatch predicateExpression(ImpliesExpression implies) '''
 		eval(() -> {
-			boolean satisfied$«implies.hashCode» = false;			
-			«IF implies.lhs != null»satisfied$«implies.hashCode» |= «predicateExpression(implies.lhs)»«ENDIF»		
-			satisfied$«implies.hashCode» |= !«predicateExpression(implies.rhs)»
-			return satisfied$«implies.hashCode»;
+			boolean satisfied$«implies.depth» = false;			
+			«IF implies.lhs != null»satisfied$«implies.depth» |= «predicateExpression(implies.lhs)»«ENDIF»		
+			satisfied$«implies.depth» |= !«predicateExpression(implies.rhs)»
+			return satisfied$«implies.depth»;
 		});
 	'''
 
