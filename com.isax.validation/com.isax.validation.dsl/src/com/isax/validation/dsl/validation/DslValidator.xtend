@@ -45,6 +45,12 @@ class DslValidator extends AbstractDslValidator {
 		}
 	}
 	
+	@Check
+	def refersNode(DefinitionSentence sentence) {
+		if (sentence.quantification == null && sentence.node.collection) {
+			error("Use 'each' or 'any' to obtain neighbouring nodes of node sets!", sentence, DslPackage.eINSTANCE.definitionSentence_Node)
+		}
+	}
 	
 	@Check
 	def definitionConformsAxisKind(TargetDefinition target) {

@@ -63,6 +63,24 @@ public class DslValidator extends AbstractDslValidator {
   }
   
   @Check
+  public void refersNode(final DefinitionSentence sentence) {
+    boolean _and = false;
+    Quantification _quantification = sentence.getQuantification();
+    boolean _equals = Objects.equal(_quantification, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      NodeDefinition _node = sentence.getNode();
+      boolean _isCollection = _node.isCollection();
+      _and = _isCollection;
+    }
+    if (_and) {
+      EReference _definitionSentence_Node = DslPackage.eINSTANCE.getDefinitionSentence_Node();
+      this.error("Use \'each\' or \'any\' to obtain neighbouring nodes of node sets!", sentence, _definitionSentence_Node);
+    }
+  }
+  
+  @Check
   public void definitionConformsAxisKind(final TargetDefinition target) {
     boolean _and = false;
     NodeDefinition _definition = target.getDefinition();
