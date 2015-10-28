@@ -3,11 +3,22 @@
  */
 package com.isax.validation.dsl.scoping;
 
+import com.google.common.collect.Iterables;
+import com.isax.validation.dsl.dsl.DefinitionSentence;
+import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.Sentence;
+import com.isax.validation.dsl.dsl.StartOnSentence;
+import com.isax.validation.dsl.dsl.TargetDefinition;
+import com.isax.validation.dsl.dsl.Validator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Pair;
 
 /**
  * This class contains custom scoping description.
@@ -17,12 +28,35 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
  */
 @SuppressWarnings("all")
 public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
-  @Override
-  public IScope getScope(final EObject context, final EReference reference) {
+  public IScope scope_DefinitionSentence_node(final DefinitionSentence sentence, final EReference reference) {
     IScope _xblockexpression = null;
     {
-      InputOutput.<String>println("getScope");
-      _xblockexpression = super.getScope(context, reference);
+      EObject _eContainer = sentence.eContainer();
+      final Validator validator = ((Validator) _eContainer);
+      EList<Sentence> _sentences = validator.getSentences();
+      final int index = _sentences.indexOf(sentence);
+      EList<Sentence> _sentences_1 = validator.getSentences();
+      Iterable<DefinitionSentence> _filter = Iterables.<DefinitionSentence>filter(_sentences_1, DefinitionSentence.class);
+      Iterable<Pair<Integer, DefinitionSentence>> _indexed = IterableExtensions.<DefinitionSentence>indexed(_filter);
+      final Function1<Pair<Integer, DefinitionSentence>, Boolean> _function = (Pair<Integer, DefinitionSentence> p) -> {
+        Integer _key = p.getKey();
+        return Boolean.valueOf(((_key).intValue() < index));
+      };
+      Iterable<Pair<Integer, DefinitionSentence>> _filter_1 = IterableExtensions.<Pair<Integer, DefinitionSentence>>filter(_indexed, _function);
+      final Function1<Pair<Integer, DefinitionSentence>, NodeDefinition> _function_1 = (Pair<Integer, DefinitionSentence> p) -> {
+        DefinitionSentence _value = p.getValue();
+        TargetDefinition _target = _value.getTarget();
+        return _target.getDefinition();
+      };
+      Iterable<NodeDefinition> _map = IterableExtensions.<Pair<Integer, DefinitionSentence>, NodeDefinition>map(_filter_1, _function_1);
+      EList<Sentence> _sentences_2 = validator.getSentences();
+      Iterable<StartOnSentence> _filter_2 = Iterables.<StartOnSentence>filter(_sentences_2, StartOnSentence.class);
+      final Function1<StartOnSentence, NodeDefinition> _function_2 = (StartOnSentence s) -> {
+        return s.getDefinition();
+      };
+      Iterable<NodeDefinition> _map_1 = IterableExtensions.<StartOnSentence, NodeDefinition>map(_filter_2, _function_2);
+      IScope _scopeFor = Scopes.scopeFor(_map_1);
+      _xblockexpression = Scopes.scopeFor(_map, _scopeFor);
     }
     return _xblockexpression;
   }

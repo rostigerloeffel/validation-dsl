@@ -3,9 +3,11 @@
  */
 package com.isax.validation.dsl.scoping
 
-import org.eclipse.emf.ecore.EObject
+import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.StartOnSentence
+import com.isax.validation.dsl.dsl.Validator
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.scoping.IScope
+import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 /**
@@ -13,17 +15,17 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
  * 
  * see : http://www.eclipse.org/Xtext/documentation.html#scoping
  * on how and when to use it 
- *
+ * 
  */
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
-	
-	override IScope getScope(EObject context, EReference reference) {
-		println("getScope")
-		super.getScope(context, reference)
+	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
+		val validator = sentence.eContainer as Validator
+		val index = validator.sentences.indexOf(sentence)
+		Scopes.scopeFor(
+			validator.sentences.filter(typeof(DefinitionSentence)).indexed.filter[p | p.key < index].map[p | p.value.target.definition],
+			Scopes.scopeFor(
+				validator.sentences.filter(typeof(StartOnSentence)).map[s | s.definition]
+			)
+		)
 	}
-	
-//	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
-//		Scopes.scopeFor(DslUtil.findPrevuslyDefinedNodes(sentence))
-//	}
-	
 }
