@@ -3,6 +3,7 @@ package com.isax.validation.dsl.jvmmodel
 import com.google.inject.Inject
 import com.isax.validation.dsl.api.AbstractValidator
 import com.isax.validation.dsl.api.NodePredicates
+import com.isax.validation.dsl.api.Resolvable
 import com.isax.validation.dsl.api.ResolvingNode
 import com.isax.validation.dsl.api.ResolvingNodeSet
 import com.isax.validation.dsl.api.Traverser
@@ -31,7 +32,6 @@ import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
-import com.isax.validation.dsl.util.DslUtil
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -48,13 +48,20 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	@Inject ISerializer serializer;
 
 	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [
-			superTypes += typeRef(typeof(AbstractValidator))
+		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [			
+			superTypes += typeRef(AbstractValidator)
 			
-			members += validator.toField("traverser$", typeRef(typeof(Traverser))) [
+			members += validator.toField("null$", typeRef(Resolvable)) [
+				visibility = JvmVisibility.PRIVATE
+				static = true
+				final = true
+				initializer = '''new «Resolvable.simpleName».Null()'''
+			]
+			
+			members += validator.toField("traverser$", typeRef(Traverser)) [
 				visibility = JvmVisibility.PRIVATE
 			]
-			members += validator.toField("predicates$", typeRef(typeof(NodePredicates))) [
+			members += validator.toField("predicates$", typeRef(NodePredicates)) [
 				visibility = JvmVisibility.PRIVATE
 			]
 
@@ -62,9 +69,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			members += compileNodeDefinitions(validator)
 
 			members += validator.toMethod("validate", typeRef("boolean")) [
-				annotations += annotationRef(typeof(Override))
+				annotations += annotationRef(Override)
 				visibility = JvmVisibility.PUBLIC
-				parameters += validator.toParameter("node$", typeRef("ResolvingNode"))
+				parameters += validator.toParameter("node$", typeRef(ResolvingNode))
 				body = '''«compileBody(validator)»'''
 			]
 
@@ -107,35 +114,35 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def compileStartOnDefinition(Validator validator) {
-		validator.sentences.filter(typeof(StartOnSentence)).map [ it |
+		validator.sentences.filter(StartOnSentence).map [ it |
 			it.toField(
 				it.definition.name,
-				if(it.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+				if (it.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 			)
 		]
 	}
 
 	def compileNodeDefinitions(Validator validator) {
-		validator.sentences.filter(typeof(DefinitionSentence)).map [ it |
+		validator.sentences.filter(DefinitionSentence).map [ it |
 			it.toField(
 				it.target.definition.name,
-				if(it.target.definition.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))
+				if (it.target.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 			)
 		]
 	}
 
 	def compilePredicates(Validator validator) {
-		validator.sentences.filter(typeof(PredicateDefinitionSentence)).map [ s |
+		validator.sentences.filter(PredicateDefinitionSentence).map [ s |
 			s.toMethod(s.name, typeRef("boolean")) [
 				visibility = JvmVisibility.PRIVATE
-				parameters += s.parameters?.parameters.map[ p | p.toParameter(p.node.name, if (p.node.collection) typeRef(typeof(ResolvingNodeSet)) else typeRef(typeof(ResolvingNode))) ]			
+				parameters += s.parameters?.parameters.map[ p | p.toParameter(p.node.name, if (p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)) ]			
 				body = '''return «predicateExpression(s.predicate)»'''
 			]
 		]
 	}
 
 	def compileXExpressionPredicates(Validator validator) {
-		validator.eAllContents.toSet.filter(typeof(PredicateXExpression)).map [ PredicateXExpression e |
+		validator.eAllContents.toSet.filter(PredicateXExpression).map [ PredicateXExpression e |
 			e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
 				body = e.expression
 			]
@@ -143,7 +150,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def compileXExpressionAssignments(Validator validator) {
-		validator.eAllContents.toSet.filter(typeof(AssignmentXExpression)).map [ AssignmentXExpression e |
+		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ AssignmentXExpression e |
 			e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
 				body = e.expression
 			]
@@ -332,7 +339,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
 		eval(() -> {
 			«val defined = definition.sentence.target.definition»
-			«IF defined.collection»ResolvingNodeSet«ELSE»ResolvingNode«ENDIF» «defined.name»;
+			«Resolvable.simpleName» «defined.name» = null$;
 			«sentenceStatements(definition.sentence)»
 			return «qualifierSatisfiedStatement(defined, definition.sentence.qualifier)»;
 		});

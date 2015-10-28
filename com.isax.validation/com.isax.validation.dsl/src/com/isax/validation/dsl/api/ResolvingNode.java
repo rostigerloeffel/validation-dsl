@@ -1,6 +1,7 @@
 package com.isax.validation.dsl.api;
 
-public class ResolvingNode {
+public class ResolvingNode implements Resolvable {
+	@Override
 	public boolean hasCandidates() {
 		return true;
 	}
