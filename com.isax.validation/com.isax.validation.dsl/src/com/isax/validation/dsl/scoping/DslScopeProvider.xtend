@@ -22,9 +22,13 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 		val validator = sentence.eContainer as Validator
 		val index = validator.sentences.indexOf(sentence)
 		Scopes.scopeFor(
-			validator.sentences.filter(typeof(DefinitionSentence)).indexed.filter[p | p.key < index].map[p | p.value.target.definition],
+			validator.sentences.filter(typeof(DefinitionSentence)).indexed
+				.filter[p|p.key < index].map[p|p.value]
+				.filter[d|d.node != null].map[d|d.target.definition]
+				.filter[d|!d.collection],
+				
 			Scopes.scopeFor(
-				validator.sentences.filter(typeof(StartOnSentence)).map[s | s.definition]
+				validator.sentences.filter(typeof(StartOnSentence)).map[s|s.definition]
 			)
 		)
 	}

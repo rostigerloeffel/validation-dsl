@@ -3,6 +3,7 @@
  */
 package com.isax.validation.dsl.scoping;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.NodeDefinition;
@@ -43,20 +44,33 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
         return Boolean.valueOf(((_key).intValue() < index));
       };
       Iterable<Pair<Integer, DefinitionSentence>> _filter_1 = IterableExtensions.<Pair<Integer, DefinitionSentence>>filter(_indexed, _function);
-      final Function1<Pair<Integer, DefinitionSentence>, NodeDefinition> _function_1 = (Pair<Integer, DefinitionSentence> p) -> {
-        DefinitionSentence _value = p.getValue();
-        TargetDefinition _target = _value.getTarget();
+      final Function1<Pair<Integer, DefinitionSentence>, DefinitionSentence> _function_1 = (Pair<Integer, DefinitionSentence> p) -> {
+        return p.getValue();
+      };
+      Iterable<DefinitionSentence> _map = IterableExtensions.<Pair<Integer, DefinitionSentence>, DefinitionSentence>map(_filter_1, _function_1);
+      final Function1<DefinitionSentence, Boolean> _function_2 = (DefinitionSentence d) -> {
+        NodeDefinition _node = d.getNode();
+        return Boolean.valueOf((!Objects.equal(_node, null)));
+      };
+      Iterable<DefinitionSentence> _filter_2 = IterableExtensions.<DefinitionSentence>filter(_map, _function_2);
+      final Function1<DefinitionSentence, NodeDefinition> _function_3 = (DefinitionSentence d) -> {
+        TargetDefinition _target = d.getTarget();
         return _target.getDefinition();
       };
-      Iterable<NodeDefinition> _map = IterableExtensions.<Pair<Integer, DefinitionSentence>, NodeDefinition>map(_filter_1, _function_1);
+      Iterable<NodeDefinition> _map_1 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_2, _function_3);
+      final Function1<NodeDefinition, Boolean> _function_4 = (NodeDefinition d) -> {
+        boolean _isCollection = d.isCollection();
+        return Boolean.valueOf((!_isCollection));
+      };
+      Iterable<NodeDefinition> _filter_3 = IterableExtensions.<NodeDefinition>filter(_map_1, _function_4);
       EList<Sentence> _sentences_2 = validator.getSentences();
-      Iterable<StartOnSentence> _filter_2 = Iterables.<StartOnSentence>filter(_sentences_2, StartOnSentence.class);
-      final Function1<StartOnSentence, NodeDefinition> _function_2 = (StartOnSentence s) -> {
+      Iterable<StartOnSentence> _filter_4 = Iterables.<StartOnSentence>filter(_sentences_2, StartOnSentence.class);
+      final Function1<StartOnSentence, NodeDefinition> _function_5 = (StartOnSentence s) -> {
         return s.getDefinition();
       };
-      Iterable<NodeDefinition> _map_1 = IterableExtensions.<StartOnSentence, NodeDefinition>map(_filter_2, _function_2);
-      IScope _scopeFor = Scopes.scopeFor(_map_1);
-      _xblockexpression = Scopes.scopeFor(_map, _scopeFor);
+      Iterable<NodeDefinition> _map_2 = IterableExtensions.<StartOnSentence, NodeDefinition>map(_filter_4, _function_5);
+      IScope _scopeFor = Scopes.scopeFor(_map_2);
+      _xblockexpression = Scopes.scopeFor(_filter_3, _scopeFor);
     }
     return _xblockexpression;
   }
