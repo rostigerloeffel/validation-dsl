@@ -113,6 +113,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImpliesExpressionAccess().getGroup(), "rule__ImpliesExpression__Group__0");
 					put(grammarAccess.getImpliesExpressionAccess().getGroup_1(), "rule__ImpliesExpression__Group_1__0");
 					put(grammarAccess.getPrimaryExpressionAccess().getGroup(), "rule__PrimaryExpression__Group__0");
+					put(grammarAccess.getPrimaryExpressionAccess().getGroup_0(), "rule__PrimaryExpression__Group_0__0");
 					put(grammarAccess.getPrimaryExpressionAccess().getGroup_1_1(), "rule__PrimaryExpression__Group_1_1__0");
 					put(grammarAccess.getPredicateCallAccess().getGroup(), "rule__PredicateCall__Group__0");
 					put(grammarAccess.getPredicateCallAccess().getGroup_1(), "rule__PredicateCall__Group_1__0");
@@ -338,7 +339,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOrExpressionAccess().getRhsAssignment_1_2(), "rule__OrExpression__RhsAssignment_1_2");
 					put(grammarAccess.getImpliesExpressionAccess().getLhsAssignment_0(), "rule__ImpliesExpression__LhsAssignment_0");
 					put(grammarAccess.getImpliesExpressionAccess().getRhsAssignment_1_2(), "rule__ImpliesExpression__RhsAssignment_1_2");
-					put(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0(), "rule__PrimaryExpression__NegatedAssignment_0");
+					put(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0_0(), "rule__PrimaryExpression__NegatedAssignment_0_0");
 					put(grammarAccess.getPrimaryExpressionAccess().getCallAssignment_1_0(), "rule__PrimaryExpression__CallAssignment_1_0");
 					put(grammarAccess.getPrimaryExpressionAccess().getInnerAssignment_1_1_1(), "rule__PrimaryExpression__InnerAssignment_1_1_1");
 					put(grammarAccess.getPredicateCallAccess().getLabelAssignment_1_1(), "rule__PredicateCall__LabelAssignment_1_1");

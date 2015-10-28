@@ -48,16 +48,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	@Inject ISerializer serializer;
 
 	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [			
+		acceptor.accept(validator.toClass("de.dbsystem.avb.Test")) [
 			superTypes += typeRef(AbstractValidator)
-			
+
 			members += validator.toField("null$", typeRef(Resolvable)) [
 				visibility = JvmVisibility.PRIVATE
 				static = true
 				final = true
 				initializer = '''new «Resolvable.simpleName».Null()'''
 			]
-			
+
 			members += validator.toField("traverser$", typeRef(Traverser)) [
 				visibility = JvmVisibility.PRIVATE
 			]
@@ -114,19 +114,19 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def compileStartOnDefinition(Validator validator) {
-		validator.sentences.filter(StartOnSentence).map [ it |
-			it.toField(
-				it.definition.name,
-				if (it.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
+		validator.sentences.filter(StartOnSentence).map [ s |
+			s.toField(
+				s.definition.name,
+				if(s.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 			)
 		]
 	}
 
 	def compileNodeDefinitions(Validator validator) {
-		validator.sentences.filter(DefinitionSentence).map [ it |
-			it.toField(
-				it.target.definition.name,
-				if (it.target.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
+		validator.sentences.filter(DefinitionSentence).map [ s |
+			s.toField(
+				s.target.definition.name,
+				if(s.target.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 			)
 		]
 	}
@@ -135,14 +135,14 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		validator.sentences.filter(PredicateDefinitionSentence).map [ s |
 			s.toMethod(s.name, typeRef("boolean")) [
 				visibility = JvmVisibility.PRIVATE
-				parameters += s.parameters?.parameters.map[ p | p.toParameter(p.node.name, if (p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)) ]			
+				parameters += s.parameters?.parameters.map[p|p.toParameter(p.node.name, if(p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode))]
 				body = '''return «predicateExpression(s.predicate)»'''
 			]
 		]
 	}
 
 	def compileXExpressionPredicates(Validator validator) {
-		validator.eAllContents.toSet.filter(PredicateXExpression).map [ PredicateXExpression e |
+		validator.eAllContents.toSet.filter(PredicateXExpression).map [ e |
 			e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
 				body = e.expression
 			]
@@ -150,7 +150,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def compileXExpressionAssignments(Validator validator) {
-		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ AssignmentXExpression e |
+		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ e |
 			e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
 				body = e.expression
 			]
@@ -191,7 +191,11 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	'''
 
-	def constraintDispatch(List<Quantification> quantifications, int index, ConstraintSentence sentence) '''
+	def constraintDispatch(
+		List<Quantification> quantifications,
+		int index,
+		ConstraintSentence sentence
+	) '''
 		«IF index < quantifications.size»
 			«IF quantifications.get(index).quantor == Quantor.EACH»
 				«constraintQuantorEach(quantifications, index, sentence)»
@@ -203,7 +207,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«ENDIF»
 	'''
 
-	def constraintQuantorEach(List<Quantification> quantifications, int index,
+	def constraintQuantorEach(
+		List<Quantification> quantifications,
+		int index,
 		ConstraintSentence sentence
 	) '''
 		eval(() -> {
@@ -345,12 +351,12 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		});
 	'''
 
-	def dispatch predicateCall(PredicateReference reference) '''
-		«reference.reference.name»(«argumentList(reference.arguments)»);
-	'''
-
 	def dispatch predicateCall(PredicateXExpression expression) '''
 		predicate$«expression.hashCode»();
+	'''
+
+	def dispatch predicateCall(PredicateReference reference) '''
+		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
 
 	def argumentList(ArgumentList list) {

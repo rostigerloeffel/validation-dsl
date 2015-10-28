@@ -250,18 +250,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public Iterable<JvmField> compileStartOnDefinition(final Validator validator) {
     EList<Sentence> _sentences = validator.getSentences();
     Iterable<StartOnSentence> _filter = Iterables.<StartOnSentence>filter(_sentences, StartOnSentence.class);
-    final Function1<StartOnSentence, JvmField> _function = (StartOnSentence it) -> {
-      NodeDefinition _definition = it.getDefinition();
+    final Function1<StartOnSentence, JvmField> _function = (StartOnSentence s) -> {
+      NodeDefinition _definition = s.getDefinition();
       String _name = _definition.getName();
       JvmTypeReference _xifexpression = null;
-      NodeDefinition _definition_1 = it.getDefinition();
+      NodeDefinition _definition_1 = s.getDefinition();
       boolean _isCollection = _definition_1.isCollection();
       if (_isCollection) {
         _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
       } else {
         _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
       }
-      return this._jvmTypesBuilder.toField(it, _name, _xifexpression);
+      return this._jvmTypesBuilder.toField(s, _name, _xifexpression);
     };
     return IterableExtensions.<StartOnSentence, JvmField>map(_filter, _function);
   }
@@ -269,12 +269,12 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public Iterable<JvmField> compileNodeDefinitions(final Validator validator) {
     EList<Sentence> _sentences = validator.getSentences();
     Iterable<DefinitionSentence> _filter = Iterables.<DefinitionSentence>filter(_sentences, DefinitionSentence.class);
-    final Function1<DefinitionSentence, JvmField> _function = (DefinitionSentence it) -> {
-      TargetDefinition _target = it.getTarget();
+    final Function1<DefinitionSentence, JvmField> _function = (DefinitionSentence s) -> {
+      TargetDefinition _target = s.getTarget();
       NodeDefinition _definition = _target.getDefinition();
       String _name = _definition.getName();
       JvmTypeReference _xifexpression = null;
-      TargetDefinition _target_1 = it.getTarget();
+      TargetDefinition _target_1 = s.getTarget();
       NodeDefinition _definition_1 = _target_1.getDefinition();
       boolean _isCollection = _definition_1.isCollection();
       if (_isCollection) {
@@ -282,7 +282,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       } else {
         _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
       }
-      return this._jvmTypesBuilder.toField(it, _name, _xifexpression);
+      return this._jvmTypesBuilder.toField(s, _name, _xifexpression);
     };
     return IterableExtensions.<DefinitionSentence, JvmField>map(_filter, _function);
   }
@@ -1062,6 +1062,16 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
+  protected CharSequence _predicateCall(final PredicateXExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("predicate$");
+    int _hashCode = expression.hashCode();
+    _builder.append(_hashCode, "");
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   protected CharSequence _predicateCall(final PredicateReference reference) {
     StringConcatenation _builder = new StringConcatenation();
     PredicateDefinitionSentence _reference = reference.getReference();
@@ -1072,16 +1082,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _argumentList = this.argumentList(_arguments);
     _builder.append(_argumentList, "");
     _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  protected CharSequence _predicateCall(final PredicateXExpression expression) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("predicate$");
-    int _hashCode = expression.hashCode();
-    _builder.append(_hashCode, "");
-    _builder.append("();");
     _builder.newLineIfNotEmpty();
     return _builder;
   }

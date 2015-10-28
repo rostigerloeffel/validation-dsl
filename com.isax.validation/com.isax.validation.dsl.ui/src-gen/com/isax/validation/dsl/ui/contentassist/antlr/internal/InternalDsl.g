@@ -6761,9 +6761,9 @@ rule__PrimaryExpression__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0()); }
-(rule__PrimaryExpression__NegatedAssignment_0)?
-{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0()); }
+{ before(grammarAccess.getPrimaryExpressionAccess().getGroup_0()); }
+(rule__PrimaryExpression__Group_0__0)?
+{ after(grammarAccess.getPrimaryExpressionAccess().getGroup_0()); }
 )
 
 ;
@@ -6792,6 +6792,69 @@ rule__PrimaryExpression__Group__1__Impl
 { before(grammarAccess.getPrimaryExpressionAccess().getAlternatives_1()); }
 (rule__PrimaryExpression__Alternatives_1)
 { after(grammarAccess.getPrimaryExpressionAccess().getAlternatives_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+rule__PrimaryExpression__Group_0__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__PrimaryExpression__Group_0__0__Impl
+	rule__PrimaryExpression__Group_0__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PrimaryExpression__Group_0__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0_0()); }
+(rule__PrimaryExpression__NegatedAssignment_0_0)
+{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__PrimaryExpression__Group_0__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__PrimaryExpression__Group_0__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PrimaryExpression__Group_0__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPrimaryExpressionAccess().getSpaceKeyword_0_1()); }
+(
+	' ' 
+)*
+{ after(grammarAccess.getPrimaryExpressionAccess().getSpaceKeyword_0_1()); }
 )
 
 ;
@@ -22021,22 +22084,22 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PrimaryExpression__NegatedAssignment_0
+rule__PrimaryExpression__NegatedAssignment_0_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0()); }
+{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0_0()); }
 (
-{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0()); }
+{ before(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0_0()); }
 
 	'not' 
 
-{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0()); }
+{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0_0()); }
 )
 
-{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0()); }
+{ after(grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0_0()); }
 )
 
 ;

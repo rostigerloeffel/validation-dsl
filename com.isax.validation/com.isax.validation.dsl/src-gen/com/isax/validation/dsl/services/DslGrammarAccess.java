@@ -154,7 +154,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPredicatePredicateExpressionParserRuleCall_4_0 = (RuleCall)cPredicateAssignment_4.eContents().get(0);
 		
 		//ConstraintSentence:
-		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
+		//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
+		//	predicate=PredicateExpression;
 		@Override public ParserRule getRule() { return rule; }
 
 		//"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression
@@ -644,8 +645,10 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNegatedAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cNegatedNotKeyword_0_0 = (Keyword)cNegatedAssignment_0.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cNegatedAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final Keyword cNegatedNotKeyword_0_0_0 = (Keyword)cNegatedAssignment_0_0.eContents().get(0);
+		private final Keyword cSpaceKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Assignment cCallAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
 		private final RuleCall cCallPredicateCallParserRuleCall_1_0_0 = (RuleCall)cCallAssignment_1_0.eContents().get(0);
@@ -656,17 +659,23 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//PrimaryExpression returns PredicateExpression:
-		//	negated?="not"? (call=PredicateCall | "(" inner=PredicateExpression ")");
+		//	(negated?="not" " "*)? (call=PredicateCall | "(" inner=PredicateExpression ")");
 		@Override public ParserRule getRule() { return rule; }
 
-		//negated?="not"? (call=PredicateCall | "(" inner=PredicateExpression ")")
+		//(negated?="not" " "*)? (call=PredicateCall | "(" inner=PredicateExpression ")")
 		public Group getGroup() { return cGroup; }
 
-		//negated?="not"?
-		public Assignment getNegatedAssignment_0() { return cNegatedAssignment_0; }
+		//(negated?="not" " "*)?
+		public Group getGroup_0() { return cGroup_0; }
+
+		//negated?="not"
+		public Assignment getNegatedAssignment_0_0() { return cNegatedAssignment_0_0; }
 
 		//"not"
-		public Keyword getNegatedNotKeyword_0_0() { return cNegatedNotKeyword_0_0; }
+		public Keyword getNegatedNotKeyword_0_0_0() { return cNegatedNotKeyword_0_0_0; }
+
+		//" "*
+		public Keyword getSpaceKeyword_0_1() { return cSpaceKeyword_0_1; }
 
 		//call=PredicateCall | "(" inner=PredicateExpression ")"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
@@ -1582,7 +1591,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstraintSentence:
-	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":") predicate=PredicateExpression;
+	//	"for" quantifications=QuantificationList? nodes=NodeReferenceList? ("holds that" | ":")
+	//	predicate=PredicateExpression;
 	public ConstraintSentenceElements getConstraintSentenceAccess() {
 		return pConstraintSentence;
 	}
@@ -1703,7 +1713,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimaryExpression returns PredicateExpression:
-	//	negated?="not"? (call=PredicateCall | "(" inner=PredicateExpression ")");
+	//	(negated?="not" " "*)? (call=PredicateCall | "(" inner=PredicateExpression ")");
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -2180,8 +2190,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//	feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign) value=XAssignment | =>
 	//	({XMemberFeatureCall.memberCallTarget=current} ("." | nullSafe?="?." | explicitStatic?="::")) ("<"
 	//	typeArguments+=JvmArgumentTypeReference ("," typeArguments+=JvmArgumentTypeReference)* ">")?
-	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure |
-	//	memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
+	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure
+	//	| memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
 	public XbaseGrammarAccess.XMemberFeatureCallElements getXMemberFeatureCallAccess() {
 		return gaXbase.getXMemberFeatureCallAccess();
 	}
@@ -2296,8 +2306,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XSwitchExpression returns XExpression:
 	//	{XSwitchExpression} "switch" (=> ("(" declaredParam=JvmFormalParameter ":") switch=XExpression ")" | =>
-	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":" default=XExpression)?
-	//	"}";
+	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":"
+	//	default=XExpression)? "}";
 	public XbaseGrammarAccess.XSwitchExpressionElements getXSwitchExpressionAccess() {
 		return gaXbase.getXSwitchExpressionAccess();
 	}
@@ -2579,7 +2589,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	/// **
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
-	// * / StaticQualifier:
+	// * /
+	//StaticQualifier:
 	//	(ValidID "::")+;
 	public XbaseGrammarAccess.StaticQualifierElements getStaticQualifierAccess() {
 		return gaXbase.getStaticQualifierAccess();

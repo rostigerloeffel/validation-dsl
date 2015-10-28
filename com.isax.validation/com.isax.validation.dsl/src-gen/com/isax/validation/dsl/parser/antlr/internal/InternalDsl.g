@@ -1118,11 +1118,11 @@ rulePrimaryExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
 (
 		lv_negated_0_0=	'not' 
     {
-        newLeafNode(lv_negated_0_0, grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0());
+        newLeafNode(lv_negated_0_0, grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0_0());
     }
  
 	    {
@@ -1133,50 +1133,54 @@ rulePrimaryExpression returns [EObject current=null]
 	    }
 
 )
-)?((
+)(	otherlv_1=' ' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getPrimaryExpressionAccess().getSpaceKeyword_0_1());
+    }
+)*)?((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getCallPredicateCallParserRuleCall_1_0_0()); 
 	    }
-		lv_call_1_0=rulePredicateCall		{
+		lv_call_2_0=rulePredicateCall		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"call",
-        		lv_call_1_0, 
+        		lv_call_2_0, 
         		"PredicateCall");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )
-    |(	otherlv_2='(' 
+    |(	otherlv_3='(' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_1_1_0());
+    	newLeafNode(otherlv_3, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_1_1_0());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getInnerPredicateExpressionParserRuleCall_1_1_1_0()); 
 	    }
-		lv_inner_3_0=rulePredicateExpression		{
+		lv_inner_4_0=rulePredicateExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"inner",
-        		lv_inner_3_0, 
+        		lv_inner_4_0, 
         		"PredicateExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4=')' 
+)	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_1_1_2());
+    	newLeafNode(otherlv_5, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_1_1_2());
     }
 )))
 ;
