@@ -3,15 +3,17 @@
  */
 package com.isax.validation.dsl.validation
 
-import com.isax.validation.dsl.dsl.Axis
+import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DslPackage
 import com.isax.validation.dsl.dsl.Quantification
+import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
-import com.isax.validation.dsl.util.DslUtil
 import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
+
+import static extension com.isax.validation.dsl.util.DslUtil.collectionAxis
 
 /**
  * Custom validation rules. 
@@ -45,24 +47,20 @@ class DslValidator extends AbstractDslValidator {
 	
 	
 	@Check
-	def definesSet(TargetDefinition target) {
-		if (!target.definition.collection &&
-			(target.axis == Axis.ANCESTORS || target.axis == Axis.DESCENDANTS || target.axis == Axis.CHILDREN || target.axis == Axis.PARENTS)) {
+	def definitionConformsAxisKind(TargetDefinition target) {
+		if (!target.definition.collection && target.axis.collectionAxis) {
 			error("Usage of 'multiple' implies node-set target!", target.definition, DslPackage.eINSTANCE.nodeDefinition_Name)
 		}
-		if (target.definition.collection &&
-			(target.axis == Axis.ANCESTOR || target.axis == Axis.DESCENDANT || target.axis == Axis.CHILD || target.axis == Axis.PARENT)) {
+		if (target.definition.collection && !(target.axis.collectionAxis)) {
 			error("Usage of 'non-multiple' qualifier implies single node target!", target.definition, DslPackage.eINSTANCE.nodeDefinition_Name)
 		}
 	}
 	
-//	@Check
-//	def checkNodeIsNotReferencedBeforeDeclaration(DefinitionSentence sentence) {
-//		val node = if (sentence.node != null) sentence.node else sentence.quantification.nodeSet
-//		val definedNodes = DslUtil.findPreviouslyDefinedNodes(sentence)
-//		
-//		if (!Iterables.contains(definedNodes, node)) {
-//			error("Nodes must be declared before they can be used!", node, DslPackage.Literals.NODE_DEFINITION__NAME)
-//		}
-//	}
+	@Check
+	def mustNotExcludesMultiple(DefinitionSentence sentence) {
+		if (sentence.qualifier == RelationQualifier.MUST_NOT && sentence.target.axis.collectionAxis) {
+			error("Combination of 'must not' and 'multiple' is not allowed!", sentence, DslPackage.eINSTANCE.definitionSentence_Qualifier)
+			error("Combination of 'must not' and 'multiple' is not allowed!", sentence.target, DslPackage.eINSTANCE.targetDefinition_Axis)
+		}
+	}
 }

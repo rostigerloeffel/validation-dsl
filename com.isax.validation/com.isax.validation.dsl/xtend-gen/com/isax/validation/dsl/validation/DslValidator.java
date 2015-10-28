@@ -5,13 +5,16 @@ package com.isax.validation.dsl.validation;
 
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.Quantification;
+import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
+import com.isax.validation.dsl.util.DslUtil;
 import com.isax.validation.dsl.validation.AbstractDslValidator;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
@@ -60,7 +63,7 @@ public class DslValidator extends AbstractDslValidator {
   }
   
   @Check
-  public void definesSet(final TargetDefinition target) {
+  public void definitionConformsAxisKind(final TargetDefinition target) {
     boolean _and = false;
     NodeDefinition _definition = target.getDefinition();
     boolean _isCollection = _definition.isCollection();
@@ -68,33 +71,9 @@ public class DslValidator extends AbstractDslValidator {
     if (!_not) {
       _and = false;
     } else {
-      boolean _or = false;
-      boolean _or_1 = false;
-      boolean _or_2 = false;
       Axis _axis = target.getAxis();
-      boolean _equals = Objects.equal(_axis, Axis.ANCESTORS);
-      if (_equals) {
-        _or_2 = true;
-      } else {
-        Axis _axis_1 = target.getAxis();
-        boolean _equals_1 = Objects.equal(_axis_1, Axis.DESCENDANTS);
-        _or_2 = _equals_1;
-      }
-      if (_or_2) {
-        _or_1 = true;
-      } else {
-        Axis _axis_2 = target.getAxis();
-        boolean _equals_2 = Objects.equal(_axis_2, Axis.CHILDREN);
-        _or_1 = _equals_2;
-      }
-      if (_or_1) {
-        _or = true;
-      } else {
-        Axis _axis_3 = target.getAxis();
-        boolean _equals_3 = Objects.equal(_axis_3, Axis.PARENTS);
-        _or = _equals_3;
-      }
-      _and = _or;
+      boolean _collectionAxis = DslUtil.collectionAxis(_axis);
+      _and = _collectionAxis;
     }
     if (_and) {
       NodeDefinition _definition_1 = target.getDefinition();
@@ -107,38 +86,37 @@ public class DslValidator extends AbstractDslValidator {
     if (!_isCollection_1) {
       _and_1 = false;
     } else {
-      boolean _or_3 = false;
-      boolean _or_4 = false;
-      boolean _or_5 = false;
-      Axis _axis_4 = target.getAxis();
-      boolean _equals_4 = Objects.equal(_axis_4, Axis.ANCESTOR);
-      if (_equals_4) {
-        _or_5 = true;
-      } else {
-        Axis _axis_5 = target.getAxis();
-        boolean _equals_5 = Objects.equal(_axis_5, Axis.DESCENDANT);
-        _or_5 = _equals_5;
-      }
-      if (_or_5) {
-        _or_4 = true;
-      } else {
-        Axis _axis_6 = target.getAxis();
-        boolean _equals_6 = Objects.equal(_axis_6, Axis.CHILD);
-        _or_4 = _equals_6;
-      }
-      if (_or_4) {
-        _or_3 = true;
-      } else {
-        Axis _axis_7 = target.getAxis();
-        boolean _equals_7 = Objects.equal(_axis_7, Axis.PARENT);
-        _or_3 = _equals_7;
-      }
-      _and_1 = _or_3;
+      Axis _axis_1 = target.getAxis();
+      boolean _collectionAxis_1 = DslUtil.collectionAxis(_axis_1);
+      boolean _not_1 = (!_collectionAxis_1);
+      _and_1 = _not_1;
     }
     if (_and_1) {
       NodeDefinition _definition_3 = target.getDefinition();
       EAttribute _nodeDefinition_Name_1 = DslPackage.eINSTANCE.getNodeDefinition_Name();
       this.error("Usage of \'non-multiple\' qualifier implies single node target!", _definition_3, _nodeDefinition_Name_1);
+    }
+  }
+  
+  @Check
+  public void mustNotExcludesMultiple(final DefinitionSentence sentence) {
+    boolean _and = false;
+    RelationQualifier _qualifier = sentence.getQualifier();
+    boolean _equals = Objects.equal(_qualifier, RelationQualifier.MUST_NOT);
+    if (!_equals) {
+      _and = false;
+    } else {
+      TargetDefinition _target = sentence.getTarget();
+      Axis _axis = _target.getAxis();
+      boolean _collectionAxis = DslUtil.collectionAxis(_axis);
+      _and = _collectionAxis;
+    }
+    if (_and) {
+      EAttribute _definitionSentence_Qualifier = DslPackage.eINSTANCE.getDefinitionSentence_Qualifier();
+      this.error("Combination of \'must not\' and \'multiple\' is not allowed!", sentence, _definitionSentence_Qualifier);
+      TargetDefinition _target_1 = sentence.getTarget();
+      EAttribute _targetDefinition_Axis = DslPackage.eINSTANCE.getTargetDefinition_Axis();
+      this.error("Combination of \'must not\' and \'multiple\' is not allowed!", _target_1, _targetDefinition_Axis);
     }
   }
 }

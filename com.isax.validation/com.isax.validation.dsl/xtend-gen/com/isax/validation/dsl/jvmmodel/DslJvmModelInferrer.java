@@ -74,9 +74,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class DslJvmModelInferrer extends AbstractModelInferrer {
-  @Extension
-  private DslUtil dslUtil = new DslUtil();
-  
   @Inject
   @Extension
   private JvmTypesBuilder _jvmTypesBuilder;
@@ -184,8 +181,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLine();
                 _builder.append("\t");
                 _builder.append("boolean satisfied$");
-                int _depth = this.dslUtil.depth(sentence_1);
-                _builder.append(_depth, "\t");
+                int _uniqueSuffix = DslUtil.uniqueSuffix(sentence_1);
+                _builder.append(_uniqueSuffix, "\t");
                 _builder.append(" = ");
                 TargetDefinition _target = ((DefinitionSentence)sentence_1).getTarget();
                 NodeDefinition _definition = _target.getDefinition();
@@ -196,11 +193,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("if (!satisfied$");
-                int _depth_1 = this.dslUtil.depth(sentence_1);
-                _builder.append(_depth_1, "\t");
+                int _uniqueSuffix_1 = DslUtil.uniqueSuffix(sentence_1);
+                _builder.append(_uniqueSuffix_1, "\t");
                 _builder.append(") return satisfied$");
-                int _depth_2 = this.dslUtil.depth(sentence_1);
-                _builder.append(_depth_2, "\t");
+                int _uniqueSuffix_2 = DslUtil.uniqueSuffix(sentence_1);
+                _builder.append(_uniqueSuffix_2, "\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
                 _builder.append("}");
@@ -430,8 +427,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals) {
         _builder.append("\t");
         _builder.append("boolean satisfied$");
-        int _depth = this.dslUtil.depth(sentence);
-        _builder.append(_depth, "\t");
+        int _uniqueSuffix = DslUtil.uniqueSuffix(sentence);
+        _builder.append(_uniqueSuffix, "\t");
         _builder.append(" = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
         EList<Quantification> _quantifications_2 = _quantifications_1.getQuantifications();
@@ -440,8 +437,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("if (!satisfied$");
-        int _depth_1 = this.dslUtil.depth(sentence);
-        _builder.append(_depth_1, "\t");
+        int _uniqueSuffix_1 = DslUtil.uniqueSuffix(sentence);
+        _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(") return false;");
         _builder.newLineIfNotEmpty();
       }
@@ -507,8 +504,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    int _depth = this.dslUtil.depth(_node_1);
-    _builder.append(_depth, "\t\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(_node_1);
+    _builder.append(_uniqueSuffix, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
@@ -517,8 +514,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (!satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    int _depth_1 = this.dslUtil.depth(_node_2);
-    _builder.append(_depth_1, "\t\t");
+    int _uniqueSuffix_1 = DslUtil.uniqueSuffix(_node_2);
+    _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(") return false;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -553,8 +550,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    int _depth = this.dslUtil.depth(_node_1);
-    _builder.append(_depth, "\t\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(_node_1);
+    _builder.append(_uniqueSuffix, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
     _builder.append(_constraintDispatch, "\t\t");
@@ -563,8 +560,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    int _depth_1 = this.dslUtil.depth(_node_2);
-    _builder.append(_depth_1, "\t\t");
+    int _uniqueSuffix_1 = DslUtil.uniqueSuffix(_node_2);
+    _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(") return true;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -602,8 +599,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _depth = this.dslUtil.depth(sentence);
-    _builder.append(_depth, "\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(sentence);
+    _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = ");
     RelationQualifier _qualifier = sentence.getQualifier();
     String _initialQualifierSatisfaction = this.initialQualifierSatisfaction(_qualifier);
@@ -640,8 +637,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("satisfied$");
-    int _depth_1 = this.dslUtil.depth(sentence);
-    _builder.append(_depth_1, "\t\t");
+    int _uniqueSuffix_1 = DslUtil.uniqueSuffix(sentence);
+    _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(" ");
     Quantification _quantification_3 = sentence.getQuantification();
     Quantor _quantor = _quantification_3.getQuantor();
@@ -660,11 +657,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("if (!satisfied$");
-    int _depth_2 = this.dslUtil.depth(sentence);
-    _builder.append(_depth_2, "\t");
+    int _uniqueSuffix_2 = DslUtil.uniqueSuffix(sentence);
+    _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(") return satisfied$");
-    int _depth_3 = this.dslUtil.depth(sentence);
-    _builder.append(_depth_3, "\t");
+    int _uniqueSuffix_3 = DslUtil.uniqueSuffix(sentence);
+    _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
@@ -684,14 +681,14 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _name_2 = source.getName();
     _builder.append(_name_2, "");
     _builder.append(", (ResolvingNode node$");
-    int _depth = this.dslUtil.depth(assignee);
-    _builder.append(_depth, "");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(assignee);
+    _builder.append(_uniqueSuffix, "");
     _builder.append(") -> {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _depth_1 = this.dslUtil.depth(assignee);
-    _builder.append(_depth_1, "\t");
+    int _uniqueSuffix_1 = DslUtil.uniqueSuffix(assignee);
+    _builder.append(_uniqueSuffix_1, "\t");
     _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
     {
@@ -699,11 +696,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _depth_2 = this.dslUtil.depth(assignee);
-        _builder.append(_depth_2, "\t");
+        int _uniqueSuffix_2 = DslUtil.uniqueSuffix(assignee);
+        _builder.append(_uniqueSuffix_2, "\t");
         _builder.append(" &= predicates$.hasType(node$");
-        int _depth_3 = this.dslUtil.depth(assignee);
-        _builder.append(_depth_3, "\t");
+        int _uniqueSuffix_3 = DslUtil.uniqueSuffix(assignee);
+        _builder.append(_uniqueSuffix_3, "\t");
         _builder.append(", \"");
         SelectorListDef _selectors = types.getSelectors();
         EList<Selector> _selectors_1 = _selectors.getSelectors();
@@ -721,8 +718,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals_1) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _depth_4 = this.dslUtil.depth(assignee);
-        _builder.append(_depth_4, "\t");
+        int _uniqueSuffix_4 = DslUtil.uniqueSuffix(assignee);
+        _builder.append(_uniqueSuffix_4, "\t");
         _builder.append(" &= ");
         Object _predicateExpression = this.predicateExpression(predicate);
         _builder.append(_predicateExpression, "\t");
@@ -731,8 +728,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     }
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _depth_5 = this.dslUtil.depth(assignee);
-    _builder.append(_depth_5, "\t");
+    int _uniqueSuffix_5 = DslUtil.uniqueSuffix(assignee);
+    _builder.append(_uniqueSuffix_5, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -823,8 +820,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _depth = this.dslUtil.depth(and);
-    _builder.append(_depth, "\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(and);
+    _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = true;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -833,8 +830,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _depth_1 = this.dslUtil.depth(and);
-        _builder.append(_depth_1, "\t");
+        int _uniqueSuffix_1 = DslUtil.uniqueSuffix(and);
+        _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" &= ");
         PredicateExpression _lhs_1 = and.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -845,8 +842,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _depth_2 = this.dslUtil.depth(and);
-    _builder.append(_depth_2, "\t");
+    int _uniqueSuffix_2 = DslUtil.uniqueSuffix(and);
+    _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" &= ");
     PredicateExpression _rhs = and.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -854,8 +851,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _depth_3 = this.dslUtil.depth(and);
-    _builder.append(_depth_3, "\t");
+    int _uniqueSuffix_3 = DslUtil.uniqueSuffix(and);
+    _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -869,8 +866,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _depth = this.dslUtil.depth(or);
-    _builder.append(_depth, "\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(or);
+    _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = false;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -879,8 +876,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _depth_1 = this.dslUtil.depth(or);
-        _builder.append(_depth_1, "\t");
+        int _uniqueSuffix_1 = DslUtil.uniqueSuffix(or);
+        _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = or.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -891,8 +888,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _depth_2 = this.dslUtil.depth(or);
-    _builder.append(_depth_2, "\t");
+    int _uniqueSuffix_2 = DslUtil.uniqueSuffix(or);
+    _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" |= ");
     PredicateExpression _rhs = or.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -900,8 +897,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _depth_3 = this.dslUtil.depth(or);
-    _builder.append(_depth_3, "\t");
+    int _uniqueSuffix_3 = DslUtil.uniqueSuffix(or);
+    _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
@@ -915,8 +912,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _depth = this.dslUtil.depth(implies);
-    _builder.append(_depth, "\t");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(implies);
+    _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = false;\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -925,8 +922,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _depth_1 = this.dslUtil.depth(implies);
-        _builder.append(_depth_1, "\t");
+        int _uniqueSuffix_1 = DslUtil.uniqueSuffix(implies);
+        _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = implies.getLhs();
         Object _predicateExpression = this.predicateExpression(_lhs_1);
@@ -937,8 +934,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _depth_2 = this.dslUtil.depth(implies);
-    _builder.append(_depth_2, "\t");
+    int _uniqueSuffix_2 = DslUtil.uniqueSuffix(implies);
+    _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" |= !");
     PredicateExpression _rhs = implies.getRhs();
     Object _predicateExpression_1 = this.predicateExpression(_rhs);
@@ -946,8 +943,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _depth_3 = this.dslUtil.depth(implies);
-    _builder.append(_depth_3, "\t");
+    int _uniqueSuffix_3 = DslUtil.uniqueSuffix(implies);
+    _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("});");
