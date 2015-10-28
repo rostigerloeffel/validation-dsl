@@ -508,7 +508,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (ResolvingNode ");
+    _builder.append("for (");
+    String _simpleName = ResolvingNode.class.getSimpleName();
+    _builder.append(_simpleName, "\t");
+    _builder.append(" ");
     Quantification _get = quantifications.get(index);
     NodeDefinition _node = _get.getNode();
     String _name = _node.getName();
@@ -554,7 +557,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("eval(() -> {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (ResolvingNode ");
+    _builder.append("for (");
+    String _simpleName = ResolvingNode.class.getSimpleName();
+    _builder.append(_simpleName, "\t");
+    _builder.append(" ");
     Quantification _get = quantifications.get(index);
     NodeDefinition _node = _get.getNode();
     String _name = _node.getName();
@@ -628,7 +634,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("for (ResolvingNode ");
+    _builder.append("for (");
+    String _simpleName = ResolvingNode.class.getSimpleName();
+    _builder.append(_simpleName, "\t");
+    _builder.append(" ");
     Quantification _quantification = sentence.getQuantification();
     NodeDefinition _node = _quantification.getNode();
     String _name = _node.getName();
@@ -842,7 +851,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     int _uniqueSuffix = DslUtil.uniqueSuffix(and);
     _builder.append(_uniqueSuffix, "\t");
-    _builder.append(" = true;\t\t\t");
+    _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
@@ -858,7 +867,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.append(_predicateExpression, "\t");
       }
     }
-    _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
@@ -888,7 +896,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     int _uniqueSuffix = DslUtil.uniqueSuffix(or);
     _builder.append(_uniqueSuffix, "\t");
-    _builder.append(" = false;\t\t\t");
+    _builder.append(" = false;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
@@ -904,7 +912,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.append(_predicateExpression, "\t");
       }
     }
-    _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
@@ -934,7 +941,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     int _uniqueSuffix = DslUtil.uniqueSuffix(implies);
     _builder.append(_uniqueSuffix, "\t");
-    _builder.append(" = false;\t\t\t");
+    _builder.append(" = false;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
@@ -950,7 +957,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.append(_predicateExpression, "\t");
       }
     }
-    _builder.append("\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");

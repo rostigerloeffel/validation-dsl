@@ -207,7 +207,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		ConstraintSentence sentence
 	) '''
 		eval(() -> {
-			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+			for («ResolvingNode.simpleName» «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
 				boolean satisfied$«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
 				if (!satisfied$«quantifications.get(index).node.uniqueSuffix») return false;
 			}
@@ -221,7 +221,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		ConstraintSentence sentence
 	) '''
 		eval(() -> {
-			for (ResolvingNode «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
+			for («ResolvingNode.simpleName» «quantifications.get(index).node.name» : «quantifications.get(index).nodeSet.name») {
 				boolean satisfied$«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
 				if (satisfied$«quantifications.get(index).node.uniqueSuffix») return true;
 			}
@@ -240,7 +240,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		{
 			boolean satisfied$«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
-			for (ResolvingNode «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
+			for («ResolvingNode.simpleName» «sentence.quantification.node.name» : «sentence.quantification.nodeSet.name») {
 				«nodeAssignmentStatement(sentence.getTarget.definition, sentence.getTarget.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.predicate)»
 				satisfied$«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
@@ -293,8 +293,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch predicateExpression(AndExpression and) '''
 		eval(() -> {
-			boolean satisfied$«and.uniqueSuffix» = true;			
-			«IF and.lhs != null»satisfied$«and.uniqueSuffix» &= «predicateExpression(and.lhs)»«ENDIF»		
+			boolean satisfied$«and.uniqueSuffix» = true;
+			«IF and.lhs != null»satisfied$«and.uniqueSuffix» &= «predicateExpression(and.lhs)»«ENDIF»
 			satisfied$«and.uniqueSuffix» &= «predicateExpression(and.rhs)»
 			return satisfied$«and.uniqueSuffix»;
 		});
@@ -302,8 +302,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch predicateExpression(OrExpression or) '''
 		eval(() -> {
-			boolean satisfied$«or.uniqueSuffix» = false;			
-			«IF or.lhs != null»satisfied$«or.uniqueSuffix» |= «predicateExpression(or.lhs)»«ENDIF»		
+			boolean satisfied$«or.uniqueSuffix» = false;
+			«IF or.lhs != null»satisfied$«or.uniqueSuffix» |= «predicateExpression(or.lhs)»«ENDIF»
 			satisfied$«or.uniqueSuffix» |= «predicateExpression(or.rhs)»
 			return satisfied$«or.uniqueSuffix»;
 		});
@@ -311,8 +311,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch predicateExpression(ImpliesExpression implies) '''
 		eval(() -> {
-			boolean satisfied$«implies.uniqueSuffix» = false;			
-			«IF implies.lhs != null»satisfied$«implies.uniqueSuffix» |= «predicateExpression(implies.lhs)»«ENDIF»		
+			boolean satisfied$«implies.uniqueSuffix» = false;
+			«IF implies.lhs != null»satisfied$«implies.uniqueSuffix» |= «predicateExpression(implies.lhs)»«ENDIF»
 			satisfied$«implies.uniqueSuffix» |= !«predicateExpression(implies.rhs)»
 			return satisfied$«implies.uniqueSuffix»;
 		});
