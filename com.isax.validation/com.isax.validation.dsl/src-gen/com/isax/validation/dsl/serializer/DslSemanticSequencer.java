@@ -11,6 +11,7 @@ import com.isax.validation.dsl.dsl.ArgumentList;
 import com.isax.validation.dsl.dsl.Assignment;
 import com.isax.validation.dsl.dsl.AssignmentList;
 import com.isax.validation.dsl.dsl.AssignmentXExpression;
+import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
@@ -120,6 +121,9 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case DslPackage.ASSIGNMENT_XEXPRESSION:
 				sequence_AssignmentXExpression(context, (AssignmentXExpression) semanticObject); 
+				return; 
+			case DslPackage.BODY_SENTENCES:
+				sequence_BodySentences(context, (BodySentences) semanticObject); 
 				return; 
 			case DslPackage.CONSTRAINT_SENTENCE:
 				sequence_ConstraintSentence(context, (ConstraintSentence) semanticObject); 
@@ -544,6 +548,15 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     ((definitions+=DefinitionSentence | constraints+=ConstraintSentence)*)
+	 */
+	protected void sequence_BodySentences(EObject context, BodySentences semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (quantifications=QuantificationList? nodes=NodeReferenceList? predicate=PredicateExpression)
 	 */
 	protected void sequence_ConstraintSentence(EObject context, ConstraintSentence semanticObject) {
@@ -677,7 +690,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=ID parameters=ParameterList? predicate=PredicateExpression)
+	 *     (name=ID parameters=ParameterList? body=BodySentences)
 	 */
 	protected void sequence_PredicateDefinitionSentence(EObject context, PredicateDefinitionSentence semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -838,7 +851,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (axis=Axis definition=NodeDefinition predicate=PredicateExpression? assignments=AssignmentList?)
+	 *     (axis=Axis local=NodeDefinition? definition=NodeDefinition body=BodySentences? assignments=AssignmentList?)
 	 */
 	protected void sequence_TargetDefinition(EObject context, TargetDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -847,7 +860,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     sentences+=Sentence+
+	 *     (startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence*)
 	 */
 	protected void sequence_Validator(EObject context, Validator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

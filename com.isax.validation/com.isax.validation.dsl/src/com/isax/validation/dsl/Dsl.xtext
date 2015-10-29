@@ -6,7 +6,13 @@ import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 
 Validator:
-	sentences+=Sentence+;
+	startOn = StartOnSentence
+	body = BodySentences
+	predicates += PredicateDefinitionSentence*;
+	
+BodySentences:
+	{BodySentences}
+	(definitions += DefinitionSentence | constraints += ConstraintSentence)*;
 
 Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;
@@ -23,11 +29,12 @@ ConstraintSentence:
 	'for'
 	quantifications=QuantificationList? 
 	nodes=NodeReferenceList? 
-	('holds that' | ':')
-	predicate=PredicateExpression;
+	'holds' '{'
+	predicate=PredicateExpression
+	'}';
 
 PredicateDefinitionSentence:
-	'define' name=ID parameters=ParameterList? ('as' | ':') predicate=PredicateExpression;
+	'define' name=ID parameters=ParameterList? 'as' '{' body = BodySentences '}';
 
 
 NodeDefinition:
@@ -38,7 +45,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis definition=NodeDefinition ('where holds' '{' predicate=PredicateExpression '}')? ('with property' '{' assignments=AssignmentList '}')? ;
+	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('with property' '{' assignments=AssignmentList '}')? ;
 
 
 SelectorList:

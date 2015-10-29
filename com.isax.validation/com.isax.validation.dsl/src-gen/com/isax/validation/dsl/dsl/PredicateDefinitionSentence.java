@@ -14,7 +14,7 @@ package com.isax.validation.dsl.dsl;
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getName <em>Name</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getParameters <em>Parameters</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getPredicate <em>Predicate</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateDefinitionSentence()
@@ -76,29 +76,29 @@ public interface PredicateDefinitionSentence extends Sentence
   void setParameters(ParameterList value);
 
   /**
-   * Returns the value of the '<em><b>Predicate</b></em>' containment reference.
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Predicate</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Predicate</em>' containment reference.
-   * @see #setPredicate(PredicateExpression)
-   * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateDefinitionSentence_Predicate()
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(BodySentences)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getPredicateDefinitionSentence_Body()
    * @model containment="true"
    * @generated
    */
-  PredicateExpression getPredicate();
+  BodySentences getBody();
 
   /**
-   * Sets the value of the '{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getPredicate <em>Predicate</em>}' containment reference.
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getBody <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Predicate</em>' containment reference.
-   * @see #getPredicate()
+   * @param value the new value of the '<em>Body</em>' containment reference.
+   * @see #getBody()
    * @generated
    */
-  void setPredicate(PredicateExpression value);
+  void setBody(BodySentences value);
 
 } // PredicateDefinitionSentence

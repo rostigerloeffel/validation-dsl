@@ -2,8 +2,18 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dsl" nsURI="http://www.isax.com/validation/dsl/Dsl" nsPrefix="dsl">
   <eClassifiers xsi:type="ecore:EClass" name="Validator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sentences" upperBound="-1"
-        eType="#//Sentence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startOn" eType="#//StartOnSentence"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BodySentences"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
+        eType="#//PredicateDefinitionSentence" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BodySentences">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
+        eType="#//DefinitionSentence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//ConstraintSentence" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sentence"/>
   <eClassifiers xsi:type="ecore:EClass" name="StartOnSentence" eSuperTypes="#//Sentence">
@@ -30,7 +40,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//ParameterList"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BodySentences"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeDefinition">
@@ -45,9 +55,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" eType="#//Axis"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="local" eType="#//NodeDefinition"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//NodeDefinition"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//PredicateExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BodySentences"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" eType="#//AssignmentList"
         containment="true"/>

@@ -68,13 +68,31 @@ public interface DslPackage extends EPackage
   int VALIDATOR = 0;
 
   /**
-   * The feature id for the '<em><b>Sentences</b></em>' containment reference list.
+   * The feature id for the '<em><b>Start On</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VALIDATOR__SENTENCES = 0;
+  int VALIDATOR__START_ON = 0;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATOR__BODY = 1;
+
+  /**
+   * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATOR__PREDICATES = 2;
 
   /**
    * The number of structural features of the '<em>Validator</em>' class.
@@ -83,7 +101,44 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VALIDATOR_FEATURE_COUNT = 1;
+  int VALIDATOR_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl <em>Body Sentences</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.isax.validation.dsl.dsl.impl.BodySentencesImpl
+   * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getBodySentences()
+   * @generated
+   */
+  int BODY_SENTENCES = 1;
+
+  /**
+   * The feature id for the '<em><b>Definitions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BODY_SENTENCES__DEFINITIONS = 0;
+
+  /**
+   * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BODY_SENTENCES__CONSTRAINTS = 1;
+
+  /**
+   * The number of structural features of the '<em>Body Sentences</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BODY_SENTENCES_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.SentenceImpl <em>Sentence</em>}' class.
@@ -93,7 +148,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getSentence()
    * @generated
    */
-  int SENTENCE = 1;
+  int SENTENCE = 2;
 
   /**
    * The number of structural features of the '<em>Sentence</em>' class.
@@ -112,7 +167,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getStartOnSentence()
    * @generated
    */
-  int START_ON_SENTENCE = 2;
+  int START_ON_SENTENCE = 3;
 
   /**
    * The feature id for the '<em><b>Definition</b></em>' containment reference.
@@ -140,7 +195,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getDefinitionSentence()
    * @generated
    */
-  int DEFINITION_SENTENCE = 3;
+  int DEFINITION_SENTENCE = 4;
 
   /**
    * The feature id for the '<em><b>Quantification</b></em>' containment reference.
@@ -195,7 +250,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getConstraintSentence()
    * @generated
    */
-  int CONSTRAINT_SENTENCE = 4;
+  int CONSTRAINT_SENTENCE = 5;
 
   /**
    * The feature id for the '<em><b>Quantifications</b></em>' containment reference.
@@ -241,7 +296,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateDefinitionSentence()
    * @generated
    */
-  int PREDICATE_DEFINITION_SENTENCE = 5;
+  int PREDICATE_DEFINITION_SENTENCE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -262,13 +317,13 @@ public interface DslPackage extends EPackage
   int PREDICATE_DEFINITION_SENTENCE__PARAMETERS = SENTENCE_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Predicate</b></em>' containment reference.
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PREDICATE_DEFINITION_SENTENCE__PREDICATE = SENTENCE_FEATURE_COUNT + 2;
+  int PREDICATE_DEFINITION_SENTENCE__BODY = SENTENCE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Predicate Definition Sentence</em>' class.
@@ -287,7 +342,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getNodeDefinition()
    * @generated
    */
-  int NODE_DEFINITION = 6;
+  int NODE_DEFINITION = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -333,7 +388,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getNodeReferenceList()
    * @generated
    */
-  int NODE_REFERENCE_LIST = 7;
+  int NODE_REFERENCE_LIST = 8;
 
   /**
    * The feature id for the '<em><b>Nodes</b></em>' reference list.
@@ -361,7 +416,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getTargetDefinition()
    * @generated
    */
-  int TARGET_DEFINITION = 8;
+  int TARGET_DEFINITION = 9;
 
   /**
    * The feature id for the '<em><b>Axis</b></em>' attribute.
@@ -373,22 +428,31 @@ public interface DslPackage extends EPackage
   int TARGET_DEFINITION__AXIS = 0;
 
   /**
+   * The feature id for the '<em><b>Local</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TARGET_DEFINITION__LOCAL = 1;
+
+  /**
    * The feature id for the '<em><b>Definition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION__DEFINITION = 1;
+  int TARGET_DEFINITION__DEFINITION = 2;
 
   /**
-   * The feature id for the '<em><b>Predicate</b></em>' containment reference.
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION__PREDICATE = 2;
+  int TARGET_DEFINITION__BODY = 3;
 
   /**
    * The feature id for the '<em><b>Assignments</b></em>' containment reference.
@@ -397,7 +461,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION__ASSIGNMENTS = 3;
+  int TARGET_DEFINITION__ASSIGNMENTS = 4;
 
   /**
    * The number of structural features of the '<em>Target Definition</em>' class.
@@ -406,7 +470,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TARGET_DEFINITION_FEATURE_COUNT = 4;
+  int TARGET_DEFINITION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.SelectorListImpl <em>Selector List</em>}' class.
@@ -416,7 +480,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getSelectorList()
    * @generated
    */
-  int SELECTOR_LIST = 9;
+  int SELECTOR_LIST = 10;
 
   /**
    * The feature id for the '<em><b>Selectors</b></em>' containment reference.
@@ -444,7 +508,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getSelectorListDef()
    * @generated
    */
-  int SELECTOR_LIST_DEF = 10;
+  int SELECTOR_LIST_DEF = 11;
 
   /**
    * The feature id for the '<em><b>Selectors</b></em>' containment reference list.
@@ -472,7 +536,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getSelector()
    * @generated
    */
-  int SELECTOR = 11;
+  int SELECTOR = 12;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -500,7 +564,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateExpression()
    * @generated
    */
-  int PREDICATE_EXPRESSION = 12;
+  int PREDICATE_EXPRESSION = 13;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -564,7 +628,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateCall()
    * @generated
    */
-  int PREDICATE_CALL = 13;
+  int PREDICATE_CALL = 14;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -592,7 +656,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateXExpression()
    * @generated
    */
-  int PREDICATE_XEXPRESSION = 14;
+  int PREDICATE_XEXPRESSION = 15;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -629,7 +693,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelationPredicate()
    * @generated
    */
-  int PROPERTY_RELATION_PREDICATE = 15;
+  int PROPERTY_RELATION_PREDICATE = 16;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -684,7 +748,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getDefinitionSentencePredicate()
    * @generated
    */
-  int DEFINITION_SENTENCE_PREDICATE = 16;
+  int DEFINITION_SENTENCE_PREDICATE = 17;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -721,7 +785,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPredicateReference()
    * @generated
    */
-  int PREDICATE_REFERENCE = 17;
+  int PREDICATE_REFERENCE = 18;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -767,7 +831,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 18;
+  int PARAMETER = 19;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' containment reference.
@@ -795,7 +859,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getParameterList()
    * @generated
    */
-  int PARAMETER_LIST = 19;
+  int PARAMETER_LIST = 20;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -823,7 +887,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getArgument()
    * @generated
    */
-  int ARGUMENT = 20;
+  int ARGUMENT = 21;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -851,7 +915,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getArgumentList()
    * @generated
    */
-  int ARGUMENT_LIST = 21;
+  int ARGUMENT_LIST = 22;
 
   /**
    * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -879,7 +943,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 22;
+  int ASSIGNMENT = 23;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -916,7 +980,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentList()
    * @generated
    */
-  int ASSIGNMENT_LIST = 23;
+  int ASSIGNMENT_LIST = 24;
 
   /**
    * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
@@ -944,7 +1008,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentExpression()
    * @generated
    */
-  int ASSIGNMENT_EXPRESSION = 24;
+  int ASSIGNMENT_EXPRESSION = 25;
 
   /**
    * The number of structural features of the '<em>Assignment Expression</em>' class.
@@ -963,7 +1027,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAssignmentXExpression()
    * @generated
    */
-  int ASSIGNMENT_XEXPRESSION = 25;
+  int ASSIGNMENT_XEXPRESSION = 26;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -991,7 +1055,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantification()
    * @generated
    */
-  int QUANTIFICATION = 26;
+  int QUANTIFICATION = 27;
 
   /**
    * The feature id for the '<em><b>Quantor</b></em>' attribute.
@@ -1037,7 +1101,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantificationList()
    * @generated
    */
-  int QUANTIFICATION_LIST = 27;
+  int QUANTIFICATION_LIST = 28;
 
   /**
    * The feature id for the '<em><b>Quantifications</b></em>' containment reference list.
@@ -1065,7 +1129,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyExpression()
    * @generated
    */
-  int PROPERTY_EXPRESSION = 28;
+  int PROPERTY_EXPRESSION = 29;
 
   /**
    * The number of structural features of the '<em>Property Expression</em>' class.
@@ -1084,7 +1148,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyValueExpression()
    * @generated
    */
-  int PROPERTY_VALUE_EXPRESSION = 29;
+  int PROPERTY_VALUE_EXPRESSION = 30;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1112,7 +1176,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyReferenceExpression()
    * @generated
    */
-  int PROPERTY_REFERENCE_EXPRESSION = 30;
+  int PROPERTY_REFERENCE_EXPRESSION = 31;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -1149,7 +1213,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 31;
+  int AND_EXPRESSION = 32;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1213,7 +1277,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 32;
+  int OR_EXPRESSION = 33;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1277,7 +1341,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getImpliesExpression()
    * @generated
    */
-  int IMPLIES_EXPRESSION = 33;
+  int IMPLIES_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1341,7 +1405,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
    * @generated
    */
-  int QUANTOR = 34;
+  int QUANTOR = 35;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationQualifier <em>Relation Qualifier</em>}' enum.
@@ -1351,7 +1415,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationQualifier()
    * @generated
    */
-  int RELATION_QUALIFIER = 35;
+  int RELATION_QUALIFIER = 36;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.Axis <em>Axis</em>}' enum.
@@ -1361,7 +1425,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAxis()
    * @generated
    */
-  int AXIS = 36;
+  int AXIS = 37;
 
   /**
    * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1371,7 +1435,7 @@ public interface DslPackage extends EPackage
    * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
    * @generated
    */
-  int PROPERTY_RELATION = 37;
+  int PROPERTY_RELATION = 38;
 
 
   /**
@@ -1385,15 +1449,69 @@ public interface DslPackage extends EPackage
   EClass getValidator();
 
   /**
-   * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.Validator#getSentences <em>Sentences</em>}'.
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Validator#getStartOn <em>Start On</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Sentences</em>'.
-   * @see com.isax.validation.dsl.dsl.Validator#getSentences()
+   * @return the meta object for the containment reference '<em>Start On</em>'.
+   * @see com.isax.validation.dsl.dsl.Validator#getStartOn()
    * @see #getValidator()
    * @generated
    */
-  EReference getValidator_Sentences();
+  EReference getValidator_StartOn();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Validator#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see com.isax.validation.dsl.dsl.Validator#getBody()
+   * @see #getValidator()
+   * @generated
+   */
+  EReference getValidator_Body();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.Validator#getPredicates <em>Predicates</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Predicates</em>'.
+   * @see com.isax.validation.dsl.dsl.Validator#getPredicates()
+   * @see #getValidator()
+   * @generated
+   */
+  EReference getValidator_Predicates();
+
+  /**
+   * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.BodySentences <em>Body Sentences</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Body Sentences</em>'.
+   * @see com.isax.validation.dsl.dsl.BodySentences
+   * @generated
+   */
+  EClass getBodySentences();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getDefinitions <em>Definitions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Definitions</em>'.
+   * @see com.isax.validation.dsl.dsl.BodySentences#getDefinitions()
+   * @see #getBodySentences()
+   * @generated
+   */
+  EReference getBodySentences_Definitions();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getConstraints <em>Constraints</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Constraints</em>'.
+   * @see com.isax.validation.dsl.dsl.BodySentences#getConstraints()
+   * @see #getBodySentences()
+   * @generated
+   */
+  EReference getBodySentences_Constraints();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.Sentence <em>Sentence</em>}'.
@@ -1556,15 +1674,15 @@ public interface DslPackage extends EPackage
   EReference getPredicateDefinitionSentence_Parameters();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getPredicate <em>Predicate</em>}'.
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getBody <em>Body</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Predicate</em>'.
-   * @see com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getPredicate()
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see com.isax.validation.dsl.dsl.PredicateDefinitionSentence#getBody()
    * @see #getPredicateDefinitionSentence()
    * @generated
    */
-  EReference getPredicateDefinitionSentence_Predicate();
+  EReference getPredicateDefinitionSentence_Body();
 
   /**
    * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.NodeDefinition <em>Node Definition</em>}'.
@@ -1652,6 +1770,17 @@ public interface DslPackage extends EPackage
   EAttribute getTargetDefinition_Axis();
 
   /**
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getLocal <em>Local</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Local</em>'.
+   * @see com.isax.validation.dsl.dsl.TargetDefinition#getLocal()
+   * @see #getTargetDefinition()
+   * @generated
+   */
+  EReference getTargetDefinition_Local();
+
+  /**
    * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getDefinition <em>Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1663,15 +1792,15 @@ public interface DslPackage extends EPackage
   EReference getTargetDefinition_Definition();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getPredicate <em>Predicate</em>}'.
+   * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getBody <em>Body</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Predicate</em>'.
-   * @see com.isax.validation.dsl.dsl.TargetDefinition#getPredicate()
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see com.isax.validation.dsl.dsl.TargetDefinition#getBody()
    * @see #getTargetDefinition()
    * @generated
    */
-  EReference getTargetDefinition_Predicate();
+  EReference getTargetDefinition_Body();
 
   /**
    * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}'.
@@ -2349,12 +2478,54 @@ public interface DslPackage extends EPackage
     EClass VALIDATOR = eINSTANCE.getValidator();
 
     /**
-     * The meta object literal for the '<em><b>Sentences</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Start On</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VALIDATOR__SENTENCES = eINSTANCE.getValidator_Sentences();
+    EReference VALIDATOR__START_ON = eINSTANCE.getValidator_StartOn();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALIDATOR__BODY = eINSTANCE.getValidator_Body();
+
+    /**
+     * The meta object literal for the '<em><b>Predicates</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALIDATOR__PREDICATES = eINSTANCE.getValidator_Predicates();
+
+    /**
+     * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl <em>Body Sentences</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.isax.validation.dsl.dsl.impl.BodySentencesImpl
+     * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getBodySentences()
+     * @generated
+     */
+    EClass BODY_SENTENCES = eINSTANCE.getBodySentences();
+
+    /**
+     * The meta object literal for the '<em><b>Definitions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BODY_SENTENCES__DEFINITIONS = eINSTANCE.getBodySentences_Definitions();
+
+    /**
+     * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BODY_SENTENCES__CONSTRAINTS = eINSTANCE.getBodySentences_Constraints();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.SentenceImpl <em>Sentence</em>}' class.
@@ -2487,12 +2658,12 @@ public interface DslPackage extends EPackage
     EReference PREDICATE_DEFINITION_SENTENCE__PARAMETERS = eINSTANCE.getPredicateDefinitionSentence_Parameters();
 
     /**
-     * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PREDICATE_DEFINITION_SENTENCE__PREDICATE = eINSTANCE.getPredicateDefinitionSentence_Predicate();
+    EReference PREDICATE_DEFINITION_SENTENCE__BODY = eINSTANCE.getPredicateDefinitionSentence_Body();
 
     /**
      * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.NodeDefinitionImpl <em>Node Definition</em>}' class.
@@ -2565,6 +2736,14 @@ public interface DslPackage extends EPackage
     EAttribute TARGET_DEFINITION__AXIS = eINSTANCE.getTargetDefinition_Axis();
 
     /**
+     * The meta object literal for the '<em><b>Local</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TARGET_DEFINITION__LOCAL = eINSTANCE.getTargetDefinition_Local();
+
+    /**
      * The meta object literal for the '<em><b>Definition</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2573,12 +2752,12 @@ public interface DslPackage extends EPackage
     EReference TARGET_DEFINITION__DEFINITION = eINSTANCE.getTargetDefinition_Definition();
 
     /**
-     * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TARGET_DEFINITION__PREDICATE = eINSTANCE.getTargetDefinition_Predicate();
+    EReference TARGET_DEFINITION__BODY = eINSTANCE.getTargetDefinition_Body();
 
     /**
      * The meta object literal for the '<em><b>Assignments</b></em>' containment reference feature.

@@ -2,10 +2,10 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
+import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.ParameterList;
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
-import com.isax.validation.dsl.dsl.PredicateExpression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateDefinitionSentenceImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateDefinitionSentenceImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateDefinitionSentenceImpl#getPredicate <em>Predicate</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.PredicateDefinitionSentenceImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,14 +63,14 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
   protected ParameterList parameters;
 
   /**
-   * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference.
+   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPredicate()
+   * @see #getBody()
    * @generated
    * @ordered
    */
-  protected PredicateExpression predicate;
+  protected BodySentences body;
 
   /**
    * <!-- begin-user-doc -->
@@ -169,9 +169,9 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
    * <!-- end-user-doc -->
    * @generated
    */
-  public PredicateExpression getPredicate()
+  public BodySentences getBody()
   {
-    return predicate;
+    return body;
   }
 
   /**
@@ -179,13 +179,13 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPredicate(PredicateExpression newPredicate, NotificationChain msgs)
+  public NotificationChain basicSetBody(BodySentences newBody, NotificationChain msgs)
   {
-    PredicateExpression oldPredicate = predicate;
-    predicate = newPredicate;
+    BodySentences oldBody = body;
+    body = newBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE, oldPredicate, newPredicate);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY, oldBody, newBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -196,20 +196,20 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPredicate(PredicateExpression newPredicate)
+  public void setBody(BodySentences newBody)
   {
-    if (newPredicate != predicate)
+    if (newBody != body)
     {
       NotificationChain msgs = null;
-      if (predicate != null)
-        msgs = ((InternalEObject)predicate).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE, null, msgs);
-      if (newPredicate != null)
-        msgs = ((InternalEObject)newPredicate).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE, null, msgs);
-      msgs = basicSetPredicate(newPredicate, msgs);
+      if (body != null)
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY, null, msgs);
+      if (newBody != null)
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY, null, msgs);
+      msgs = basicSetBody(newBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE, newPredicate, newPredicate));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY, newBody, newBody));
   }
 
   /**
@@ -224,8 +224,8 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
     {
       case DslPackage.PREDICATE_DEFINITION_SENTENCE__PARAMETERS:
         return basicSetParameters(null, msgs);
-      case DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE:
-        return basicSetPredicate(null, msgs);
+      case DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY:
+        return basicSetBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -244,8 +244,8 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
         return getName();
       case DslPackage.PREDICATE_DEFINITION_SENTENCE__PARAMETERS:
         return getParameters();
-      case DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE:
-        return getPredicate();
+      case DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY:
+        return getBody();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -266,8 +266,8 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
       case DslPackage.PREDICATE_DEFINITION_SENTENCE__PARAMETERS:
         setParameters((ParameterList)newValue);
         return;
-      case DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE:
-        setPredicate((PredicateExpression)newValue);
+      case DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY:
+        setBody((BodySentences)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -289,8 +289,8 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
       case DslPackage.PREDICATE_DEFINITION_SENTENCE__PARAMETERS:
         setParameters((ParameterList)null);
         return;
-      case DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE:
-        setPredicate((PredicateExpression)null);
+      case DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY:
+        setBody((BodySentences)null);
         return;
     }
     super.eUnset(featureID);
@@ -310,8 +310,8 @@ public class PredicateDefinitionSentenceImpl extends SentenceImpl implements Pre
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DslPackage.PREDICATE_DEFINITION_SENTENCE__PARAMETERS:
         return parameters != null;
-      case DslPackage.PREDICATE_DEFINITION_SENTENCE__PREDICATE:
-        return predicate != null;
+      case DslPackage.PREDICATE_DEFINITION_SENTENCE__BODY:
+        return body != null;
     }
     return super.eIsSet(featureID);
   }

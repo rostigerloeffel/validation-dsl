@@ -80,6 +80,11 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createValidatorAdapter();
       }
       @Override
+      public Adapter caseBodySentences(BodySentences object)
+      {
+        return createBodySentencesAdapter();
+      }
+      @Override
       public Adapter caseSentence(Sentence object)
       {
         return createSentenceAdapter();
@@ -277,6 +282,21 @@ public class DslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createValidatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.BodySentences <em>Body Sentences</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.isax.validation.dsl.dsl.BodySentences
+   * @generated
+   */
+  public Adapter createBodySentencesAdapter()
   {
     return null;
   }

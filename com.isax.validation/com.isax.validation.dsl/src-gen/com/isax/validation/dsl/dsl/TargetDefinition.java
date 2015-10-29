@@ -14,8 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getAxis <em>Axis</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getLocal <em>Local</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getDefinition <em>Definition</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getPredicate <em>Predicate</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getBody <em>Body</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}</li>
  * </ul>
  *
@@ -55,6 +56,32 @@ public interface TargetDefinition extends EObject
   void setAxis(Axis value);
 
   /**
+   * Returns the value of the '<em><b>Local</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Local</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Local</em>' containment reference.
+   * @see #setLocal(NodeDefinition)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition_Local()
+   * @model containment="true"
+   * @generated
+   */
+  NodeDefinition getLocal();
+
+  /**
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.TargetDefinition#getLocal <em>Local</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Local</em>' containment reference.
+   * @see #getLocal()
+   * @generated
+   */
+  void setLocal(NodeDefinition value);
+
+  /**
    * Returns the value of the '<em><b>Definition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -81,30 +108,30 @@ public interface TargetDefinition extends EObject
   void setDefinition(NodeDefinition value);
 
   /**
-   * Returns the value of the '<em><b>Predicate</b></em>' containment reference.
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Predicate</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Predicate</em>' containment reference.
-   * @see #setPredicate(PredicateExpression)
-   * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition_Predicate()
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(BodySentences)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition_Body()
    * @model containment="true"
    * @generated
    */
-  PredicateExpression getPredicate();
+  BodySentences getBody();
 
   /**
-   * Sets the value of the '{@link com.isax.validation.dsl.dsl.TargetDefinition#getPredicate <em>Predicate</em>}' containment reference.
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.TargetDefinition#getBody <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Predicate</em>' containment reference.
-   * @see #getPredicate()
+   * @param value the new value of the '<em>Body</em>' containment reference.
+   * @see #getBody()
    * @generated
    */
-  void setPredicate(PredicateExpression value);
+  void setBody(BodySentences value);
 
   /**
    * Returns the value of the '<em><b>Assignments</b></em>' containment reference.

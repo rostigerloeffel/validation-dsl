@@ -37,10 +37,9 @@ public class DslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getBodySentencesAccess().getAlternatives_1(), "rule__BodySentences__Alternatives_1");
 					put(grammarAccess.getSentenceAccess().getAlternatives(), "rule__Sentence__Alternatives");
 					put(grammarAccess.getDefinitionSentenceAccess().getAlternatives_0(), "rule__DefinitionSentence__Alternatives_0");
-					put(grammarAccess.getConstraintSentenceAccess().getAlternatives_3(), "rule__ConstraintSentence__Alternatives_3");
-					put(grammarAccess.getPredicateDefinitionSentenceAccess().getAlternatives_3(), "rule__PredicateDefinitionSentence__Alternatives_3");
 					put(grammarAccess.getSelectorListAccess().getAlternatives(), "rule__SelectorList__Alternatives");
 					put(grammarAccess.getAndExpressionAccess().getAlternatives_1_1(), "rule__AndExpression__Alternatives_1_1");
 					put(grammarAccess.getImpliesExpressionAccess().getAlternatives_1_1(), "rule__ImpliesExpression__Alternatives_1_1");
@@ -92,6 +91,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRelationQualifierAccess().getAlternatives(), "rule__RelationQualifier__Alternatives");
 					put(grammarAccess.getAxisAccess().getAlternatives(), "rule__Axis__Alternatives");
 					put(grammarAccess.getPropertyRelationAccess().getAlternatives(), "rule__PropertyRelation__Alternatives");
+					put(grammarAccess.getValidatorAccess().getGroup(), "rule__Validator__Group__0");
+					put(grammarAccess.getBodySentencesAccess().getGroup(), "rule__BodySentences__Group__0");
 					put(grammarAccess.getStartOnSentenceAccess().getGroup(), "rule__StartOnSentence__Group__0");
 					put(grammarAccess.getDefinitionSentenceAccess().getGroup(), "rule__DefinitionSentence__Group__0");
 					put(grammarAccess.getConstraintSentenceAccess().getGroup(), "rule__ConstraintSentence__Group__0");
@@ -100,8 +101,9 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNodeReferenceListAccess().getGroup(), "rule__NodeReferenceList__Group__0");
 					put(grammarAccess.getNodeReferenceListAccess().getGroup_1(), "rule__NodeReferenceList__Group_1__0");
 					put(grammarAccess.getTargetDefinitionAccess().getGroup(), "rule__TargetDefinition__Group__0");
-					put(grammarAccess.getTargetDefinitionAccess().getGroup_2(), "rule__TargetDefinition__Group_2__0");
+					put(grammarAccess.getTargetDefinitionAccess().getGroup_1(), "rule__TargetDefinition__Group_1__0");
 					put(grammarAccess.getTargetDefinitionAccess().getGroup_3(), "rule__TargetDefinition__Group_3__0");
+					put(grammarAccess.getTargetDefinitionAccess().getGroup_4(), "rule__TargetDefinition__Group_4__0");
 					put(grammarAccess.getSelectorListAccess().getGroup_0(), "rule__SelectorList__Group_0__0");
 					put(grammarAccess.getSelectorListAccess().getGroup_1(), "rule__SelectorList__Group_1__0");
 					put(grammarAccess.getSelectorListDefAccess().getGroup(), "rule__SelectorListDef__Group__0");
@@ -113,7 +115,6 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImpliesExpressionAccess().getGroup(), "rule__ImpliesExpression__Group__0");
 					put(grammarAccess.getImpliesExpressionAccess().getGroup_1(), "rule__ImpliesExpression__Group_1__0");
 					put(grammarAccess.getPrimaryExpressionAccess().getGroup(), "rule__PrimaryExpression__Group__0");
-					put(grammarAccess.getPrimaryExpressionAccess().getGroup_0(), "rule__PrimaryExpression__Group_0__0");
 					put(grammarAccess.getPrimaryExpressionAccess().getGroup_1_1(), "rule__PrimaryExpression__Group_1_1__0");
 					put(grammarAccess.getPredicateCallAccess().getGroup(), "rule__PredicateCall__Group__0");
 					put(grammarAccess.getPredicateCallAccess().getGroup_1(), "rule__PredicateCall__Group_1__0");
@@ -309,7 +310,11 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
-					put(grammarAccess.getValidatorAccess().getSentencesAssignment(), "rule__Validator__SentencesAssignment");
+					put(grammarAccess.getValidatorAccess().getStartOnAssignment_0(), "rule__Validator__StartOnAssignment_0");
+					put(grammarAccess.getValidatorAccess().getBodyAssignment_1(), "rule__Validator__BodyAssignment_1");
+					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_2(), "rule__Validator__PredicatesAssignment_2");
+					put(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0(), "rule__BodySentences__DefinitionsAssignment_1_0");
+					put(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1(), "rule__BodySentences__ConstraintsAssignment_1_1");
 					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_1(), "rule__StartOnSentence__DefinitionAssignment_1");
 					put(grammarAccess.getDefinitionSentenceAccess().getQuantificationAssignment_0_0(), "rule__DefinitionSentence__QuantificationAssignment_0_0");
 					put(grammarAccess.getDefinitionSentenceAccess().getNodeAssignment_0_1(), "rule__DefinitionSentence__NodeAssignment_0_1");
@@ -317,19 +322,20 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionSentenceAccess().getTargetAssignment_2(), "rule__DefinitionSentence__TargetAssignment_2");
 					put(grammarAccess.getConstraintSentenceAccess().getQuantificationsAssignment_1(), "rule__ConstraintSentence__QuantificationsAssignment_1");
 					put(grammarAccess.getConstraintSentenceAccess().getNodesAssignment_2(), "rule__ConstraintSentence__NodesAssignment_2");
-					put(grammarAccess.getConstraintSentenceAccess().getPredicateAssignment_4(), "rule__ConstraintSentence__PredicateAssignment_4");
+					put(grammarAccess.getConstraintSentenceAccess().getPredicateAssignment_5(), "rule__ConstraintSentence__PredicateAssignment_5");
 					put(grammarAccess.getPredicateDefinitionSentenceAccess().getNameAssignment_1(), "rule__PredicateDefinitionSentence__NameAssignment_1");
 					put(grammarAccess.getPredicateDefinitionSentenceAccess().getParametersAssignment_2(), "rule__PredicateDefinitionSentence__ParametersAssignment_2");
-					put(grammarAccess.getPredicateDefinitionSentenceAccess().getPredicateAssignment_4(), "rule__PredicateDefinitionSentence__PredicateAssignment_4");
+					put(grammarAccess.getPredicateDefinitionSentenceAccess().getBodyAssignment_5(), "rule__PredicateDefinitionSentence__BodyAssignment_5");
 					put(grammarAccess.getNodeDefinitionAccess().getNameAssignment_0(), "rule__NodeDefinition__NameAssignment_0");
 					put(grammarAccess.getNodeDefinitionAccess().getCollectionAssignment_1(), "rule__NodeDefinition__CollectionAssignment_1");
 					put(grammarAccess.getNodeDefinitionAccess().getSelectorsAssignment_2(), "rule__NodeDefinition__SelectorsAssignment_2");
 					put(grammarAccess.getNodeReferenceListAccess().getNodesAssignment_0(), "rule__NodeReferenceList__NodesAssignment_0");
 					put(grammarAccess.getNodeReferenceListAccess().getNodesAssignment_1_1(), "rule__NodeReferenceList__NodesAssignment_1_1");
 					put(grammarAccess.getTargetDefinitionAccess().getAxisAssignment_0(), "rule__TargetDefinition__AxisAssignment_0");
-					put(grammarAccess.getTargetDefinitionAccess().getDefinitionAssignment_1(), "rule__TargetDefinition__DefinitionAssignment_1");
-					put(grammarAccess.getTargetDefinitionAccess().getPredicateAssignment_2_2(), "rule__TargetDefinition__PredicateAssignment_2_2");
-					put(grammarAccess.getTargetDefinitionAccess().getAssignmentsAssignment_3_2(), "rule__TargetDefinition__AssignmentsAssignment_3_2");
+					put(grammarAccess.getTargetDefinitionAccess().getLocalAssignment_1_0(), "rule__TargetDefinition__LocalAssignment_1_0");
+					put(grammarAccess.getTargetDefinitionAccess().getDefinitionAssignment_2(), "rule__TargetDefinition__DefinitionAssignment_2");
+					put(grammarAccess.getTargetDefinitionAccess().getBodyAssignment_3_2(), "rule__TargetDefinition__BodyAssignment_3_2");
+					put(grammarAccess.getTargetDefinitionAccess().getAssignmentsAssignment_4_2(), "rule__TargetDefinition__AssignmentsAssignment_4_2");
 					put(grammarAccess.getSelectorListAccess().getSelectorsAssignment_0_1(), "rule__SelectorList__SelectorsAssignment_0_1");
 					put(grammarAccess.getSelectorListAccess().getSelectorsAssignment_1_1(), "rule__SelectorList__SelectorsAssignment_1_1");
 					put(grammarAccess.getSelectorListDefAccess().getSelectorsAssignment_0(), "rule__SelectorListDef__SelectorsAssignment_0");
@@ -339,7 +345,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOrExpressionAccess().getRhsAssignment_1_2(), "rule__OrExpression__RhsAssignment_1_2");
 					put(grammarAccess.getImpliesExpressionAccess().getLhsAssignment_0(), "rule__ImpliesExpression__LhsAssignment_0");
 					put(grammarAccess.getImpliesExpressionAccess().getRhsAssignment_1_2(), "rule__ImpliesExpression__RhsAssignment_1_2");
-					put(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0_0(), "rule__PrimaryExpression__NegatedAssignment_0_0");
+					put(grammarAccess.getPrimaryExpressionAccess().getNegatedAssignment_0(), "rule__PrimaryExpression__NegatedAssignment_0");
 					put(grammarAccess.getPrimaryExpressionAccess().getCallAssignment_1_0(), "rule__PrimaryExpression__CallAssignment_1_0");
 					put(grammarAccess.getPrimaryExpressionAccess().getInnerAssignment_1_1_1(), "rule__PrimaryExpression__InnerAssignment_1_1_1");
 					put(grammarAccess.getPredicateCallAccess().getLabelAssignment_1_1(), "rule__PredicateCall__LabelAssignment_1_1");

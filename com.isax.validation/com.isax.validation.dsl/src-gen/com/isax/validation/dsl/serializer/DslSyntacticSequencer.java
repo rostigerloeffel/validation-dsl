@@ -24,10 +24,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected DslGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1;
 	protected AbstractElementAlias match_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1;
-	protected AbstractElementAlias match_ConstraintSentence_ColonKeyword_3_1_or_HoldsThatKeyword_3_0;
 	protected AbstractElementAlias match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0;
-	protected AbstractElementAlias match_PredicateDefinitionSentence_AsKeyword_3_0_or_ColonKeyword_3_1;
-	protected AbstractElementAlias match_PrimaryExpression_SpaceKeyword_0_1_a;
 	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
 	protected AbstractElementAlias match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q;
@@ -40,10 +37,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (DslGrammarAccess) access;
 		match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndExpressionAccess().getAndKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getAndExpressionAccess().getCommaKeyword_1_1_1()));
 		match_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssignmentAccess().getBecomesKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAssignmentAccess().getColonEqualsSignKeyword_1_1()));
-		match_ConstraintSentence_ColonKeyword_3_1_or_HoldsThatKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstraintSentenceAccess().getColonKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getConstraintSentenceAccess().getHoldsThatKeyword_3_0()));
 		match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getEqualsSignGreaterThanSignKeyword_1_1_1()), new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getImpliesKeyword_1_1_0()));
-		match_PredicateDefinitionSentence_AsKeyword_3_0_or_ColonKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPredicateDefinitionSentenceAccess().getAsKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getPredicateDefinitionSentenceAccess().getColonKeyword_3_1()));
-		match_PrimaryExpression_SpaceKeyword_0_1_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getSpaceKeyword_0_1());
 		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
 		match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXFunctionTypeRefAccess().getLeftParenthesisKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getXFunctionTypeRefAccess().getRightParenthesisKeyword_0_2()));
@@ -93,14 +87,8 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1.equals(syntax))
 				emit_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ConstraintSentence_ColonKeyword_3_1_or_HoldsThatKeyword_3_0.equals(syntax))
-				emit_ConstraintSentence_ColonKeyword_3_1_or_HoldsThatKeyword_3_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0.equals(syntax))
 				emit_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PredicateDefinitionSentence_AsKeyword_3_0_or_ColonKeyword_3_1.equals(syntax))
-				emit_PredicateDefinitionSentence_AsKeyword_3_0_or_ColonKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PrimaryExpression_SpaceKeyword_0_1_a.equals(syntax))
-				emit_PrimaryExpression_SpaceKeyword_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
 				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
@@ -141,49 +129,12 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'holds that' | ':'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'for' (ambiguity) predicate=PredicateExpression
-	 *     nodes=NodeReferenceList (ambiguity) predicate=PredicateExpression
-	 *     quantifications=QuantificationList (ambiguity) predicate=PredicateExpression
-	 */
-	protected void emit_ConstraintSentence_ColonKeyword_3_1_or_HoldsThatKeyword_3_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
 	 *     'implies' | '=>'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {ImpliesExpression.lhs=} (ambiguity) rhs=PrimaryExpression
 	 */
 	protected void emit_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'as' | ':'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     name=ID (ambiguity) predicate=PredicateExpression
-	 *     parameters=ParameterList (ambiguity) predicate=PredicateExpression
-	 */
-	protected void emit_PredicateDefinitionSentence_AsKeyword_3_0_or_ColonKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ' '*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     negated?='not' (ambiguity) '(' inner=PredicateExpression
-	 *     negated?='not' (ambiguity) call=PredicateCall
-	 */
-	protected void emit_PrimaryExpression_SpaceKeyword_0_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

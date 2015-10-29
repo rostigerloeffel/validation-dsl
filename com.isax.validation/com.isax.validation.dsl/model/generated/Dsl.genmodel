@@ -35,7 +35,13 @@
       <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//PropertyRelation/LesserEquals"/>
     </genEnums>
     <genClasses ecoreClass="Dsl.ecore#//Validator">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Validator/sentences"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Validator/startOn"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Validator/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Validator/predicates"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//BodySentences">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//BodySentences/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//BodySentences/constraints"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Sentence"/>
     <genClasses ecoreClass="Dsl.ecore#//StartOnSentence">
@@ -55,7 +61,7 @@
     <genClasses ecoreClass="Dsl.ecore#//PredicateDefinitionSentence">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//PredicateDefinitionSentence/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateDefinitionSentence/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateDefinitionSentence/predicate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//PredicateDefinitionSentence/body"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//NodeDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//NodeDefinition/name"/>
@@ -67,8 +73,9 @@
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//TargetDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//TargetDefinition/axis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/local"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/definition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/predicate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/body"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TargetDefinition/assignments"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//SelectorList">

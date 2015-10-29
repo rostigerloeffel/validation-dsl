@@ -66,6 +66,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
     switch (eClass.getClassifierID())
     {
       case DslPackage.VALIDATOR: return createValidator();
+      case DslPackage.BODY_SENTENCES: return createBodySentences();
       case DslPackage.SENTENCE: return createSentence();
       case DslPackage.START_ON_SENTENCE: return createStartOnSentence();
       case DslPackage.DEFINITION_SENTENCE: return createDefinitionSentence();
@@ -159,6 +160,17 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
   {
     ValidatorImpl validator = new ValidatorImpl();
     return validator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BodySentences createBodySentences()
+  {
+    BodySentencesImpl bodySentences = new BodySentencesImpl();
+    return bodySentences;
   }
 
   /**

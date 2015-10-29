@@ -15,7 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.isax.validation.dsl.dsl.Validator#getSentences <em>Sentences</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.Validator#getStartOn <em>Start On</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.Validator#getBody <em>Body</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.Validator#getPredicates <em>Predicates</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getValidator()
@@ -25,19 +27,71 @@ import org.eclipse.emf.ecore.EObject;
 public interface Validator extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Sentences</b></em>' containment reference list.
-   * The list contents are of type {@link com.isax.validation.dsl.dsl.Sentence}.
+   * Returns the value of the '<em><b>Start On</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Sentences</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Start On</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Sentences</em>' containment reference list.
-   * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_Sentences()
+   * @return the value of the '<em>Start On</em>' containment reference.
+   * @see #setStartOn(StartOnSentence)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_StartOn()
    * @model containment="true"
    * @generated
    */
-  EList<Sentence> getSentences();
+  StartOnSentence getStartOn();
+
+  /**
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.Validator#getStartOn <em>Start On</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Start On</em>' containment reference.
+   * @see #getStartOn()
+   * @generated
+   */
+  void setStartOn(StartOnSentence value);
+
+  /**
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(BodySentences)
+   * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_Body()
+   * @model containment="true"
+   * @generated
+   */
+  BodySentences getBody();
+
+  /**
+   * Sets the value of the '{@link com.isax.validation.dsl.dsl.Validator#getBody <em>Body</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Body</em>' containment reference.
+   * @see #getBody()
+   * @generated
+   */
+  void setBody(BodySentences value);
+
+  /**
+   * Returns the value of the '<em><b>Predicates</b></em>' containment reference list.
+   * The list contents are of type {@link com.isax.validation.dsl.dsl.PredicateDefinitionSentence}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Predicates</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Predicates</em>' containment reference list.
+   * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_Predicates()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PredicateDefinitionSentence> getPredicates();
 
 } // Validator

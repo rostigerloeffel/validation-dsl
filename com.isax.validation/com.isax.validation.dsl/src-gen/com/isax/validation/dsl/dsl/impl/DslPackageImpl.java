@@ -10,6 +10,7 @@ import com.isax.validation.dsl.dsl.AssignmentExpression;
 import com.isax.validation.dsl.dsl.AssignmentList;
 import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
@@ -67,6 +68,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * @generated
    */
   private EClass validatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bodySentencesEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -408,9 +416,59 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getValidator_Sentences()
+  public EReference getValidator_StartOn()
   {
     return (EReference)validatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidator_Body()
+  {
+    return (EReference)validatorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidator_Predicates()
+  {
+    return (EReference)validatorEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBodySentences()
+  {
+    return bodySentencesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBodySentences_Definitions()
+  {
+    return (EReference)bodySentencesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBodySentences_Constraints()
+  {
+    return (EReference)bodySentencesEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -568,7 +626,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPredicateDefinitionSentence_Predicate()
+  public EReference getPredicateDefinitionSentence_Body()
   {
     return (EReference)predicateDefinitionSentenceEClass.getEStructuralFeatures().get(2);
   }
@@ -658,7 +716,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTargetDefinition_Definition()
+  public EReference getTargetDefinition_Local()
   {
     return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(1);
   }
@@ -668,7 +726,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTargetDefinition_Predicate()
+  public EReference getTargetDefinition_Definition()
   {
     return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(2);
   }
@@ -678,9 +736,19 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTargetDefinition_Assignments()
+  public EReference getTargetDefinition_Body()
   {
     return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTargetDefinition_Assignments()
+  {
+    return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1314,7 +1382,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     // Create classes and their features
     validatorEClass = createEClass(VALIDATOR);
-    createEReference(validatorEClass, VALIDATOR__SENTENCES);
+    createEReference(validatorEClass, VALIDATOR__START_ON);
+    createEReference(validatorEClass, VALIDATOR__BODY);
+    createEReference(validatorEClass, VALIDATOR__PREDICATES);
+
+    bodySentencesEClass = createEClass(BODY_SENTENCES);
+    createEReference(bodySentencesEClass, BODY_SENTENCES__DEFINITIONS);
+    createEReference(bodySentencesEClass, BODY_SENTENCES__CONSTRAINTS);
 
     sentenceEClass = createEClass(SENTENCE);
 
@@ -1335,7 +1409,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     predicateDefinitionSentenceEClass = createEClass(PREDICATE_DEFINITION_SENTENCE);
     createEAttribute(predicateDefinitionSentenceEClass, PREDICATE_DEFINITION_SENTENCE__NAME);
     createEReference(predicateDefinitionSentenceEClass, PREDICATE_DEFINITION_SENTENCE__PARAMETERS);
-    createEReference(predicateDefinitionSentenceEClass, PREDICATE_DEFINITION_SENTENCE__PREDICATE);
+    createEReference(predicateDefinitionSentenceEClass, PREDICATE_DEFINITION_SENTENCE__BODY);
 
     nodeDefinitionEClass = createEClass(NODE_DEFINITION);
     createEAttribute(nodeDefinitionEClass, NODE_DEFINITION__NAME);
@@ -1347,8 +1421,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     targetDefinitionEClass = createEClass(TARGET_DEFINITION);
     createEAttribute(targetDefinitionEClass, TARGET_DEFINITION__AXIS);
+    createEReference(targetDefinitionEClass, TARGET_DEFINITION__LOCAL);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__DEFINITION);
-    createEReference(targetDefinitionEClass, TARGET_DEFINITION__PREDICATE);
+    createEReference(targetDefinitionEClass, TARGET_DEFINITION__BODY);
     createEReference(targetDefinitionEClass, TARGET_DEFINITION__ASSIGNMENTS);
 
     selectorListEClass = createEClass(SELECTOR_LIST);
@@ -1489,7 +1564,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(validatorEClass, Validator.class, "Validator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValidator_Sentences(), this.getSentence(), null, "sentences", null, 0, -1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValidator_StartOn(), this.getStartOnSentence(), null, "startOn", null, 0, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValidator_Body(), this.getBodySentences(), null, "body", null, 0, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValidator_Predicates(), this.getPredicateDefinitionSentence(), null, "predicates", null, 0, -1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(bodySentencesEClass, BodySentences.class, "BodySentences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBodySentences_Definitions(), this.getDefinitionSentence(), null, "definitions", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBodySentences_Constraints(), this.getConstraintSentence(), null, "constraints", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sentenceEClass, Sentence.class, "Sentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1510,7 +1591,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEClass(predicateDefinitionSentenceEClass, PredicateDefinitionSentence.class, "PredicateDefinitionSentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPredicateDefinitionSentence_Name(), ecorePackage.getEString(), "name", null, 0, 1, PredicateDefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPredicateDefinitionSentence_Parameters(), this.getParameterList(), null, "parameters", null, 0, 1, PredicateDefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPredicateDefinitionSentence_Predicate(), this.getPredicateExpression(), null, "predicate", null, 0, 1, PredicateDefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPredicateDefinitionSentence_Body(), this.getBodySentences(), null, "body", null, 0, 1, PredicateDefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nodeDefinitionEClass, NodeDefinition.class, "NodeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNodeDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, NodeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1522,8 +1603,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(targetDefinitionEClass, TargetDefinition.class, "TargetDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTargetDefinition_Axis(), this.getAxis(), "axis", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTargetDefinition_Local(), this.getNodeDefinition(), null, "local", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Definition(), this.getNodeDefinition(), null, "definition", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTargetDefinition_Predicate(), this.getPredicateExpression(), null, "predicate", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTargetDefinition_Body(), this.getBodySentences(), null, "body", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTargetDefinition_Assignments(), this.getAssignmentList(), null, "assignments", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectorListEClass, SelectorList.class, "SelectorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

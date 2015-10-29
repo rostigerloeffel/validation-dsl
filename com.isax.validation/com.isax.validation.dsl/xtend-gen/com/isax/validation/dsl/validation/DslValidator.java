@@ -10,14 +10,9 @@ import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.RelationQualifier;
-import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
 import com.isax.validation.dsl.util.DslUtil;
 import com.isax.validation.dsl.validation.AbstractDslValidator;
-import java.util.ArrayList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.validation.Check;
@@ -29,24 +24,6 @@ import org.eclipse.xtext.validation.Check;
  */
 @SuppressWarnings("all")
 public class DslValidator extends AbstractDslValidator {
-  @Check
-  public void hasOnlyOneStartOnSentence(final Validator validator) {
-    final ArrayList<StartOnSentence> sentences = new ArrayList<StartOnSentence>();
-    EList<Sentence> _sentences = validator.getSentences();
-    for (final Sentence sentence : _sentences) {
-      if ((sentence instanceof StartOnSentence)) {
-        sentences.add(((StartOnSentence)sentence));
-      }
-    }
-    int _size = sentences.size();
-    boolean _greaterThan = (_size > 1);
-    if (_greaterThan) {
-      for (final StartOnSentence sentence_1 : sentences) {
-        this.error("Validator may have only one \'start on\' sentence!", sentence_1, null);
-      }
-    }
-  }
-  
   @Check
   public void refersSet(final Quantification quantification) {
     NodeDefinition _nodeSet = quantification.getNodeSet();

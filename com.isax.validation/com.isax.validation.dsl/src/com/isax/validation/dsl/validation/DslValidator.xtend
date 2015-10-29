@@ -7,10 +7,7 @@ import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DslPackage
 import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.RelationQualifier
-import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.TargetDefinition
-import com.isax.validation.dsl.dsl.Validator
-import java.util.ArrayList
 import org.eclipse.xtext.validation.Check
 
 import static extension com.isax.validation.dsl.util.DslUtil.collectionAxis
@@ -21,22 +18,6 @@ import static extension com.isax.validation.dsl.util.DslUtil.collectionAxis
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 class DslValidator extends AbstractDslValidator {
-
-	@Check
-	def hasOnlyOneStartOnSentence(Validator validator) {
-		val sentences = new ArrayList<StartOnSentence>();
-		for (sentence : validator.sentences) {
-			if (sentence instanceof StartOnSentence) {
-				sentences.add(sentence);
-			}
-		}
-		
-		if (sentences.size > 1) {
-			for (sentence : sentences) {
-				error("Validator may have only one 'start on' sentence!", sentence, null)	
-			}
-		}
-	}
 	
 	@Check
 	def refersSet(Quantification quantification) {

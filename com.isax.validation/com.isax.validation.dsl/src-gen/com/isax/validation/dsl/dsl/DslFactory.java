@@ -32,6 +32,15 @@ public interface DslFactory extends EFactory
   Validator createValidator();
 
   /**
+   * Returns a new object of class '<em>Body Sentences</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Body Sentences</em>'.
+   * @generated
+   */
+  BodySentences createBodySentences();
+
+  /**
    * Returns a new object of class '<em>Sentence</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
