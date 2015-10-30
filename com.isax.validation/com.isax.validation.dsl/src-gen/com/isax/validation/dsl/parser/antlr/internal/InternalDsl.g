@@ -744,9 +744,9 @@ ruleTargetDefinition returns [EObject current=null]
     {
     	newLeafNode(otherlv_7, grammarAccess.getTargetDefinitionAccess().getRightCurlyBracketKeyword_3_3());
     }
-)?(	otherlv_8='with property' 
+)?(	otherlv_8='then' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0());
+    	newLeafNode(otherlv_8, grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0());
     }
 	otherlv_9='{' 
     {

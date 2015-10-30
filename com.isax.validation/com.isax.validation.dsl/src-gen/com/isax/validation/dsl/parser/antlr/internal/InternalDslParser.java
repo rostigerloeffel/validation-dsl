@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'start on'", "'for'", "'holds'", "'{'", "'}'", "'define'", "'as'", "'*'", "','", "':'", "'where'", "'with property'", "'being'", "'('", "')'", "'or'", "'and'", "'implies'", "'=>'", "'not'", "'['", "']'", "'becomes'", "':='", "'in'", "'.'", "'='", "'+='", "'-='", "'*='", "'/='", "'%='", "'<'", "'>'", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'->'", "'..<'", "'..'", "'<>'", "'?:'", "'+'", "'-'", "'**'", "'/'", "'%'", "'!'", "'++'", "'--'", "'::'", "'?.'", "'#'", "'|'", "';'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'start on'", "'for'", "'holds'", "'{'", "'}'", "'define'", "'as'", "'*'", "','", "':'", "'where'", "'then'", "'being'", "'('", "')'", "'or'", "'and'", "'implies'", "'=>'", "'not'", "'['", "']'", "'becomes'", "':='", "'in'", "'.'", "'='", "'+='", "'-='", "'*='", "'/='", "'%='", "'<'", "'>'", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'->'", "'..<'", "'..'", "'<>'", "'?:'", "'+'", "'-'", "'**'", "'/'", "'%'", "'!'", "'++'", "'--'", "'::'", "'?.'", "'#'", "'|'", "';'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'"
     };
     public static final int RULE_HEX=6;
     public static final int T__50=50;
@@ -1805,7 +1805,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTargetDefinition"
-    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:655:1: ruleTargetDefinition returns [EObject current=null] : ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? ) ;
+    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:655:1: ruleTargetDefinition returns [EObject current=null] : ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? ) ;
     public final EObject ruleTargetDefinition() throws RecognitionException {
         EObject current = null;
 
@@ -1830,11 +1830,11 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:658:28: ( ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? ) )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:1: ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:658:28: ( ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? ) )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:1: ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? )
             {
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:1: ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? )
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:2: ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )?
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:1: ( ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )? )
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:2: ( (lv_axis_0_0= ruleAxis ) ) ( ( (lv_local_1_0= ruleNodeDefinition ) ) otherlv_2= ':' )? ( (lv_definition_3_0= ruleNodeDefinition ) ) (otherlv_4= 'where' otherlv_5= '{' ( (lv_body_6_0= ruleBodySentences ) ) otherlv_7= '}' )? (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )?
             {
             // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:659:2: ( (lv_axis_0_0= ruleAxis ) )
             // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:660:1: (lv_axis_0_0= ruleAxis )
@@ -2030,7 +2030,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:747:3: (otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )?
+            // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:747:3: (otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2039,12 +2039,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:747:5: otherlv_8= 'with property' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}'
+                    // ../com.isax.validation.dsl/src-gen/com/isax/validation/dsl/parser/antlr/internal/InternalDsl.g:747:5: otherlv_8= 'then' otherlv_9= '{' ( (lv_assignments_10_0= ruleAssignmentList ) ) otherlv_11= '}'
                     {
                     otherlv_8=(Token)match(input,24,FOLLOW_24_in_ruleTargetDefinition1436); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_8, grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0());
+                          	newLeafNode(otherlv_8, grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0());
                           
                     }
                     otherlv_9=(Token)match(input,16,FOLLOW_16_in_ruleTargetDefinition1448); if (state.failed) return current;

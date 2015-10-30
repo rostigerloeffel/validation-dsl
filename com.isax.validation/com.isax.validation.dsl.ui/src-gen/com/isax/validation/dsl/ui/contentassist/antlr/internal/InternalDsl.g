@@ -6199,11 +6199,11 @@ rule__TargetDefinition__Group_4__0__Impl
     }
 :
 (
-{ before(grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0()); }
+{ before(grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0()); }
 
-	'with property' 
+	'then' 
 
-{ after(grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0()); }
+{ after(grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0()); }
 )
 
 ;

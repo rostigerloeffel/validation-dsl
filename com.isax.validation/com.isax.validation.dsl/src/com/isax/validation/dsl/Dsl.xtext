@@ -45,7 +45,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('with property' '{' assignments=AssignmentList '}')? ;
+	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('then' '{' assignments=AssignmentList '}')? ;
 
 
 SelectorList:

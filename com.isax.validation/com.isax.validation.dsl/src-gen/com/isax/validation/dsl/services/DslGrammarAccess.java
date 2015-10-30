@@ -397,19 +397,19 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyBodySentencesParserRuleCall_3_2_0 = (RuleCall)cBodyAssignment_3_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cWithPropertyKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cThenKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Assignment cAssignmentsAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cAssignmentsAssignmentListParserRuleCall_4_2_0 = (RuleCall)cAssignmentsAssignment_4_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		
 		//TargetDefinition:
-		//	axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")?
-		//	("with property" "{" assignments=AssignmentList "}")?;
+		//	axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")? ("then" "{"
+		//	assignments=AssignmentList "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")? ("with property"
-		//"{" assignments=AssignmentList "}")?
+		//axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")? ("then" "{"
+		//assignments=AssignmentList "}")?
 		public Group getGroup() { return cGroup; }
 
 		//axis=Axis
@@ -454,11 +454,11 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3_3() { return cRightCurlyBracketKeyword_3_3; }
 
-		//("with property" "{" assignments=AssignmentList "}")?
+		//("then" "{" assignments=AssignmentList "}")?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"with property"
-		public Keyword getWithPropertyKeyword_4_0() { return cWithPropertyKeyword_4_0; }
+		//"then"
+		public Keyword getThenKeyword_4_0() { return cThenKeyword_4_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
@@ -1706,8 +1706,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TargetDefinition:
-	//	axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")?
-	//	("with property" "{" assignments=AssignmentList "}")?;
+	//	axis=Axis (local=NodeDefinition ":")? definition=NodeDefinition ("where" "{" body=BodySentences "}")? ("then" "{"
+	//	assignments=AssignmentList "}")?;
 	public TargetDefinitionElements getTargetDefinitionAccess() {
 		return pTargetDefinition;
 	}

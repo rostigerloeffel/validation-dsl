@@ -2,6 +2,7 @@ package com.isax.validation.dsl.util;
 
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.NodeDefinition;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("all")
@@ -34,5 +35,12 @@ public class DslUtil {
       _or = _equals_3;
     }
     return _or;
+  }
+  
+  public static String uniqueName(final NodeDefinition node) {
+    String _name = node.getName();
+    String _plus = (_name + "$");
+    int _uniqueSuffix = DslUtil.uniqueSuffix(node);
+    return (_plus + Integer.valueOf(_uniqueSuffix));
   }
 }

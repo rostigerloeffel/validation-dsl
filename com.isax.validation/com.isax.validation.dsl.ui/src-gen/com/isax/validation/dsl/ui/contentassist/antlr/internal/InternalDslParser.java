@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'='", "'||'", "'&&'", "'and'", "','", "'implies'", "'=>'", "'becomes'", "':='", "'+='", "'-='", "'*='", "'/='", "'%='", "'=='", "'!='", "'==='", "'!=='", "'>='", "'>'", "'<'", "'->'", "'..<'", "'..'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'++'", "'--'", "'.'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'false'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'", "'start on'", "'for'", "'holds'", "'{'", "'}'", "'define'", "'as'", "':'", "'where'", "'with property'", "'being'", "'('", "')'", "'or'", "'['", "']'", "'in'", "'instanceof'", "'#'", "';'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'while'", "'do'", "'new'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'not'", "'::'", "'?.'", "'|'", "'var'", "'true'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'='", "'||'", "'&&'", "'and'", "','", "'implies'", "'=>'", "'becomes'", "':='", "'+='", "'-='", "'*='", "'/='", "'%='", "'=='", "'!='", "'==='", "'!=='", "'>='", "'>'", "'<'", "'->'", "'..<'", "'..'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'++'", "'--'", "'.'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'false'", "'each'", "'any'", "'must have'", "'must not have'", "'can have'", "'parent'", "'child'", "'ancestor'", "'descendant'", "'multiple parents'", "'multiple children'", "'multiple ancestors'", "'multiple descendants'", "'equals'", "'not equals'", "'greater than'", "'lesser than'", "'greater or equals than'", "'lesser or equals than'", "'start on'", "'for'", "'holds'", "'{'", "'}'", "'define'", "'as'", "':'", "'where'", "'then'", "'being'", "'('", "')'", "'or'", "'['", "']'", "'in'", "'instanceof'", "'#'", "';'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'while'", "'do'", "'new'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'not'", "'::'", "'?.'", "'|'", "'var'", "'true'"
     };
     public static final int RULE_HEX=5;
     public static final int T__50=50;
@@ -19867,24 +19867,24 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TargetDefinition__Group_4__0__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6196:1: rule__TargetDefinition__Group_4__0__Impl : ( 'with property' ) ;
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6196:1: rule__TargetDefinition__Group_4__0__Impl : ( 'then' ) ;
     public final void rule__TargetDefinition__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6200:1: ( ( 'with property' ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6201:1: ( 'with property' )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6200:1: ( ( 'then' ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6201:1: ( 'then' )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6201:1: ( 'with property' )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6202:1: 'with property'
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6201:1: ( 'then' )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:6202:1: 'then'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0()); 
+               before(grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0()); 
             }
             match(input,84,FOLLOW_84_in_rule__TargetDefinition__Group_4__0__Impl13318); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTargetDefinitionAccess().getWithPropertyKeyword_4_0()); 
+               after(grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0()); 
             }
 
             }

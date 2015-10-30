@@ -91,6 +91,7 @@
 'super'=86
 'switch'=75
 'synchronized'=96
+'then'=24
 'throw'=92
 'true'=89
 'try'=94
@@ -99,7 +100,6 @@
 'var'=80
 'where'=23
 'while'=78
-'with property'=24
 '{'=16
 '|'=71
 '||'=48
