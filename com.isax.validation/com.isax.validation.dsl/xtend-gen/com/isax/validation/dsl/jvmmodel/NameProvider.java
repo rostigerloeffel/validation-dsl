@@ -1,42 +1,61 @@
 package com.isax.validation.dsl.jvmmodel;
 
+import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("all")
 public class NameProvider {
+  private int index = 0;
+  
+  private HashMap<EObject, Integer> suffixes = new HashMap<EObject, Integer>();
+  
   private HashMap<String, String> mappings = new HashMap<String, String>();
   
   public String map(final NodeDefinition node, final String newName) {
-    String __uniqueName = this._uniqueName(node);
-    return this.mappings.put(__uniqueName, newName);
+    String _computeUniqueName = this.computeUniqueName(node);
+    return this.mappings.put(_computeUniqueName, newName);
   }
   
   public Object unmap(final NodeDefinition node) {
     Object _xblockexpression = null;
     {
-      String __uniqueName = this._uniqueName(node);
-      this.mappings.remove(__uniqueName);
+      String _computeUniqueName = this.computeUniqueName(node);
+      this.mappings.remove(_computeUniqueName);
       _xblockexpression = null;
     }
     return _xblockexpression;
   }
   
-  public int uniqueSuffix(final EObject object) {
-    return object.hashCode();
+  public Integer uniqueSuffix(final EObject object) {
+    Integer _xblockexpression = null;
+    {
+      Integer suffix = this.suffixes.get(object);
+      boolean _equals = Objects.equal(suffix, null);
+      if (_equals) {
+        int _plusPlus = this.index++;
+        suffix = Integer.valueOf(_plusPlus);
+        this.suffixes.put(object, suffix);
+      }
+      _xblockexpression = suffix;
+    }
+    return _xblockexpression;
   }
   
-  private String _uniqueName(final NodeDefinition node) {
+  private String computeUniqueName(final NodeDefinition node) {
     String _name = node.getName();
     String _plus = (_name + "$");
-    int _uniqueSuffix = this.uniqueSuffix(node);
-    return (_plus + Integer.valueOf(_uniqueSuffix));
+    Integer _uniqueSuffix = this.uniqueSuffix(node);
+    return (_plus + _uniqueSuffix);
   }
   
   public String uniqueName(final NodeDefinition node) {
-    String __uniqueName = this._uniqueName(node);
-    String __uniqueName_1 = this._uniqueName(node);
-    return this.mappings.getOrDefault(__uniqueName, __uniqueName_1);
+    String _xblockexpression = null;
+    {
+      final String uniqueName = this.computeUniqueName(node);
+      _xblockexpression = this.mappings.getOrDefault(uniqueName, uniqueName);
+    }
+    return _xblockexpression;
   }
 }

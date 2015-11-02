@@ -346,7 +346,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLine();
         _builder.append("\t");
         _builder.append("boolean satisfied$");
-        int _uniqueSuffix = this.names.uniqueSuffix(sentence);
+        Integer _uniqueSuffix = this.names.uniqueSuffix(sentence);
         _builder.append(_uniqueSuffix, "\t");
         _builder.append(" = ");
         TargetDefinition _target_1 = sentence.getTarget();
@@ -358,10 +358,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("if (!satisfied$");
-        int _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
+        Integer _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
         _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(") return satisfied$");
-        int _uniqueSuffix_2 = this.names.uniqueSuffix(sentence);
+        Integer _uniqueSuffix_2 = this.names.uniqueSuffix(sentence);
         _builder.append(_uniqueSuffix_2, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -395,7 +395,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals) {
         _builder.append("\t");
         _builder.append("boolean satisfied$");
-        int _uniqueSuffix = this.names.uniqueSuffix(sentence);
+        Integer _uniqueSuffix = this.names.uniqueSuffix(sentence);
         _builder.append(_uniqueSuffix, "\t");
         _builder.append(" = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
@@ -405,7 +405,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("if (!satisfied$");
-        int _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
+        Integer _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
         _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(") return false;");
         _builder.newLineIfNotEmpty();
@@ -574,7 +574,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    int _uniqueSuffix = this.names.uniqueSuffix(_node_1);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(_node_1);
     _builder.append(_uniqueSuffix, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
@@ -584,7 +584,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (!satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    int _uniqueSuffix_1 = this.names.uniqueSuffix(_node_2);
+    Integer _uniqueSuffix_1 = this.names.uniqueSuffix(_node_2);
     _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(") return false;");
     _builder.newLineIfNotEmpty();
@@ -623,7 +623,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("boolean satisfied$");
     Quantification _get_2 = quantifications.get(index);
     NodeDefinition _node_1 = _get_2.getNode();
-    int _uniqueSuffix = this.names.uniqueSuffix(_node_1);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(_node_1);
     _builder.append(_uniqueSuffix, "\t\t");
     _builder.append(" = ");
     Object _constraintDispatch = this.constraintDispatch(quantifications, (index + 1), sentence);
@@ -633,7 +633,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("if (satisfied$");
     Quantification _get_3 = quantifications.get(index);
     NodeDefinition _node_2 = _get_3.getNode();
-    int _uniqueSuffix_1 = this.names.uniqueSuffix(_node_2);
+    Integer _uniqueSuffix_1 = this.names.uniqueSuffix(_node_2);
     _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(") return true;");
     _builder.newLineIfNotEmpty();
@@ -674,7 +674,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _uniqueSuffix = this.names.uniqueSuffix(sentence);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(sentence);
     _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = ");
     RelationQualifier _qualifier = sentence.getQualifier();
@@ -717,7 +717,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("satisfied$");
-    int _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
+    Integer _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
     _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(" ");
     Quantification _quantification_3 = sentence.getQuantification();
@@ -737,10 +737,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("if (!satisfied$");
-    int _uniqueSuffix_2 = this.names.uniqueSuffix(sentence);
+    Integer _uniqueSuffix_2 = this.names.uniqueSuffix(sentence);
     _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(") return satisfied$");
-    int _uniqueSuffix_3 = this.names.uniqueSuffix(sentence);
+    Integer _uniqueSuffix_3 = this.names.uniqueSuffix(sentence);
     _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -756,8 +756,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     if (_notEquals) {
       _xifexpression = this.names.uniqueName(local);
     } else {
-      int _uniqueSuffix = this.names.uniqueSuffix(assignee);
-      _xifexpression = ("node$" + Integer.valueOf(_uniqueSuffix));
+      Integer _uniqueSuffix = this.names.uniqueSuffix(assignee);
+      _xifexpression = ("node$" + _uniqueSuffix);
     }
     final String localName = _xifexpression;
     _builder.newLineIfNotEmpty();
@@ -783,7 +783,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _uniqueSuffix_1 = this.names.uniqueSuffix(assignee);
+    Integer _uniqueSuffix_1 = this.names.uniqueSuffix(assignee);
     _builder.append(_uniqueSuffix_1, "\t");
     _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
@@ -792,7 +792,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals_1) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _uniqueSuffix_2 = this.names.uniqueSuffix(assignee);
+        Integer _uniqueSuffix_2 = this.names.uniqueSuffix(assignee);
         _builder.append(_uniqueSuffix_2, "\t");
         _builder.append(" &= predicates$.hasType(");
         _builder.append(localName, "\t");
@@ -813,7 +813,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       if (_notEquals_2) {
         _builder.append("\t");
         _builder.append("satisfied$");
-        int _uniqueSuffix_3 = this.names.uniqueSuffix(assignee);
+        Integer _uniqueSuffix_3 = this.names.uniqueSuffix(assignee);
         _builder.append(_uniqueSuffix_3, "\t");
         _builder.append(" &= eval(() -> {");
         _builder.newLineIfNotEmpty();
@@ -833,7 +833,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     }
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _uniqueSuffix_4 = this.names.uniqueSuffix(assignee);
+    Integer _uniqueSuffix_4 = this.names.uniqueSuffix(assignee);
     _builder.append(_uniqueSuffix_4, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -929,7 +929,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _uniqueSuffix = this.names.uniqueSuffix(and);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(and);
     _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
@@ -939,7 +939,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _uniqueSuffix_1 = this.names.uniqueSuffix(and);
+        Integer _uniqueSuffix_1 = this.names.uniqueSuffix(and);
         _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" &= ");
         PredicateExpression _lhs_1 = and.getLhs();
@@ -950,7 +950,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _uniqueSuffix_2 = this.names.uniqueSuffix(and);
+    Integer _uniqueSuffix_2 = this.names.uniqueSuffix(and);
     _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" &= ");
     PredicateExpression _rhs = and.getRhs();
@@ -959,7 +959,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _uniqueSuffix_3 = this.names.uniqueSuffix(and);
+    Integer _uniqueSuffix_3 = this.names.uniqueSuffix(and);
     _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -974,7 +974,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _uniqueSuffix = this.names.uniqueSuffix(or);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(or);
     _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = false;");
     _builder.newLineIfNotEmpty();
@@ -984,7 +984,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _uniqueSuffix_1 = this.names.uniqueSuffix(or);
+        Integer _uniqueSuffix_1 = this.names.uniqueSuffix(or);
         _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = or.getLhs();
@@ -995,7 +995,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _uniqueSuffix_2 = this.names.uniqueSuffix(or);
+    Integer _uniqueSuffix_2 = this.names.uniqueSuffix(or);
     _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" |= ");
     PredicateExpression _rhs = or.getRhs();
@@ -1004,7 +1004,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _uniqueSuffix_3 = this.names.uniqueSuffix(or);
+    Integer _uniqueSuffix_3 = this.names.uniqueSuffix(or);
     _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -1019,7 +1019,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("boolean satisfied$");
-    int _uniqueSuffix = this.names.uniqueSuffix(implies);
+    Integer _uniqueSuffix = this.names.uniqueSuffix(implies);
     _builder.append(_uniqueSuffix, "\t");
     _builder.append(" = false;");
     _builder.newLineIfNotEmpty();
@@ -1029,7 +1029,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals = (!Objects.equal(_lhs, null));
       if (_notEquals) {
         _builder.append("satisfied$");
-        int _uniqueSuffix_1 = this.names.uniqueSuffix(implies);
+        Integer _uniqueSuffix_1 = this.names.uniqueSuffix(implies);
         _builder.append(_uniqueSuffix_1, "\t");
         _builder.append(" |= ");
         PredicateExpression _lhs_1 = implies.getLhs();
@@ -1040,7 +1040,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("satisfied$");
-    int _uniqueSuffix_2 = this.names.uniqueSuffix(implies);
+    Integer _uniqueSuffix_2 = this.names.uniqueSuffix(implies);
     _builder.append(_uniqueSuffix_2, "\t");
     _builder.append(" |= !");
     PredicateExpression _rhs = implies.getRhs();
@@ -1049,7 +1049,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return satisfied$");
-    int _uniqueSuffix_3 = this.names.uniqueSuffix(implies);
+    Integer _uniqueSuffix_3 = this.names.uniqueSuffix(implies);
     _builder.append(_uniqueSuffix_3, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();

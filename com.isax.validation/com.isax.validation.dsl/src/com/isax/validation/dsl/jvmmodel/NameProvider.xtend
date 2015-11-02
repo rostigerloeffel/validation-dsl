@@ -5,28 +5,35 @@ import java.util.HashMap
 import org.eclipse.emf.ecore.EObject
 
 class NameProvider {
-	
+	var index = 0;
+	var suffixes = new HashMap<EObject, Integer>();
 	var mappings = new HashMap<String, String>();
 
 	def map(NodeDefinition node, String newName) {
-		mappings.put(node._uniqueName, newName)	
+		mappings.put(node.computeUniqueName, newName)	
 	}
 	
 	def unmap(NodeDefinition node) {
-		mappings.remove(node._uniqueName)
+		mappings.remove(node.computeUniqueName)
 		null
 	}
 
 	def uniqueSuffix(EObject object) {
-		object.hashCode
+		var suffix = suffixes.get(object)
+		if (suffix == null) {
+			suffix = index++;
+			suffixes.put(object, suffix)
+		}
+		suffix
 	}
 	
-	private def _uniqueName(NodeDefinition node) {
-		node.name + "$" + node.uniqueSuffix
+	private def computeUniqueName(NodeDefinition node) {
+		node.name + "$" + node.uniqueSuffix		
 	}
 	
 	def uniqueName(NodeDefinition node) {
-		mappings.getOrDefault(node._uniqueName, node._uniqueName)
+		val uniqueName = node.computeUniqueName
+		mappings.getOrDefault(uniqueName, uniqueName)
 	}
 
 }
