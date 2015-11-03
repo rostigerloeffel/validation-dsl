@@ -114,7 +114,7 @@ public interface DslPackage extends EPackage
 	int BODY_SENTENCES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Definitions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Definitions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,7 +123,7 @@ public interface DslPackage extends EPackage
 	int BODY_SENTENCES__DEFINITIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -132,13 +132,22 @@ public interface DslPackage extends EPackage
 	int BODY_SENTENCES__CONSTRAINTS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Sentences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BODY_SENTENCES__SENTENCES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Body Sentences</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_SENTENCES_FEATURE_COUNT = 2;
+	int BODY_SENTENCES_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.SentenceImpl <em>Sentence</em>}' class.
@@ -1492,10 +1501,10 @@ public interface DslPackage extends EPackage
 	EClass getBodySentences();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getDefinitions <em>Definitions</em>}'.
+	 * Returns the meta object for the reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getDefinitions <em>Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Definitions</em>'.
+	 * @return the meta object for the reference list '<em>Definitions</em>'.
 	 * @see com.isax.validation.dsl.dsl.BodySentences#getDefinitions()
 	 * @see #getBodySentences()
 	 * @generated
@@ -1503,15 +1512,26 @@ public interface DslPackage extends EPackage
 	EReference getBodySentences_Definitions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @return the meta object for the reference list '<em>Constraints</em>'.
 	 * @see com.isax.validation.dsl.dsl.BodySentences#getConstraints()
 	 * @see #getBodySentences()
 	 * @generated
 	 */
 	EReference getBodySentences_Constraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.BodySentences#getSentences <em>Sentences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sentences</em>'.
+	 * @see com.isax.validation.dsl.dsl.BodySentences#getSentences()
+	 * @see #getBodySentences()
+	 * @generated
+	 */
+	EReference getBodySentences_Sentences();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.Sentence <em>Sentence</em>}'.
@@ -2512,7 +2532,7 @@ public interface DslPackage extends EPackage
 		EClass BODY_SENTENCES = eINSTANCE.getBodySentences();
 
 		/**
-		 * The meta object literal for the '<em><b>Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Definitions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2520,12 +2540,20 @@ public interface DslPackage extends EPackage
 		EReference BODY_SENTENCES__DEFINITIONS = eINSTANCE.getBodySentences_Definitions();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference BODY_SENTENCES__CONSTRAINTS = eINSTANCE.getBodySentences_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Sentences</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BODY_SENTENCES__SENTENCES = eINSTANCE.getBodySentences_Sentences();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.SentenceImpl <em>Sentence</em>}' class.

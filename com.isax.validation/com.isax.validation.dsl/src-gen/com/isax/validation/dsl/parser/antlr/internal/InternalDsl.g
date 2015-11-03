@@ -162,16 +162,16 @@ ruleBodySentences returns [EObject current=null]
 )((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getBodySentencesAccess().getDefinitionsDefinitionSentenceParserRuleCall_1_0_0()); 
+	        newCompositeNode(grammarAccess.getBodySentencesAccess().getSentencesDefinitionSentenceParserRuleCall_1_0_0()); 
 	    }
-		lv_definitions_1_0=ruleDefinitionSentence		{
+		lv_sentences_1_0=ruleDefinitionSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getBodySentencesRule());
 	        }
        		add(
        			$current, 
-       			"definitions",
-        		lv_definitions_1_0, 
+       			"sentences",
+        		lv_sentences_1_0, 
         		"DefinitionSentence");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -181,16 +181,16 @@ ruleBodySentences returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getBodySentencesAccess().getConstraintsConstraintSentenceParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getBodySentencesAccess().getSentencesConstraintSentenceParserRuleCall_1_1_0()); 
 	    }
-		lv_constraints_2_0=ruleConstraintSentence		{
+		lv_sentences_2_0=ruleConstraintSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getBodySentencesRule());
 	        }
        		add(
        			$current, 
-       			"constraints",
-        		lv_constraints_2_0, 
+       			"sentences",
+        		lv_sentences_2_0, 
         		"ConstraintSentence");
 	        afterParserOrEnumRuleCall();
 	    }

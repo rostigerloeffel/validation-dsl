@@ -53,6 +53,10 @@ public class NameProvider {
   public String uniqueName(final NodeDefinition node) {
     String _xblockexpression = null;
     {
+      boolean _equals = Objects.equal(node, null);
+      if (_equals) {
+        return "";
+      }
       final String uniqueName = this.computeUniqueName(node);
       _xblockexpression = this.mappings.getOrDefault(uniqueName, uniqueName);
     }

@@ -4,3 +4,4 @@ target
 *.xtendbin
 *._trace
 
+/com.isax.validation/com.isax.validation.dsl/src-gen/com/isax/validation/dsl/*.xtextbin

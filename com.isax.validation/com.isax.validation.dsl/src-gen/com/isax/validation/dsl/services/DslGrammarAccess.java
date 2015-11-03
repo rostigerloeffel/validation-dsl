@@ -60,35 +60,35 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBodySentencesAction_0 = (Action)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Assignment cDefinitionsAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final RuleCall cDefinitionsDefinitionSentenceParserRuleCall_1_0_0 = (RuleCall)cDefinitionsAssignment_1_0.eContents().get(0);
-		private final Assignment cConstraintsAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final RuleCall cConstraintsConstraintSentenceParserRuleCall_1_1_0 = (RuleCall)cConstraintsAssignment_1_1.eContents().get(0);
+		private final Assignment cSentencesAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cSentencesDefinitionSentenceParserRuleCall_1_0_0 = (RuleCall)cSentencesAssignment_1_0.eContents().get(0);
+		private final Assignment cSentencesAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cSentencesConstraintSentenceParserRuleCall_1_1_0 = (RuleCall)cSentencesAssignment_1_1.eContents().get(0);
 		
 		//BodySentences:
-		//	{BodySentences} (definitions+=DefinitionSentence | constraints+=ConstraintSentence)*;
+		//	{BodySentences} (sentences+=DefinitionSentence | sentences+=ConstraintSentence)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BodySentences} (definitions+=DefinitionSentence | constraints+=ConstraintSentence)*
+		//{BodySentences} (sentences+=DefinitionSentence | sentences+=ConstraintSentence)*
 		public Group getGroup() { return cGroup; }
 
 		//{BodySentences}
 		public Action getBodySentencesAction_0() { return cBodySentencesAction_0; }
 
-		//(definitions+=DefinitionSentence | constraints+=ConstraintSentence)*
+		//(sentences+=DefinitionSentence | sentences+=ConstraintSentence)*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//definitions+=DefinitionSentence
-		public Assignment getDefinitionsAssignment_1_0() { return cDefinitionsAssignment_1_0; }
+		//sentences+=DefinitionSentence
+		public Assignment getSentencesAssignment_1_0() { return cSentencesAssignment_1_0; }
 
 		//DefinitionSentence
-		public RuleCall getDefinitionsDefinitionSentenceParserRuleCall_1_0_0() { return cDefinitionsDefinitionSentenceParserRuleCall_1_0_0; }
+		public RuleCall getSentencesDefinitionSentenceParserRuleCall_1_0_0() { return cSentencesDefinitionSentenceParserRuleCall_1_0_0; }
 
-		//constraints+=ConstraintSentence
-		public Assignment getConstraintsAssignment_1_1() { return cConstraintsAssignment_1_1; }
+		//sentences+=ConstraintSentence
+		public Assignment getSentencesAssignment_1_1() { return cSentencesAssignment_1_1; }
 
 		//ConstraintSentence
-		public RuleCall getConstraintsConstraintSentenceParserRuleCall_1_1_0() { return cConstraintsConstraintSentenceParserRuleCall_1_1_0; }
+		public RuleCall getSentencesConstraintSentenceParserRuleCall_1_1_0() { return cSentencesConstraintSentenceParserRuleCall_1_1_0; }
 	}
 
 	public class SentenceElements extends AbstractParserRuleElementFinder {
@@ -1626,7 +1626,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BodySentences:
-	//	{BodySentences} (definitions+=DefinitionSentence | constraints+=ConstraintSentence)*;
+	//	{BodySentences} (sentences+=DefinitionSentence | sentences+=ConstraintSentence)*;
 	public BodySentencesElements getBodySentencesAccess() {
 		return pBodySentences;
 	}
@@ -2264,8 +2264,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//	feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign) value=XAssignment | =>
 	//	({XMemberFeatureCall.memberCallTarget=current} ("." | nullSafe?="?." | explicitStatic?="::")) ("<"
 	//	typeArguments+=JvmArgumentTypeReference ("," typeArguments+=JvmArgumentTypeReference)* ">")?
-	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure |
-	//	memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
+	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?="(" (memberCallArguments+=XShortClosure
+	//	| memberCallArguments+=XExpression ("," memberCallArguments+=XExpression)*)? ")")? memberCallArguments+=XClosure?)*;
 	public XbaseGrammarAccess.XMemberFeatureCallElements getXMemberFeatureCallAccess() {
 		return gaXbase.getXMemberFeatureCallAccess();
 	}
@@ -2380,8 +2380,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XSwitchExpression returns XExpression:
 	//	{XSwitchExpression} "switch" (=> ("(" declaredParam=JvmFormalParameter ":") switch=XExpression ")" | =>
-	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":" default=XExpression)?
-	//	"}";
+	//	(declaredParam=JvmFormalParameter ":")? switch=XExpression) "{" cases+=XCasePart* ("default" ":"
+	//	default=XExpression)? "}";
 	public XbaseGrammarAccess.XSwitchExpressionElements getXSwitchExpressionAccess() {
 		return gaXbase.getXSwitchExpressionAccess();
 	}
@@ -2663,7 +2663,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	/// **
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
-	// * / StaticQualifier:
+	// * /
+	//StaticQualifier:
 	//	(ValidID "::")+;
 	public XbaseGrammarAccess.StaticQualifierElements getStaticQualifierAccess() {
 		return gaXbase.getStaticQualifierAccess();

@@ -12,7 +12,7 @@ Validator:
 	
 BodySentences:
 	{BodySentences}
-	(definitions += DefinitionSentence | constraints += ConstraintSentence)*;
+	(sentences += DefinitionSentence | sentences += ConstraintSentence)*;
 
 Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;

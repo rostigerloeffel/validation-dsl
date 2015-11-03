@@ -25,4 +25,3 @@ public class DslStandaloneSetup extends DslStandaloneSetupGenerated{
         super.register(injector);
     }
 }
-

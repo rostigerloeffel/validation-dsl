@@ -548,7 +548,7 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((definitions+=DefinitionSentence | constraints+=ConstraintSentence)*)
+	 *     ((sentences+=DefinitionSentence | sentences+=ConstraintSentence)*)
 	 */
 	protected void sequence_BodySentences(EObject context, BodySentences semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

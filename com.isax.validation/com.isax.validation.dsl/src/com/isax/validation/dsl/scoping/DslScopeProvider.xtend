@@ -3,12 +3,21 @@
  */
 package com.isax.validation.dsl.scoping
 
+import com.isax.validation.dsl.dsl.BodySentences
+import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.NodeDefinition
+import com.isax.validation.dsl.dsl.NodeReferenceList
+import com.isax.validation.dsl.dsl.PredicateReference
 import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.RelationQualifier
+import com.isax.validation.dsl.dsl.Sentence
 import com.isax.validation.dsl.dsl.Validator
+import java.util.ArrayList
 import java.util.Arrays
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
@@ -22,6 +31,10 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
  * 
  */
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	override IScope getScope(EObject context, EReference reference) {
+		super.getScope(context, reference)
+	}
 	
 	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
 		val validator = sentence.getContainerOfType(Validator)
@@ -49,5 +62,46 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 				.filter[p|p.key < index].map[p|p.value.target.definition]
 				.filter[d|d.collection]
 		)
+	}
+	
+//	def scope_NodeReferenceList_nodes(NodeReferenceList list, EReference reference) {
+//		Scopes.scopeFor(visibleDefinitions(list))
+//	}
+//	
+//	def scope_Argument_node(PredicateReference argument, EReference reference) {
+//		Scopes.scopeFor(visibleDefinitions(argument))
+//	}
+	
+	private def visibleDefinitions(EObject object) {
+		var visible = new ArrayList<NodeDefinition>()
+		var current = object.getContainerOfType(Sentence)
+		while (current != null) {
+			visible += parentSentenceDefinitions(current)
+			visible += previousSiblingDefinitions(current)
+			current = if (object.eContainer != null) object.eContainer.getContainerOfType(Sentence) else null
+		}
+		visible
+	}
+	
+	private def previousSiblingDefinitions(Sentence sentence) {
+		val parentBody = sentence.getContainerOfType(BodySentences)
+		val index = parentBody.sentences.indexOf(sentence)
+		var siblings = new ArrayList<NodeDefinition>()
+		siblings += parentBody.sentences.indexed
+				.filter[s|s.key < index]
+				.filter(DefinitionSentence).map[s|s.target.definition]
+		siblings += parentBody.sentences.indexed
+				.filter[s|s.key < index]
+				.filter(DefinitionSentence)
+				.filter[s|s.target.local != null].map[s|s.target.local]
+		siblings
+	}
+	
+	private def dispatch parentSentenceDefinitions(ConstraintSentence sentence) {
+		sentence.quantifications.quantifications.map[q|q.node]
+	}
+	
+	private def dispatch parentSentenceDefinitions(DefinitionSentence sentence) {
+		Arrays.asList(sentence.target.definition, sentence.target.local).filterNull
 	}
 }

@@ -9743,13 +9743,13 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodySentences__Alternatives_1"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3246:1: rule__BodySentences__Alternatives_1 : ( ( ( rule__BodySentences__DefinitionsAssignment_1_0 ) ) | ( ( rule__BodySentences__ConstraintsAssignment_1_1 ) ) );
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3246:1: rule__BodySentences__Alternatives_1 : ( ( ( rule__BodySentences__SentencesAssignment_1_0 ) ) | ( ( rule__BodySentences__SentencesAssignment_1_1 ) ) );
     public final void rule__BodySentences__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3250:1: ( ( ( rule__BodySentences__DefinitionsAssignment_1_0 ) ) | ( ( rule__BodySentences__ConstraintsAssignment_1_1 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3250:1: ( ( ( rule__BodySentences__SentencesAssignment_1_0 ) ) | ( ( rule__BodySentences__SentencesAssignment_1_1 ) ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -9768,19 +9768,19 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3251:1: ( ( rule__BodySentences__DefinitionsAssignment_1_0 ) )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3251:1: ( ( rule__BodySentences__SentencesAssignment_1_0 ) )
                     {
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3251:1: ( ( rule__BodySentences__DefinitionsAssignment_1_0 ) )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3252:1: ( rule__BodySentences__DefinitionsAssignment_1_0 )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3251:1: ( ( rule__BodySentences__SentencesAssignment_1_0 ) )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3252:1: ( rule__BodySentences__SentencesAssignment_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0()); 
+                       before(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0()); 
                     }
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3253:1: ( rule__BodySentences__DefinitionsAssignment_1_0 )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3253:2: rule__BodySentences__DefinitionsAssignment_1_0
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3253:1: ( rule__BodySentences__SentencesAssignment_1_0 )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3253:2: rule__BodySentences__SentencesAssignment_1_0
                     {
-                    pushFollow(FOLLOW_rule__BodySentences__DefinitionsAssignment_1_0_in_rule__BodySentences__Alternatives_16857);
-                    rule__BodySentences__DefinitionsAssignment_1_0();
+                    pushFollow(FOLLOW_rule__BodySentences__SentencesAssignment_1_0_in_rule__BodySentences__Alternatives_16857);
+                    rule__BodySentences__SentencesAssignment_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -9788,7 +9788,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0()); 
+                       after(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0()); 
                     }
 
                     }
@@ -9797,19 +9797,19 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3257:6: ( ( rule__BodySentences__ConstraintsAssignment_1_1 ) )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3257:6: ( ( rule__BodySentences__SentencesAssignment_1_1 ) )
                     {
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3257:6: ( ( rule__BodySentences__ConstraintsAssignment_1_1 ) )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3258:1: ( rule__BodySentences__ConstraintsAssignment_1_1 )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3257:6: ( ( rule__BodySentences__SentencesAssignment_1_1 ) )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3258:1: ( rule__BodySentences__SentencesAssignment_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1()); 
+                       before(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1()); 
                     }
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3259:1: ( rule__BodySentences__ConstraintsAssignment_1_1 )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3259:2: rule__BodySentences__ConstraintsAssignment_1_1
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3259:1: ( rule__BodySentences__SentencesAssignment_1_1 )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3259:2: rule__BodySentences__SentencesAssignment_1_1
                     {
-                    pushFollow(FOLLOW_rule__BodySentences__ConstraintsAssignment_1_1_in_rule__BodySentences__Alternatives_16875);
-                    rule__BodySentences__ConstraintsAssignment_1_1();
+                    pushFollow(FOLLOW_rule__BodySentences__SentencesAssignment_1_1_in_rule__BodySentences__Alternatives_16875);
+                    rule__BodySentences__SentencesAssignment_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -9817,7 +9817,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1()); 
+                       after(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1()); 
                     }
 
                     }
@@ -62972,9 +62972,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Validator__PredicatesAssignment_2"
 
 
-    // $ANTLR start "rule__BodySentences__DefinitionsAssignment_1_0"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21916:1: rule__BodySentences__DefinitionsAssignment_1_0 : ( ruleDefinitionSentence ) ;
-    public final void rule__BodySentences__DefinitionsAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__BodySentences__SentencesAssignment_1_0"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21916:1: rule__BodySentences__SentencesAssignment_1_0 : ( ruleDefinitionSentence ) ;
+    public final void rule__BodySentences__SentencesAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -62986,15 +62986,15 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21922:1: ruleDefinitionSentence
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodySentencesAccess().getDefinitionsDefinitionSentenceParserRuleCall_1_0_0()); 
+               before(grammarAccess.getBodySentencesAccess().getSentencesDefinitionSentenceParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDefinitionSentence_in_rule__BodySentences__DefinitionsAssignment_1_044212);
+            pushFollow(FOLLOW_ruleDefinitionSentence_in_rule__BodySentences__SentencesAssignment_1_044212);
             ruleDefinitionSentence();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodySentencesAccess().getDefinitionsDefinitionSentenceParserRuleCall_1_0_0()); 
+               after(grammarAccess.getBodySentencesAccess().getSentencesDefinitionSentenceParserRuleCall_1_0_0()); 
             }
 
             }
@@ -63014,12 +63014,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodySentences__DefinitionsAssignment_1_0"
+    // $ANTLR end "rule__BodySentences__SentencesAssignment_1_0"
 
 
-    // $ANTLR start "rule__BodySentences__ConstraintsAssignment_1_1"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21931:1: rule__BodySentences__ConstraintsAssignment_1_1 : ( ruleConstraintSentence ) ;
-    public final void rule__BodySentences__ConstraintsAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__BodySentences__SentencesAssignment_1_1"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21931:1: rule__BodySentences__SentencesAssignment_1_1 : ( ruleConstraintSentence ) ;
+    public final void rule__BodySentences__SentencesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -63031,15 +63031,15 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:21937:1: ruleConstraintSentence
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodySentencesAccess().getConstraintsConstraintSentenceParserRuleCall_1_1_0()); 
+               before(grammarAccess.getBodySentencesAccess().getSentencesConstraintSentenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleConstraintSentence_in_rule__BodySentences__ConstraintsAssignment_1_144243);
+            pushFollow(FOLLOW_ruleConstraintSentence_in_rule__BodySentences__SentencesAssignment_1_144243);
             ruleConstraintSentence();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodySentencesAccess().getConstraintsConstraintSentenceParserRuleCall_1_1_0()); 
+               after(grammarAccess.getBodySentencesAccess().getSentencesConstraintSentenceParserRuleCall_1_1_0()); 
             }
 
             }
@@ -63059,7 +63059,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodySentences__ConstraintsAssignment_1_1"
+    // $ANTLR end "rule__BodySentences__SentencesAssignment_1_1"
 
 
     // $ANTLR start "rule__StartOnSentence__DefinitionAssignment_1"
@@ -73781,11 +73781,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             "\1\4\34\uffff\1\3\20\uffff\1\5\1\6\1\7\1\10\1\3",
             "\1\4\34\uffff\1\3\20\uffff\1\5\1\6\1\7\1\10\1\3",
             "",
-            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
-            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
-            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
-            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
-            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
+            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3"+
+            "\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2"+
+            "\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
+            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3"+
+            "\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2"+
+            "\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
+            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3"+
+            "\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2"+
+            "\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
+            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3"+
+            "\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2"+
+            "\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
+            "\5\3\4\uffff\1\11\2\3\1\uffff\1\3\1\uffff\1\3\2\uffff\42\3"+
+            "\24\uffff\1\3\1\uffff\2\3\1\uffff\2\3\3\uffff\2\3\1\uffff\2"+
+            "\3\1\uffff\23\3\3\uffff\2\3\1\uffff\2\3",
             ""
     };
 
@@ -73835,7 +73845,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA28_specialS =
         "\1\uffff\1\0\1\1\40\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff\1\5\6\uffff\1\3\1\uffff\1\5",
+            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5"+
+            "\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1"+
+            "\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff"+
+            "\1\5\6\uffff\1\3\1\uffff\1\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -73955,11 +73968,15 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA29_maxS =
         "\1\166\26\uffff\1\0\10\uffff";
     static final String DFA29_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\6\uffff\1\6\11\uffff\1\7\1\uffff\1\12\1\13\1\14\1\15\1\16\1\17\1\10\1\11";
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\6\uffff\1\6\11\uffff\1\7\1\uffff\1"+
+        "\12\1\13\1\14\1\15\1\16\1\17\1\10\1\11";
     static final String DFA29_specialS =
         "\27\uffff\1\0\10\uffff}>";
     static final String[] DFA29_transitionS = {
-            "\1\5\4\14\30\uffff\1\5\20\uffff\5\5\1\14\24\uffff\1\27\1\uffff\1\2\7\uffff\1\35\2\uffff\1\14\3\uffff\1\14\1\uffff\1\26\1\uffff\1\3\2\uffff\1\30\1\31\1\1\2\14\1\32\1\33\1\34\1\uffff\1\4\10\uffff\1\14",
+            "\1\5\4\14\30\uffff\1\5\20\uffff\5\5\1\14\24\uffff\1\27\1\uffff"+
+            "\1\2\7\uffff\1\35\2\uffff\1\14\3\uffff\1\14\1\uffff\1\26\1\uffff"+
+            "\1\3\2\uffff\1\30\1\31\1\1\2\14\1\32\1\33\1\34\1\uffff\1\4\10"+
+            "\uffff\1\14",
             "",
             "",
             "",
@@ -74065,7 +74082,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA32_specialS =
         "\1\uffff\1\0\41\uffff}>";
     static final String[] DFA32_transitionS = {
-            "\5\2\12\uffff\1\2\15\uffff\1\2\5\uffff\2\2\4\uffff\1\2\4\uffff\6\2\24\uffff\1\2\1\uffff\1\2\7\uffff\1\1\2\uffff\1\2\3\uffff\1\2\1\uffff\1\2\1\uffff\1\2\2\uffff\10\2\1\uffff\1\2\10\uffff\1\2",
+            "\5\2\12\uffff\1\2\15\uffff\1\2\5\uffff\2\2\4\uffff\1\2\4\uffff"+
+            "\6\2\24\uffff\1\2\1\uffff\1\2\7\uffff\1\1\2\uffff\1\2\3\uffff"+
+            "\1\2\1\uffff\1\2\1\uffff\1\2\2\uffff\10\2\1\uffff\1\2\10\uffff"+
+            "\1\2",
             "\1\uffff",
             "",
             "",
@@ -74174,7 +74194,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA37_specialS =
         "\1\uffff\1\0\1\1\40\uffff}>";
     static final String[] DFA37_transitionS = {
-            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff\1\5\6\uffff\1\3\1\uffff\1\5",
+            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5"+
+            "\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1"+
+            "\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff"+
+            "\1\5\6\uffff\1\3\1\uffff\1\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -74298,7 +74321,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA40_specialS =
         "\1\uffff\1\0\1\1\40\uffff}>";
     static final String[] DFA40_transitionS = {
-            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff\1\5\6\uffff\1\3\1\uffff\1\5",
+            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5"+
+            "\4\uffff\6\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\1"+
+            "\5\3\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff"+
+            "\1\5\6\uffff\1\3\1\uffff\1\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -74478,18 +74504,24 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         "\16\uffff}>";
     static final String[] DFA63_transitionS = {
             "\1\1",
-            "\1\6\13\uffff\4\6\25\uffff\1\2\16\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1\uffff\1\5\2\6\1\3\1\4\3\6",
-            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1\uffff\1\5\2\6\1\3\1\4\3\6",
+            "\1\6\13\uffff\4\6\25\uffff\1\2\16\uffff\2\6\22\uffff\1\6\2"+
+            "\uffff\2\6\1\uffff\1\5\2\6\1\3\1\4\3\6",
+            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1"+
+            "\uffff\1\5\2\6\1\3\1\4\3\6",
             "\1\7",
             "\1\10",
             "",
             "",
-            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1\uffff\1\5\2\6\2\uffff\1\6\1\11\1\6",
+            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1"+
+            "\uffff\1\5\2\6\2\uffff\1\6\1\11\1\6",
             "\1\13\1\12",
-            "\1\14\3\uffff\1\6\57\uffff\2\6\24\uffff\1\6\7\uffff\1\6\32\uffff\1\6",
+            "\1\14\3\uffff\1\6\57\uffff\2\6\24\uffff\1\6\7\uffff\1\6\32"+
+            "\uffff\1\6",
             "\1\15",
-            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1\uffff\1\5\2\6\2\uffff\3\6",
-            "\1\6\13\uffff\4\6\34\uffff\1\6\7\uffff\5\6\17\uffff\1\6\2\uffff\2\6\1\uffff\1\5\2\6\2\uffff\1\6\1\11\1\6",
+            "\1\6\13\uffff\4\6\44\uffff\2\6\22\uffff\1\6\2\uffff\2\6\1"+
+            "\uffff\1\5\2\6\2\uffff\3\6",
+            "\1\6\13\uffff\4\6\34\uffff\1\6\7\uffff\5\6\17\uffff\1\6\2"+
+            "\uffff\2\6\1\uffff\1\5\2\6\2\uffff\1\6\1\11\1\6",
             "\1\13\1\12"
     };
 
@@ -74539,7 +74571,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA76_specialS =
         "\1\uffff\1\5\1\1\1\2\1\4\1\6\1\0\1\3\2\uffff}>";
     static final String[] DFA76_transitionS = {
-            "\5\10\5\uffff\2\10\1\uffff\1\10\1\uffff\1\10\2\uffff\1\1\1\2\1\3\1\4\1\5\5\10\1\7\1\6\26\10\24\uffff\1\10\1\uffff\2\10\1\uffff\2\10\3\uffff\2\10\1\uffff\2\10\1\uffff\23\10\3\uffff\2\10\1\uffff\2\10",
+            "\5\10\5\uffff\2\10\1\uffff\1\10\1\uffff\1\10\2\uffff\1\1\1"+
+            "\2\1\3\1\4\1\5\5\10\1\7\1\6\26\10\24\uffff\1\10\1\uffff\2\10"+
+            "\1\uffff\2\10\3\uffff\2\10\1\uffff\2\10\1\uffff\23\10\3\uffff"+
+            "\2\10\1\uffff\2\10",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -74713,7 +74748,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA82_specialS =
         "\2\uffff\1\4\1\3\1\5\1\0\1\2\1\6\1\7\1\1\1\uffff}>";
     static final String[] DFA82_transitionS = {
-            "\5\1\5\uffff\2\1\1\uffff\1\1\1\uffff\1\7\2\uffff\12\1\1\3\1\2\1\4\1\5\1\6\1\10\1\11\21\1\24\uffff\1\1\1\uffff\2\1\1\uffff\2\1\3\uffff\2\1\1\uffff\2\1\1\uffff\23\1\3\uffff\2\1\1\uffff\2\1",
+            "\5\1\5\uffff\2\1\1\uffff\1\1\1\uffff\1\7\2\uffff\12\1\1\3\1"+
+            "\2\1\4\1\5\1\6\1\10\1\11\21\1\24\uffff\1\1\1\uffff\2\1\1\uffff"+
+            "\2\1\3\uffff\2\1\1\uffff\2\1\1\uffff\23\1\3\uffff\2\1\1\uffff"+
+            "\2\1",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -74903,7 +74941,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA89_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA89_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -75055,7 +75095,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA90_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA90_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -75207,7 +75249,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA98_specialS =
         "\1\uffff\1\0\1\1\43\uffff}>";
     static final String[] DFA98_transitionS = {
-            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5\3\uffff\7\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\2\5\2\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff\1\5\6\uffff\1\3\2\5",
+            "\1\1\4\5\12\uffff\1\3\15\uffff\1\5\5\uffff\2\5\4\uffff\1\5"+
+            "\3\uffff\7\5\24\uffff\1\5\1\uffff\1\5\7\uffff\1\2\2\uffff\2"+
+            "\5\2\uffff\1\5\1\uffff\1\5\1\uffff\1\5\2\uffff\10\5\1\uffff"+
+            "\1\5\6\uffff\1\3\2\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -75334,7 +75379,10 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA108_specialS =
         "\1\uffff\1\0\1\1\37\uffff}>";
     static final String[] DFA108_transitionS = {
-            "\1\1\4\4\12\uffff\1\3\15\uffff\1\4\5\uffff\2\4\4\uffff\1\4\4\uffff\6\4\24\uffff\1\4\1\uffff\1\4\7\uffff\1\2\2\uffff\1\4\3\uffff\1\4\1\uffff\1\4\1\uffff\1\4\2\uffff\10\4\1\uffff\1\4\10\uffff\1\4",
+            "\1\1\4\4\12\uffff\1\3\15\uffff\1\4\5\uffff\2\4\4\uffff\1\4"+
+            "\4\uffff\6\4\24\uffff\1\4\1\uffff\1\4\7\uffff\1\2\2\uffff\1"+
+            "\4\3\uffff\1\4\1\uffff\1\4\1\uffff\1\4\2\uffff\10\4\1\uffff"+
+            "\1\4\10\uffff\1\4",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -75457,7 +75505,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA121_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA121_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -75609,7 +75659,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA122_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA122_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -75761,7 +75813,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA126_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA126_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\2\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26"+
+            "\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff"+
+            "\2\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -75913,7 +75967,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA127_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA127_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\1\1\1\2\1\uffff\2\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -76065,7 +76121,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA128_specialS =
         "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA128_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff\23\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\42\2\24\uffff"+
+            "\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\1\1\1\2\1\uffff"+
+            "\23\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -76215,9 +76273,16 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA133_acceptS =
         "\41\uffff\1\2\53\uffff\1\1";
     static final String DFA133_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\55\uffff}>";
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
+        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
+        "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\55\uffff}>";
     static final String[] DFA133_transitionS = {
-            "\1\1\1\23\1\24\1\25\1\27\5\uffff\2\41\1\uffff\1\41\1\uffff\1\41\2\uffff\13\41\1\15\5\41\1\10\1\7\4\41\1\6\4\41\1\2\1\3\1\4\1\5\1\16\1\21\24\uffff\1\32\1\uffff\1\12\1\41\1\uffff\2\41\3\uffff\1\40\1\41\1\uffff\1\20\1\41\1\uffff\1\41\1\17\1\41\1\31\1\41\1\13\2\41\1\33\1\34\1\11\1\26\1\30\1\35\1\36\1\37\1\41\1\14\1\41\3\uffff\2\41\1\uffff\1\41\1\22",
+            "\1\1\1\23\1\24\1\25\1\27\5\uffff\2\41\1\uffff\1\41\1\uffff"+
+            "\1\41\2\uffff\13\41\1\15\5\41\1\10\1\7\4\41\1\6\4\41\1\2\1\3"+
+            "\1\4\1\5\1\16\1\21\24\uffff\1\32\1\uffff\1\12\1\41\1\uffff\2"+
+            "\41\3\uffff\1\40\1\41\1\uffff\1\20\1\41\1\uffff\1\41\1\17\1"+
+            "\41\1\31\1\41\1\13\2\41\1\33\1\34\1\11\1\26\1\30\1\35\1\36\1"+
+            "\37\1\41\1\14\1\41\3\uffff\2\41\1\uffff\1\41\1\22",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -76834,7 +76899,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA142_specialS =
         "\1\uffff\1\0\115\uffff}>";
     static final String[] DFA142_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\2\2\1\uffff\23\2\1\uffff\1\2\1\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26"+
+            "\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff"+
+            "\2\2\1\uffff\23\2\1\uffff\1\2\1\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -76987,7 +77054,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     static final String DFA145_specialS =
         "\1\uffff\1\0\115\uffff}>";
     static final String[] DFA145_transitionS = {
-            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff\2\2\1\uffff\23\2\1\uffff\1\2\1\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\2\2\1\uffff\1\2\1\uffff\1\2\2\uffff\13\2\1\1\26"+
+            "\2\24\uffff\1\2\1\uffff\2\2\1\uffff\2\2\3\uffff\2\2\1\uffff"+
+            "\2\2\1\uffff\23\2\1\uffff\1\2\1\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
             "",
             "",
@@ -77464,8 +77533,8 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__RelationQualifier__Alternatives_in_ruleRelationQualifier6750 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Axis__Alternatives_in_ruleAxis6786 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRelation__Alternatives_in_rulePropertyRelation6822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BodySentences__DefinitionsAssignment_1_0_in_rule__BodySentences__Alternatives_16857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BodySentences__ConstraintsAssignment_1_1_in_rule__BodySentences__Alternatives_16875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BodySentences__SentencesAssignment_1_0_in_rule__BodySentences__Alternatives_16857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BodySentences__SentencesAssignment_1_1_in_rule__BodySentences__Alternatives_16875 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DefinitionSentence__QuantificationAssignment_0_0_in_rule__DefinitionSentence__Alternatives_06909 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DefinitionSentence__NodeAssignment_0_1_in_rule__DefinitionSentence__Alternatives_06927 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SelectorList__Group_0__0_in_rule__SelectorList__Alternatives6960 = new BitSet(new long[]{0x0000000000000002L});
@@ -78993,8 +79062,8 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleStartOnSentence_in_rule__Validator__StartOnAssignment_044119 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBodySentences_in_rule__Validator__BodyAssignment_144150 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePredicateDefinitionSentence_in_rule__Validator__PredicatesAssignment_244181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinitionSentence_in_rule__BodySentences__DefinitionsAssignment_1_044212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraintSentence_in_rule__BodySentences__ConstraintsAssignment_1_144243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefinitionSentence_in_rule__BodySentences__SentencesAssignment_1_044212 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraintSentence_in_rule__BodySentences__SentencesAssignment_1_144243 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNodeDefinition_in_rule__StartOnSentence__DefinitionAssignment_144274 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQuantification_in_rule__DefinitionSentence__QuantificationAssignment_0_044305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__DefinitionSentence__NodeAssignment_0_144340 = new BitSet(new long[]{0x0000000000000002L});

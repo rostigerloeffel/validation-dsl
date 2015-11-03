@@ -3249,15 +3249,15 @@ rule__BodySentences__Alternatives_1
     }
 :
 (
-{ before(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0()); }
-(rule__BodySentences__DefinitionsAssignment_1_0)
-{ after(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0()); }
+{ before(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0()); }
+(rule__BodySentences__SentencesAssignment_1_0)
+{ after(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0()); }
 )
 
     |(
-{ before(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1()); }
-(rule__BodySentences__ConstraintsAssignment_1_1)
-{ after(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1()); }
+{ before(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1()); }
+(rule__BodySentences__SentencesAssignment_1_1)
+{ after(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1()); }
 )
 
 ;
@@ -21913,14 +21913,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__BodySentences__DefinitionsAssignment_1_0
+rule__BodySentences__SentencesAssignment_1_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getBodySentencesAccess().getDefinitionsDefinitionSentenceParserRuleCall_1_0_0()); }
-	ruleDefinitionSentence{ after(grammarAccess.getBodySentencesAccess().getDefinitionsDefinitionSentenceParserRuleCall_1_0_0()); }
+{ before(grammarAccess.getBodySentencesAccess().getSentencesDefinitionSentenceParserRuleCall_1_0_0()); }
+	ruleDefinitionSentence{ after(grammarAccess.getBodySentencesAccess().getSentencesDefinitionSentenceParserRuleCall_1_0_0()); }
 )
 
 ;
@@ -21928,14 +21928,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__BodySentences__ConstraintsAssignment_1_1
+rule__BodySentences__SentencesAssignment_1_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getBodySentencesAccess().getConstraintsConstraintSentenceParserRuleCall_1_1_0()); }
-	ruleConstraintSentence{ after(grammarAccess.getBodySentencesAccess().getConstraintsConstraintSentenceParserRuleCall_1_1_0()); }
+{ before(grammarAccess.getBodySentencesAccess().getSentencesConstraintSentenceParserRuleCall_1_1_0()); }
+	ruleConstraintSentence{ after(grammarAccess.getBodySentencesAccess().getSentencesConstraintSentenceParserRuleCall_1_1_0()); }
 )
 
 ;

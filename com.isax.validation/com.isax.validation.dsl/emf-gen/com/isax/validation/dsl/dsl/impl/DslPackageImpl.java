@@ -476,6 +476,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBodySentences_Sentences()
+	{
+		return (EReference)bodySentencesEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSentence()
 	{
 		return sentenceEClass;
@@ -1389,6 +1399,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		bodySentencesEClass = createEClass(BODY_SENTENCES);
 		createEReference(bodySentencesEClass, BODY_SENTENCES__DEFINITIONS);
 		createEReference(bodySentencesEClass, BODY_SENTENCES__CONSTRAINTS);
+		createEReference(bodySentencesEClass, BODY_SENTENCES__SENTENCES);
 
 		sentenceEClass = createEClass(SENTENCE);
 
@@ -1569,8 +1580,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getValidator_Predicates(), this.getPredicateDefinitionSentence(), null, "predicates", null, 0, -1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bodySentencesEClass, BodySentences.class, "BodySentences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBodySentences_Definitions(), this.getDefinitionSentence(), null, "definitions", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBodySentences_Constraints(), this.getConstraintSentence(), null, "constraints", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBodySentences_Definitions(), this.getDefinitionSentence(), null, "definitions", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getBodySentences_Constraints(), this.getConstraintSentence(), null, "constraints", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getBodySentences_Sentences(), this.getSentence(), null, "sentences", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sentenceEClass, Sentence.class, "Sentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

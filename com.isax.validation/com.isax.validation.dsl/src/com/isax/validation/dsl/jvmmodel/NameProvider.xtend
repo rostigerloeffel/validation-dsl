@@ -28,10 +28,11 @@ class NameProvider {
 	}
 	
 	private def computeUniqueName(NodeDefinition node) {
-		node.name + "$" + node.uniqueSuffix		
+		node.name + "$" + node.uniqueSuffix
 	}
 	
 	def uniqueName(NodeDefinition node) {
+		if (node == null) return ""
 		val uniqueName = node.computeUniqueName
 		mappings.getOrDefault(uniqueName, uniqueName)
 	}

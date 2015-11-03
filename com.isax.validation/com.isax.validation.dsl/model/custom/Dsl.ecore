@@ -11,9 +11,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BodySentences">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
-        eType="#//DefinitionSentence" containment="true"/>
+        eType="#//DefinitionSentence" changeable="false" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//ConstraintSentence" containment="true"/>
+        eType="#//ConstraintSentence" changeable="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sentences" upperBound="-1"
+        eType="#//Sentence" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sentence"/>
   <eClassifiers xsi:type="ecore:EClass" name="StartOnSentence" eSuperTypes="#//Sentence">
@@ -90,7 +92,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateXExpression" eSuperTypes="#//PredicateCall">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass ../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyRelationPredicate" eSuperTypes="#//PredicateCall">
@@ -136,7 +138,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentXExpression" eSuperTypes="#//AssignmentExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass ../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Quantification">

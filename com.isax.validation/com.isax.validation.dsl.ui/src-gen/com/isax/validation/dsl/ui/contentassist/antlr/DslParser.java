@@ -313,8 +313,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValidatorAccess().getStartOnAssignment_0(), "rule__Validator__StartOnAssignment_0");
 					put(grammarAccess.getValidatorAccess().getBodyAssignment_1(), "rule__Validator__BodyAssignment_1");
 					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_2(), "rule__Validator__PredicatesAssignment_2");
-					put(grammarAccess.getBodySentencesAccess().getDefinitionsAssignment_1_0(), "rule__BodySentences__DefinitionsAssignment_1_0");
-					put(grammarAccess.getBodySentencesAccess().getConstraintsAssignment_1_1(), "rule__BodySentences__ConstraintsAssignment_1_1");
+					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0(), "rule__BodySentences__SentencesAssignment_1_0");
+					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1(), "rule__BodySentences__SentencesAssignment_1_1");
 					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_1(), "rule__StartOnSentence__DefinitionAssignment_1");
 					put(grammarAccess.getDefinitionSentenceAccess().getQuantificationAssignment_0_0(), "rule__DefinitionSentence__QuantificationAssignment_0_0");
 					put(grammarAccess.getDefinitionSentenceAccess().getNodeAssignment_0_1(), "rule__DefinitionSentence__NodeAssignment_0_1");

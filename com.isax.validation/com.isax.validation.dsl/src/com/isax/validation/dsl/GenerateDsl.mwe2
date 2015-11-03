@@ -21,9 +21,9 @@ Workflow {
 		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
 	}
 	
-	component = DirectoryCleaner {
-        directory = "${runtimeProject}/emf-gen"
-    }
+//	component = DirectoryCleaner {
+//        directory = "${runtimeProject}/emf-gen"
+//    }
  
     component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
         genModel = "platform:/resource/${projectName}/model/custom/Dsl.genmodel"

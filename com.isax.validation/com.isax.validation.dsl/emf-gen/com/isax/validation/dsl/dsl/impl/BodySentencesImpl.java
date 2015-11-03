@@ -6,6 +6,7 @@ import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.Sentence;
 
 import java.util.Collection;
 
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -31,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl#getDefinitions <em>Definitions</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl#getSentences <em>Sentences</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,7 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class BodySentencesImpl extends MinimalEObjectImpl.Container implements BodySentences
 {
 	/**
-	 * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference list.
+	 * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDefinitions()
@@ -48,7 +51,7 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	protected EList<DefinitionSentence> definitions;
 
 	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraints()
@@ -56,6 +59,16 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	 * @ordered
 	 */
 	protected EList<ConstraintSentence> constraints;
+
+	/**
+	 * The cached value of the '{@link #getSentences() <em>Sentences</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSentences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Sentence> sentences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,7 +100,7 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	{
 		if (definitions == null)
 		{
-			definitions = new EObjectContainmentEList<DefinitionSentence>(DefinitionSentence.class, this, DslPackage.BODY_SENTENCES__DEFINITIONS);
+			definitions = new EObjectResolvingEList<DefinitionSentence>(DefinitionSentence.class, this, DslPackage.BODY_SENTENCES__DEFINITIONS);
 		}
 		return definitions;
 	}
@@ -101,9 +114,23 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	{
 		if (constraints == null)
 		{
-			constraints = new EObjectContainmentEList<ConstraintSentence>(ConstraintSentence.class, this, DslPackage.BODY_SENTENCES__CONSTRAINTS);
+			constraints = new EObjectResolvingEList<ConstraintSentence>(ConstraintSentence.class, this, DslPackage.BODY_SENTENCES__CONSTRAINTS);
 		}
 		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Sentence> getSentences()
+	{
+		if (sentences == null)
+		{
+			sentences = new EObjectContainmentEList<Sentence>(Sentence.class, this, DslPackage.BODY_SENTENCES__SENTENCES);
+		}
+		return sentences;
 	}
 
 	/**
@@ -116,10 +143,8 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-			case DslPackage.BODY_SENTENCES__DEFINITIONS:
-				return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
-			case DslPackage.BODY_SENTENCES__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+			case DslPackage.BODY_SENTENCES__SENTENCES:
+				return ((InternalEList<?>)getSentences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,6 +163,8 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 				return getDefinitions();
 			case DslPackage.BODY_SENTENCES__CONSTRAINTS:
 				return getConstraints();
+			case DslPackage.BODY_SENTENCES__SENTENCES:
+				return getSentences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,13 +180,9 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-			case DslPackage.BODY_SENTENCES__DEFINITIONS:
-				getDefinitions().clear();
-				getDefinitions().addAll((Collection<? extends DefinitionSentence>)newValue);
-				return;
-			case DslPackage.BODY_SENTENCES__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends ConstraintSentence>)newValue);
+			case DslPackage.BODY_SENTENCES__SENTENCES:
+				getSentences().clear();
+				getSentences().addAll((Collection<? extends Sentence>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,11 +198,8 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-			case DslPackage.BODY_SENTENCES__DEFINITIONS:
-				getDefinitions().clear();
-				return;
-			case DslPackage.BODY_SENTENCES__CONSTRAINTS:
-				getConstraints().clear();
+			case DslPackage.BODY_SENTENCES__SENTENCES:
+				getSentences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,6 +219,8 @@ public class BodySentencesImpl extends MinimalEObjectImpl.Container implements B
 				return definitions != null && !definitions.isEmpty();
 			case DslPackage.BODY_SENTENCES__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
+			case DslPackage.BODY_SENTENCES__SENTENCES:
+				return sentences != null && !sentences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
