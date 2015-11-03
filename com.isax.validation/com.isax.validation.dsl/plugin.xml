@@ -7,7 +7,7 @@
     <package 
        uri = "http://www.isax.com/validation/dsl/Dsl" 
        class = "com.isax.validation.dsl.dsl.DslPackage"
-       genModel = "model/generated/Dsl.genmodel" /> 
+       genModel = "model/custom/Dsl.genmodel" /> 
 	
   </extension>
 

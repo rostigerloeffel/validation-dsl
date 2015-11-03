@@ -1,6 +1,6 @@
 grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.xbase.Xbase
 
-generate dsl "http://www.isax.com/validation/dsl/Dsl"
+import "http://www.isax.com/validation/dsl/Dsl"
 
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
