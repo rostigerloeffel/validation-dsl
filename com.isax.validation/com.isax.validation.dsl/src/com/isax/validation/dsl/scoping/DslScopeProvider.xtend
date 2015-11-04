@@ -3,11 +3,11 @@
  */
 package com.isax.validation.dsl.scoping
 
+import com.isax.validation.dsl.dsl.Argument
 import com.isax.validation.dsl.dsl.BodySentences
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.NodeDefinition
-import com.isax.validation.dsl.dsl.NodeReferenceList
 import com.isax.validation.dsl.dsl.PredicateReference
 import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.RelationQualifier
@@ -36,21 +36,21 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 		super.getScope(context, reference)
 	}
 	
-	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
-		val validator = sentence.getContainerOfType(Validator)
-		val index = validator.body.definitions.indexOf(sentence)
-		Scopes.scopeFor(
-			validator.body.definitions.indexed
-				.filter[p|p.key < index].map[p|p.value]
-				.filter[d|d.qualifier != RelationQualifier.MUST_NOT]
-				.filter[d|d.node != null].map[d|d.target.definition]
-				.filter[d|!d.collection],
-				
-			Scopes.scopeFor(
-				Arrays.asList(validator.startOn.definition)
-			)
-		)
-	}
+//	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
+//		val validator = sentence.getContainerOfType(Validator)
+//		val index = validator.body.definitions.indexOf(sentence)
+//		Scopes.scopeFor(
+//			validator.body.definitions.indexed
+//				.filter[p|p.key < index].map[p|p.value]
+//				.filter[d|d.qualifier != RelationQualifier.MUST_NOT]
+//				.filter[d|d.node != null].map[d|d.target.definition]
+//				.filter[d|!d.collection],
+//				
+//			Scopes.scopeFor(
+//				Arrays.asList(validator.startOn.definition)
+//			)
+//		)
+//	}
 	
 	def scope_Quantification_nodeSet(Quantification quantification, EReference reference) {
 		val validator = quantification.getContainerOfType(Validator)
@@ -68,19 +68,30 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 //		Scopes.scopeFor(visibleDefinitions(list))
 //	}
 //	
-//	def scope_Argument_node(PredicateReference argument, EReference reference) {
-//		Scopes.scopeFor(visibleDefinitions(argument))
-//	}
+
+	def scope_Argument_node(Argument argument, EReference reference) {
+		visibleDefinitions(argument)
+	}
+
+	def scope_Argument_node(PredicateReference predicate, EReference reference) {
+		visibleDefinitions(predicate)
+	}
+	
+	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
+		visibleDefinitions(sentence);
+	}
 	
 	private def visibleDefinitions(EObject object) {
+		scopeForSentence(object.getContainerOfType(Sentence))
+	}
+	
+	private def IScope scopeForSentence(Sentence sentence) {
+		if (sentence == null) return IScope.NULLSCOPE
+		
 		var visible = new ArrayList<NodeDefinition>()
-		var current = object.getContainerOfType(Sentence)
-		while (current != null) {
-			visible += parentSentenceDefinitions(current)
-			visible += previousSiblingDefinitions(current)
-			current = if (object.eContainer != null) object.eContainer.getContainerOfType(Sentence) else null
-		}
-		visible
+		visible += sentenceDefinitions(sentence)
+		visible += previousSiblingDefinitions(sentence)
+		Scopes.scopeFor(visible, if (sentence.eContainer != null) scopeForSentence(sentence.eContainer.getContainerOfType(Sentence)) as IScope else IScope.NULLSCOPE)
 	}
 	
 	private def previousSiblingDefinitions(Sentence sentence) {
@@ -97,11 +108,11 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 		siblings
 	}
 	
-	private def dispatch parentSentenceDefinitions(ConstraintSentence sentence) {
+	private def dispatch sentenceDefinitions(ConstraintSentence sentence) {
 		sentence.quantifications.quantifications.map[q|q.node]
 	}
 	
-	private def dispatch parentSentenceDefinitions(DefinitionSentence sentence) {
-		Arrays.asList(sentence.target.definition, sentence.target.local).filterNull
+	private def dispatch sentenceDefinitions(DefinitionSentence sentence) {
+		Arrays.asList(sentence.quantification.node, sentence.target.definition, sentence.target.local).filterNull
 	}
 }

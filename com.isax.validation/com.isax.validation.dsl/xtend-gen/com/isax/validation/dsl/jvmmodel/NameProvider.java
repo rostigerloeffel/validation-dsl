@@ -2,6 +2,7 @@ package com.isax.validation.dsl.jvmmodel;
 
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.util.DslUtil;
 import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 
@@ -46,8 +47,8 @@ public class NameProvider {
   private String computeUniqueName(final NodeDefinition node) {
     String _name = node.getName();
     String _plus = (_name + "$");
-    Integer _uniqueSuffix = this.uniqueSuffix(node);
-    return (_plus + _uniqueSuffix);
+    String _path = DslUtil.path(node);
+    return (_plus + _path);
   }
   
   public String uniqueName(final NodeDefinition node) {

@@ -1,8 +1,10 @@
 package com.isax.validation.dsl.util
 
 import com.isax.validation.dsl.dsl.Axis
-import com.isax.validation.dsl.dsl.NodeDefinition
+import java.util.ArrayList
 import org.eclipse.emf.ecore.EObject
+
+import static extension org.eclipse.xtext.EcoreUtil2.eAllContentsAsList
 
 class DslUtil {
 
@@ -14,7 +16,16 @@ class DslUtil {
 		axis == Axis.ANCESTORS || axis == Axis.DESCENDANTS || axis == Axis.CHILDREN || axis == Axis.PARENTS
 	}
 	
-	def static uniqueName(NodeDefinition node) {
-		node.name + "$" + node.uniqueSuffix
+	def static path(EObject object) {
+		var path = new ArrayList<Integer>();
+		var inner = object;
+		var parent = object.eContainer;
+		while (parent != null) {
+			path += parent.eAllContentsAsList.indexOf(inner)
+			inner = parent;
+			parent = parent.eContainer
+		}
+		path.join('_')
 	}
+
 }

@@ -5,15 +5,16 @@ package com.isax.validation.dsl.scoping;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.PredicateReference;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.QuantificationList;
 import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
 import java.util.ArrayList;
@@ -42,54 +43,6 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     return super.getScope(context, reference);
-  }
-  
-  public IScope scope_DefinitionSentence_node(final DefinitionSentence sentence, final EReference reference) {
-    IScope _xblockexpression = null;
-    {
-      final Validator validator = EcoreUtil2.<Validator>getContainerOfType(sentence, Validator.class);
-      BodySentences _body = validator.getBody();
-      EList<DefinitionSentence> _definitions = _body.getDefinitions();
-      final int index = _definitions.indexOf(sentence);
-      BodySentences _body_1 = validator.getBody();
-      EList<DefinitionSentence> _definitions_1 = _body_1.getDefinitions();
-      Iterable<Pair<Integer, DefinitionSentence>> _indexed = IterableExtensions.<DefinitionSentence>indexed(_definitions_1);
-      final Function1<Pair<Integer, DefinitionSentence>, Boolean> _function = (Pair<Integer, DefinitionSentence> p) -> {
-        Integer _key = p.getKey();
-        return Boolean.valueOf(((_key).intValue() < index));
-      };
-      Iterable<Pair<Integer, DefinitionSentence>> _filter = IterableExtensions.<Pair<Integer, DefinitionSentence>>filter(_indexed, _function);
-      final Function1<Pair<Integer, DefinitionSentence>, DefinitionSentence> _function_1 = (Pair<Integer, DefinitionSentence> p) -> {
-        return p.getValue();
-      };
-      Iterable<DefinitionSentence> _map = IterableExtensions.<Pair<Integer, DefinitionSentence>, DefinitionSentence>map(_filter, _function_1);
-      final Function1<DefinitionSentence, Boolean> _function_2 = (DefinitionSentence d) -> {
-        RelationQualifier _qualifier = d.getQualifier();
-        return Boolean.valueOf((!Objects.equal(_qualifier, RelationQualifier.MUST_NOT)));
-      };
-      Iterable<DefinitionSentence> _filter_1 = IterableExtensions.<DefinitionSentence>filter(_map, _function_2);
-      final Function1<DefinitionSentence, Boolean> _function_3 = (DefinitionSentence d) -> {
-        NodeDefinition _node = d.getNode();
-        return Boolean.valueOf((!Objects.equal(_node, null)));
-      };
-      Iterable<DefinitionSentence> _filter_2 = IterableExtensions.<DefinitionSentence>filter(_filter_1, _function_3);
-      final Function1<DefinitionSentence, NodeDefinition> _function_4 = (DefinitionSentence d) -> {
-        TargetDefinition _target = d.getTarget();
-        return _target.getDefinition();
-      };
-      Iterable<NodeDefinition> _map_1 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_2, _function_4);
-      final Function1<NodeDefinition, Boolean> _function_5 = (NodeDefinition d) -> {
-        boolean _isCollection = d.isCollection();
-        return Boolean.valueOf((!_isCollection));
-      };
-      Iterable<NodeDefinition> _filter_3 = IterableExtensions.<NodeDefinition>filter(_map_1, _function_5);
-      StartOnSentence _startOn = validator.getStartOn();
-      NodeDefinition _definition = _startOn.getDefinition();
-      List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_definition);
-      IScope _scopeFor = Scopes.scopeFor(_asList);
-      _xblockexpression = Scopes.scopeFor(_filter_3, _scopeFor);
-    }
-    return _xblockexpression;
   }
   
   public IScope scope_Quantification_nodeSet(final Quantification quantification, final EReference reference) {
@@ -128,30 +81,47 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
     return _xblockexpression;
   }
   
-  private ArrayList<NodeDefinition> visibleDefinitions(final EObject object) {
-    ArrayList<NodeDefinition> _xblockexpression = null;
+  public IScope scope_Argument_node(final Argument argument, final EReference reference) {
+    return this.visibleDefinitions(argument);
+  }
+  
+  public IScope scope_Argument_node(final PredicateReference predicate, final EReference reference) {
+    return this.visibleDefinitions(predicate);
+  }
+  
+  public IScope scope_DefinitionSentence_node(final DefinitionSentence sentence, final EReference reference) {
+    return this.visibleDefinitions(sentence);
+  }
+  
+  private IScope visibleDefinitions(final EObject object) {
+    Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(object, Sentence.class);
+    return this.scopeForSentence(_containerOfType);
+  }
+  
+  private IScope scopeForSentence(final Sentence sentence) {
+    IScope _xblockexpression = null;
     {
-      ArrayList<NodeDefinition> visible = new ArrayList<NodeDefinition>();
-      Sentence current = EcoreUtil2.<Sentence>getContainerOfType(object, Sentence.class);
-      while ((!Objects.equal(current, null))) {
-        {
-          Iterable<NodeDefinition> _parentSentenceDefinitions = this.parentSentenceDefinitions(current);
-          Iterables.<NodeDefinition>addAll(visible, _parentSentenceDefinitions);
-          ArrayList<NodeDefinition> _previousSiblingDefinitions = this.previousSiblingDefinitions(current);
-          Iterables.<NodeDefinition>addAll(visible, _previousSiblingDefinitions);
-          Sentence _xifexpression = null;
-          EObject _eContainer = object.eContainer();
-          boolean _notEquals = (!Objects.equal(_eContainer, null));
-          if (_notEquals) {
-            EObject _eContainer_1 = object.eContainer();
-            _xifexpression = EcoreUtil2.<Sentence>getContainerOfType(_eContainer_1, Sentence.class);
-          } else {
-            _xifexpression = null;
-          }
-          current = _xifexpression;
-        }
+      boolean _equals = Objects.equal(sentence, null);
+      if (_equals) {
+        return IScope.NULLSCOPE;
       }
-      _xblockexpression = visible;
+      ArrayList<NodeDefinition> visible = new ArrayList<NodeDefinition>();
+      Iterable<NodeDefinition> _sentenceDefinitions = this.sentenceDefinitions(sentence);
+      Iterables.<NodeDefinition>addAll(visible, _sentenceDefinitions);
+      ArrayList<NodeDefinition> _previousSiblingDefinitions = this.previousSiblingDefinitions(sentence);
+      Iterables.<NodeDefinition>addAll(visible, _previousSiblingDefinitions);
+      IScope _xifexpression = null;
+      EObject _eContainer = sentence.eContainer();
+      boolean _notEquals = (!Objects.equal(_eContainer, null));
+      if (_notEquals) {
+        EObject _eContainer_1 = sentence.eContainer();
+        Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(_eContainer_1, Sentence.class);
+        IScope _scopeForSentence = this.scopeForSentence(_containerOfType);
+        _xifexpression = ((IScope) _scopeForSentence);
+      } else {
+        _xifexpression = IScope.NULLSCOPE;
+      }
+      _xblockexpression = Scopes.scopeFor(visible, _xifexpression);
     }
     return _xblockexpression;
   }
@@ -202,7 +172,7 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
     return _xblockexpression;
   }
   
-  private Iterable<NodeDefinition> _parentSentenceDefinitions(final ConstraintSentence sentence) {
+  private Iterable<NodeDefinition> _sentenceDefinitions(final ConstraintSentence sentence) {
     QuantificationList _quantifications = sentence.getQuantifications();
     EList<Quantification> _quantifications_1 = _quantifications.getQuantifications();
     final Function1<Quantification, NodeDefinition> _function = (Quantification q) -> {
@@ -211,20 +181,22 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
     return ListExtensions.<Quantification, NodeDefinition>map(_quantifications_1, _function);
   }
   
-  private Iterable<NodeDefinition> _parentSentenceDefinitions(final DefinitionSentence sentence) {
+  private Iterable<NodeDefinition> _sentenceDefinitions(final DefinitionSentence sentence) {
+    Quantification _quantification = sentence.getQuantification();
+    NodeDefinition _node = _quantification.getNode();
     TargetDefinition _target = sentence.getTarget();
     NodeDefinition _definition = _target.getDefinition();
     TargetDefinition _target_1 = sentence.getTarget();
     NodeDefinition _local = _target_1.getLocal();
-    List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_definition, _local);
+    List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_node, _definition, _local);
     return IterableExtensions.<NodeDefinition>filterNull(_asList);
   }
   
-  private Iterable<NodeDefinition> parentSentenceDefinitions(final Sentence sentence) {
+  private Iterable<NodeDefinition> sentenceDefinitions(final Sentence sentence) {
     if (sentence instanceof ConstraintSentence) {
-      return _parentSentenceDefinitions((ConstraintSentence)sentence);
+      return _sentenceDefinitions((ConstraintSentence)sentence);
     } else if (sentence instanceof DefinitionSentence) {
-      return _parentSentenceDefinitions((DefinitionSentence)sentence);
+      return _sentenceDefinitions((DefinitionSentence)sentence);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(sentence).toString());

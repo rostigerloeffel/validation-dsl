@@ -428,20 +428,23 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         if (_parameters_1!=null) {
           _parameters_2=_parameters_1.getParameters();
         }
-        final Function1<Parameter, JvmFormalParameter> _function_2 = (Parameter p) -> {
-          NodeDefinition _node = p.getNode();
-          String _uniqueName = this.names.uniqueName(_node);
-          JvmTypeReference _xifexpression = null;
-          NodeDefinition _node_1 = p.getNode();
-          boolean _isCollection = _node_1.isCollection();
-          if (_isCollection) {
-            _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
-          } else {
-            _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
-          }
-          return this._jvmTypesBuilder.toParameter(p, _uniqueName, _xifexpression);
-        };
-        List<JvmFormalParameter> _map = ListExtensions.<Parameter, JvmFormalParameter>map(_parameters_2, _function_2);
+        List<JvmFormalParameter> _map = null;
+        if (_parameters_2!=null) {
+          final Function1<Parameter, JvmFormalParameter> _function_2 = (Parameter p) -> {
+            NodeDefinition _node = p.getNode();
+            String _uniqueName = this.names.uniqueName(_node);
+            JvmTypeReference _xifexpression = null;
+            NodeDefinition _node_1 = p.getNode();
+            boolean _isCollection = _node_1.isCollection();
+            if (_isCollection) {
+              _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+            } else {
+              _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+            }
+            return this._jvmTypesBuilder.toParameter(p, _uniqueName, _xifexpression);
+          };
+          _map=ListExtensions.<Parameter, JvmFormalParameter>map(_parameters_2, _function_2);
+        }
         this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _map);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override

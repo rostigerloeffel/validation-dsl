@@ -4,6 +4,8 @@ import com.isax.validation.dsl.dsl.NodeDefinition
 import java.util.HashMap
 import org.eclipse.emf.ecore.EObject
 
+import static extension com.isax.validation.dsl.util.DslUtil.path
+
 class NameProvider {
 	var index = 0;
 	var suffixes = new HashMap<EObject, Integer>();
@@ -28,7 +30,7 @@ class NameProvider {
 	}
 	
 	private def computeUniqueName(NodeDefinition node) {
-		node.name + "$" + node.uniqueSuffix
+		node.name + "$" + node.path
 	}
 	
 	def uniqueName(NodeDefinition node) {

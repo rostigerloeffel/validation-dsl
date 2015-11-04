@@ -2,8 +2,11 @@ package com.isax.validation.dsl.util;
 
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.Axis;
-import com.isax.validation.dsl.dsl.NodeDefinition;
+import java.util.ArrayList;
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class DslUtil {
@@ -37,10 +40,24 @@ public class DslUtil {
     return _or;
   }
   
-  public static String uniqueName(final NodeDefinition node) {
-    String _name = node.getName();
-    String _plus = (_name + "$");
-    int _uniqueSuffix = DslUtil.uniqueSuffix(node);
-    return (_plus + Integer.valueOf(_uniqueSuffix));
+  public static String path(final EObject object) {
+    String _xblockexpression = null;
+    {
+      ArrayList<Integer> path = new ArrayList<Integer>();
+      EObject inner = object;
+      EObject parent = object.eContainer();
+      while ((!Objects.equal(parent, null))) {
+        {
+          List<EObject> _eAllContentsAsList = EcoreUtil2.eAllContentsAsList(parent);
+          int _indexOf = _eAllContentsAsList.indexOf(inner);
+          path.add(Integer.valueOf(_indexOf));
+          inner = parent;
+          EObject _eContainer = parent.eContainer();
+          parent = _eContainer;
+        }
+      }
+      _xblockexpression = IterableExtensions.join(path, "_");
+    }
+    return _xblockexpression;
   }
 }

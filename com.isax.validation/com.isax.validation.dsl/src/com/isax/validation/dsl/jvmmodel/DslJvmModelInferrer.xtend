@@ -168,7 +168,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		sentences.map [ s |
 			s.toMethod(s.name, typeRef("boolean")) [
 				visibility = JvmVisibility.PRIVATE
-				parameters += s.parameters?.parameters.map[p|p.toParameter(p.node.uniqueName, if(p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode))]
+				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, if(p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode))]
 				body = '''
 				«compileBody(s.body, true)»
 				return true;'''
