@@ -17,6 +17,7 @@ import java.util.ArrayList
 import java.util.Arrays
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
@@ -91,7 +92,8 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 		var visible = new ArrayList<NodeDefinition>()
 		visible += sentenceDefinitions(sentence)
 		visible += previousSiblingDefinitions(sentence)
-		Scopes.scopeFor(visible, if (sentence.eContainer != null) scopeForSentence(sentence.eContainer.getContainerOfType(Sentence)) as IScope else IScope.NULLSCOPE)
+		val scope = Scopes.scopeFor(visible, scopeForSentence(sentence.eContainer.getContainerOfType(Sentence)))		
+		scope
 	}
 	
 	private def previousSiblingDefinitions(Sentence sentence) {

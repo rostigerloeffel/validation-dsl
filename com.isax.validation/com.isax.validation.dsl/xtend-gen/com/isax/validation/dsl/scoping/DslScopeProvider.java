@@ -110,18 +110,11 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
       Iterables.<NodeDefinition>addAll(visible, _sentenceDefinitions);
       ArrayList<NodeDefinition> _previousSiblingDefinitions = this.previousSiblingDefinitions(sentence);
       Iterables.<NodeDefinition>addAll(visible, _previousSiblingDefinitions);
-      IScope _xifexpression = null;
       EObject _eContainer = sentence.eContainer();
-      boolean _notEquals = (!Objects.equal(_eContainer, null));
-      if (_notEquals) {
-        EObject _eContainer_1 = sentence.eContainer();
-        Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(_eContainer_1, Sentence.class);
-        IScope _scopeForSentence = this.scopeForSentence(_containerOfType);
-        _xifexpression = ((IScope) _scopeForSentence);
-      } else {
-        _xifexpression = IScope.NULLSCOPE;
-      }
-      _xblockexpression = Scopes.scopeFor(visible, _xifexpression);
+      Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(_eContainer, Sentence.class);
+      IScope _scopeForSentence = this.scopeForSentence(_containerOfType);
+      final IScope scope = Scopes.scopeFor(visible, _scopeForSentence);
+      _xblockexpression = scope;
     }
     return _xblockexpression;
   }
