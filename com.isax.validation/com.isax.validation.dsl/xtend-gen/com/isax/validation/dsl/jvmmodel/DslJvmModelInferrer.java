@@ -162,7 +162,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       EList<JvmMember> _members_5 = it.getMembers();
       BodySentences _body = validator.getBody();
       EList<DefinitionSentence> _definitions = _body.getDefinitions();
-      List<JvmField> _compileNodeDefinitionFields = this.compileNodeDefinitionFields(_definitions);
+      Iterable<JvmField> _compileNodeDefinitionFields = this.compileNodeDefinitionFields(_definitions);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_5, _compileNodeDefinitionFields);
       EList<JvmMember> _members_6 = it.getMembers();
       JvmTypeReference _typeRef_5 = this._typeReferenceBuilder.typeRef("boolean");
@@ -230,8 +230,23 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return this._jvmTypesBuilder.toField(startOn, _uniqueName, _xifexpression);
   }
   
-  public List<JvmField> compileNodeDefinitionFields(final List<DefinitionSentence> sentences) {
-    final Function1<DefinitionSentence, JvmField> _function = (DefinitionSentence s) -> {
+  public Iterable<JvmField> compileNodeDefinitionFields(final List<DefinitionSentence> sentences) {
+    final Function1<DefinitionSentence, Boolean> _function = (DefinitionSentence s) -> {
+      boolean _and = false;
+      TargetDefinition _target = s.getTarget();
+      boolean _notEquals = (!Objects.equal(_target, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        TargetDefinition _target_1 = s.getTarget();
+        NodeDefinition _definition = _target_1.getDefinition();
+        boolean _notEquals_1 = (!Objects.equal(_definition, null));
+        _and = _notEquals_1;
+      }
+      return Boolean.valueOf(_and);
+    };
+    Iterable<DefinitionSentence> _filter = IterableExtensions.<DefinitionSentence>filter(sentences, _function);
+    final Function1<DefinitionSentence, JvmField> _function_1 = (DefinitionSentence s) -> {
       TargetDefinition _target = s.getTarget();
       NodeDefinition _definition = _target.getDefinition();
       String _uniqueName = this.names.uniqueName(_definition);
@@ -246,7 +261,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       }
       return this._jvmTypesBuilder.toField(s, _uniqueName, _xifexpression);
     };
-    return ListExtensions.<DefinitionSentence, JvmField>map(sentences, _function);
+    return IterableExtensions.<DefinitionSentence, JvmField>map(_filter, _function_1);
   }
   
   public CharSequence compileStartOn(final StartOnSentence startOn) {
@@ -393,20 +408,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       QuantificationList _quantifications = sentence.getQuantifications();
       boolean _notEquals = (!Objects.equal(_quantifications, null));
       if (_notEquals) {
-        _builder.append("\t");
         _builder.append("boolean satisfied$");
         Integer _uniqueSuffix = this.names.uniqueSuffix(sentence);
-        _builder.append(_uniqueSuffix, "\t");
+        _builder.append(_uniqueSuffix, "");
         _builder.append(" = ");
         QuantificationList _quantifications_1 = sentence.getQuantifications();
         EList<Quantification> _quantifications_2 = _quantifications_1.getQuantifications();
         CharSequence _constraintDispatch = this.constraintDispatch(_quantifications_2, 0, sentence);
-        _builder.append(_constraintDispatch, "\t");
+        _builder.append(_constraintDispatch, "");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         _builder.append("if (!satisfied$");
         Integer _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
-        _builder.append(_uniqueSuffix_1, "\t");
+        _builder.append(_uniqueSuffix_1, "");
         _builder.append(") return false;");
         _builder.newLineIfNotEmpty();
       }

@@ -2,6 +2,14 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.xtext.xbase.XbasePackage;
+
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
@@ -43,16 +51,6 @@ import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.xtext.xbase.XbasePackage;
 
 /**
  * <!-- begin-user-doc -->

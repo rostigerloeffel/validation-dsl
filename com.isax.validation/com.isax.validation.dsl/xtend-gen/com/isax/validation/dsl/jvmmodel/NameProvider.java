@@ -1,10 +1,12 @@
 package com.isax.validation.dsl.jvmmodel;
 
+import java.util.HashMap;
+
+import org.eclipse.emf.ecore.EObject;
+
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.util.DslUtil;
-import java.util.HashMap;
-import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("all")
 public class NameProvider {

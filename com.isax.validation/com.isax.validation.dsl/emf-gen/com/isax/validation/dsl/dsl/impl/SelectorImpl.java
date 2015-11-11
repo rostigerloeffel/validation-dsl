@@ -2,15 +2,13 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.Selector;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.Selector;
 
 /**
  * <!-- begin-user-doc -->

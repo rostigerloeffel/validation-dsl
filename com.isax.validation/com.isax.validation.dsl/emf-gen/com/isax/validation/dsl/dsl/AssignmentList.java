@@ -3,7 +3,6 @@
 package com.isax.validation.dsl.dsl;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

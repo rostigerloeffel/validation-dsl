@@ -1,12 +1,14 @@
 package com.isax.validation.dsl.util;
 
-import com.google.common.base.Objects;
-import com.isax.validation.dsl.dsl.Axis;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+
+import com.google.common.base.Objects;
+import com.isax.validation.dsl.dsl.Axis;
 
 @SuppressWarnings("all")
 public class DslUtil {

@@ -3,9 +3,9 @@
  */
 package com.isax.validation.dsl.parser.antlr;
 
-import com.google.inject.Inject;
-
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 import com.isax.validation.dsl.services.DslGrammarAccess;
 
 public class DslParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {

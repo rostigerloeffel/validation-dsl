@@ -2,10 +2,10 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.DslPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->

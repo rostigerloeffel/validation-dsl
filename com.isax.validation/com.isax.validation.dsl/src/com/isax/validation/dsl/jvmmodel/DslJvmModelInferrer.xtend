@@ -94,9 +94,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
 
-	
-
-
 	def compileStartOnDefinitionField(StartOnSentence startOn) {
 		startOn.toField(
 			startOn.definition.uniqueName,
@@ -105,7 +102,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def compileNodeDefinitionFields(List<DefinitionSentence> sentences) {
-		sentences.map [ s |
+		sentences.filter[s|s.target != null && s.target.definition != null].map [ s |
 			s.toField(
 				s.target.definition.uniqueName,
 				if(s.target.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
@@ -113,7 +110,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	def compileStartOn(StartOnSentence startOn) '''
+	def compileStartOn(
+		StartOnSentence startOn
+	) '''
 		// «serialize(startOn)»
 		«startOn.definition.uniqueName» = node$;
 		if («startOn.definition.uniqueName» == null || !predicates$.hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | s.type])»")) {
@@ -131,7 +130,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«ENDFOR»
 		«ENDIF»
 	'''
-	
+
 	def compileDefinition(DefinitionSentence sentence, boolean withDeclarations) '''
 		// «serialize(sentence)»
 		«IF withDeclarations»
@@ -148,21 +147,17 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«quantifiedDefinition(sentence)»
 		«ENDIF»
 	'''
-	
+
 	def compileConstraint(ConstraintSentence sentence) '''
 		// «serialize(sentence)»
 		{
-«««			TODO: Fix this
+		«««			TODO: Fix this
 			«IF sentence.quantifications != null»
-				boolean satisfied$«sentence.uniqueSuffix» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
-				if (!satisfied$«sentence.uniqueSuffix») return false;
+			boolean satisfied$«sentence.uniqueSuffix» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
+			if (!satisfied$«sentence.uniqueSuffix») return false;
 			«ENDIF»
 		}
 	'''
-	
-	
-	
-	
 
 	def compilePredicates(List<PredicateDefinitionSentence> sentences) {
 		sentences.map [ s |
@@ -241,10 +236,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		});
 	'''
 
-
-
-
-
 	def singleNodeDefinition(
 		DefinitionSentence sentence
 	) '''
@@ -263,7 +254,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			if (!satisfied$«sentence.uniqueSuffix») return satisfied$«sentence.uniqueSuffix»;
 		}
 	'''
-		
+
 	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, Axis axis, NodeDefinition source, SelectorList types, BodySentences body) '''
 		«val localName = if (local != null) local.uniqueName else "node$" + assignee.uniqueSuffix»
 		«assignee.uniqueName» = traverser$.«axis.getName().toLowerCase»(«source.uniqueName», («ResolvingNode.simpleName» «localName») -> {		
@@ -282,7 +273,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«names.unmap(assignee)»
 		});
 	'''
-	
+
 	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier) {
 		switch (qualifier) {
 			case CAN: return "true"

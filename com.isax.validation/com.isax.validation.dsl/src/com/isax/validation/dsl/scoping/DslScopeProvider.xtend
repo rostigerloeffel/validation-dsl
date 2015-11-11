@@ -3,97 +3,62 @@
  */
 package com.isax.validation.dsl.scoping
 
-import com.isax.validation.dsl.dsl.Argument
 import com.isax.validation.dsl.dsl.BodySentences
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.NodeDefinition
 import com.isax.validation.dsl.dsl.PredicateReference
+import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.Quantification
-import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Sentence
+import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
 import java.util.ArrayList
 import java.util.Arrays
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
+import org.eclipse.xtext.xbase.lib.Functions.Function1
 
-/**
- * This class contains custom scoping description.
- * 
- * see : http://www.eclipse.org/Xtext/documentation.html#scoping
- * on how and when to use it 
- * 
- */
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 	
-	override IScope getScope(EObject context, EReference reference) {
-		super.getScope(context, reference)
-	}
-	
-//	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
-//		val validator = sentence.getContainerOfType(Validator)
-//		val index = validator.body.definitions.indexOf(sentence)
-//		Scopes.scopeFor(
-//			validator.body.definitions.indexed
-//				.filter[p|p.key < index].map[p|p.value]
-//				.filter[d|d.qualifier != RelationQualifier.MUST_NOT]
-//				.filter[d|d.node != null].map[d|d.target.definition]
-//				.filter[d|!d.collection],
-//				
-//			Scopes.scopeFor(
-//				Arrays.asList(validator.startOn.definition)
-//			)
-//		)
-//	}
-	
 	def scope_Quantification_nodeSet(Quantification quantification, EReference reference) {
-		val validator = quantification.getContainerOfType(Validator)
-		val sentence = quantification.getContainerOfType(DefinitionSentence)
-		val index = validator.body.definitions.indexOf(sentence)
-		Scopes.scopeFor(
-			validator.body.definitions
-				.filter[d|d.qualifier != RelationQualifier.MUST_NOT].indexed
-				.filter[p|p.key < index].map[p|p.value.target.definition]
-				.filter[d|d.collection]
-		)
+		quantification.visibleDefinitions [d|d.collection]
 	}
 	
-//	def scope_NodeReferenceList_nodes(NodeReferenceList list, EReference reference) {
-//		Scopes.scopeFor(visibleDefinitions(list))
-//	}
-//	
-
-	def scope_Argument_node(Argument argument, EReference reference) {
-		visibleDefinitions(argument)
-	}
-
 	def scope_Argument_node(PredicateReference predicate, EReference reference) {
-		visibleDefinitions(predicate)
+		predicate.visibleDefinitions [d|!d.collection]
 	}
 	
 	def scope_DefinitionSentence_node(DefinitionSentence sentence, EReference reference) {
-		visibleDefinitions(sentence);
+		sentence.visibleDefinitions [d|!d.collection]
 	}
 	
-	private def visibleDefinitions(EObject object) {
-		scopeForSentence(object.getContainerOfType(Sentence))
+	def scope_PropertyReferenceExpression_node(PropertyReferenceExpression expression, EReference reference) {
+		expression.visibleDefinitions [d|!d.collection]
+	}
+
+	private def visibleDefinitions(EObject object, Function1<? super NodeDefinition, Boolean> predicate) {
+		scopeForSentence(object.getContainerOfType(Sentence), predicate)
 	}
 	
-	private def IScope scopeForSentence(Sentence sentence) {
+	private def dispatch IScope scopeForSentence(StartOnSentence startOn, Function1<? super NodeDefinition, Boolean> predicate) {
+		Scopes.scopeFor(Arrays.asList(startOn.definition).filter(predicate))
+	}
+	
+	private def dispatch IScope scopeForSentence(Sentence sentence, Function1<? super NodeDefinition, Boolean> predicate) {
 		if (sentence == null) return IScope.NULLSCOPE
 		
 		var visible = new ArrayList<NodeDefinition>()
 		visible += sentenceDefinitions(sentence)
 		visible += previousSiblingDefinitions(sentence)
-		val scope = Scopes.scopeFor(visible, scopeForSentence(sentence.eContainer.getContainerOfType(Sentence)))		
-		scope
+		
+		val parentSentence = sentence.eContainer.getContainerOfType(Sentence) ?: sentence.eContainer.getContainerOfType(Validator)?.startOn
+		Scopes.scopeFor(visible.filter(predicate), scopeForSentence(parentSentence, predicate))
 	}
 	
 	private def previousSiblingDefinitions(Sentence sentence) {
@@ -101,10 +66,10 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 		val index = parentBody.sentences.indexOf(sentence)
 		var siblings = new ArrayList<NodeDefinition>()
 		siblings += parentBody.sentences.indexed
-				.filter[s|s.key < index]
+				.filter[s|s.key < index].map[s|s.value]
 				.filter(DefinitionSentence).map[s|s.target.definition]
 		siblings += parentBody.sentences.indexed
-				.filter[s|s.key < index]
+				.filter[s|s.key < index].map[s|s.value]
 				.filter(DefinitionSentence)
 				.filter[s|s.target.local != null].map[s|s.target.local]
 		siblings
@@ -115,6 +80,6 @@ class DslScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 	
 	private def dispatch sentenceDefinitions(DefinitionSentence sentence) {
-		Arrays.asList(sentence.quantification.node, sentence.target.definition, sentence.target.local).filterNull
+		Arrays.asList(sentence.quantification?.node, sentence.target?.definition, sentence.target?.local).filterNull
 	}
 }

@@ -2,19 +2,16 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.NodeReferenceList;
 
 /**
  * <!-- begin-user-doc -->

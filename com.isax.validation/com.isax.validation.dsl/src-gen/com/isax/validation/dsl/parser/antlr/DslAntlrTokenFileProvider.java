@@ -4,6 +4,7 @@
 package com.isax.validation.dsl.parser.antlr;
 
 import java.io.InputStream;
+
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class DslAntlrTokenFileProvider implements IAntlrTokenFileProvider {

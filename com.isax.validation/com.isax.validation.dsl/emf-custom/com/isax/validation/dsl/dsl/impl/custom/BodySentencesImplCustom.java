@@ -1,13 +1,13 @@
 package com.isax.validation.dsl.dsl.impl.custom;
 
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.impl.BodySentencesImpl;
-
-import java.util.stream.Collectors;
 
 public class BodySentencesImplCustom extends BodySentencesImpl {
 
