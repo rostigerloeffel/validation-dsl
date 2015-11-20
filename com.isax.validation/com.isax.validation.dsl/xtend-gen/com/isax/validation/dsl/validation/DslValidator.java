@@ -3,10 +3,6 @@
  */
 package com.isax.validation.dsl.validation;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtext.validation.Check;
-
 import com.google.common.base.Objects;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
@@ -16,6 +12,10 @@ import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.util.DslUtil;
+import com.isax.validation.dsl.validation.AbstractDslValidator;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.validation.Check;
 
 /**
  * Custom validation rules.

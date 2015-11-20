@@ -40,6 +40,8 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
+
 class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	@Inject extension JvmTypesBuilder
@@ -186,8 +188,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def compileXExpressionAssignments(Validator validator) {
 		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ e |
-			e.toMethod("assignment$" + e.hashCode, e.expression.inferredType) [
-				body = e.expression
+			e.toClass("Assignment$" + e.hashCode) [
+				static = true
+				visibility = JvmVisibility.PRIVATE
+				members += e.toMethod("method", e.expression.inferredType) [
+					parameters += e.visibleDefinitions[].allElements
+						.map[ d | d.EObjectOrProxy ]
+						.filter(NodeDefinition)
+						.map[ d | d.toParameter(d.name, definitionTypeRef(d)) ]
+					body = e.expression
+				]
 			]
 		]
 	}
@@ -367,6 +377,10 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def argumentList(ArgumentList list) {
 		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.uniqueName])
+	}
+	
+	def definitionTypeRef(NodeDefinition definition) {
+		if (definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 	}
 }
 

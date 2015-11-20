@@ -3,34 +3,16 @@
  */
 package com.isax.validation.dsl.scoping;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
-import com.isax.validation.dsl.dsl.BodySentences;
-import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.PredicateReference;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.Quantification;
-import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
-import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import com.isax.validation.dsl.util.DslUtil;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
 public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
@@ -38,7 +20,7 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
     final Function1<NodeDefinition, Boolean> _function = (NodeDefinition d) -> {
       return Boolean.valueOf(d.isCollection());
     };
-    return this.visibleDefinitions(quantification, _function);
+    return DslUtil.visibleDefinitions(quantification, _function);
   }
   
   public IScope scope_Argument_node(final PredicateReference predicate, final EReference reference) {
@@ -46,7 +28,7 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
       boolean _isCollection = d.isCollection();
       return Boolean.valueOf((!_isCollection));
     };
-    return this.visibleDefinitions(predicate, _function);
+    return DslUtil.visibleDefinitions(predicate, _function);
   }
   
   public IScope scope_DefinitionSentence_node(final DefinitionSentence sentence, final EReference reference) {
@@ -54,7 +36,7 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
       boolean _isCollection = d.isCollection();
       return Boolean.valueOf((!_isCollection));
     };
-    return this.visibleDefinitions(sentence, _function);
+    return DslUtil.visibleDefinitions(sentence, _function);
   }
   
   public IScope scope_PropertyReferenceExpression_node(final PropertyReferenceExpression expression, final EReference reference) {
@@ -62,157 +44,6 @@ public class DslScopeProvider extends AbstractDeclarativeScopeProvider {
       boolean _isCollection = d.isCollection();
       return Boolean.valueOf((!_isCollection));
     };
-    return this.visibleDefinitions(expression, _function);
-  }
-  
-  private IScope visibleDefinitions(final EObject object, final Function1<? super NodeDefinition, Boolean> predicate) {
-    Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(object, Sentence.class);
-    return this.scopeForSentence(_containerOfType, predicate);
-  }
-  
-  private IScope _scopeForSentence(final StartOnSentence startOn, final Function1<? super NodeDefinition, Boolean> predicate) {
-    NodeDefinition _definition = startOn.getDefinition();
-    List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_definition);
-    Iterable<NodeDefinition> _filter = IterableExtensions.<NodeDefinition>filter(_asList, predicate);
-    return Scopes.scopeFor(_filter);
-  }
-  
-  private IScope _scopeForSentence(final Sentence sentence, final Function1<? super NodeDefinition, Boolean> predicate) {
-    IScope _xblockexpression = null;
-    {
-      boolean _equals = Objects.equal(sentence, null);
-      if (_equals) {
-        return IScope.NULLSCOPE;
-      }
-      ArrayList<NodeDefinition> visible = new ArrayList<NodeDefinition>();
-      Iterable<NodeDefinition> _sentenceDefinitions = this.sentenceDefinitions(sentence);
-      Iterables.<NodeDefinition>addAll(visible, _sentenceDefinitions);
-      ArrayList<NodeDefinition> _previousSiblingDefinitions = this.previousSiblingDefinitions(sentence);
-      Iterables.<NodeDefinition>addAll(visible, _previousSiblingDefinitions);
-      Sentence _elvis = null;
-      EObject _eContainer = sentence.eContainer();
-      Sentence _containerOfType = EcoreUtil2.<Sentence>getContainerOfType(_eContainer, Sentence.class);
-      if (_containerOfType != null) {
-        _elvis = _containerOfType;
-      } else {
-        EObject _eContainer_1 = sentence.eContainer();
-        Validator _containerOfType_1 = EcoreUtil2.<Validator>getContainerOfType(_eContainer_1, Validator.class);
-        StartOnSentence _startOn = null;
-        if (_containerOfType_1!=null) {
-          _startOn=_containerOfType_1.getStartOn();
-        }
-        _elvis = _startOn;
-      }
-      final Sentence parentSentence = _elvis;
-      Iterable<NodeDefinition> _filter = IterableExtensions.<NodeDefinition>filter(visible, predicate);
-      IScope _scopeForSentence = this.scopeForSentence(parentSentence, predicate);
-      _xblockexpression = Scopes.scopeFor(_filter, _scopeForSentence);
-    }
-    return _xblockexpression;
-  }
-  
-  private ArrayList<NodeDefinition> previousSiblingDefinitions(final Sentence sentence) {
-    ArrayList<NodeDefinition> _xblockexpression = null;
-    {
-      final BodySentences parentBody = EcoreUtil2.<BodySentences>getContainerOfType(sentence, BodySentences.class);
-      EList<Sentence> _sentences = parentBody.getSentences();
-      final int index = _sentences.indexOf(sentence);
-      ArrayList<NodeDefinition> siblings = new ArrayList<NodeDefinition>();
-      EList<Sentence> _sentences_1 = parentBody.getSentences();
-      Iterable<Pair<Integer, Sentence>> _indexed = IterableExtensions.<Sentence>indexed(_sentences_1);
-      final Function1<Pair<Integer, Sentence>, Boolean> _function = (Pair<Integer, Sentence> s) -> {
-        Integer _key = s.getKey();
-        return Boolean.valueOf(((_key).intValue() < index));
-      };
-      Iterable<Pair<Integer, Sentence>> _filter = IterableExtensions.<Pair<Integer, Sentence>>filter(_indexed, _function);
-      final Function1<Pair<Integer, Sentence>, Sentence> _function_1 = (Pair<Integer, Sentence> s) -> {
-        return s.getValue();
-      };
-      Iterable<Sentence> _map = IterableExtensions.<Pair<Integer, Sentence>, Sentence>map(_filter, _function_1);
-      Iterable<DefinitionSentence> _filter_1 = Iterables.<DefinitionSentence>filter(_map, DefinitionSentence.class);
-      final Function1<DefinitionSentence, NodeDefinition> _function_2 = (DefinitionSentence s) -> {
-        TargetDefinition _target = s.getTarget();
-        return _target.getDefinition();
-      };
-      Iterable<NodeDefinition> _map_1 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_1, _function_2);
-      Iterables.<NodeDefinition>addAll(siblings, _map_1);
-      EList<Sentence> _sentences_2 = parentBody.getSentences();
-      Iterable<Pair<Integer, Sentence>> _indexed_1 = IterableExtensions.<Sentence>indexed(_sentences_2);
-      final Function1<Pair<Integer, Sentence>, Boolean> _function_3 = (Pair<Integer, Sentence> s) -> {
-        Integer _key = s.getKey();
-        return Boolean.valueOf(((_key).intValue() < index));
-      };
-      Iterable<Pair<Integer, Sentence>> _filter_2 = IterableExtensions.<Pair<Integer, Sentence>>filter(_indexed_1, _function_3);
-      final Function1<Pair<Integer, Sentence>, Sentence> _function_4 = (Pair<Integer, Sentence> s) -> {
-        return s.getValue();
-      };
-      Iterable<Sentence> _map_2 = IterableExtensions.<Pair<Integer, Sentence>, Sentence>map(_filter_2, _function_4);
-      Iterable<DefinitionSentence> _filter_3 = Iterables.<DefinitionSentence>filter(_map_2, DefinitionSentence.class);
-      final Function1<DefinitionSentence, Boolean> _function_5 = (DefinitionSentence s) -> {
-        TargetDefinition _target = s.getTarget();
-        NodeDefinition _local = _target.getLocal();
-        return Boolean.valueOf((!Objects.equal(_local, null)));
-      };
-      Iterable<DefinitionSentence> _filter_4 = IterableExtensions.<DefinitionSentence>filter(_filter_3, _function_5);
-      final Function1<DefinitionSentence, NodeDefinition> _function_6 = (DefinitionSentence s) -> {
-        TargetDefinition _target = s.getTarget();
-        return _target.getLocal();
-      };
-      Iterable<NodeDefinition> _map_3 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_4, _function_6);
-      Iterables.<NodeDefinition>addAll(siblings, _map_3);
-      _xblockexpression = siblings;
-    }
-    return _xblockexpression;
-  }
-  
-  private Iterable<NodeDefinition> _sentenceDefinitions(final ConstraintSentence sentence) {
-    QuantificationList _quantifications = sentence.getQuantifications();
-    EList<Quantification> _quantifications_1 = _quantifications.getQuantifications();
-    final Function1<Quantification, NodeDefinition> _function = (Quantification q) -> {
-      return q.getNode();
-    };
-    return ListExtensions.<Quantification, NodeDefinition>map(_quantifications_1, _function);
-  }
-  
-  private Iterable<NodeDefinition> _sentenceDefinitions(final DefinitionSentence sentence) {
-    Quantification _quantification = sentence.getQuantification();
-    NodeDefinition _node = null;
-    if (_quantification!=null) {
-      _node=_quantification.getNode();
-    }
-    TargetDefinition _target = sentence.getTarget();
-    NodeDefinition _definition = null;
-    if (_target!=null) {
-      _definition=_target.getDefinition();
-    }
-    TargetDefinition _target_1 = sentence.getTarget();
-    NodeDefinition _local = null;
-    if (_target_1!=null) {
-      _local=_target_1.getLocal();
-    }
-    List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_node, _definition, _local);
-    return IterableExtensions.<NodeDefinition>filterNull(_asList);
-  }
-  
-  private IScope scopeForSentence(final Sentence startOn, final Function1<? super NodeDefinition, Boolean> predicate) {
-    if (startOn instanceof StartOnSentence) {
-      return _scopeForSentence((StartOnSentence)startOn, predicate);
-    } else if (startOn != null) {
-      return _scopeForSentence(startOn, predicate);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(startOn, predicate).toString());
-    }
-  }
-  
-  private Iterable<NodeDefinition> sentenceDefinitions(final Sentence sentence) {
-    if (sentence instanceof ConstraintSentence) {
-      return _sentenceDefinitions((ConstraintSentence)sentence);
-    } else if (sentence instanceof DefinitionSentence) {
-      return _sentenceDefinitions((DefinitionSentence)sentence);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(sentence).toString());
-    }
+    return DslUtil.visibleDefinitions(expression, _function);
   }
 }

@@ -43,6 +43,7 @@ import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
 import com.isax.validation.dsl.jvmmodel.NameProvider;
+import com.isax.validation.dsl.util.DslUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -61,6 +62,8 @@ import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
@@ -202,7 +205,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_8, _compileXExpressionPredicates);
       EList<JvmMember> _members_9 = it.getMembers();
-      Iterable<JvmOperation> _compileXExpressionAssignments = this.compileXExpressionAssignments(validator);
+      Iterable<JvmGenericType> _compileXExpressionAssignments = this.compileXExpressionAssignments(validator);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_9, _compileXExpressionAssignments);
     };
     acceptor.<JvmGenericType>accept(_class, _function);
@@ -513,22 +516,47 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return IterableExtensions.<PredicateXExpression, JvmOperation>map(_filter, _function);
   }
   
-  public Iterable<JvmOperation> compileXExpressionAssignments(final Validator validator) {
+  public Iterable<JvmGenericType> compileXExpressionAssignments(final Validator validator) {
     TreeIterator<EObject> _eAllContents = validator.eAllContents();
     Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
     Iterable<AssignmentXExpression> _filter = Iterables.<AssignmentXExpression>filter(_set, AssignmentXExpression.class);
-    final Function1<AssignmentXExpression, JvmOperation> _function = (AssignmentXExpression e) -> {
+    final Function1<AssignmentXExpression, JvmGenericType> _function = (AssignmentXExpression e) -> {
       int _hashCode = e.hashCode();
-      String _plus = ("assignment$" + Integer.valueOf(_hashCode));
-      XExpression _expression = e.getExpression();
-      JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_expression);
-      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
-        XExpression _expression_1 = e.getExpression();
-        this._jvmTypesBuilder.setBody(it, _expression_1);
+      String _plus = ("Assignment$" + Integer.valueOf(_hashCode));
+      final Procedure1<JvmGenericType> _function_1 = (JvmGenericType it) -> {
+        it.setStatic(true);
+        it.setVisibility(JvmVisibility.PRIVATE);
+        EList<JvmMember> _members = it.getMembers();
+        XExpression _expression = e.getExpression();
+        JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_expression);
+        final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+          EList<JvmFormalParameter> _parameters = it_1.getParameters();
+          final Function1<NodeDefinition, Boolean> _function_3 = (NodeDefinition it_2) -> {
+            return null;
+          };
+          IScope _visibleDefinitions = DslUtil.visibleDefinitions(e, _function_3);
+          Iterable<IEObjectDescription> _allElements = _visibleDefinitions.getAllElements();
+          final Function1<IEObjectDescription, EObject> _function_4 = (IEObjectDescription d) -> {
+            return d.getEObjectOrProxy();
+          };
+          Iterable<EObject> _map = IterableExtensions.<IEObjectDescription, EObject>map(_allElements, _function_4);
+          Iterable<NodeDefinition> _filter_1 = Iterables.<NodeDefinition>filter(_map, NodeDefinition.class);
+          final Function1<NodeDefinition, JvmFormalParameter> _function_5 = (NodeDefinition d) -> {
+            String _name = d.getName();
+            JvmTypeReference _definitionTypeRef = this.definitionTypeRef(d);
+            return this._jvmTypesBuilder.toParameter(d, _name, _definitionTypeRef);
+          };
+          Iterable<JvmFormalParameter> _map_1 = IterableExtensions.<NodeDefinition, JvmFormalParameter>map(_filter_1, _function_5);
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _map_1);
+          XExpression _expression_1 = e.getExpression();
+          this._jvmTypesBuilder.setBody(it_1, _expression_1);
+        };
+        JvmOperation _method = this._jvmTypesBuilder.toMethod(e, "method", _inferredType, _function_2);
+        this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
       };
-      return this._jvmTypesBuilder.toMethod(e, _plus, _inferredType, _function_1);
+      return this._jvmTypesBuilder.toClass(e, _plus, _function_1);
     };
-    return IterableExtensions.<AssignmentXExpression, JvmOperation>map(_filter, _function);
+    return IterableExtensions.<AssignmentXExpression, JvmGenericType>map(_filter, _function);
   }
   
   public CharSequence constraintDispatch(final List<Quantification> quantifications, final int index, final ConstraintSentence sentence) {
@@ -1182,6 +1210,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         return this.names.uniqueName(_node);
       };
       _xifexpression = IterableExtensions.<Argument>join(_arguments, ", ", _function);
+    }
+    return _xifexpression;
+  }
+  
+  public JvmTypeReference definitionTypeRef(final NodeDefinition definition) {
+    JvmTypeReference _xifexpression = null;
+    boolean _isCollection = definition.isCollection();
+    if (_isCollection) {
+      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+    } else {
+      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
     }
     return _xifexpression;
   }
