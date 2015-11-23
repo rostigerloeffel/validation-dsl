@@ -24,5 +24,5 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 	public void configureLinkingIScopeProvider(Binder binder) {
 		binder.bind(IScopeProvider.class).annotatedWith(LinkingScopeProviderBinding.class).to(DslScopeProvider.class);
 	}
-
+	
 }

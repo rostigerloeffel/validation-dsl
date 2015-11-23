@@ -530,12 +530,14 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         XExpression _expression = e.getExpression();
         JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_expression);
         final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
-          EList<JvmFormalParameter> _parameters = it_1.getParameters();
+          it_1.setStatic(true);
+          it_1.setVisibility(JvmVisibility.PRIVATE);
           final Function1<NodeDefinition, Boolean> _function_3 = (NodeDefinition it_2) -> {
-            return null;
+            return Boolean.valueOf(true);
           };
-          IScope _visibleDefinitions = DslUtil.visibleDefinitions(e, _function_3);
-          Iterable<IEObjectDescription> _allElements = _visibleDefinitions.getAllElements();
+          final IScope scope = DslUtil.visibleDefinitions(e, _function_3);
+          EList<JvmFormalParameter> _parameters = it_1.getParameters();
+          Iterable<IEObjectDescription> _allElements = scope.getAllElements();
           final Function1<IEObjectDescription, EObject> _function_4 = (IEObjectDescription d) -> {
             return d.getEObjectOrProxy();
           };

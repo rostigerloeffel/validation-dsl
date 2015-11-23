@@ -192,10 +192,14 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				static = true
 				visibility = JvmVisibility.PRIVATE
 				members += e.toMethod("method", e.expression.inferredType) [
-					parameters += e.visibleDefinitions[].allElements
-						.map[ d | d.EObjectOrProxy ]
+					static = true
+					visibility = JvmVisibility.PRIVATE
+					val scope = e.visibleDefinitions[true]
+					parameters += scope
+						.allElements
+						.map[d|d.EObjectOrProxy]
 						.filter(NodeDefinition)
-						.map[ d | d.toParameter(d.name, definitionTypeRef(d)) ]
+						.map[d|d.toParameter(d.name, definitionTypeRef(d))]
 					body = e.expression
 				]
 			]
@@ -378,9 +382,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def argumentList(ArgumentList list) {
 		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.uniqueName])
 	}
-	
+
 	def definitionTypeRef(NodeDefinition definition) {
-		if (definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
+		if(definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
 	}
 }
 
