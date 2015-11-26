@@ -189,4 +189,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//PredicateExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//PredicateExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImpliesExpression" eSuperTypes="#//PredicateExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XPropertyAssignment" eSuperTypes="../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XAssignment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XPropertyExpression" eSuperTypes="../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="#//NodeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

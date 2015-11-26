@@ -2,14 +2,6 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.xtext.xbase.XbasePackage;
-
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
@@ -51,6 +43,18 @@ import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
 import com.isax.validation.dsl.dsl.Validator;
+import com.isax.validation.dsl.dsl.XPropertyAssignment;
+import com.isax.validation.dsl.dsl.XPropertyExpression;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.xtext.xbase.XbasePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -304,6 +308,20 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * @generated
 	 */
 	private EClass impliesExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xPropertyAssignmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xPropertyExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1324,6 +1342,46 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getXPropertyAssignment()
+	{
+		return xPropertyAssignmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getXPropertyExpression()
+	{
+		return xPropertyExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getXPropertyExpression_Node()
+	{
+		return (EReference)xPropertyExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getXPropertyExpression_Name()
+	{
+		return (EAttribute)xPropertyExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getQuantor()
 	{
 		return quantorEEnum;
@@ -1516,6 +1574,12 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		impliesExpressionEClass = createEClass(IMPLIES_EXPRESSION);
 
+		xPropertyAssignmentEClass = createEClass(XPROPERTY_ASSIGNMENT);
+
+		xPropertyExpressionEClass = createEClass(XPROPERTY_EXPRESSION);
+		createEReference(xPropertyExpressionEClass, XPROPERTY_EXPRESSION__NODE);
+		createEAttribute(xPropertyExpressionEClass, XPROPERTY_EXPRESSION__NAME);
+
 		// Create enums
 		quantorEEnum = createEEnum(QUANTOR);
 		relationQualifierEEnum = createEEnum(RELATION_QUALIFIER);
@@ -1570,6 +1634,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		andExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
 		orExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
 		impliesExpressionEClass.getESuperTypes().add(this.getPredicateExpression());
+		xPropertyAssignmentEClass.getESuperTypes().add(theXbasePackage.getXAssignment());
+		xPropertyExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(validatorEClass, Validator.class, "Validator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1698,6 +1764,12 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(impliesExpressionEClass, ImpliesExpression.class, "ImpliesExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(xPropertyAssignmentEClass, XPropertyAssignment.class, "XPropertyAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(xPropertyExpressionEClass, XPropertyExpression.class, "XPropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getXPropertyExpression_Node(), this.getNodeDefinition(), null, "node", null, 1, 1, XPropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getXPropertyExpression_Name(), ecorePackage.getEString(), "name", null, 1, 1, XPropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(quantorEEnum, Quantor.class, "Quantor");

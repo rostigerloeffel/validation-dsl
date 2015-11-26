@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
  * Manual modifications go to {com.isax.validation.dsl.DslRuntimeModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractDslRuntimeModule extends org.eclipse.xtext.xbase.DefaultXbaseRuntimeModule {
+public abstract class AbstractDslRuntimeModule extends org.eclipse.xtext.xbase.annotations.DefaultXbaseWithAnnotationsRuntimeModule {
 
 	protected Properties properties = null;
 

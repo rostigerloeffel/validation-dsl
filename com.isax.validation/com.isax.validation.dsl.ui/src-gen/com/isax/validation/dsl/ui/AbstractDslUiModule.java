@@ -10,7 +10,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * Manual modifications go to {com.isax.validation.dsl.ui.DslUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractDslUiModule extends org.eclipse.xtext.xbase.ui.DefaultXbaseUiModule {
+public abstract class AbstractDslUiModule extends org.eclipse.xtext.xbase.annotations.ui.DefaultXbaseWithAnnotationsUiModule {
 	
 	public AbstractDslUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

@@ -3,6 +3,42 @@
  */
 package com.isax.validation.dsl.serializer;
 
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.isax.validation.dsl.dsl.AndExpression;
+import com.isax.validation.dsl.dsl.Argument;
+import com.isax.validation.dsl.dsl.ArgumentList;
+import com.isax.validation.dsl.dsl.Assignment;
+import com.isax.validation.dsl.dsl.AssignmentList;
+import com.isax.validation.dsl.dsl.AssignmentXExpression;
+import com.isax.validation.dsl.dsl.BodySentences;
+import com.isax.validation.dsl.dsl.ConstraintSentence;
+import com.isax.validation.dsl.dsl.DefinitionSentence;
+import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
+import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.ImpliesExpression;
+import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.NodeReferenceList;
+import com.isax.validation.dsl.dsl.OrExpression;
+import com.isax.validation.dsl.dsl.Parameter;
+import com.isax.validation.dsl.dsl.ParameterList;
+import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
+import com.isax.validation.dsl.dsl.PredicateExpression;
+import com.isax.validation.dsl.dsl.PredicateReference;
+import com.isax.validation.dsl.dsl.PredicateXExpression;
+import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
+import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
+import com.isax.validation.dsl.dsl.PropertyValueExpression;
+import com.isax.validation.dsl.dsl.Quantification;
+import com.isax.validation.dsl.dsl.QuantificationList;
+import com.isax.validation.dsl.dsl.Selector;
+import com.isax.validation.dsl.dsl.SelectorList;
+import com.isax.validation.dsl.dsl.SelectorListDef;
+import com.isax.validation.dsl.dsl.StartOnSentence;
+import com.isax.validation.dsl.dsl.TargetDefinition;
+import com.isax.validation.dsl.dsl.Validator;
+import com.isax.validation.dsl.dsl.XPropertyExpression;
+import com.isax.validation.dsl.services.DslGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
@@ -13,8 +49,14 @@ import org.eclipse.xtext.common.types.JvmTypeParameter;
 import org.eclipse.xtext.common.types.JvmUpperBound;
 import org.eclipse.xtext.common.types.JvmWildcardTypeReference;
 import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
+import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
+import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
+import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
+import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.eclipse.xtext.xbase.XAssignment;
 import org.eclipse.xtext.xbase.XBasicForLoopExpression;
@@ -48,49 +90,17 @@ import org.eclipse.xtext.xbase.XUnaryOperation;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.XbasePackage;
-import org.eclipse.xtext.xbase.serializer.XbaseSemanticSequencer;
+import org.eclipse.xtext.xbase.annotations.serializer.XbaseWithAnnotationsSemanticSequencer;
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationElementValuePair;
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
 import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.eclipse.xtext.xtype.XImportSection;
 import org.eclipse.xtext.xtype.XtypePackage;
 
-import com.google.inject.Inject;
-import com.isax.validation.dsl.dsl.AndExpression;
-import com.isax.validation.dsl.dsl.Argument;
-import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
-import com.isax.validation.dsl.dsl.BodySentences;
-import com.isax.validation.dsl.dsl.ConstraintSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.ImpliesExpression;
-import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
-import com.isax.validation.dsl.dsl.OrExpression;
-import com.isax.validation.dsl.dsl.Parameter;
-import com.isax.validation.dsl.dsl.ParameterList;
-import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
-import com.isax.validation.dsl.dsl.PredicateExpression;
-import com.isax.validation.dsl.dsl.PredicateReference;
-import com.isax.validation.dsl.dsl.PredicateXExpression;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
-import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
-import com.isax.validation.dsl.dsl.PropertyValueExpression;
-import com.isax.validation.dsl.dsl.Quantification;
-import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Selector;
-import com.isax.validation.dsl.dsl.SelectorList;
-import com.isax.validation.dsl.dsl.SelectorListDef;
-import com.isax.validation.dsl.dsl.StartOnSentence;
-import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
-import com.isax.validation.dsl.services.DslGrammarAccess;
-
 @SuppressWarnings("all")
-public class DslSemanticSequencer extends XbaseSemanticSequencer {
+public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer {
 
 	@Inject
 	private DslGrammarAccess grammarAccess;
@@ -232,6 +242,9 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 			case DslPackage.VALIDATOR:
 				sequence_Validator(context, (Validator) semanticObject); 
 				return; 
+			case DslPackage.XPROPERTY_EXPRESSION:
+				sequence_XPropertyExpression(context, (XPropertyExpression) semanticObject); 
+				return; 
 			}
 		else if(semanticObject.eClass().getEPackage() == TypesPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case TypesPackage.JVM_FORMAL_PARAMETER:
@@ -280,6 +293,14 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_JvmWildcardTypeReference(context, (JvmWildcardTypeReference) semanticObject); 
 				return; 
 			}
+		else if(semanticObject.eClass().getEPackage() == XAnnotationsPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case XAnnotationsPackage.XANNOTATION:
+				sequence_XAnnotation(context, (XAnnotation) semanticObject); 
+				return; 
+			case XAnnotationsPackage.XANNOTATION_ELEMENT_VALUE_PAIR:
+				sequence_XAnnotationElementValuePair(context, (XAnnotationElementValuePair) semanticObject); 
+				return; 
+			}
 		else if(semanticObject.eClass().getEPackage() == XbasePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case XbasePackage.XASSIGNMENT:
 				sequence_XAssignment_XMemberFeatureCall(context, (XAssignment) semanticObject); 
@@ -295,6 +316,10 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				   context == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
 				   context == grammarAccess.getXAndExpressionRule() ||
 				   context == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXAnnotationElementValueRule() ||
+				   context == grammarAccess.getXAnnotationElementValueOrCommaListRule() ||
+				   context == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0() ||
+				   context == grammarAccess.getXAnnotationOrExpressionRule() ||
 				   context == grammarAccess.getXAssignmentRule() ||
 				   context == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0() ||
 				   context == grammarAccess.getXBlockExpressionRule() ||
@@ -346,6 +371,10 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				   context == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
 				   context == grammarAccess.getXAndExpressionRule() ||
 				   context == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXAnnotationElementValueRule() ||
+				   context == grammarAccess.getXAnnotationElementValueOrCommaListRule() ||
+				   context == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0() ||
+				   context == grammarAccess.getXAnnotationOrExpressionRule() ||
 				   context == grammarAccess.getXAssignmentRule() ||
 				   context == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0() ||
 				   context == grammarAccess.getXCastedExpressionRule() ||
@@ -400,8 +429,52 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_XRelationalExpression(context, (XInstanceOfExpression) semanticObject); 
 				return; 
 			case XbasePackage.XLIST_LITERAL:
-				sequence_XListLiteral(context, (XListLiteral) semanticObject); 
-				return; 
+				if(context == grammarAccess.getXAnnotationElementValueOrCommaListRule()) {
+					sequence_XAnnotationElementValueOrCommaList_XListLiteral(context, (XListLiteral) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getXAnnotationElementValueRule()) {
+					sequence_XAnnotationElementValue_XListLiteral(context, (XListLiteral) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getXAdditiveExpressionRule() ||
+				   context == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXAndExpressionRule() ||
+				   context == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0() ||
+				   context == grammarAccess.getXAnnotationOrExpressionRule() ||
+				   context == grammarAccess.getXAssignmentRule() ||
+				   context == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0() ||
+				   context == grammarAccess.getXCastedExpressionRule() ||
+				   context == grammarAccess.getXCastedExpressionAccess().getXCastedExpressionTargetAction_1_0_0_0() ||
+				   context == grammarAccess.getXCollectionLiteralRule() ||
+				   context == grammarAccess.getXEqualityExpressionRule() ||
+				   context == grammarAccess.getXEqualityExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXExpressionRule() ||
+				   context == grammarAccess.getXExpressionOrVarDeclarationRule() ||
+				   context == grammarAccess.getXListLiteralRule() ||
+				   context == grammarAccess.getXLiteralRule() ||
+				   context == grammarAccess.getXMemberFeatureCallRule() ||
+				   context == grammarAccess.getXMemberFeatureCallAccess().getXAssignmentAssignableAction_1_0_0_0_0() ||
+				   context == grammarAccess.getXMemberFeatureCallAccess().getXMemberFeatureCallMemberCallTargetAction_1_1_0_0_0() ||
+				   context == grammarAccess.getXMultiplicativeExpressionRule() ||
+				   context == grammarAccess.getXMultiplicativeExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXOrExpressionRule() ||
+				   context == grammarAccess.getXOrExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXOtherOperatorExpressionRule() ||
+				   context == grammarAccess.getXOtherOperatorExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0() ||
+				   context == grammarAccess.getXParenthesizedExpressionRule() ||
+				   context == grammarAccess.getXPostfixOperationRule() ||
+				   context == grammarAccess.getXPostfixOperationAccess().getXPostfixOperationOperandAction_1_0_0() ||
+				   context == grammarAccess.getXPrimaryExpressionRule() ||
+				   context == grammarAccess.getXRelationalExpressionRule() ||
+				   context == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0() ||
+				   context == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_0_0_0_0() ||
+				   context == grammarAccess.getXUnaryOperationRule()) {
+					sequence_XListLiteral(context, (XListLiteral) semanticObject); 
+					return; 
+				}
+				else break;
 			case XbasePackage.XMEMBER_FEATURE_CALL:
 				sequence_XMemberFeatureCall(context, (XMemberFeatureCall) semanticObject); 
 				return; 
@@ -858,5 +931,33 @@ public class DslSemanticSequencer extends XbaseSemanticSequencer {
 	 */
 	protected void sequence_Validator(EObject context, Validator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((expressions+=XExpressionOrVarDeclaration | expressions+=XPropertyExpression)*)
+	 */
+	protected void sequence_XBlockExpression(EObject context, XBlockExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (node=[NodeDefinition|ID] name=ID)
+	 */
+	protected void sequence_XPropertyExpression(EObject context, XPropertyExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.XPROPERTY_EXPRESSION__NODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.XPROPERTY_EXPRESSION__NODE));
+			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.XPROPERTY_EXPRESSION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.XPROPERTY_EXPRESSION__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_1_0_1(), semanticObject.getNode());
+		feeder.accept(grammarAccess.getXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.finish();
 	}
 }

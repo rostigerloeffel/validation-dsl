@@ -4,8 +4,6 @@ package com.isax.validation.dsl.dsl;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import com.isax.validation.dsl.dsl.impl.custom.DslFactoryImplCustom;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -22,7 +20,8 @@ public interface DslFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DslFactory eINSTANCE = new DslFactoryImplCustom();
+	//DslFactory eINSTANCE = com.isax.validation.dsl.dsl.impl.DslFactoryImpl.init();
+	DslFactory eINSTANCE = new com.isax.validation.dsl.dsl.impl.custom.DslFactoryImplCustom();
 
 	/**
 	 * Returns a new object of class '<em>Validator</em>'.
@@ -338,6 +337,24 @@ public interface DslFactory extends EFactory
 	 * @generated
 	 */
 	ImpliesExpression createImpliesExpression();
+
+	/**
+	 * Returns a new object of class '<em>XProperty Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>XProperty Assignment</em>'.
+	 * @generated
+	 */
+	XPropertyAssignment createXPropertyAssignment();
+
+	/**
+	 * Returns a new object of class '<em>XProperty Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>XProperty Expression</em>'.
+	 * @generated
+	 */
+	XPropertyExpression createXPropertyExpression();
 
 	/**
 	 * Returns the package supported by this factory.

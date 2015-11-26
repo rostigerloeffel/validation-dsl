@@ -2,11 +2,12 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import com.isax.validation.dsl.dsl.AssignmentExpression;
 import com.isax.validation.dsl.dsl.DslPackage;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->

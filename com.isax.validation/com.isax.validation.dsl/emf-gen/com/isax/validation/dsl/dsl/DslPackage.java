@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.xtext.xbase.XbasePackage;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -1407,6 +1409,152 @@ public interface DslPackage extends EPackage
 	int IMPLIES_EXPRESSION_FEATURE_COUNT = PREDICATE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.XPropertyAssignmentImpl <em>XProperty Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.XPropertyAssignmentImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getXPropertyAssignment()
+	 * @generated
+	 */
+	int XPROPERTY_ASSIGNMENT = 35;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__FEATURE = XbasePackage.XASSIGNMENT__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Type Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__TYPE_ARGUMENTS = XbasePackage.XASSIGNMENT__TYPE_ARGUMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Implicit Receiver</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__IMPLICIT_RECEIVER = XbasePackage.XASSIGNMENT__IMPLICIT_RECEIVER;
+
+	/**
+	 * The feature id for the '<em><b>Invalid Feature Issue Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__INVALID_FEATURE_ISSUE_CODE = XbasePackage.XASSIGNMENT__INVALID_FEATURE_ISSUE_CODE;
+
+	/**
+	 * The feature id for the '<em><b>Valid Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__VALID_FEATURE = XbasePackage.XASSIGNMENT__VALID_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit First Argument</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__IMPLICIT_FIRST_ARGUMENT = XbasePackage.XASSIGNMENT__IMPLICIT_FIRST_ARGUMENT;
+
+	/**
+	 * The feature id for the '<em><b>Assignable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__ASSIGNABLE = XbasePackage.XASSIGNMENT__ASSIGNABLE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__VALUE = XbasePackage.XASSIGNMENT__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__EXPLICIT_STATIC = XbasePackage.XASSIGNMENT__EXPLICIT_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Static With Declaring Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT__STATIC_WITH_DECLARING_TYPE = XbasePackage.XASSIGNMENT__STATIC_WITH_DECLARING_TYPE;
+
+	/**
+	 * The number of structural features of the '<em>XProperty Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_ASSIGNMENT_FEATURE_COUNT = XbasePackage.XASSIGNMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.XPropertyExpressionImpl <em>XProperty Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.XPropertyExpressionImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getXPropertyExpression()
+	 * @generated
+	 */
+	int XPROPERTY_EXPRESSION = 36;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_EXPRESSION__NODE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_EXPRESSION__NAME = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>XProperty Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XPROPERTY_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1414,7 +1562,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
 	 * @generated
 	 */
-	int QUANTOR = 35;
+	int QUANTOR = 37;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationQualifier <em>Relation Qualifier</em>}' enum.
@@ -1424,7 +1572,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationQualifier()
 	 * @generated
 	 */
-	int RELATION_QUALIFIER = 36;
+	int RELATION_QUALIFIER = 38;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.Axis <em>Axis</em>}' enum.
@@ -1434,7 +1582,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getAxis()
 	 * @generated
 	 */
-	int AXIS = 37;
+	int AXIS = 39;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1444,7 +1592,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
 	 * @generated
 	 */
-	int PROPERTY_RELATION = 38;
+	int PROPERTY_RELATION = 40;
 
 
 	/**
@@ -2425,6 +2573,48 @@ public interface DslPackage extends EPackage
 	EClass getImpliesExpression();
 
 	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.XPropertyAssignment <em>XProperty Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>XProperty Assignment</em>'.
+	 * @see com.isax.validation.dsl.dsl.XPropertyAssignment
+	 * @generated
+	 */
+	EClass getXPropertyAssignment();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.XPropertyExpression <em>XProperty Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>XProperty Expression</em>'.
+	 * @see com.isax.validation.dsl.dsl.XPropertyExpression
+	 * @generated
+	 */
+	EClass getXPropertyExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.isax.validation.dsl.dsl.XPropertyExpression#getNode <em>Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Node</em>'.
+	 * @see com.isax.validation.dsl.dsl.XPropertyExpression#getNode()
+	 * @see #getXPropertyExpression()
+	 * @generated
+	 */
+	EReference getXPropertyExpression_Node();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.XPropertyExpression#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.isax.validation.dsl.dsl.XPropertyExpression#getName()
+	 * @see #getXPropertyExpression()
+	 * @generated
+	 */
+	EAttribute getXPropertyExpression_Name();
+
+	/**
 	 * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3292,6 +3482,42 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EClass IMPLIES_EXPRESSION = eINSTANCE.getImpliesExpression();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.XPropertyAssignmentImpl <em>XProperty Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.XPropertyAssignmentImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getXPropertyAssignment()
+		 * @generated
+		 */
+		EClass XPROPERTY_ASSIGNMENT = eINSTANCE.getXPropertyAssignment();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.XPropertyExpressionImpl <em>XProperty Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.XPropertyExpressionImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getXPropertyExpression()
+		 * @generated
+		 */
+		EClass XPROPERTY_EXPRESSION = eINSTANCE.getXPropertyExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XPROPERTY_EXPRESSION__NODE = eINSTANCE.getXPropertyExpression_Node();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XPROPERTY_EXPRESSION__NAME = eINSTANCE.getXPropertyExpression_Name();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.

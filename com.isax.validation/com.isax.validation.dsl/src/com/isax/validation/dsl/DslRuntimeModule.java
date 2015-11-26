@@ -5,9 +5,13 @@ package com.isax.validation.dsl;
 
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
+import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 
 import com.google.inject.Binder;
+import com.isax.validation.dsl.compilation.DslCompiler;
 import com.isax.validation.dsl.scoping.DslScopeProvider;
+import com.isax.validation.types.DslTypeComputer;
 
 /**
  * Use this class to register components to be used at runtime / without the
@@ -23,6 +27,15 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 	@Override
 	public void configureLinkingIScopeProvider(Binder binder) {
 		binder.bind(IScopeProvider.class).annotatedWith(LinkingScopeProviderBinding.class).to(DslScopeProvider.class);
+	}
+
+	public Class<? extends XbaseCompiler> bindXbaseCompiler() {
+		return DslCompiler.class;
+	}
+	
+	@Override
+	public Class<? extends ITypeComputer> bindITypeComputer() {
+		return DslTypeComputer.class;
 	}
 	
 }

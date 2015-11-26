@@ -1,4 +1,4 @@
-grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.xbase.Xbase
+grammar com.isax.validation.dsl.Dsl with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
 
 import "http://www.isax.com/validation/dsl/Dsl"
 
@@ -115,12 +115,24 @@ AssignmentExpression:
 AssignmentXExpression:
 	expression = XBlockExpression;
 
+XBlockExpression returns xbase::XExpression: 
+	{xbase::XBlockExpression}
+	'{'
+		(expressions+=XExpressionOrVarDeclaration ';'? | expressions+=XPropertyExpression ';'?)*
+	'}';
+
+XPropertyExpression returns xbase::XExpression:
+	{XPropertyExpression}
+	node=[NodeDefinition]
+	'.' '<<'
+	name=ID
+	'>>';
+
 Quantification:
 	quantor=Quantor node=NodeDefinition 'in' nodeSet=[NodeDefinition];
 
 QuantificationList:
 	quantifications+=Quantification (',' quantifications+=Quantification)*;
-
 
 PropertyExpression:
 	PropertyValueExpression | PropertyReferenceExpression;

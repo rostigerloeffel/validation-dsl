@@ -3,25 +3,27 @@
 package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.ImpliesExpression;
+import com.isax.validation.dsl.dsl.XPropertyAssignment;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.xtext.xbase.impl.XAssignmentImplCustom;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Implies Expression</b></em>'.
+ * An implementation of the model object '<em><b>XProperty Assignment</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ImpliesExpressionImpl extends PredicateExpressionImpl implements ImpliesExpression
+public class XPropertyAssignmentImpl extends XAssignmentImplCustom implements XPropertyAssignment
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImpliesExpressionImpl()
+	protected XPropertyAssignmentImpl()
 	{
 		super();
 	}
@@ -34,7 +36,7 @@ public class ImpliesExpressionImpl extends PredicateExpressionImpl implements Im
 	@Override
 	protected EClass eStaticClass()
 	{
-		return DslPackage.Literals.IMPLIES_EXPRESSION;
+		return DslPackage.Literals.XPROPERTY_ASSIGNMENT;
 	}
 
-} //ImpliesExpressionImpl
+} //XPropertyAssignmentImpl

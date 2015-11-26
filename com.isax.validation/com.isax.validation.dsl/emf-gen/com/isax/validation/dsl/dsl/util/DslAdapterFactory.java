@@ -2,47 +2,18 @@
  */
 package com.isax.validation.dsl.dsl.util;
 
+import com.isax.validation.dsl.dsl.*;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
-import com.isax.validation.dsl.dsl.AndExpression;
-import com.isax.validation.dsl.dsl.Argument;
-import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentExpression;
-import com.isax.validation.dsl.dsl.AssignmentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
-import com.isax.validation.dsl.dsl.BodySentences;
-import com.isax.validation.dsl.dsl.ConstraintSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.ImpliesExpression;
-import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
-import com.isax.validation.dsl.dsl.OrExpression;
-import com.isax.validation.dsl.dsl.Parameter;
-import com.isax.validation.dsl.dsl.ParameterList;
-import com.isax.validation.dsl.dsl.PredicateCall;
-import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
-import com.isax.validation.dsl.dsl.PredicateExpression;
-import com.isax.validation.dsl.dsl.PredicateReference;
-import com.isax.validation.dsl.dsl.PredicateXExpression;
-import com.isax.validation.dsl.dsl.PropertyExpression;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
-import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
-import com.isax.validation.dsl.dsl.PropertyValueExpression;
-import com.isax.validation.dsl.dsl.Quantification;
-import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Selector;
-import com.isax.validation.dsl.dsl.SelectorList;
-import com.isax.validation.dsl.dsl.SelectorListDef;
-import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
-import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
+import org.eclipse.xtext.xbase.XAbstractFeatureCall;
+import org.eclipse.xtext.xbase.XAssignment;
+import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -281,6 +252,31 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseImpliesExpression(ImpliesExpression object)
 			{
 				return createImpliesExpressionAdapter();
+			}
+			@Override
+			public Adapter caseXPropertyAssignment(XPropertyAssignment object)
+			{
+				return createXPropertyAssignmentAdapter();
+			}
+			@Override
+			public Adapter caseXPropertyExpression(XPropertyExpression object)
+			{
+				return createXPropertyExpressionAdapter();
+			}
+			@Override
+			public Adapter caseXExpression(XExpression object)
+			{
+				return createXExpressionAdapter();
+			}
+			@Override
+			public Adapter caseXAbstractFeatureCall(XAbstractFeatureCall object)
+			{
+				return createXAbstractFeatureCallAdapter();
+			}
+			@Override
+			public Adapter caseXAssignment(XAssignment object)
+			{
+				return createXAssignmentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -825,6 +821,81 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImpliesExpressionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.XPropertyAssignment <em>XProperty Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.XPropertyAssignment
+	 * @generated
+	 */
+	public Adapter createXPropertyAssignmentAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.XPropertyExpression <em>XProperty Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.XPropertyExpression
+	 * @generated
+	 */
+	public Adapter createXPropertyExpressionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XExpression <em>XExpression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xbase.XExpression
+	 * @generated
+	 */
+	public Adapter createXExpressionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XAbstractFeatureCall <em>XAbstract Feature Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xbase.XAbstractFeatureCall
+	 * @generated
+	 */
+	public Adapter createXAbstractFeatureCallAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XAssignment <em>XAssignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xbase.XAssignment
+	 * @generated
+	 */
+	public Adapter createXAssignmentAdapter()
 	{
 		return null;
 	}

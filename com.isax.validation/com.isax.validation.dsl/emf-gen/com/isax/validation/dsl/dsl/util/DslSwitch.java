@@ -2,46 +2,16 @@
  */
 package com.isax.validation.dsl.dsl.util;
 
+import com.isax.validation.dsl.dsl.*;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
-import com.isax.validation.dsl.dsl.AndExpression;
-import com.isax.validation.dsl.dsl.Argument;
-import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentExpression;
-import com.isax.validation.dsl.dsl.AssignmentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
-import com.isax.validation.dsl.dsl.BodySentences;
-import com.isax.validation.dsl.dsl.ConstraintSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.ImpliesExpression;
-import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
-import com.isax.validation.dsl.dsl.OrExpression;
-import com.isax.validation.dsl.dsl.Parameter;
-import com.isax.validation.dsl.dsl.ParameterList;
-import com.isax.validation.dsl.dsl.PredicateCall;
-import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
-import com.isax.validation.dsl.dsl.PredicateExpression;
-import com.isax.validation.dsl.dsl.PredicateReference;
-import com.isax.validation.dsl.dsl.PredicateXExpression;
-import com.isax.validation.dsl.dsl.PropertyExpression;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
-import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
-import com.isax.validation.dsl.dsl.PropertyValueExpression;
-import com.isax.validation.dsl.dsl.Quantification;
-import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Selector;
-import com.isax.validation.dsl.dsl.SelectorList;
-import com.isax.validation.dsl.dsl.SelectorListDef;
-import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
-import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
+import org.eclipse.xtext.xbase.XAbstractFeatureCall;
+import org.eclipse.xtext.xbase.XAssignment;
+import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -365,6 +335,24 @@ public class DslSwitch<T> extends Switch<T>
 				ImpliesExpression impliesExpression = (ImpliesExpression)theEObject;
 				T result = caseImpliesExpression(impliesExpression);
 				if (result == null) result = casePredicateExpression(impliesExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DslPackage.XPROPERTY_ASSIGNMENT:
+			{
+				XPropertyAssignment xPropertyAssignment = (XPropertyAssignment)theEObject;
+				T result = caseXPropertyAssignment(xPropertyAssignment);
+				if (result == null) result = caseXAssignment(xPropertyAssignment);
+				if (result == null) result = caseXAbstractFeatureCall(xPropertyAssignment);
+				if (result == null) result = caseXExpression(xPropertyAssignment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DslPackage.XPROPERTY_EXPRESSION:
+			{
+				XPropertyExpression xPropertyExpression = (XPropertyExpression)theEObject;
+				T result = caseXPropertyExpression(xPropertyExpression);
+				if (result == null) result = caseXExpression(xPropertyExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -928,6 +916,86 @@ public class DslSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImpliesExpression(ImpliesExpression object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XProperty Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XProperty Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXPropertyAssignment(XPropertyAssignment object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XProperty Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XProperty Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXPropertyExpression(XPropertyExpression object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XExpression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XExpression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXExpression(XExpression object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XAbstract Feature Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XAbstract Feature Call</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXAbstractFeatureCall(XAbstractFeatureCall object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XAssignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XAssignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXAssignment(XAssignment object)
 	{
 		return null;
 	}

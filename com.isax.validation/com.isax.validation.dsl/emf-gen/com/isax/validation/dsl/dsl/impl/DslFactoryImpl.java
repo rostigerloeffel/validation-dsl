@@ -2,54 +2,16 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
+import com.isax.validation.dsl.dsl.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import com.isax.validation.dsl.dsl.AndExpression;
-import com.isax.validation.dsl.dsl.Argument;
-import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentExpression;
-import com.isax.validation.dsl.dsl.AssignmentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
-import com.isax.validation.dsl.dsl.Axis;
-import com.isax.validation.dsl.dsl.BodySentences;
-import com.isax.validation.dsl.dsl.ConstraintSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentence;
-import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
-import com.isax.validation.dsl.dsl.DslFactory;
-import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.ImpliesExpression;
-import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
-import com.isax.validation.dsl.dsl.OrExpression;
-import com.isax.validation.dsl.dsl.Parameter;
-import com.isax.validation.dsl.dsl.ParameterList;
-import com.isax.validation.dsl.dsl.PredicateCall;
-import com.isax.validation.dsl.dsl.PredicateDefinitionSentence;
-import com.isax.validation.dsl.dsl.PredicateExpression;
-import com.isax.validation.dsl.dsl.PredicateReference;
-import com.isax.validation.dsl.dsl.PredicateXExpression;
-import com.isax.validation.dsl.dsl.PropertyExpression;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
-import com.isax.validation.dsl.dsl.PropertyRelation;
-import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
-import com.isax.validation.dsl.dsl.PropertyValueExpression;
-import com.isax.validation.dsl.dsl.Quantification;
-import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Quantor;
-import com.isax.validation.dsl.dsl.RelationQualifier;
-import com.isax.validation.dsl.dsl.Selector;
-import com.isax.validation.dsl.dsl.SelectorList;
-import com.isax.validation.dsl.dsl.SelectorListDef;
-import com.isax.validation.dsl.dsl.Sentence;
-import com.isax.validation.dsl.dsl.StartOnSentence;
-import com.isax.validation.dsl.dsl.TargetDefinition;
-import com.isax.validation.dsl.dsl.Validator;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -138,6 +100,8 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 			case DslPackage.AND_EXPRESSION: return createAndExpression();
 			case DslPackage.OR_EXPRESSION: return createOrExpression();
 			case DslPackage.IMPLIES_EXPRESSION: return createImpliesExpression();
+			case DslPackage.XPROPERTY_ASSIGNMENT: return createXPropertyAssignment();
+			case DslPackage.XPROPERTY_EXPRESSION: return createXPropertyExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -572,6 +536,28 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 	{
 		ImpliesExpressionImpl impliesExpression = new ImpliesExpressionImpl();
 		return impliesExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XPropertyAssignment createXPropertyAssignment()
+	{
+		XPropertyAssignmentImpl xPropertyAssignment = new XPropertyAssignmentImpl();
+		return xPropertyAssignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XPropertyExpression createXPropertyExpression()
+	{
+		XPropertyExpressionImpl xPropertyExpression = new XPropertyExpressionImpl();
+		return xPropertyExpression;
 	}
 
 	/**

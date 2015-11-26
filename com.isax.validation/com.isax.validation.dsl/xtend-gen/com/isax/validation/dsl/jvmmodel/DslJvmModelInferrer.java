@@ -222,15 +222,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public JvmField compileStartOnDefinitionField(final StartOnSentence startOn) {
     NodeDefinition _definition = startOn.getDefinition();
     String _uniqueName = this.names.uniqueName(_definition);
-    JvmTypeReference _xifexpression = null;
     NodeDefinition _definition_1 = startOn.getDefinition();
-    boolean _isCollection = _definition_1.isCollection();
-    if (_isCollection) {
-      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
-    } else {
-      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
-    }
-    return this._jvmTypesBuilder.toField(startOn, _uniqueName, _xifexpression);
+    JvmTypeReference _definitionTypeRef = this.definitionTypeRef(_definition_1);
+    return this._jvmTypesBuilder.toField(startOn, _uniqueName, _definitionTypeRef);
   }
   
   public Iterable<JvmField> compileNodeDefinitionFields(final List<DefinitionSentence> sentences) {
@@ -865,7 +859,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
-        Object _compileBody = this.compileBody(body, true);
+        CharSequence _compileBody = this.compileBody(body, true);
         _builder.append(_compileBody, "\t\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");

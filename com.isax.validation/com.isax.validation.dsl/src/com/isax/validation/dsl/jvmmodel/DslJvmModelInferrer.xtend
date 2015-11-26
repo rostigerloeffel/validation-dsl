@@ -97,10 +97,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def compileStartOnDefinitionField(StartOnSentence startOn) {
-		startOn.toField(
-			startOn.definition.uniqueName,
-			if(startOn.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
-		)
+		startOn.toField(startOn.definition.uniqueName, definitionTypeRef(startOn.definition))
 	}
 
 	def compileNodeDefinitionFields(List<DefinitionSentence> sentences) {
@@ -122,7 +119,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	'''
 
-	def compileBody(BodySentences body, boolean withDeclarations) '''
+	def CharSequence compileBody(BodySentences body, boolean withDeclarations) '''
 		«IF body != null»
 			«FOR definition : body?.definitions»
 				«compileDefinition(definition, withDeclarations)»

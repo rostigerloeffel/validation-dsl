@@ -1,108 +1,111 @@
-'!'=65
-'!='=51
-'!=='=53
-'#'=70
-'%'=64
-'%='=44
-'&&'=49
-'&'=99
+'!'=70
+'!='=56
+'!=='=58
+'#'=44
+'%'=69
+'%='=49
+'&&'=54
+'&'=102
 '('=26
 ')'=27
 '*'=20
-'**'=62
-'*='=42
-'+'=60
-'++'=66
-'+='=40
+'**'=67
+'*='=47
+'+'=65
+'++'=71
+'+='=45
 ','=21
-'-'=61
-'--'=67
-'-='=41
-'->'=55
+'-'=66
+'--'=72
+'-='=46
+'->'=60
 '.'=38
-'..'=57
-'..<'=56
-'/'=63
-'/='=43
+'..'=62
+'..<'=61
+'/'=68
+'/='=48
 ':'=22
-'::'=68
+'::'=73
 ':='=36
-';'=72
-'<'=45
-'<>'=58
-'='=39
-'=='=50
-'==='=52
+';'=37
+'<'=50
+'<<'=39
+'<>'=63
+'='=43
+'=='=55
+'==='=57
 '=>'=31
-'>'=46
-'>='=47
-'?'=98
-'?.'=69
-'?:'=59
+'>'=51
+'>='=52
+'>>'=40
+'?'=101
+'?.'=74
+'?:'=64
+'@'=42
 '['=33
 ']'=34
-'ancestor'=107
+'ancestor'=110
 'and'=29
-'any'=101
+'any'=104
 'as'=19
 'becomes'=35
 'being'=25
-'can have'=104
-'case'=77
-'catch'=97
-'child'=106
-'default'=76
+'can have'=107
+'case'=80
+'catch'=100
+'child'=109
+'default'=79
 'define'=18
-'descendant'=108
-'do'=79
-'each'=100
-'else'=74
-'equals'=113
-'extends'=82
-'extension'=85
-'false'=88
-'finally'=95
+'descendant'=111
+'do'=82
+'each'=103
+'else'=77
+'equals'=116
+'extends'=85
+'extension'=88
+'false'=91
+'finally'=98
 'for'=14
-'greater or equals than'=117
-'greater than'=115
+'greater or equals than'=120
+'greater than'=118
 'holds'=15
-'if'=73
+'if'=76
 'implies'=30
-'import'=84
-'in'=37
-'instanceof'=54
-'lesser or equals than'=118
-'lesser than'=116
-'multiple ancestors'=111
-'multiple children'=110
-'multiple descendants'=112
-'multiple parents'=109
-'must have'=102
-'must not have'=103
-'new'=87
-'not equals'=114
+'import'=87
+'in'=41
+'instanceof'=59
+'lesser or equals than'=121
+'lesser than'=119
+'multiple ancestors'=114
+'multiple children'=113
+'multiple descendants'=115
+'multiple parents'=112
+'must have'=105
+'must not have'=106
+'new'=90
+'not equals'=117
 'not'=32
-'null'=90
+'null'=93
 'or'=28
-'parent'=105
-'return'=93
+'parent'=108
+'return'=96
 'start on'=13
-'static'=83
-'super'=86
-'switch'=75
-'synchronized'=96
+'static'=86
+'super'=89
+'switch'=78
+'synchronized'=99
 'then'=24
-'throw'=92
-'true'=89
-'try'=94
-'typeof'=91
-'val'=81
-'var'=80
+'throw'=95
+'true'=92
+'try'=97
+'typeof'=94
+'val'=84
+'var'=83
 'where'=23
-'while'=78
+'while'=81
 '{'=16
-'|'=71
-'||'=48
+'|'=75
+'||'=53
 '}'=17
 RULE_ANY_OTHER=12
 RULE_DECIMAL=8
@@ -132,6 +135,9 @@ T__115=115
 T__116=116
 T__117=117
 T__118=118
+T__119=119
+T__120=120
+T__121=121
 T__13=13
 T__14=14
 T__15=15
