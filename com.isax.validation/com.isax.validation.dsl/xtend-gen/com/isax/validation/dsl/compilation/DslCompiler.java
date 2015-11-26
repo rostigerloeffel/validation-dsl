@@ -22,14 +22,14 @@ public class DslCompiler extends XbaseCompiler {
   protected void internalToConvertedExpression(final XExpression obj, final ITreeAppendable it) {
     if ((obj instanceof XPropertyExpression)) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("(String) ");
+      _builder.append("((String) ");
       NodeDefinition _node = ((XPropertyExpression)obj).getNode();
       String _name = _node.getName();
       _builder.append(_name, "");
       _builder.append(".getProperty(\"");
       String _name_1 = ((XPropertyExpression)obj).getName();
       _builder.append(_name_1, "");
-      _builder.append("\")");
+      _builder.append("\"))");
       it.append(_builder);
       return;
     } else {

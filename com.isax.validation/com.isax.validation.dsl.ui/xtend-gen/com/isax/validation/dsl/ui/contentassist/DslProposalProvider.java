@@ -4,10 +4,32 @@
 package com.isax.validation.dsl.ui.contentassist;
 
 import com.isax.validation.dsl.ui.contentassist.AbstractDslProposalProvider;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
  */
 @SuppressWarnings("all")
 public class DslProposalProvider extends AbstractDslProposalProvider {
+  @Override
+  protected boolean isValidProposal(final String proposal, final String prefix, final ContentAssistContext context) {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _isValidProposal = super.isValidProposal(proposal, prefix, context);
+    if (!_isValidProposal) {
+      _and_1 = false;
+    } else {
+      boolean _contains = proposal.contains("$");
+      boolean _not = (!_contains);
+      _and_1 = _not;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      boolean _contains_1 = prefix.contains("$");
+      boolean _not_1 = (!_contains_1);
+      _and = _not_1;
+    }
+    return _and;
+  }
 }

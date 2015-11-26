@@ -547,7 +547,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           XExpression _expression_1 = e.getExpression();
           this._jvmTypesBuilder.setBody(it_1, _expression_1);
         };
-        JvmOperation _method = this._jvmTypesBuilder.toMethod(e, "method", _inferredType, _function_2);
+        JvmOperation _method = this._jvmTypesBuilder.toMethod(e, "method$", _inferredType, _function_2);
         this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
       };
       return this._jvmTypesBuilder.toClass(e, _plus, _function_1);

@@ -188,7 +188,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			e.toClass("Assignment$" + e.hashCode) [
 				static = true
 				visibility = JvmVisibility.PRIVATE
-				members += e.toMethod("method", e.expression.inferredType) [
+				members += e.toMethod("method$", e.expression.inferredType) [
 					static = true
 					visibility = JvmVisibility.PRIVATE
 					val scope = e.visibleDefinitions[true]

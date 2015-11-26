@@ -18,7 +18,7 @@ class DslCompiler extends XbaseCompiler {
 
 	override protected internalToConvertedExpression(XExpression obj, ITreeAppendable it) {
 		if (obj instanceof XPropertyExpression) {
-			append('''(String) «obj.node.name».getProperty("«obj.name»")''')
+			append('''((String) «obj.node.name».getProperty("«obj.name»"))''')
 			return
 		} else {
 	    	super.internalToConvertedExpression(obj, it) 
