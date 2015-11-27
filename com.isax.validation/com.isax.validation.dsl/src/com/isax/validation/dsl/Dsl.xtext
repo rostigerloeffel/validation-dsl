@@ -115,18 +115,30 @@ AssignmentExpression:
 AssignmentXExpression:
 	expression = XBlockExpression;
 
-XBlockExpression returns xbase::XExpression: 
-	{xbase::XBlockExpression}
-	'{'
-		(expressions+=XExpressionOrVarDeclaration ';'? | expressions+=XPropertyExpression ';'?)*
-	'}';
+XPrimaryExpression returns xbase::XExpression:
+	XConstructorCall |
+	XBlockExpression |
+	XSwitchExpression |
+	XSynchronizedExpression |
+	XFeatureCall |
+	XLiteral |
+	XIfExpression |
+	XForLoopExpression |
+	XBasicForLoopExpression |
+	XWhileExpression |
+	XDoWhileExpression |
+	XThrowExpression |
+	XReturnExpression |
+	XTryCatchFinallyExpression |
+	XParenthesizedExpression |
+	XPropertyExpression;
 
 XPropertyExpression returns xbase::XExpression:
 	{XPropertyExpression}
-	node=[NodeDefinition]
-	'.' '<<'
+	'[[' node=[NodeDefinition]
+	'~>'
 	name=ID
-	'>>';
+	']]';
 
 Quantification:
 	quantor=Quantor node=NodeDefinition 'in' nodeSet=[NodeDefinition];

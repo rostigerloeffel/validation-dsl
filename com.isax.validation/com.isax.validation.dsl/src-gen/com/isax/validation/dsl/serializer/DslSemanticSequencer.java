@@ -936,15 +936,6 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     ((expressions+=XExpressionOrVarDeclaration | expressions+=XPropertyExpression)*)
-	 */
-	protected void sequence_XBlockExpression(EObject context, XBlockExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (node=[NodeDefinition|ID] name=ID)
 	 */
 	protected void sequence_XPropertyExpression(EObject context, XPropertyExpression semanticObject) {
@@ -956,7 +947,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_1_0_1(), semanticObject.getNode());
+		feeder.accept(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1(), semanticObject.getNode());
 		feeder.accept(grammarAccess.getXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
 		feeder.finish();
 	}

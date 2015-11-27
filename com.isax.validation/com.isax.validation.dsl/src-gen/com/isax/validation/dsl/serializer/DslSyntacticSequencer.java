@@ -26,8 +26,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1;
 	protected AbstractElementAlias match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0;
 	protected AbstractElementAlias match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
-	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_0_1_q;
-	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_1_q;
+	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
 	protected AbstractElementAlias match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q;
 	protected AbstractElementAlias match_XImportDeclaration_SemicolonKeyword_2_q;
@@ -41,8 +40,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Assignment_BecomesKeyword_1_0_or_ColonEqualsSignKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssignmentAccess().getBecomesKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAssignmentAccess().getColonEqualsSignKeyword_1_1()));
 		match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getEqualsSignGreaterThanSignKeyword_1_1_1()), new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getImpliesKeyword_1_1_0()));
 		match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getRightParenthesisKeyword_3_2()));
-		match_XBlockExpression_SemicolonKeyword_2_0_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_0_1());
-		match_XBlockExpression_SemicolonKeyword_2_1_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1_1());
+		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
 		match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXFunctionTypeRefAccess().getLeftParenthesisKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getXFunctionTypeRefAccess().getRightParenthesisKeyword_0_2()));
 		match_XImportDeclaration_SemicolonKeyword_2_q = new TokenAlias(false, true, grammarAccess.getXImportDeclarationAccess().getSemicolonKeyword_2());
@@ -95,10 +93,8 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
 				emit_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XBlockExpression_SemicolonKeyword_2_0_1_q.equals(syntax))
-				emit_XBlockExpression_SemicolonKeyword_2_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XBlockExpression_SemicolonKeyword_2_1_1_q.equals(syntax))
-				emit_XBlockExpression_SemicolonKeyword_2_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
+				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
 				emit_XExpressionInClosure_SemicolonKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q.equals(syntax))
@@ -165,23 +161,8 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     expressions+=XExpressionOrVarDeclaration (ambiguity) '}' ')' (rule end)
 	 *     expressions+=XExpressionOrVarDeclaration (ambiguity) '}' (rule end)
 	 *     expressions+=XExpressionOrVarDeclaration (ambiguity) expressions+=XExpressionOrVarDeclaration
-	 *     expressions+=XExpressionOrVarDeclaration (ambiguity) expressions+=XPropertyExpression
 	 */
-	protected void emit_XBlockExpression_SemicolonKeyword_2_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ';'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     expressions+=XPropertyExpression (ambiguity) '}' ')' (rule end)
-	 *     expressions+=XPropertyExpression (ambiguity) '}' (rule end)
-	 *     expressions+=XPropertyExpression (ambiguity) expressions+=XExpressionOrVarDeclaration
-	 *     expressions+=XPropertyExpression (ambiguity) expressions+=XPropertyExpression
-	 */
-	protected void emit_XBlockExpression_SemicolonKeyword_2_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_XBlockExpression_SemicolonKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -235,6 +216,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) '[[' node=[NodeDefinition|ID]
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'false' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
@@ -257,7 +239,6 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'while' '(' predicate=XExpression
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' expressions+=XExpressionOrVarDeclaration
-	 *     (rule start) (ambiguity) '{' expressions+=XPropertyExpression
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|FeatureCallID]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
@@ -288,6 +269,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) '[[' node=[NodeDefinition|ID]
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'false' ')' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
@@ -310,7 +292,6 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'while' '(' predicate=XExpression
 	 *     (rule start) (ambiguity) '{' '}' ')' (rule start)
 	 *     (rule start) (ambiguity) '{' expressions+=XExpressionOrVarDeclaration
-	 *     (rule start) (ambiguity) '{' expressions+=XPropertyExpression
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|FeatureCallID]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]

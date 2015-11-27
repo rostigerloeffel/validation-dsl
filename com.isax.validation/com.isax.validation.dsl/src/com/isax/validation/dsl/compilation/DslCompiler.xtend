@@ -4,25 +4,28 @@ import com.isax.validation.dsl.dsl.XPropertyExpression
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
+import org.eclipse.xtext.xbase.XStringLiteral
 
 class DslCompiler extends XbaseCompiler {
 	
 	override protected doInternalToJavaStatement(XExpression obj, ITreeAppendable it, boolean isReferenced) {
 		if (obj instanceof XPropertyExpression) {
-			//append('''(String) «obj.node.name».getProperty("«obj.name»")''')
+			val property = declareSyntheticVariable(obj, "property");
+			newLine.append(String).append(" ").append(property).append(" = ").append(toJavaExpression(obj)).append(";")
 			return
-		} else {
-			super.doInternalToJavaStatement(obj, it, isReferenced)
 		}
+		super.doInternalToJavaStatement(obj, it, isReferenced)
 	}
 
 	override protected internalToConvertedExpression(XExpression obj, ITreeAppendable it) {
 		if (obj instanceof XPropertyExpression) {
-			append('''((String) «obj.node.name».getProperty("«obj.name»"))''')
+			append(toJavaExpression(obj))
 			return
-		} else {
-	    	super.internalToConvertedExpression(obj, it) 
-	    }
+		}
+	    super.internalToConvertedExpression(obj, it) 
 	}
 
+	def private toJavaExpression(XPropertyExpression obj) {
+		'''((String) «obj.node.name».getProperty("«obj.name»"))'''
+	} 
 }

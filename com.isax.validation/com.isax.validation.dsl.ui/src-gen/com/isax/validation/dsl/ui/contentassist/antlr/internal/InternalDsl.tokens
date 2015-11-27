@@ -5,7 +5,7 @@
 '%'=44
 '%='=26
 '&&'=15
-'&'=115
+'&'=116
 '('=86
 ')'=87
 '*'=41
@@ -25,11 +25,10 @@
 '/'=43
 '/='=25
 ':'=82
-'::'=117
+'::'=118
 ':='=21
-';'=91
+';'=98
 '<'=33
-'<<'=92
 '<>'=37
 '='=13
 '=='=27
@@ -37,13 +36,14 @@
 '=>'=19
 '>'=32
 '>='=31
-'>>'=93
-'?'=114
-'?.'=118
+'?'=115
+'?.'=119
 '?:'=38
 '@'=95
 '['=89
+'[['=91
 ']'=90
+']]'=93
 'ancestor'=63
 'and'=16
 'any'=57
@@ -51,25 +51,25 @@
 'becomes'=20
 'being'=85
 'can have'=60
-'case'=102
-'catch'=113
+'case'=103
+'catch'=114
 'child'=62
-'default'=101
+'default'=102
 'define'=80
 'descendant'=64
-'do'=104
+'do'=105
 'each'=56
-'else'=99
+'else'=100
 'equals'=69
 'extends'=50
 'extension'=53
 'false'=55
-'finally'=111
+'finally'=112
 'for'=76
 'greater or equals than'=73
 'greater than'=71
 'holds'=77
-'if'=98
+'if'=99
 'implies'=18
 'import'=52
 'in'=94
@@ -82,31 +82,32 @@
 'multiple parents'=65
 'must have'=58
 'must not have'=59
-'new'=105
+'new'=106
 'not equals'=70
-'not'=116
-'null'=106
+'not'=117
+'null'=107
 'or'=88
 'parent'=61
-'return'=109
+'return'=110
 'start on'=75
 'static'=51
 'super'=54
-'switch'=100
-'synchronized'=112
+'switch'=101
+'synchronized'=113
 'then'=84
-'throw'=108
-'true'=121
-'try'=110
-'typeof'=107
+'throw'=109
+'true'=122
+'try'=111
+'typeof'=108
 'val'=49
-'var'=120
+'var'=121
 'where'=83
-'while'=103
+'while'=104
 '{'=78
-'|'=119
+'|'=120
 '||'=14
 '}'=79
+'~>'=92
 RULE_ANY_OTHER=12
 RULE_DECIMAL=7
 RULE_HEX=5
@@ -138,6 +139,7 @@ T__118=118
 T__119=119
 T__120=120
 T__121=121
+T__122=122
 T__13=13
 T__14=14
 T__15=15
