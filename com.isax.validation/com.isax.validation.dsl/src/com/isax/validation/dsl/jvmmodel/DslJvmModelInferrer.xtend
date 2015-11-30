@@ -17,6 +17,7 @@ import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
 import com.isax.validation.dsl.dsl.ImpliesExpression
 import com.isax.validation.dsl.dsl.NodeDefinition
+import com.isax.validation.dsl.dsl.NodeReferenceList
 import com.isax.validation.dsl.dsl.OrExpression
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
@@ -40,9 +41,18 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+import static extension com.isax.validation.dsl.util.DslUtil.path
 import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
 
 class DslJvmModelInferrer extends AbstractModelInferrer {
+
+	private final static val TRAVERSER_FIELD = "traverser$" 
+	private final static val PREDICATES_FIELD = "predicates$" 
+	private final static val ASSIGNMENT_CLASS = "Assignment$"
+	private final static val ASSIGMENT_METHOD = "method"
+	private final static val PREDICATE_METHOD = "predicate$"
+	private final static val SATISFIED = "satisfied$"
+	private final static val INPUT_NODE = "node$"
 
 	@Inject extension JvmTypesBuilder
 	@Inject ISerializer serializer;
@@ -52,33 +62,17 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		acceptor.accept(validator.toClass("de.dbsystem.avb." + validator.eResource.URI.lastSegment.split("\\.").get(0))) [
 			superTypes += typeRef(AbstractValidator)
 
-			members += validator.toField("null$" + ResolvingNode.simpleName, typeRef(ResolvingNode)) [
-				visibility = JvmVisibility.PRIVATE
-				static = true
-				final = true
-				initializer = '''new «ResolvingNode.simpleName»()'''
-			]
-			members += validator.toField("null$" + ResolvingNodeSet.simpleName, typeRef(ResolvingNodeSet)) [
-				visibility = JvmVisibility.PRIVATE
-				static = true
-				final = true
-				initializer = '''new «ResolvingNodeSet.simpleName»()'''
-			]
-
-			members += validator.toField("traverser$", typeRef(Traverser)) [
+			members += validator.toField(TRAVERSER_FIELD, typeRef(Traverser)) [
 				visibility = JvmVisibility.PRIVATE
 			]
-			members += validator.toField("predicates$", typeRef(NodePredicates)) [
+			members += validator.toField(PREDICATES_FIELD, typeRef(NodePredicates)) [
 				visibility = JvmVisibility.PRIVATE
 			]
 
-			members += compileStartOnDefinitionField(validator.startOn)
-			members += compileNodeDefinitionFields(validator.body.definitions)
-
-			members += validator.toMethod("validate", typeRef("boolean")) [
+			members += validator.toMethod("validate", typeRef(boolean)) [
 				annotations += annotationRef(Override)
 				visibility = JvmVisibility.PUBLIC
-				parameters += validator.toParameter("node$", typeRef(ResolvingNode))
+				parameters += validator.toParameter(INPUT_NODE, typeRef(ResolvingNode))
 				body = '''
 					«compileStartOn(validator.startOn)»
 					«compileBody(validator.body, false)»
@@ -96,25 +90,12 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
 
-	def compileStartOnDefinitionField(StartOnSentence startOn) {
-		startOn.toField(startOn.definition.uniqueName, definitionTypeRef(startOn.definition))
-	}
-
-	def compileNodeDefinitionFields(List<DefinitionSentence> sentences) {
-		sentences.filter[s|s.target != null && s.target.definition != null].map [ s |
-			s.toField(
-				s.target.definition.uniqueName,
-				if(s.target.definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
-			)
-		]
-	}
-
 	def compileStartOn(
 		StartOnSentence startOn
 	) '''
 		// «serialize(startOn)»
-		«startOn.definition.uniqueName» = node$;
-		if («startOn.definition.uniqueName» == null || !predicates$.hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | s.type])»")) {
+		final «ResolvingNode.simpleName» «startOn.definition.uniqueName» = «INPUT_NODE»;
+		if («startOn.definition.uniqueName» == null || !«PREDICATES_FIELD».hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | s.type])»")) {
 			return true;
 		}
 	'''
@@ -122,7 +103,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def CharSequence compileBody(BodySentences body, boolean withDeclarations) '''
 		«IF body != null»
 			«FOR definition : body?.definitions»
-				«compileDefinition(definition, withDeclarations)»
+				«compileDefinition(definition)»
 			«ENDFOR»
 			«FOR constraint : body?.constraints»
 				«compileConstraint(constraint)»
@@ -130,16 +111,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«ENDIF»
 	'''
 
-	def compileDefinition(DefinitionSentence sentence, boolean withDeclarations) '''
+	def compileDefinition(DefinitionSentence sentence) '''
 		// «serialize(sentence)»
-		«IF withDeclarations»
-			«declareNode(sentence.target.definition)»
-		«ENDIF»
 		«IF sentence.node != null»
 			«singleNodeDefinition(sentence)»
 			{
-				boolean satisfied$«sentence.uniqueSuffix» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
-				if (!satisfied$«sentence.uniqueSuffix») return satisfied$«sentence.uniqueSuffix»;
+				boolean «SATISFIED»«sentence.uniqueSuffix» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+				if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
 			}
 		«ENDIF»
 		«IF sentence.quantification != null»
@@ -150,19 +128,24 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def compileConstraint(ConstraintSentence sentence) '''
 		// «serialize(sentence)»
 		{
-		«««			TODO: Fix this
-			«IF sentence.quantifications != null»
-			boolean satisfied$«sentence.uniqueSuffix» = «constraintDispatch(sentence.quantifications.quantifications, 0, sentence)»
-			if (!satisfied$«sentence.uniqueSuffix») return false;
+			«val suffix = sentence.path»
+			«IF sentence?.nodes?.nodes != null»
+				«FOR NodeDefinition node : sentence.nodes?.nodes»
+					final «ResolvingNode.simpleName» «node.name + '$' + suffix» = «node.uniqueName»;
+				«ENDFOR»
 			«ENDIF»
+			«sentence.nodes?.map(suffix)»
+			boolean «SATISFIED»«sentence.uniqueSuffix» = «constraintDispatch(sentence.quantifications?.quantifications, 0, sentence)»
+			if (!«SATISFIED»«sentence.uniqueSuffix») return false;
+			«sentence.nodes?.unmap»
 		}
 	'''
 
 	def compilePredicates(List<PredicateDefinitionSentence> sentences) {
 		sentences.map [ s |
-			s.toMethod(s.name, typeRef("boolean")) [
+			s.toMethod(s.name, typeRef(boolean)) [
 				visibility = JvmVisibility.PRIVATE
-				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, if(p.node.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode))]
+				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, definitionTypeRef(p.node))]
 				body = '''
 				«compileBody(s.body, true)»
 				return true;'''
@@ -170,14 +153,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	def declareNode(NodeDefinition definition) {
-		val nodeType = if(definition.collection) ResolvingNodeSet.simpleName else ResolvingNode.simpleName
-		nodeType + " " + definition.uniqueName + " = null$" + nodeType + ";"
-	}
-
 	def compileXExpressionPredicates(Validator validator) {
 		validator.eAllContents.toSet.filter(PredicateXExpression).map [ e |
-			e.toMethod("predicate$" + e.hashCode, typeRef("boolean")) [
+			e.toMethod(PREDICATE_METHOD + e.hashCode, typeRef(boolean)) [
 				body = e.expression
 			]
 		]
@@ -185,10 +163,10 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def compileXExpressionAssignments(Validator validator) {
 		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ e |
-			e.toClass("Assignment$" + e.hashCode) [
+			e.toClass(com.isax.validation.dsl.jvmmodel.DslJvmModelInferrer.ASSIGNMENT_CLASS + e.hashCode) [
 				static = true
 				visibility = JvmVisibility.PRIVATE
-				members += e.toMethod("method$", e.expression.inferredType) [
+				members += e.toMethod(ASSIGMENT_METHOD, e.expression.inferredType) [
 					static = true
 					visibility = JvmVisibility.PRIVATE
 					val scope = e.visibleDefinitions[true]
@@ -203,12 +181,12 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	def constraintDispatch(
+	def CharSequence constraintDispatch(
 		List<Quantification> quantifications,
 		int index,
 		ConstraintSentence sentence
 	) '''
-		«IF index < quantifications.size»
+		«IF quantifications != null && index < quantifications.size»
 			«IF quantifications.get(index).quantor == Quantor.EACH»
 				«constraintQuantorEach(quantifications, index, sentence)»
 			«ELSEIF quantifications.get(index).quantor == Quantor.ANY»
@@ -218,6 +196,19 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			«predicateExpression(sentence.predicate)»
 		«ENDIF»
 	'''
+	
+	def map(NodeReferenceList nodes, String suffix) {
+		for (NodeDefinition definition : nodes.nodes) {
+			definition.map(definition.name + '$' + suffix)
+		}
+	}
+	
+	def unmap(NodeReferenceList nodes) {
+		for (NodeDefinition definition : nodes.nodes) {
+			definition.unmap
+		}
+	}
+	
 
 	def constraintQuantorEach(
 		List<Quantification> quantifications,
@@ -226,8 +217,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		eval(() -> {
 			for («ResolvingNode.simpleName» «quantifications.get(index).node.uniqueName» : «quantifications.get(index).nodeSet.uniqueName») {
-				boolean satisfied$«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (!satisfied$«quantifications.get(index).node.uniqueSuffix») return false;
+				boolean «SATISFIED»«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if (!«SATISFIED»«quantifications.get(index).node.uniqueSuffix») return false;
 			}
 			return true;
 		});
@@ -240,8 +231,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		eval(() -> {
 			for («ResolvingNode.simpleName» «quantifications.get(index).node.uniqueName» : «quantifications.get(index).nodeSet.uniqueName») {
-				boolean satisfied$«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
-				if (satisfied$«quantifications.get(index).node.uniqueSuffix») return true;
+				boolean «SATISFIED»«quantifications.get(index).node.uniqueSuffix» = «constraintDispatch(quantifications, index + 1, sentence)»
+				if («SATISFIED»«quantifications.get(index).node.uniqueSuffix») return true;
 			}
 			return false;
 		});
@@ -250,37 +241,39 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def singleNodeDefinition(
 		DefinitionSentence sentence
 	) '''
-		«nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.node, sentence.target.definition.selectors, sentence.target.body)»
+		«val target = sentence.target»
+		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, target.axis, sentence.node, target.definition.selectors, target.body)»
 	'''
 
 	def quantifiedDefinition(
 		DefinitionSentence sentence
 	) '''
 		{
-			boolean satisfied$«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
+			boolean «SATISFIED»«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for («ResolvingNode.simpleName» «sentence.quantification.node.uniqueName» : «sentence.quantification.nodeSet.uniqueName») {
-				«nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body)»
-				satisfied$«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
+				«val target = sentence.target»
+				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body)»
+				«SATISFIED»«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
-			if (!satisfied$«sentence.uniqueSuffix») return satisfied$«sentence.uniqueSuffix»;
+			if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
 		}
 	'''
 
 	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, Axis axis, NodeDefinition source, SelectorList types, BodySentences body) '''
-		«val localName = if (local != null) local.uniqueName else "node$" + assignee.uniqueSuffix»
-		«assignee.uniqueName» = traverser$.«axis.getName().toLowerCase»(«source.uniqueName», («ResolvingNode.simpleName» «localName») -> {		
+		«val localName = if (local != null) local.uniqueName else INPUT_NODE + assignee.uniqueSuffix»
+		«TRAVERSER_FIELD».«axis.getName().toLowerCase»(«source.uniqueName», («ResolvingNode.simpleName» «localName») -> {		
 			«names.map(assignee, localName)»
-			boolean satisfied$«assignee.uniqueSuffix» = true;
+			boolean «SATISFIED»«assignee.uniqueSuffix» = true;
 			«IF types != null»
-				satisfied$«assignee.uniqueSuffix» &= predicates$.hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
+				«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
 			«ENDIF»
 			«IF body != null»
-				satisfied$«assignee.uniqueSuffix» &= eval(() -> {
+				«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {
 					«compileBody(body, true)»
 					return true;
 				});
 			«ENDIF»
-			return satisfied$«assignee.uniqueSuffix»;
+			return «SATISFIED»«assignee.uniqueSuffix»;
 			«names.unmap(assignee)»
 		});
 	'''
@@ -308,37 +301,37 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 
-	def dispatch predicateExpression(PredicateExpression expression) {
+	def dispatch CharSequence predicateExpression(PredicateExpression expression) {
 		if(expression.inner != null) return predicateExpression(expression.inner)
 		if(expression.lhs != null) return predicateExpression(expression.lhs)
 		if(expression.rhs != null) return predicateExpression(expression.rhs)
 		if(expression.call != null) return predicateCall(expression.call)
 	}
 
-	def dispatch predicateExpression(AndExpression and) '''
+	def dispatch CharSequence predicateExpression(AndExpression and) '''
 		eval(() -> {
-			boolean satisfied$«and.uniqueSuffix» = true;
-			«IF and.lhs != null»satisfied$«and.uniqueSuffix» &= «predicateExpression(and.lhs)»«ENDIF»
-			satisfied$«and.uniqueSuffix» &= «predicateExpression(and.rhs)»
-			return satisfied$«and.uniqueSuffix»;
+			boolean «SATISFIED»«and.uniqueSuffix» = true;
+			«IF and.lhs != null»«SATISFIED»«and.uniqueSuffix» &= «predicateExpression(and.lhs)»«ENDIF»
+			«SATISFIED»«and.uniqueSuffix» &= «predicateExpression(and.rhs)»
+			return «SATISFIED»«and.uniqueSuffix»;
 		});
 	'''
 
-	def dispatch predicateExpression(OrExpression or) '''
+	def dispatch CharSequence predicateExpression(OrExpression or) '''
 		eval(() -> {
-			boolean satisfied$«or.uniqueSuffix» = false;
-			«IF or.lhs != null»satisfied$«or.uniqueSuffix» |= «predicateExpression(or.lhs)»«ENDIF»
-			satisfied$«or.uniqueSuffix» |= «predicateExpression(or.rhs)»
-			return satisfied$«or.uniqueSuffix»;
+			boolean «SATISFIED»«or.uniqueSuffix» = false;
+			«IF or.lhs != null»«SATISFIED»«or.uniqueSuffix» |= «predicateExpression(or.lhs)»«ENDIF»
+			«SATISFIED»«or.uniqueSuffix» |= «predicateExpression(or.rhs)»
+			return «SATISFIED»«or.uniqueSuffix»;
 		});
 	'''
 
-	def dispatch predicateExpression(ImpliesExpression implies) '''
+	def dispatch CharSequence predicateExpression(ImpliesExpression implies) '''
 		eval(() -> {
-			boolean satisfied$«implies.uniqueSuffix» = false;
-			«IF implies.lhs != null»satisfied$«implies.uniqueSuffix» |= «predicateExpression(implies.lhs)»«ENDIF»
-			satisfied$«implies.uniqueSuffix» |= !«predicateExpression(implies.rhs)»
-			return satisfied$«implies.uniqueSuffix»;
+			boolean «SATISFIED»«implies.uniqueSuffix» = false;
+			«IF implies.lhs != null»«SATISFIED»«implies.uniqueSuffix» |= «predicateExpression(implies.lhs)»«ENDIF»
+			«SATISFIED»«implies.uniqueSuffix» |= !«predicateExpression(implies.rhs)»
+			return «SATISFIED»«implies.uniqueSuffix»;
 		});
 	'''
 
@@ -346,30 +339,28 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«reference.reference.name»(«argumentList(reference.arguments)»);
 	'''
 
-	def dispatch predicateCall(
-		PropertyRelationPredicate relation
-	) '''
-		predicates$.«relation.relation.getName().toFirstLower»(«propertyExpression(relation.lhs)», «propertyExpression(relation.rhs)»);
+	def dispatch propertyExpression(PropertyValueExpression expression) '''
+		«expression.value»
 	'''
 
-	def dispatch propertyExpression(PropertyValueExpression expression) {
-		expression.value
-	}
+	def dispatch propertyExpression(PropertyReferenceExpression expression) '''
+		«expression.node.uniqueName».getProperty("«expression.property»")
+	'''
 
-	def dispatch propertyExpression(PropertyReferenceExpression expression) {
-		expression.node.uniqueName + ".getProperty(" + "\"" + expression.property + "\"" + ")"
-	}
+	def dispatch predicateCall(PropertyRelationPredicate relation) '''
+		«PREDICATES_FIELD».«relation.relation.getName().toFirstLower»(«propertyExpression(relation.lhs)», «propertyExpression(relation.rhs)»);
+	'''
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
 		eval(() -> {
 			«val sentence = definition.sentence»
-			«compileDefinition(sentence, true)»
+			«compileDefinition(sentence)»
 			return «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
 		});
 	'''
 
 	def dispatch predicateCall(PredicateXExpression expression) '''
-		predicate$«expression.hashCode»();
+		«PREDICATE_METHOD»«expression.hashCode»();
 	'''
 
 	def dispatch predicateCall(PredicateReference reference) '''
