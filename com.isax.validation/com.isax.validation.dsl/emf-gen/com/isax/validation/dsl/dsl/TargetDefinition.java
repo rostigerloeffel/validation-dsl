@@ -4,6 +4,8 @@ package com.isax.validation.dsl.dsl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.xbase.XExpression;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Target Definition</b></em>'.
@@ -17,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getLocal <em>Local</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getDefinition <em>Definition</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getBody <em>Body</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.TargetDefinition#getThen <em>Then</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition()
@@ -134,29 +136,29 @@ public interface TargetDefinition extends EObject
 	void setBody(BodySentences value);
 
 	/**
-	 * Returns the value of the '<em><b>Assignments</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Then</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Assignments</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Then</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assignments</em>' containment reference.
-	 * @see #setAssignments(AssignmentList)
-	 * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition_Assignments()
+	 * @return the value of the '<em>Then</em>' containment reference.
+	 * @see #setThen(XExpression)
+	 * @see com.isax.validation.dsl.dsl.DslPackage#getTargetDefinition_Then()
 	 * @model containment="true"
 	 * @generated
 	 */
-	AssignmentList getAssignments();
+	XExpression getThen();
 
 	/**
-	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}' containment reference.
+	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.TargetDefinition#getThen <em>Then</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Assignments</em>' containment reference.
-	 * @see #getAssignments()
+	 * @param value the new value of the '<em>Then</em>' containment reference.
+	 * @see #getThen()
 	 * @generated
 	 */
-	void setAssignments(AssignmentList value);
+	void setThen(XExpression value);
 
 } // TargetDefinition

@@ -9,8 +9,6 @@ import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
 import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
@@ -119,12 +117,6 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 				return; 
 			case DslPackage.ASSIGNMENT:
 				sequence_Assignment(context, (Assignment) semanticObject); 
-				return; 
-			case DslPackage.ASSIGNMENT_LIST:
-				sequence_AssignmentList(context, (AssignmentList) semanticObject); 
-				return; 
-			case DslPackage.ASSIGNMENT_XEXPRESSION:
-				sequence_AssignmentXExpression(context, (AssignmentXExpression) semanticObject); 
 				return; 
 			case DslPackage.BODY_SENTENCES:
 				sequence_BodySentences(context, (BodySentences) semanticObject); 
@@ -571,44 +563,22 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     (assignments+=Assignment assignments+=Assignment*)
-	 */
-	protected void sequence_AssignmentList(EObject context, AssignmentList semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     expression=XBlockExpression
-	 */
-	protected void sequence_AssignmentXExpression(EObject context, AssignmentXExpression semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT_XEXPRESSION__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT_XEXPRESSION__EXPRESSION));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getAssignmentXExpressionAccess().getExpressionXBlockExpressionParserRuleCall_0(), semanticObject.getExpression());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (reference=PropertyReferenceExpression expression=AssignmentExpression)
+	 *     (node=[NodeDefinition|ID] property=ID expression=XPrimaryExpression)
 	 */
 	protected void sequence_Assignment(EObject context, Assignment semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT__REFERENCE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT__REFERENCE));
 			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT__EXPRESSION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT__EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT__NODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT__NODE));
+			if(transientValues.isValueTransient(semanticObject, DslPackage.Literals.ASSIGNMENT__PROPERTY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ASSIGNMENT__PROPERTY));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getAssignmentAccess().getReferencePropertyReferenceExpressionParserRuleCall_0_0(), semanticObject.getReference());
-		feeder.accept(grammarAccess.getAssignmentAccess().getExpressionAssignmentExpressionParserRuleCall_2_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getAssignmentAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1(), semanticObject.getNode());
+		feeder.accept(grammarAccess.getAssignmentAccess().getPropertyIDTerminalRuleCall_4_0(), semanticObject.getProperty());
+		feeder.accept(grammarAccess.getAssignmentAccess().getExpressionXPrimaryExpressionParserRuleCall_6_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
 	
@@ -911,14 +881,14 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_1_0(), semanticObject.getDefinition());
+		feeder.accept(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_2_0(), semanticObject.getDefinition());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (axis=Axis local=NodeDefinition? definition=NodeDefinition body=BodySentences? assignments=AssignmentList?)
+	 *     (axis=Axis local=NodeDefinition? definition=NodeDefinition body=BodySentences? then=XBlockExpression?)
 	 */
 	protected void sequence_TargetDefinition(EObject context, TargetDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

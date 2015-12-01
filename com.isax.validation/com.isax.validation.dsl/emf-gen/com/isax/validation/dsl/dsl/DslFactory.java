@@ -22,7 +22,7 @@ public interface DslFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-//	DslFactory eINSTANCE = com.isax.validation.dsl.dsl.impl.DslFactoryImpl.init();
+	//DslFactory eINSTANCE = com.isax.validation.dsl.dsl.impl.DslFactoryImpl.init();
 	DslFactory eINSTANCE = new DslFactoryImplCustom();
 
 	/**

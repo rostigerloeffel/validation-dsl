@@ -9,4 +9,8 @@ public class ResolvingNode implements Resolvable {
 	public Object getProperty(String name) {
 		return null;
 	}
+	
+	public void setProperty(String name, Object value) {
+		
+	}
 }

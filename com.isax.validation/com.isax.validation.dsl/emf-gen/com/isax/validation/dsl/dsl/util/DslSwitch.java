@@ -249,6 +249,7 @@ public class DslSwitch<T> extends Switch<T>
 			{
 				Assignment assignment = (Assignment)theEObject;
 				T result = caseAssignment(assignment);
+				if (result == null) result = caseXExpression(assignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

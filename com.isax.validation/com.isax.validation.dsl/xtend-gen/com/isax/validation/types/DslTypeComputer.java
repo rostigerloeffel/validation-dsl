@@ -1,5 +1,6 @@
 package com.isax.validation.types;
 
+import com.isax.validation.dsl.dsl.Assignment;
 import com.isax.validation.dsl.dsl.XPropertyExpression;
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
@@ -30,6 +31,7 @@ import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsTypeComputer;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationResult;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState;
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 
@@ -40,91 +42,101 @@ public class DslTypeComputer extends XbaseWithAnnotationsTypeComputer {
     state.acceptActualType(_typeForName);
   }
   
-  public void computeTypes(final XExpression expression, final ITypeComputationState state) {
-    if (expression instanceof XAssignment) {
-      _computeTypes((XAssignment)expression, state);
+  protected void _computeTypes(final Assignment assignment, final ITypeComputationState state) {
+    XExpression _expression = assignment.getExpression();
+    final ITypeComputationResult inner = state.computeTypes(_expression);
+    LightweightTypeReference _actualExpressionType = inner.getActualExpressionType();
+    state.acceptActualType(_actualExpressionType);
+  }
+  
+  public void computeTypes(final XExpression assignment, final ITypeComputationState state) {
+    if (assignment instanceof XAssignment) {
+      _computeTypes((XAssignment)assignment, state);
       return;
-    } else if (expression instanceof XDoWhileExpression) {
-      _computeTypes((XDoWhileExpression)expression, state);
+    } else if (assignment instanceof XDoWhileExpression) {
+      _computeTypes((XDoWhileExpression)assignment, state);
       return;
-    } else if (expression instanceof XListLiteral) {
-      _computeTypes((XListLiteral)expression, state);
+    } else if (assignment instanceof XListLiteral) {
+      _computeTypes((XListLiteral)assignment, state);
       return;
-    } else if (expression instanceof XSetLiteral) {
-      _computeTypes((XSetLiteral)expression, state);
+    } else if (assignment instanceof XSetLiteral) {
+      _computeTypes((XSetLiteral)assignment, state);
       return;
-    } else if (expression instanceof XWhileExpression) {
-      _computeTypes((XWhileExpression)expression, state);
+    } else if (assignment instanceof XWhileExpression) {
+      _computeTypes((XWhileExpression)assignment, state);
       return;
-    } else if (expression instanceof XPropertyExpression) {
-      _computeTypes((XPropertyExpression)expression, state);
+    } else if (assignment instanceof Assignment) {
+      _computeTypes((Assignment)assignment, state);
       return;
-    } else if (expression instanceof XAbstractFeatureCall) {
-      _computeTypes((XAbstractFeatureCall)expression, state);
+    } else if (assignment instanceof XPropertyExpression) {
+      _computeTypes((XPropertyExpression)assignment, state);
       return;
-    } else if (expression instanceof XBasicForLoopExpression) {
-      _computeTypes((XBasicForLoopExpression)expression, state);
+    } else if (assignment instanceof XAbstractFeatureCall) {
+      _computeTypes((XAbstractFeatureCall)assignment, state);
       return;
-    } else if (expression instanceof XBlockExpression) {
-      _computeTypes((XBlockExpression)expression, state);
+    } else if (assignment instanceof XBasicForLoopExpression) {
+      _computeTypes((XBasicForLoopExpression)assignment, state);
       return;
-    } else if (expression instanceof XBooleanLiteral) {
-      _computeTypes((XBooleanLiteral)expression, state);
+    } else if (assignment instanceof XBlockExpression) {
+      _computeTypes((XBlockExpression)assignment, state);
       return;
-    } else if (expression instanceof XCastedExpression) {
-      _computeTypes((XCastedExpression)expression, state);
+    } else if (assignment instanceof XBooleanLiteral) {
+      _computeTypes((XBooleanLiteral)assignment, state);
       return;
-    } else if (expression instanceof XClosure) {
-      _computeTypes((XClosure)expression, state);
+    } else if (assignment instanceof XCastedExpression) {
+      _computeTypes((XCastedExpression)assignment, state);
       return;
-    } else if (expression instanceof XConstructorCall) {
-      _computeTypes((XConstructorCall)expression, state);
+    } else if (assignment instanceof XClosure) {
+      _computeTypes((XClosure)assignment, state);
       return;
-    } else if (expression instanceof XForLoopExpression) {
-      _computeTypes((XForLoopExpression)expression, state);
+    } else if (assignment instanceof XConstructorCall) {
+      _computeTypes((XConstructorCall)assignment, state);
       return;
-    } else if (expression instanceof XIfExpression) {
-      _computeTypes((XIfExpression)expression, state);
+    } else if (assignment instanceof XForLoopExpression) {
+      _computeTypes((XForLoopExpression)assignment, state);
       return;
-    } else if (expression instanceof XInstanceOfExpression) {
-      _computeTypes((XInstanceOfExpression)expression, state);
+    } else if (assignment instanceof XIfExpression) {
+      _computeTypes((XIfExpression)assignment, state);
       return;
-    } else if (expression instanceof XNullLiteral) {
-      _computeTypes((XNullLiteral)expression, state);
+    } else if (assignment instanceof XInstanceOfExpression) {
+      _computeTypes((XInstanceOfExpression)assignment, state);
       return;
-    } else if (expression instanceof XNumberLiteral) {
-      _computeTypes((XNumberLiteral)expression, state);
+    } else if (assignment instanceof XNullLiteral) {
+      _computeTypes((XNullLiteral)assignment, state);
       return;
-    } else if (expression instanceof XReturnExpression) {
-      _computeTypes((XReturnExpression)expression, state);
+    } else if (assignment instanceof XNumberLiteral) {
+      _computeTypes((XNumberLiteral)assignment, state);
       return;
-    } else if (expression instanceof XStringLiteral) {
-      _computeTypes((XStringLiteral)expression, state);
+    } else if (assignment instanceof XReturnExpression) {
+      _computeTypes((XReturnExpression)assignment, state);
       return;
-    } else if (expression instanceof XSwitchExpression) {
-      _computeTypes((XSwitchExpression)expression, state);
+    } else if (assignment instanceof XStringLiteral) {
+      _computeTypes((XStringLiteral)assignment, state);
       return;
-    } else if (expression instanceof XSynchronizedExpression) {
-      _computeTypes((XSynchronizedExpression)expression, state);
+    } else if (assignment instanceof XSwitchExpression) {
+      _computeTypes((XSwitchExpression)assignment, state);
       return;
-    } else if (expression instanceof XThrowExpression) {
-      _computeTypes((XThrowExpression)expression, state);
+    } else if (assignment instanceof XSynchronizedExpression) {
+      _computeTypes((XSynchronizedExpression)assignment, state);
       return;
-    } else if (expression instanceof XTryCatchFinallyExpression) {
-      _computeTypes((XTryCatchFinallyExpression)expression, state);
+    } else if (assignment instanceof XThrowExpression) {
+      _computeTypes((XThrowExpression)assignment, state);
       return;
-    } else if (expression instanceof XTypeLiteral) {
-      _computeTypes((XTypeLiteral)expression, state);
+    } else if (assignment instanceof XTryCatchFinallyExpression) {
+      _computeTypes((XTryCatchFinallyExpression)assignment, state);
       return;
-    } else if (expression instanceof XVariableDeclaration) {
-      _computeTypes((XVariableDeclaration)expression, state);
+    } else if (assignment instanceof XTypeLiteral) {
+      _computeTypes((XTypeLiteral)assignment, state);
       return;
-    } else if (expression instanceof XAnnotation) {
-      _computeTypes((XAnnotation)expression, state);
+    } else if (assignment instanceof XVariableDeclaration) {
+      _computeTypes((XVariableDeclaration)assignment, state);
+      return;
+    } else if (assignment instanceof XAnnotation) {
+      _computeTypes((XAnnotation)assignment, state);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(expression, state).toString());
+        Arrays.<Object>asList(assignment, state).toString());
     }
   }
 }

@@ -12,6 +12,10 @@ public class ResolvingNodeSet implements Iterable<ResolvingNode>, Resolvable {
 		return null;
 	}
 
+	public void setProperty(String name, Object value) {
+		
+	}
+	
 	@Override
 	public Iterator<ResolvingNode> iterator() {
 		return null;

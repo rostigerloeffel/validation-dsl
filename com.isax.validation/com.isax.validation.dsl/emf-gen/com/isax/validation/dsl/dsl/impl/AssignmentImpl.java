@@ -3,9 +3,8 @@
 package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.AssignmentExpression;
 import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
+import com.isax.validation.dsl.dsl.NodeDefinition;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,7 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.xtext.xbase.XExpression;
+
+import org.eclipse.xtext.xbase.impl.XExpressionImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,24 +26,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.AssignmentImpl#getReference <em>Reference</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.AssignmentImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.AssignmentImpl#getNode <em>Node</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.AssignmentImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assignment
+public class AssignmentImpl extends XExpressionImpl implements Assignment
 {
-	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReference()
-	 * @generated
-	 * @ordered
-	 */
-	protected PropertyReferenceExpression reference;
-
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -50,7 +43,37 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * @generated
 	 * @ordered
 	 */
-	protected AssignmentExpression expression;
+	protected XExpression expression;
+
+	/**
+	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNode()
+	 * @generated
+	 * @ordered
+	 */
+	protected NodeDefinition node;
+
+	/**
+	 * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROPERTY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected String property = PROPERTY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,55 +101,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyReferenceExpression getReference()
-	{
-		return reference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetReference(PropertyReferenceExpression newReference, NotificationChain msgs)
-	{
-		PropertyReferenceExpression oldReference = reference;
-		reference = newReference;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.ASSIGNMENT__REFERENCE, oldReference, newReference);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReference(PropertyReferenceExpression newReference)
-	{
-		if (newReference != reference)
-		{
-			NotificationChain msgs = null;
-			if (reference != null)
-				msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.ASSIGNMENT__REFERENCE, null, msgs);
-			if (newReference != null)
-				msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.ASSIGNMENT__REFERENCE, null, msgs);
-			msgs = basicSetReference(newReference, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.ASSIGNMENT__REFERENCE, newReference, newReference));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssignmentExpression getExpression()
+	public XExpression getExpression()
 	{
 		return expression;
 	}
@@ -136,9 +111,9 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpression(AssignmentExpression newExpression, NotificationChain msgs)
+	public NotificationChain basicSetExpression(XExpression newExpression, NotificationChain msgs)
 	{
-		AssignmentExpression oldExpression = expression;
+		XExpression oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 		{
@@ -153,7 +128,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpression(AssignmentExpression newExpression)
+	public void setExpression(XExpression newExpression)
 	{
 		if (newExpression != expression)
 		{
@@ -174,13 +149,77 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NodeDefinition getNode()
+	{
+		if (node != null && node.eIsProxy())
+		{
+			InternalEObject oldNode = (InternalEObject)node;
+			node = (NodeDefinition)eResolveProxy(oldNode);
+			if (node != oldNode)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslPackage.ASSIGNMENT__NODE, oldNode, node));
+			}
+		}
+		return node;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NodeDefinition basicGetNode()
+	{
+		return node;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNode(NodeDefinition newNode)
+	{
+		NodeDefinition oldNode = node;
+		node = newNode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.ASSIGNMENT__NODE, oldNode, node));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProperty()
+	{
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperty(String newProperty)
+	{
+		String oldProperty = property;
+		property = newProperty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.ASSIGNMENT__PROPERTY, oldProperty, property));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case DslPackage.ASSIGNMENT__REFERENCE:
-				return basicSetReference(null, msgs);
 			case DslPackage.ASSIGNMENT__EXPRESSION:
 				return basicSetExpression(null, msgs);
 		}
@@ -197,10 +236,13 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	{
 		switch (featureID)
 		{
-			case DslPackage.ASSIGNMENT__REFERENCE:
-				return getReference();
 			case DslPackage.ASSIGNMENT__EXPRESSION:
 				return getExpression();
+			case DslPackage.ASSIGNMENT__NODE:
+				if (resolve) return getNode();
+				return basicGetNode();
+			case DslPackage.ASSIGNMENT__PROPERTY:
+				return getProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,11 +257,14 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	{
 		switch (featureID)
 		{
-			case DslPackage.ASSIGNMENT__REFERENCE:
-				setReference((PropertyReferenceExpression)newValue);
-				return;
 			case DslPackage.ASSIGNMENT__EXPRESSION:
-				setExpression((AssignmentExpression)newValue);
+				setExpression((XExpression)newValue);
+				return;
+			case DslPackage.ASSIGNMENT__NODE:
+				setNode((NodeDefinition)newValue);
+				return;
+			case DslPackage.ASSIGNMENT__PROPERTY:
+				setProperty((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,11 +280,14 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	{
 		switch (featureID)
 		{
-			case DslPackage.ASSIGNMENT__REFERENCE:
-				setReference((PropertyReferenceExpression)null);
-				return;
 			case DslPackage.ASSIGNMENT__EXPRESSION:
-				setExpression((AssignmentExpression)null);
+				setExpression((XExpression)null);
+				return;
+			case DslPackage.ASSIGNMENT__NODE:
+				setNode((NodeDefinition)null);
+				return;
+			case DslPackage.ASSIGNMENT__PROPERTY:
+				setProperty(PROPERTY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -255,12 +303,31 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	{
 		switch (featureID)
 		{
-			case DslPackage.ASSIGNMENT__REFERENCE:
-				return reference != null;
 			case DslPackage.ASSIGNMENT__EXPRESSION:
 				return expression != null;
+			case DslPackage.ASSIGNMENT__NODE:
+				return node != null;
+			case DslPackage.ASSIGNMENT__PROPERTY:
+				return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (property: ");
+		result.append(property);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AssignmentImpl

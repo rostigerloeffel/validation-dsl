@@ -11,7 +11,6 @@ import com.isax.validation.dsl.api.Traverser;
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.AssignmentXExpression;
 import com.isax.validation.dsl.dsl.Axis;
 import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
@@ -169,24 +168,20 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
       this._jvmTypesBuilder.<JvmMember>operator_add(_members_4, _compileXExpressionPredicates);
       EList<JvmMember> _members_5 = it.getMembers();
-      Iterable<JvmGenericType> _compileXExpressionAssignments = this.compileXExpressionAssignments(validator);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_5, _compileXExpressionAssignments);
+      Iterable<JvmGenericType> _compileThenClauses = this.compileThenClauses(validator);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_5, _compileThenClauses);
     };
     acceptor.<JvmGenericType>accept(_class, _function);
   }
   
-  public String serialize(final EObject object) {
-    String _serialize = this.serializer.serialize(object);
-    String _trim = _serialize.trim();
-    String _replaceAll = _trim.replaceAll("\\n", "");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
-    return _replaceAll_1.replaceAll("\\s+", " ");
+  public Object serialize(final EObject object) {
+    return null;
   }
   
   public CharSequence compileStartOn(final StartOnSentence startOn) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serialize(startOn);
+    Object _serialize = this.serialize(startOn);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("final ");
@@ -265,7 +260,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public CharSequence compileDefinition(final DefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serialize(sentence);
+    Object _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     {
@@ -320,7 +315,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public CharSequence compileConstraint(final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    String _serialize = this.serialize(sentence);
+    Object _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("{");
@@ -460,49 +455,52 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return IterableExtensions.<PredicateXExpression, JvmOperation>map(_filter, _function);
   }
   
-  public Iterable<JvmGenericType> compileXExpressionAssignments(final Validator validator) {
+  public Iterable<JvmGenericType> compileThenClauses(final Validator validator) {
     TreeIterator<EObject> _eAllContents = validator.eAllContents();
     Set<EObject> _set = IteratorExtensions.<EObject>toSet(_eAllContents);
-    Iterable<AssignmentXExpression> _filter = Iterables.<AssignmentXExpression>filter(_set, AssignmentXExpression.class);
-    final Function1<AssignmentXExpression, JvmGenericType> _function = (AssignmentXExpression e) -> {
+    Iterable<TargetDefinition> _filter = Iterables.<TargetDefinition>filter(_set, TargetDefinition.class);
+    final Function1<TargetDefinition, XExpression> _function = (TargetDefinition d) -> {
+      return d.getThen();
+    };
+    Iterable<XExpression> _map = IterableExtensions.<TargetDefinition, XExpression>map(_filter, _function);
+    Iterable<XExpression> _filterNull = IterableExtensions.<XExpression>filterNull(_map);
+    final Function1<XExpression, JvmGenericType> _function_1 = (XExpression e) -> {
       int _hashCode = e.hashCode();
       String _plus = (DslJvmModelInferrer.ASSIGNMENT_CLASS + Integer.valueOf(_hashCode));
-      final Procedure1<JvmGenericType> _function_1 = (JvmGenericType it) -> {
+      final Procedure1<JvmGenericType> _function_2 = (JvmGenericType it) -> {
         it.setStatic(true);
         it.setVisibility(JvmVisibility.PRIVATE);
         EList<JvmMember> _members = it.getMembers();
-        XExpression _expression = e.getExpression();
-        JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_expression);
-        final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+        JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(e);
+        final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
           it_1.setStatic(true);
           it_1.setVisibility(JvmVisibility.PRIVATE);
-          final Function1<NodeDefinition, Boolean> _function_3 = (NodeDefinition it_2) -> {
+          final Function1<NodeDefinition, Boolean> _function_4 = (NodeDefinition it_2) -> {
             return Boolean.valueOf(true);
           };
-          final IScope scope = DslUtil.visibleDefinitions(e, _function_3);
+          final IScope scope = DslUtil.visibleDefinitions(e, _function_4);
           EList<JvmFormalParameter> _parameters = it_1.getParameters();
           Iterable<IEObjectDescription> _allElements = scope.getAllElements();
-          final Function1<IEObjectDescription, EObject> _function_4 = (IEObjectDescription d) -> {
+          final Function1<IEObjectDescription, EObject> _function_5 = (IEObjectDescription d) -> {
             return d.getEObjectOrProxy();
           };
-          Iterable<EObject> _map = IterableExtensions.<IEObjectDescription, EObject>map(_allElements, _function_4);
-          Iterable<NodeDefinition> _filter_1 = Iterables.<NodeDefinition>filter(_map, NodeDefinition.class);
-          final Function1<NodeDefinition, JvmFormalParameter> _function_5 = (NodeDefinition d) -> {
+          Iterable<EObject> _map_1 = IterableExtensions.<IEObjectDescription, EObject>map(_allElements, _function_5);
+          Iterable<NodeDefinition> _filter_1 = Iterables.<NodeDefinition>filter(_map_1, NodeDefinition.class);
+          final Function1<NodeDefinition, JvmFormalParameter> _function_6 = (NodeDefinition d) -> {
             String _name = d.getName();
             JvmTypeReference _definitionTypeRef = this.definitionTypeRef(d);
             return this._jvmTypesBuilder.toParameter(d, _name, _definitionTypeRef);
           };
-          Iterable<JvmFormalParameter> _map_1 = IterableExtensions.<NodeDefinition, JvmFormalParameter>map(_filter_1, _function_5);
-          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _map_1);
-          XExpression _expression_1 = e.getExpression();
-          this._jvmTypesBuilder.setBody(it_1, _expression_1);
+          Iterable<JvmFormalParameter> _map_2 = IterableExtensions.<NodeDefinition, JvmFormalParameter>map(_filter_1, _function_6);
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _map_2);
+          this._jvmTypesBuilder.setBody(it_1, e);
         };
-        JvmOperation _method = this._jvmTypesBuilder.toMethod(e, DslJvmModelInferrer.ASSIGMENT_METHOD, _inferredType, _function_2);
+        JvmOperation _method = this._jvmTypesBuilder.toMethod(e, DslJvmModelInferrer.ASSIGMENT_METHOD, _inferredType, _function_3);
         this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
       };
-      return this._jvmTypesBuilder.toClass(e, _plus, _function_1);
+      return this._jvmTypesBuilder.toClass(e, _plus, _function_2);
     };
-    return IterableExtensions.<AssignmentXExpression, JvmGenericType>map(_filter, _function);
+    return IterableExtensions.<XExpression, JvmGenericType>map(_filterNull, _function_1);
   }
   
   public CharSequence constraintDispatch(final List<Quantification> quantifications, final int index, final ConstraintSentence sentence) {

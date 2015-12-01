@@ -466,13 +466,13 @@ public interface DslPackage extends EPackage
 	int TARGET_DEFINITION__BODY = 3;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference.
+	 * The feature id for the '<em><b>Then</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_DEFINITION__ASSIGNMENTS = 4;
+	int TARGET_DEFINITION__THEN = 4;
 
 	/**
 	 * The number of structural features of the '<em>Target Definition</em>' class.
@@ -957,22 +957,31 @@ public interface DslPackage extends EPackage
 	int ASSIGNMENT = 23;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__REFERENCE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__EXPRESSION = 1;
+	int ASSIGNMENT__EXPRESSION = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__NODE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__PROPERTY = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
@@ -981,7 +990,7 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = 2;
+	int ASSIGNMENT_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentListImpl <em>Assignment List</em>}' class.
@@ -1971,15 +1980,15 @@ public interface DslPackage extends EPackage
 	EReference getTargetDefinition_Body();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.TargetDefinition#getThen <em>Then</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Assignments</em>'.
-	 * @see com.isax.validation.dsl.dsl.TargetDefinition#getAssignments()
+	 * @return the meta object for the containment reference '<em>Then</em>'.
+	 * @see com.isax.validation.dsl.dsl.TargetDefinition#getThen()
 	 * @see #getTargetDefinition()
 	 * @generated
 	 */
-	EReference getTargetDefinition_Assignments();
+	EReference getTargetDefinition_Then();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.SelectorList <em>Selector List</em>}'.
@@ -2342,17 +2351,6 @@ public interface DslPackage extends EPackage
 	EClass getAssignment();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Assignment#getReference <em>Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Reference</em>'.
-	 * @see com.isax.validation.dsl.dsl.Assignment#getReference()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EReference getAssignment_Reference();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Assignment#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2362,6 +2360,28 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAssignment_Expression();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.isax.validation.dsl.dsl.Assignment#getNode <em>Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Node</em>'.
+	 * @see com.isax.validation.dsl.dsl.Assignment#getNode()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EReference getAssignment_Node();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.Assignment#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Property</em>'.
+	 * @see com.isax.validation.dsl.dsl.Assignment#getProperty()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EAttribute getAssignment_Property();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.AssignmentList <em>Assignment List</em>}'.
@@ -2978,12 +2998,12 @@ public interface DslPackage extends EPackage
 		EReference TARGET_DEFINITION__BODY = eINSTANCE.getTargetDefinition_Body();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TARGET_DEFINITION__ASSIGNMENTS = eINSTANCE.getTargetDefinition_Assignments();
+		EReference TARGET_DEFINITION__THEN = eINSTANCE.getTargetDefinition_Then();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.SelectorListImpl <em>Selector List</em>}' class.
@@ -3286,20 +3306,28 @@ public interface DslPackage extends EPackage
 		EClass ASSIGNMENT = eINSTANCE.getAssignment();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSIGNMENT__REFERENCE = eINSTANCE.getAssignment_Reference();
-
-		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ASSIGNMENT__EXPRESSION = eINSTANCE.getAssignment_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGNMENT__NODE = eINSTANCE.getAssignment_Node();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSIGNMENT__PROPERTY = eINSTANCE.getAssignment_Property();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.AssignmentListImpl <em>Assignment List</em>}' class.

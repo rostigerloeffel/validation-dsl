@@ -9,7 +9,6 @@ import com.isax.validation.dsl.api.Traverser
 import com.isax.validation.dsl.dsl.AndExpression
 import com.isax.validation.dsl.dsl.Argument
 import com.isax.validation.dsl.dsl.ArgumentList
-import com.isax.validation.dsl.dsl.AssignmentXExpression
 import com.isax.validation.dsl.dsl.Axis
 import com.isax.validation.dsl.dsl.BodySentences
 import com.isax.validation.dsl.dsl.ConstraintSentence
@@ -32,6 +31,7 @@ import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
+import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
 import java.util.List
 import org.eclipse.emf.ecore.EObject
@@ -82,12 +82,12 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 			members += compilePredicates(validator.predicates)
 			members += compileXExpressionPredicates(validator)
-			members += compileXExpressionAssignments(validator)
+			members += compileThenClauses(validator)
 		]
 	}
 
 	def serialize(EObject object) {
-		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
+		//serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
 
 	def compileStartOn(
@@ -161,12 +161,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	def compileXExpressionAssignments(Validator validator) {
-		validator.eAllContents.toSet.filter(AssignmentXExpression).map [ e |
-			e.toClass(com.isax.validation.dsl.jvmmodel.DslJvmModelInferrer.ASSIGNMENT_CLASS + e.hashCode) [
+	def compileThenClauses(Validator validator) {
+		validator.eAllContents.toSet
+			.filter(TargetDefinition).map[d | d.then]
+			.filterNull.map [ e | e.toClass(DslJvmModelInferrer.ASSIGNMENT_CLASS + e.hashCode) [
 				static = true
 				visibility = JvmVisibility.PRIVATE
-				members += e.toMethod(ASSIGMENT_METHOD, e.expression.inferredType) [
+				members += e.toMethod(ASSIGMENT_METHOD, e.inferredType) [
 					static = true
 					visibility = JvmVisibility.PRIVATE
 					val scope = e.visibleDefinitions[true]
@@ -175,7 +176,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 						.map[d|d.EObjectOrProxy]
 						.filter(NodeDefinition)
 						.map[d|d.toParameter(d.name, definitionTypeRef(d))]
-					body = e.expression
+					body = e
 				]
 			]
 		]

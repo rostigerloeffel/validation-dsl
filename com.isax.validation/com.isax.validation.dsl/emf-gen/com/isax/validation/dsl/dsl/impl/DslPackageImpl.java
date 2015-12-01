@@ -772,7 +772,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetDefinition_Assignments()
+	public EReference getTargetDefinition_Then()
 	{
 		return (EReference)targetDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1122,7 +1122,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssignment_Reference()
+	public EReference getAssignment_Expression()
 	{
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(0);
 	}
@@ -1132,9 +1132,19 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssignment_Expression()
+	public EReference getAssignment_Node()
 	{
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssignment_Property()
+	{
+		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1491,7 +1501,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEReference(targetDefinitionEClass, TARGET_DEFINITION__LOCAL);
 		createEReference(targetDefinitionEClass, TARGET_DEFINITION__DEFINITION);
 		createEReference(targetDefinitionEClass, TARGET_DEFINITION__BODY);
-		createEReference(targetDefinitionEClass, TARGET_DEFINITION__ASSIGNMENTS);
+		createEReference(targetDefinitionEClass, TARGET_DEFINITION__THEN);
 
 		selectorListEClass = createEClass(SELECTOR_LIST);
 		createEReference(selectorListEClass, SELECTOR_LIST__SELECTORS);
@@ -1540,8 +1550,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEReference(argumentListEClass, ARGUMENT_LIST__ARGUMENTS);
 
 		assignmentEClass = createEClass(ASSIGNMENT);
-		createEReference(assignmentEClass, ASSIGNMENT__REFERENCE);
 		createEReference(assignmentEClass, ASSIGNMENT__EXPRESSION);
+		createEReference(assignmentEClass, ASSIGNMENT__NODE);
+		createEAttribute(assignmentEClass, ASSIGNMENT__PROPERTY);
 
 		assignmentListEClass = createEClass(ASSIGNMENT_LIST);
 		createEReference(assignmentListEClass, ASSIGNMENT_LIST__ASSIGNMENTS);
@@ -1627,6 +1638,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		propertyRelationPredicateEClass.getESuperTypes().add(this.getPredicateCall());
 		definitionSentencePredicateEClass.getESuperTypes().add(this.getPredicateCall());
 		predicateReferenceEClass.getESuperTypes().add(this.getPredicateCall());
+		assignmentEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 		assignmentXExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
 		propertyExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
 		propertyValueExpressionEClass.getESuperTypes().add(this.getPropertyExpression());
@@ -1682,7 +1694,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getTargetDefinition_Local(), this.getNodeDefinition(), null, "local", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetDefinition_Definition(), this.getNodeDefinition(), null, "definition", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetDefinition_Body(), this.getBodySentences(), null, "body", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTargetDefinition_Assignments(), this.getAssignmentList(), null, "assignments", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetDefinition_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, TargetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectorListEClass, SelectorList.class, "SelectorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSelectorList_Selectors(), this.getSelectorListDef(), null, "selectors", null, 0, 1, SelectorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1731,8 +1743,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getArgumentList_Arguments(), this.getArgument(), null, "arguments", null, 0, -1, ArgumentList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignment_Reference(), this.getPropertyReferenceExpression(), null, "reference", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssignment_Expression(), this.getAssignmentExpression(), null, "expression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Expression(), theXbasePackage.getXExpression(), null, "expression", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Node(), this.getNodeDefinition(), null, "node", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssignment_Property(), ecorePackage.getEString(), "property", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assignmentListEClass, AssignmentList.class, "AssignmentList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssignmentList_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, AssignmentList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -18,7 +18,7 @@ Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;
 
 StartOnSentence:
-	'start on' definition=NodeDefinition;
+	'start' 'on' definition=NodeDefinition;
 
 DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 
@@ -29,9 +29,8 @@ ConstraintSentence:
 	'for'
 	quantifications=QuantificationList? 
 	nodes=NodeReferenceList? 
-	'holds' '{'
-	predicate=PredicateExpression
-	'}';
+	'holds'
+	predicate=PredicateExpression;
 
 PredicateDefinitionSentence:
 	'define' name=ID parameters=ParameterList? 'as' '{' body = BodySentences '}';
@@ -45,7 +44,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('then' '{' assignments=AssignmentList '}')? ;
+	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('then' then=XBlockExpression)?;
 
 
 SelectorList:
@@ -102,18 +101,21 @@ Argument:
 ArgumentList:
 	arguments+=Argument (',' arguments+=Argument)*;
 
+Assignment returns xbase::XExpression:
+	{Assignment}
+	'set' node=[NodeDefinition] '.' property=ID 'to' expression=XPrimaryExpression;
 
-Assignment:
-	reference=PropertyReferenceExpression ('becomes' | ':=') expression=AssignmentExpression;
+//Assignment:
+//	reference=PropertyReferenceExpression ('becomes' | ':=') expression=AssignmentExpression;
 
-AssignmentList:
-	assignments+=Assignment (',' assignments+=Assignment)*;
+//AssignmentList:
+//	assignments+=Assignment (',' assignments+=Assignment)*;
 
-AssignmentExpression:
-	PropertyExpression | AssignmentXExpression;
-	
-AssignmentXExpression:
-	expression = XBlockExpression;
+//AssignmentExpression:
+//	PropertyExpression | AssignmentXExpression;
+//	
+//AssignmentXExpression:
+//	expression = XBlockExpression;
 
 XPrimaryExpression returns xbase::XExpression:
 	XConstructorCall |
@@ -131,14 +133,12 @@ XPrimaryExpression returns xbase::XExpression:
 	XReturnExpression |
 	XTryCatchFinallyExpression |
 	XParenthesizedExpression |
-	XPropertyExpression;
+	XPropertyExpression |
+	Assignment;
 
 XPropertyExpression returns xbase::XExpression:
 	{XPropertyExpression}
-	'[[' node=[NodeDefinition]
-	'~>'
-	name=ID
-	']]';
+	'[[' node=[NodeDefinition] '~>' name=ID ']]';
 
 Quantification:
 	quantor=Quantor node=NodeDefinition 'in' nodeSet=[NodeDefinition];
