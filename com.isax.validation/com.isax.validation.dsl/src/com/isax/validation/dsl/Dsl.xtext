@@ -101,21 +101,9 @@ Argument:
 ArgumentList:
 	arguments+=Argument (',' arguments+=Argument)*;
 
-Assignment returns xbase::XExpression:
-	{Assignment}
+XXAssignment returns xbase::XExpression:
+	{XXAssignment}
 	'set' node=[NodeDefinition] '.' property=ID 'to' expression=XPrimaryExpression;
-
-//Assignment:
-//	reference=PropertyReferenceExpression ('becomes' | ':=') expression=AssignmentExpression;
-
-//AssignmentList:
-//	assignments+=Assignment (',' assignments+=Assignment)*;
-
-//AssignmentExpression:
-//	PropertyExpression | AssignmentXExpression;
-//	
-//AssignmentXExpression:
-//	expression = XBlockExpression;
 
 XPrimaryExpression returns xbase::XExpression:
 	XConstructorCall |
@@ -133,11 +121,11 @@ XPrimaryExpression returns xbase::XExpression:
 	XReturnExpression |
 	XTryCatchFinallyExpression |
 	XParenthesizedExpression |
-	XPropertyExpression |
-	Assignment;
+	XXPropertyExpression |
+	XXAssignment;
 
-XPropertyExpression returns xbase::XExpression:
-	{XPropertyExpression}
+XXPropertyExpression returns xbase::XExpression:
+	{XXPropertyExpression}
 	'[[' node=[NodeDefinition] '~>' name=ID ']]';
 
 Quantification:

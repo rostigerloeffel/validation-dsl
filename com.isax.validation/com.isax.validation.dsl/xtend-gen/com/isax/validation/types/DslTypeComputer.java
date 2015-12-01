@@ -1,7 +1,7 @@
 package com.isax.validation.types;
 
-import com.isax.validation.dsl.dsl.Assignment;
-import com.isax.validation.dsl.dsl.XPropertyExpression;
+import com.isax.validation.dsl.dsl.XXAssignment;
+import com.isax.validation.dsl.dsl.XXPropertyExpression;
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XAssignment;
@@ -37,12 +37,12 @@ import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 
 @SuppressWarnings("all")
 public class DslTypeComputer extends XbaseWithAnnotationsTypeComputer {
-  protected void _computeTypes(final XPropertyExpression expression, final ITypeComputationState state) {
+  protected void _computeTypes(final XXPropertyExpression expression, final ITypeComputationState state) {
     LightweightTypeReference _typeForName = this.getTypeForName(String.class, state);
     state.acceptActualType(_typeForName);
   }
   
-  protected void _computeTypes(final Assignment assignment, final ITypeComputationState state) {
+  protected void _computeTypes(final XXAssignment assignment, final ITypeComputationState state) {
     XExpression _expression = assignment.getExpression();
     final ITypeComputationResult inner = state.computeTypes(_expression);
     LightweightTypeReference _actualExpressionType = inner.getActualExpressionType();
@@ -65,11 +65,11 @@ public class DslTypeComputer extends XbaseWithAnnotationsTypeComputer {
     } else if (assignment instanceof XWhileExpression) {
       _computeTypes((XWhileExpression)assignment, state);
       return;
-    } else if (assignment instanceof Assignment) {
-      _computeTypes((Assignment)assignment, state);
+    } else if (assignment instanceof XXAssignment) {
+      _computeTypes((XXAssignment)assignment, state);
       return;
-    } else if (assignment instanceof XPropertyExpression) {
-      _computeTypes((XPropertyExpression)assignment, state);
+    } else if (assignment instanceof XXPropertyExpression) {
+      _computeTypes((XXPropertyExpression)assignment, state);
       return;
     } else if (assignment instanceof XAbstractFeatureCall) {
       _computeTypes((XAbstractFeatureCall)assignment, state);

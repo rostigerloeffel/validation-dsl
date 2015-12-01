@@ -2388,25 +2388,25 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleArgumentList"
 
 
-    // $ANTLR start "entryRuleAssignment"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:791:1: entryRuleAssignment : ruleAssignment EOF ;
-    public final void entryRuleAssignment() throws RecognitionException {
+    // $ANTLR start "entryRuleXXAssignment"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:791:1: entryRuleXXAssignment : ruleXXAssignment EOF ;
+    public final void entryRuleXXAssignment() throws RecognitionException {
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:792:1: ( ruleAssignment EOF )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:793:1: ruleAssignment EOF
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:792:1: ( ruleXXAssignment EOF )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:793:1: ruleXXAssignment EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentRule()); 
+               before(grammarAccess.getXXAssignmentRule()); 
             }
-            pushFollow(FOLLOW_ruleAssignment_in_entryRuleAssignment1628);
-            ruleAssignment();
+            pushFollow(FOLLOW_ruleXXAssignment_in_entryRuleXXAssignment1628);
+            ruleXXAssignment();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentRule()); 
+               after(grammarAccess.getXXAssignmentRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAssignment1635); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXXAssignment1635); if (state.failed) return ;
 
             }
 
@@ -2419,30 +2419,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleAssignment"
+    // $ANTLR end "entryRuleXXAssignment"
 
 
-    // $ANTLR start "ruleAssignment"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:800:1: ruleAssignment : ( ( rule__Assignment__Group__0 ) ) ;
-    public final void ruleAssignment() throws RecognitionException {
+    // $ANTLR start "ruleXXAssignment"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:800:1: ruleXXAssignment : ( ( rule__XXAssignment__Group__0 ) ) ;
+    public final void ruleXXAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:804:2: ( ( ( rule__Assignment__Group__0 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:805:1: ( ( rule__Assignment__Group__0 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:804:2: ( ( ( rule__XXAssignment__Group__0 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:805:1: ( ( rule__XXAssignment__Group__0 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:805:1: ( ( rule__Assignment__Group__0 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:806:1: ( rule__Assignment__Group__0 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:805:1: ( ( rule__XXAssignment__Group__0 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:806:1: ( rule__XXAssignment__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getGroup()); 
+               before(grammarAccess.getXXAssignmentAccess().getGroup()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:807:1: ( rule__Assignment__Group__0 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:807:2: rule__Assignment__Group__0
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:807:1: ( rule__XXAssignment__Group__0 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:807:2: rule__XXAssignment__Group__0
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__0_in_ruleAssignment1661);
-            rule__Assignment__Group__0();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__0_in_ruleXXAssignment1661);
+            rule__XXAssignment__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -2450,7 +2450,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getGroup()); 
+               after(grammarAccess.getXXAssignmentAccess().getGroup()); 
             }
 
             }
@@ -2470,7 +2470,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleAssignment"
+    // $ANTLR end "ruleXXAssignment"
 
 
     // $ANTLR start "entryRuleXPrimaryExpression"
@@ -2558,25 +2558,25 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleXPrimaryExpression"
 
 
-    // $ANTLR start "entryRuleXPropertyExpression"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:847:1: entryRuleXPropertyExpression : ruleXPropertyExpression EOF ;
-    public final void entryRuleXPropertyExpression() throws RecognitionException {
+    // $ANTLR start "entryRuleXXPropertyExpression"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:847:1: entryRuleXXPropertyExpression : ruleXXPropertyExpression EOF ;
+    public final void entryRuleXXPropertyExpression() throws RecognitionException {
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:848:1: ( ruleXPropertyExpression EOF )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:849:1: ruleXPropertyExpression EOF
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:848:1: ( ruleXXPropertyExpression EOF )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:849:1: ruleXXPropertyExpression EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionRule()); 
+               before(grammarAccess.getXXPropertyExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXPropertyExpression_in_entryRuleXPropertyExpression1748);
-            ruleXPropertyExpression();
+            pushFollow(FOLLOW_ruleXXPropertyExpression_in_entryRuleXXPropertyExpression1748);
+            ruleXXPropertyExpression();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionRule()); 
+               after(grammarAccess.getXXPropertyExpressionRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXPropertyExpression1755); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXXPropertyExpression1755); if (state.failed) return ;
 
             }
 
@@ -2589,30 +2589,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleXPropertyExpression"
+    // $ANTLR end "entryRuleXXPropertyExpression"
 
 
-    // $ANTLR start "ruleXPropertyExpression"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:856:1: ruleXPropertyExpression : ( ( rule__XPropertyExpression__Group__0 ) ) ;
-    public final void ruleXPropertyExpression() throws RecognitionException {
+    // $ANTLR start "ruleXXPropertyExpression"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:856:1: ruleXXPropertyExpression : ( ( rule__XXPropertyExpression__Group__0 ) ) ;
+    public final void ruleXXPropertyExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:860:2: ( ( ( rule__XPropertyExpression__Group__0 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:861:1: ( ( rule__XPropertyExpression__Group__0 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:860:2: ( ( ( rule__XXPropertyExpression__Group__0 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:861:1: ( ( rule__XXPropertyExpression__Group__0 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:861:1: ( ( rule__XPropertyExpression__Group__0 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:862:1: ( rule__XPropertyExpression__Group__0 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:861:1: ( ( rule__XXPropertyExpression__Group__0 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:862:1: ( rule__XXPropertyExpression__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getGroup()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getGroup()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:863:1: ( rule__XPropertyExpression__Group__0 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:863:2: rule__XPropertyExpression__Group__0
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:863:1: ( rule__XXPropertyExpression__Group__0 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:863:2: rule__XXPropertyExpression__Group__0
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__0_in_ruleXPropertyExpression1781);
-            rule__XPropertyExpression__Group__0();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__0_in_ruleXXPropertyExpression1781);
+            rule__XXPropertyExpression__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -2620,7 +2620,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getGroup()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getGroup()); 
             }
 
             }
@@ -2640,7 +2640,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleXPropertyExpression"
+    // $ANTLR end "ruleXXPropertyExpression"
 
 
     // $ANTLR start "entryRuleQuantification"
@@ -10737,13 +10737,13 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XPrimaryExpression__Alternatives"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3505:1: rule__XPrimaryExpression__Alternatives : ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXPropertyExpression ) | ( ruleAssignment ) );
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3505:1: rule__XPrimaryExpression__Alternatives : ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXXPropertyExpression ) | ( ruleXXAssignment ) );
     public final void rule__XPrimaryExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3509:1: ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXPropertyExpression ) | ( ruleAssignment ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3509:1: ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXXPropertyExpression ) | ( ruleXXAssignment ) )
             int alt9=17;
             alt9 = dfa9.predict(input);
             switch (alt9) {
@@ -11105,21 +11105,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 16 :
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3600:6: ( ruleXPropertyExpression )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3600:6: ( ruleXXPropertyExpression )
                     {
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3600:6: ( ruleXPropertyExpression )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3601:1: ruleXPropertyExpression
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3600:6: ( ruleXXPropertyExpression )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3601:1: ruleXXPropertyExpression
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getXPrimaryExpressionAccess().getXPropertyExpressionParserRuleCall_15()); 
+                       before(grammarAccess.getXPrimaryExpressionAccess().getXXPropertyExpressionParserRuleCall_15()); 
                     }
-                    pushFollow(FOLLOW_ruleXPropertyExpression_in_rule__XPrimaryExpression__Alternatives7694);
-                    ruleXPropertyExpression();
+                    pushFollow(FOLLOW_ruleXXPropertyExpression_in_rule__XPrimaryExpression__Alternatives7694);
+                    ruleXXPropertyExpression();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getXPrimaryExpressionAccess().getXPropertyExpressionParserRuleCall_15()); 
+                       after(grammarAccess.getXPrimaryExpressionAccess().getXXPropertyExpressionParserRuleCall_15()); 
                     }
 
                     }
@@ -11128,21 +11128,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 17 :
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3606:6: ( ruleAssignment )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3606:6: ( ruleXXAssignment )
                     {
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3606:6: ( ruleAssignment )
-                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3607:1: ruleAssignment
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3606:6: ( ruleXXAssignment )
+                    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:3607:1: ruleXXAssignment
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getXPrimaryExpressionAccess().getAssignmentParserRuleCall_16()); 
+                       before(grammarAccess.getXPrimaryExpressionAccess().getXXAssignmentParserRuleCall_16()); 
                     }
-                    pushFollow(FOLLOW_ruleAssignment_in_rule__XPrimaryExpression__Alternatives7711);
-                    ruleAssignment();
+                    pushFollow(FOLLOW_ruleXXAssignment_in_rule__XPrimaryExpression__Alternatives7711);
+                    ruleXXAssignment();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getXPrimaryExpressionAccess().getAssignmentParserRuleCall_16()); 
+                       after(grammarAccess.getXPrimaryExpressionAccess().getXXAssignmentParserRuleCall_16()); 
                     }
 
                     }
@@ -24488,23 +24488,23 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArgumentList__Group_1__1__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__0"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7815:1: rule__Assignment__Group__0 : rule__Assignment__Group__0__Impl rule__Assignment__Group__1 ;
-    public final void rule__Assignment__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__0"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7815:1: rule__XXAssignment__Group__0 : rule__XXAssignment__Group__0__Impl rule__XXAssignment__Group__1 ;
+    public final void rule__XXAssignment__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7819:1: ( rule__Assignment__Group__0__Impl rule__Assignment__Group__1 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7820:2: rule__Assignment__Group__0__Impl rule__Assignment__Group__1
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7819:1: ( rule__XXAssignment__Group__0__Impl rule__XXAssignment__Group__1 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7820:2: rule__XXAssignment__Group__0__Impl rule__XXAssignment__Group__1
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__016542);
-            rule__Assignment__Group__0__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__0__Impl_in_rule__XXAssignment__Group__016542);
+            rule__XXAssignment__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__016545);
-            rule__Assignment__Group__1();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__1_in_rule__XXAssignment__Group__016545);
+            rule__XXAssignment__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24523,12 +24523,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__0"
+    // $ANTLR end "rule__XXAssignment__Group__0"
 
 
-    // $ANTLR start "rule__Assignment__Group__0__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7827:1: rule__Assignment__Group__0__Impl : ( () ) ;
-    public final void rule__Assignment__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__0__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7827:1: rule__XXAssignment__Group__0__Impl : ( () ) ;
+    public final void rule__XXAssignment__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -24540,7 +24540,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7833:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getAssignmentAction_0()); 
+               before(grammarAccess.getXXAssignmentAccess().getXXAssignmentAction_0()); 
             }
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7834:1: ()
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7836:1: 
@@ -24548,7 +24548,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getAssignmentAction_0()); 
+               after(grammarAccess.getXXAssignmentAccess().getXXAssignmentAction_0()); 
             }
 
             }
@@ -24564,26 +24564,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__0__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__1"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7846:1: rule__Assignment__Group__1 : rule__Assignment__Group__1__Impl rule__Assignment__Group__2 ;
-    public final void rule__Assignment__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__1"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7846:1: rule__XXAssignment__Group__1 : rule__XXAssignment__Group__1__Impl rule__XXAssignment__Group__2 ;
+    public final void rule__XXAssignment__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7850:1: ( rule__Assignment__Group__1__Impl rule__Assignment__Group__2 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7851:2: rule__Assignment__Group__1__Impl rule__Assignment__Group__2
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7850:1: ( rule__XXAssignment__Group__1__Impl rule__XXAssignment__Group__2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7851:2: rule__XXAssignment__Group__1__Impl rule__XXAssignment__Group__2
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__116603);
-            rule__Assignment__Group__1__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__1__Impl_in_rule__XXAssignment__Group__116603);
+            rule__XXAssignment__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__116606);
-            rule__Assignment__Group__2();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__2_in_rule__XXAssignment__Group__116606);
+            rule__XXAssignment__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24602,12 +24602,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__1"
+    // $ANTLR end "rule__XXAssignment__Group__1"
 
 
-    // $ANTLR start "rule__Assignment__Group__1__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7858:1: rule__Assignment__Group__1__Impl : ( 'set' ) ;
-    public final void rule__Assignment__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__1__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7858:1: rule__XXAssignment__Group__1__Impl : ( 'set' ) ;
+    public final void rule__XXAssignment__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -24619,11 +24619,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7864:1: 'set'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getSetKeyword_1()); 
+               before(grammarAccess.getXXAssignmentAccess().getSetKeyword_1()); 
             }
-            match(input,90,FOLLOW_90_in_rule__Assignment__Group__1__Impl16634); if (state.failed) return ;
+            match(input,90,FOLLOW_90_in_rule__XXAssignment__Group__1__Impl16634); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getSetKeyword_1()); 
+               after(grammarAccess.getXXAssignmentAccess().getSetKeyword_1()); 
             }
 
             }
@@ -24643,26 +24643,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__1__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__2"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7877:1: rule__Assignment__Group__2 : rule__Assignment__Group__2__Impl rule__Assignment__Group__3 ;
-    public final void rule__Assignment__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__2"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7877:1: rule__XXAssignment__Group__2 : rule__XXAssignment__Group__2__Impl rule__XXAssignment__Group__3 ;
+    public final void rule__XXAssignment__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7881:1: ( rule__Assignment__Group__2__Impl rule__Assignment__Group__3 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7882:2: rule__Assignment__Group__2__Impl rule__Assignment__Group__3
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7881:1: ( rule__XXAssignment__Group__2__Impl rule__XXAssignment__Group__3 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7882:2: rule__XXAssignment__Group__2__Impl rule__XXAssignment__Group__3
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__216665);
-            rule__Assignment__Group__2__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__2__Impl_in_rule__XXAssignment__Group__216665);
+            rule__XXAssignment__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__216668);
-            rule__Assignment__Group__3();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__3_in_rule__XXAssignment__Group__216668);
+            rule__XXAssignment__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24681,30 +24681,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__2"
+    // $ANTLR end "rule__XXAssignment__Group__2"
 
 
-    // $ANTLR start "rule__Assignment__Group__2__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7889:1: rule__Assignment__Group__2__Impl : ( ( rule__Assignment__NodeAssignment_2 ) ) ;
-    public final void rule__Assignment__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__2__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7889:1: rule__XXAssignment__Group__2__Impl : ( ( rule__XXAssignment__NodeAssignment_2 ) ) ;
+    public final void rule__XXAssignment__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7893:1: ( ( ( rule__Assignment__NodeAssignment_2 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7894:1: ( ( rule__Assignment__NodeAssignment_2 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7893:1: ( ( ( rule__XXAssignment__NodeAssignment_2 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7894:1: ( ( rule__XXAssignment__NodeAssignment_2 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7894:1: ( ( rule__Assignment__NodeAssignment_2 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7895:1: ( rule__Assignment__NodeAssignment_2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7894:1: ( ( rule__XXAssignment__NodeAssignment_2 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7895:1: ( rule__XXAssignment__NodeAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getNodeAssignment_2()); 
+               before(grammarAccess.getXXAssignmentAccess().getNodeAssignment_2()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7896:1: ( rule__Assignment__NodeAssignment_2 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7896:2: rule__Assignment__NodeAssignment_2
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7896:1: ( rule__XXAssignment__NodeAssignment_2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7896:2: rule__XXAssignment__NodeAssignment_2
             {
-            pushFollow(FOLLOW_rule__Assignment__NodeAssignment_2_in_rule__Assignment__Group__2__Impl16695);
-            rule__Assignment__NodeAssignment_2();
+            pushFollow(FOLLOW_rule__XXAssignment__NodeAssignment_2_in_rule__XXAssignment__Group__2__Impl16695);
+            rule__XXAssignment__NodeAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24712,7 +24712,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getNodeAssignment_2()); 
+               after(grammarAccess.getXXAssignmentAccess().getNodeAssignment_2()); 
             }
 
             }
@@ -24732,26 +24732,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__2__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__3"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7906:1: rule__Assignment__Group__3 : rule__Assignment__Group__3__Impl rule__Assignment__Group__4 ;
-    public final void rule__Assignment__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__3"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7906:1: rule__XXAssignment__Group__3 : rule__XXAssignment__Group__3__Impl rule__XXAssignment__Group__4 ;
+    public final void rule__XXAssignment__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7910:1: ( rule__Assignment__Group__3__Impl rule__Assignment__Group__4 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7911:2: rule__Assignment__Group__3__Impl rule__Assignment__Group__4
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7910:1: ( rule__XXAssignment__Group__3__Impl rule__XXAssignment__Group__4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7911:2: rule__XXAssignment__Group__3__Impl rule__XXAssignment__Group__4
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__316725);
-            rule__Assignment__Group__3__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__3__Impl_in_rule__XXAssignment__Group__316725);
+            rule__XXAssignment__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__4_in_rule__Assignment__Group__316728);
-            rule__Assignment__Group__4();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__4_in_rule__XXAssignment__Group__316728);
+            rule__XXAssignment__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24770,12 +24770,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__3"
+    // $ANTLR end "rule__XXAssignment__Group__3"
 
 
-    // $ANTLR start "rule__Assignment__Group__3__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7918:1: rule__Assignment__Group__3__Impl : ( '.' ) ;
-    public final void rule__Assignment__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__3__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7918:1: rule__XXAssignment__Group__3__Impl : ( '.' ) ;
+    public final void rule__XXAssignment__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -24787,11 +24787,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7924:1: '.'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getFullStopKeyword_3()); 
+               before(grammarAccess.getXXAssignmentAccess().getFullStopKeyword_3()); 
             }
-            match(input,46,FOLLOW_46_in_rule__Assignment__Group__3__Impl16756); if (state.failed) return ;
+            match(input,46,FOLLOW_46_in_rule__XXAssignment__Group__3__Impl16756); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getFullStopKeyword_3()); 
+               after(grammarAccess.getXXAssignmentAccess().getFullStopKeyword_3()); 
             }
 
             }
@@ -24811,26 +24811,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__3__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__3__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__4"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7937:1: rule__Assignment__Group__4 : rule__Assignment__Group__4__Impl rule__Assignment__Group__5 ;
-    public final void rule__Assignment__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__4"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7937:1: rule__XXAssignment__Group__4 : rule__XXAssignment__Group__4__Impl rule__XXAssignment__Group__5 ;
+    public final void rule__XXAssignment__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7941:1: ( rule__Assignment__Group__4__Impl rule__Assignment__Group__5 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7942:2: rule__Assignment__Group__4__Impl rule__Assignment__Group__5
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7941:1: ( rule__XXAssignment__Group__4__Impl rule__XXAssignment__Group__5 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7942:2: rule__XXAssignment__Group__4__Impl rule__XXAssignment__Group__5
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__4__Impl_in_rule__Assignment__Group__416787);
-            rule__Assignment__Group__4__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__4__Impl_in_rule__XXAssignment__Group__416787);
+            rule__XXAssignment__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__5_in_rule__Assignment__Group__416790);
-            rule__Assignment__Group__5();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__5_in_rule__XXAssignment__Group__416790);
+            rule__XXAssignment__Group__5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24849,30 +24849,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__4"
+    // $ANTLR end "rule__XXAssignment__Group__4"
 
 
-    // $ANTLR start "rule__Assignment__Group__4__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7949:1: rule__Assignment__Group__4__Impl : ( ( rule__Assignment__PropertyAssignment_4 ) ) ;
-    public final void rule__Assignment__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__4__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7949:1: rule__XXAssignment__Group__4__Impl : ( ( rule__XXAssignment__PropertyAssignment_4 ) ) ;
+    public final void rule__XXAssignment__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7953:1: ( ( ( rule__Assignment__PropertyAssignment_4 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7954:1: ( ( rule__Assignment__PropertyAssignment_4 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7953:1: ( ( ( rule__XXAssignment__PropertyAssignment_4 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7954:1: ( ( rule__XXAssignment__PropertyAssignment_4 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7954:1: ( ( rule__Assignment__PropertyAssignment_4 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7955:1: ( rule__Assignment__PropertyAssignment_4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7954:1: ( ( rule__XXAssignment__PropertyAssignment_4 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7955:1: ( rule__XXAssignment__PropertyAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getPropertyAssignment_4()); 
+               before(grammarAccess.getXXAssignmentAccess().getPropertyAssignment_4()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7956:1: ( rule__Assignment__PropertyAssignment_4 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7956:2: rule__Assignment__PropertyAssignment_4
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7956:1: ( rule__XXAssignment__PropertyAssignment_4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7956:2: rule__XXAssignment__PropertyAssignment_4
             {
-            pushFollow(FOLLOW_rule__Assignment__PropertyAssignment_4_in_rule__Assignment__Group__4__Impl16817);
-            rule__Assignment__PropertyAssignment_4();
+            pushFollow(FOLLOW_rule__XXAssignment__PropertyAssignment_4_in_rule__XXAssignment__Group__4__Impl16817);
+            rule__XXAssignment__PropertyAssignment_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24880,7 +24880,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getPropertyAssignment_4()); 
+               after(grammarAccess.getXXAssignmentAccess().getPropertyAssignment_4()); 
             }
 
             }
@@ -24900,26 +24900,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__4__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__4__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__5"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7966:1: rule__Assignment__Group__5 : rule__Assignment__Group__5__Impl rule__Assignment__Group__6 ;
-    public final void rule__Assignment__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__5"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7966:1: rule__XXAssignment__Group__5 : rule__XXAssignment__Group__5__Impl rule__XXAssignment__Group__6 ;
+    public final void rule__XXAssignment__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7970:1: ( rule__Assignment__Group__5__Impl rule__Assignment__Group__6 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7971:2: rule__Assignment__Group__5__Impl rule__Assignment__Group__6
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7970:1: ( rule__XXAssignment__Group__5__Impl rule__XXAssignment__Group__6 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7971:2: rule__XXAssignment__Group__5__Impl rule__XXAssignment__Group__6
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__5__Impl_in_rule__Assignment__Group__516847);
-            rule__Assignment__Group__5__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__5__Impl_in_rule__XXAssignment__Group__516847);
+            rule__XXAssignment__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__6_in_rule__Assignment__Group__516850);
-            rule__Assignment__Group__6();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__6_in_rule__XXAssignment__Group__516850);
+            rule__XXAssignment__Group__6();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24938,12 +24938,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__5"
+    // $ANTLR end "rule__XXAssignment__Group__5"
 
 
-    // $ANTLR start "rule__Assignment__Group__5__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7978:1: rule__Assignment__Group__5__Impl : ( 'to' ) ;
-    public final void rule__Assignment__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__5__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7978:1: rule__XXAssignment__Group__5__Impl : ( 'to' ) ;
+    public final void rule__XXAssignment__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -24955,11 +24955,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7984:1: 'to'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getToKeyword_5()); 
+               before(grammarAccess.getXXAssignmentAccess().getToKeyword_5()); 
             }
-            match(input,91,FOLLOW_91_in_rule__Assignment__Group__5__Impl16878); if (state.failed) return ;
+            match(input,91,FOLLOW_91_in_rule__XXAssignment__Group__5__Impl16878); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getToKeyword_5()); 
+               after(grammarAccess.getXXAssignmentAccess().getToKeyword_5()); 
             }
 
             }
@@ -24979,21 +24979,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__5__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__5__Impl"
 
 
-    // $ANTLR start "rule__Assignment__Group__6"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7997:1: rule__Assignment__Group__6 : rule__Assignment__Group__6__Impl ;
-    public final void rule__Assignment__Group__6() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__6"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:7997:1: rule__XXAssignment__Group__6 : rule__XXAssignment__Group__6__Impl ;
+    public final void rule__XXAssignment__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8001:1: ( rule__Assignment__Group__6__Impl )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8002:2: rule__Assignment__Group__6__Impl
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8001:1: ( rule__XXAssignment__Group__6__Impl )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8002:2: rule__XXAssignment__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__6__Impl_in_rule__Assignment__Group__616909);
-            rule__Assignment__Group__6__Impl();
+            pushFollow(FOLLOW_rule__XXAssignment__Group__6__Impl_in_rule__XXAssignment__Group__616909);
+            rule__XXAssignment__Group__6__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25012,30 +25012,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__6"
+    // $ANTLR end "rule__XXAssignment__Group__6"
 
 
-    // $ANTLR start "rule__Assignment__Group__6__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8008:1: rule__Assignment__Group__6__Impl : ( ( rule__Assignment__ExpressionAssignment_6 ) ) ;
-    public final void rule__Assignment__Group__6__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__Group__6__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8008:1: rule__XXAssignment__Group__6__Impl : ( ( rule__XXAssignment__ExpressionAssignment_6 ) ) ;
+    public final void rule__XXAssignment__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8012:1: ( ( ( rule__Assignment__ExpressionAssignment_6 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8013:1: ( ( rule__Assignment__ExpressionAssignment_6 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8012:1: ( ( ( rule__XXAssignment__ExpressionAssignment_6 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8013:1: ( ( rule__XXAssignment__ExpressionAssignment_6 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8013:1: ( ( rule__Assignment__ExpressionAssignment_6 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8014:1: ( rule__Assignment__ExpressionAssignment_6 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8013:1: ( ( rule__XXAssignment__ExpressionAssignment_6 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8014:1: ( rule__XXAssignment__ExpressionAssignment_6 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getExpressionAssignment_6()); 
+               before(grammarAccess.getXXAssignmentAccess().getExpressionAssignment_6()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8015:1: ( rule__Assignment__ExpressionAssignment_6 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8015:2: rule__Assignment__ExpressionAssignment_6
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8015:1: ( rule__XXAssignment__ExpressionAssignment_6 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8015:2: rule__XXAssignment__ExpressionAssignment_6
             {
-            pushFollow(FOLLOW_rule__Assignment__ExpressionAssignment_6_in_rule__Assignment__Group__6__Impl16936);
-            rule__Assignment__ExpressionAssignment_6();
+            pushFollow(FOLLOW_rule__XXAssignment__ExpressionAssignment_6_in_rule__XXAssignment__Group__6__Impl16936);
+            rule__XXAssignment__ExpressionAssignment_6();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25043,7 +25043,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getExpressionAssignment_6()); 
+               after(grammarAccess.getXXAssignmentAccess().getExpressionAssignment_6()); 
             }
 
             }
@@ -25063,26 +25063,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__Group__6__Impl"
+    // $ANTLR end "rule__XXAssignment__Group__6__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__0"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8039:1: rule__XPropertyExpression__Group__0 : rule__XPropertyExpression__Group__0__Impl rule__XPropertyExpression__Group__1 ;
-    public final void rule__XPropertyExpression__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__0"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8039:1: rule__XXPropertyExpression__Group__0 : rule__XXPropertyExpression__Group__0__Impl rule__XXPropertyExpression__Group__1 ;
+    public final void rule__XXPropertyExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8043:1: ( rule__XPropertyExpression__Group__0__Impl rule__XPropertyExpression__Group__1 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8044:2: rule__XPropertyExpression__Group__0__Impl rule__XPropertyExpression__Group__1
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8043:1: ( rule__XXPropertyExpression__Group__0__Impl rule__XXPropertyExpression__Group__1 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8044:2: rule__XXPropertyExpression__Group__0__Impl rule__XXPropertyExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__0__Impl_in_rule__XPropertyExpression__Group__016980);
-            rule__XPropertyExpression__Group__0__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__0__Impl_in_rule__XXPropertyExpression__Group__016980);
+            rule__XXPropertyExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__1_in_rule__XPropertyExpression__Group__016983);
-            rule__XPropertyExpression__Group__1();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__1_in_rule__XXPropertyExpression__Group__016983);
+            rule__XXPropertyExpression__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25101,12 +25101,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__0"
+    // $ANTLR end "rule__XXPropertyExpression__Group__0"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__0__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8051:1: rule__XPropertyExpression__Group__0__Impl : ( () ) ;
-    public final void rule__XPropertyExpression__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__0__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8051:1: rule__XXPropertyExpression__Group__0__Impl : ( () ) ;
+    public final void rule__XXPropertyExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -25118,7 +25118,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8057:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getXPropertyExpressionAction_0()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getXXPropertyExpressionAction_0()); 
             }
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8058:1: ()
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8060:1: 
@@ -25126,7 +25126,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getXPropertyExpressionAction_0()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getXXPropertyExpressionAction_0()); 
             }
 
             }
@@ -25142,26 +25142,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__0__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__0__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__1"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8070:1: rule__XPropertyExpression__Group__1 : rule__XPropertyExpression__Group__1__Impl rule__XPropertyExpression__Group__2 ;
-    public final void rule__XPropertyExpression__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__1"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8070:1: rule__XXPropertyExpression__Group__1 : rule__XXPropertyExpression__Group__1__Impl rule__XXPropertyExpression__Group__2 ;
+    public final void rule__XXPropertyExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8074:1: ( rule__XPropertyExpression__Group__1__Impl rule__XPropertyExpression__Group__2 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8075:2: rule__XPropertyExpression__Group__1__Impl rule__XPropertyExpression__Group__2
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8074:1: ( rule__XXPropertyExpression__Group__1__Impl rule__XXPropertyExpression__Group__2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8075:2: rule__XXPropertyExpression__Group__1__Impl rule__XXPropertyExpression__Group__2
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__1__Impl_in_rule__XPropertyExpression__Group__117041);
-            rule__XPropertyExpression__Group__1__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__1__Impl_in_rule__XXPropertyExpression__Group__117041);
+            rule__XXPropertyExpression__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__2_in_rule__XPropertyExpression__Group__117044);
-            rule__XPropertyExpression__Group__2();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__2_in_rule__XXPropertyExpression__Group__117044);
+            rule__XXPropertyExpression__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25180,12 +25180,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__1"
+    // $ANTLR end "rule__XXPropertyExpression__Group__1"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__1__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8082:1: rule__XPropertyExpression__Group__1__Impl : ( '[[' ) ;
-    public final void rule__XPropertyExpression__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__1__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8082:1: rule__XXPropertyExpression__Group__1__Impl : ( '[[' ) ;
+    public final void rule__XXPropertyExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -25197,11 +25197,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8088:1: '[['
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getLeftSquareBracketLeftSquareBracketKeyword_1()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getLeftSquareBracketLeftSquareBracketKeyword_1()); 
             }
-            match(input,92,FOLLOW_92_in_rule__XPropertyExpression__Group__1__Impl17072); if (state.failed) return ;
+            match(input,92,FOLLOW_92_in_rule__XXPropertyExpression__Group__1__Impl17072); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getLeftSquareBracketLeftSquareBracketKeyword_1()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getLeftSquareBracketLeftSquareBracketKeyword_1()); 
             }
 
             }
@@ -25221,26 +25221,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__1__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__1__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__2"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8101:1: rule__XPropertyExpression__Group__2 : rule__XPropertyExpression__Group__2__Impl rule__XPropertyExpression__Group__3 ;
-    public final void rule__XPropertyExpression__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__2"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8101:1: rule__XXPropertyExpression__Group__2 : rule__XXPropertyExpression__Group__2__Impl rule__XXPropertyExpression__Group__3 ;
+    public final void rule__XXPropertyExpression__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8105:1: ( rule__XPropertyExpression__Group__2__Impl rule__XPropertyExpression__Group__3 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8106:2: rule__XPropertyExpression__Group__2__Impl rule__XPropertyExpression__Group__3
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8105:1: ( rule__XXPropertyExpression__Group__2__Impl rule__XXPropertyExpression__Group__3 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8106:2: rule__XXPropertyExpression__Group__2__Impl rule__XXPropertyExpression__Group__3
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__2__Impl_in_rule__XPropertyExpression__Group__217103);
-            rule__XPropertyExpression__Group__2__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__2__Impl_in_rule__XXPropertyExpression__Group__217103);
+            rule__XXPropertyExpression__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__3_in_rule__XPropertyExpression__Group__217106);
-            rule__XPropertyExpression__Group__3();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__3_in_rule__XXPropertyExpression__Group__217106);
+            rule__XXPropertyExpression__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25259,30 +25259,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__2"
+    // $ANTLR end "rule__XXPropertyExpression__Group__2"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__2__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8113:1: rule__XPropertyExpression__Group__2__Impl : ( ( rule__XPropertyExpression__NodeAssignment_2 ) ) ;
-    public final void rule__XPropertyExpression__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__2__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8113:1: rule__XXPropertyExpression__Group__2__Impl : ( ( rule__XXPropertyExpression__NodeAssignment_2 ) ) ;
+    public final void rule__XXPropertyExpression__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8117:1: ( ( ( rule__XPropertyExpression__NodeAssignment_2 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8118:1: ( ( rule__XPropertyExpression__NodeAssignment_2 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8117:1: ( ( ( rule__XXPropertyExpression__NodeAssignment_2 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8118:1: ( ( rule__XXPropertyExpression__NodeAssignment_2 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8118:1: ( ( rule__XPropertyExpression__NodeAssignment_2 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8119:1: ( rule__XPropertyExpression__NodeAssignment_2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8118:1: ( ( rule__XXPropertyExpression__NodeAssignment_2 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8119:1: ( rule__XXPropertyExpression__NodeAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getNodeAssignment_2()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getNodeAssignment_2()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8120:1: ( rule__XPropertyExpression__NodeAssignment_2 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8120:2: rule__XPropertyExpression__NodeAssignment_2
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8120:1: ( rule__XXPropertyExpression__NodeAssignment_2 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8120:2: rule__XXPropertyExpression__NodeAssignment_2
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__NodeAssignment_2_in_rule__XPropertyExpression__Group__2__Impl17133);
-            rule__XPropertyExpression__NodeAssignment_2();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__NodeAssignment_2_in_rule__XXPropertyExpression__Group__2__Impl17133);
+            rule__XXPropertyExpression__NodeAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25290,7 +25290,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getNodeAssignment_2()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getNodeAssignment_2()); 
             }
 
             }
@@ -25310,26 +25310,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__2__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__2__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__3"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8130:1: rule__XPropertyExpression__Group__3 : rule__XPropertyExpression__Group__3__Impl rule__XPropertyExpression__Group__4 ;
-    public final void rule__XPropertyExpression__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__3"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8130:1: rule__XXPropertyExpression__Group__3 : rule__XXPropertyExpression__Group__3__Impl rule__XXPropertyExpression__Group__4 ;
+    public final void rule__XXPropertyExpression__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8134:1: ( rule__XPropertyExpression__Group__3__Impl rule__XPropertyExpression__Group__4 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8135:2: rule__XPropertyExpression__Group__3__Impl rule__XPropertyExpression__Group__4
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8134:1: ( rule__XXPropertyExpression__Group__3__Impl rule__XXPropertyExpression__Group__4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8135:2: rule__XXPropertyExpression__Group__3__Impl rule__XXPropertyExpression__Group__4
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__3__Impl_in_rule__XPropertyExpression__Group__317163);
-            rule__XPropertyExpression__Group__3__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__3__Impl_in_rule__XXPropertyExpression__Group__317163);
+            rule__XXPropertyExpression__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__4_in_rule__XPropertyExpression__Group__317166);
-            rule__XPropertyExpression__Group__4();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__4_in_rule__XXPropertyExpression__Group__317166);
+            rule__XXPropertyExpression__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25348,12 +25348,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__3"
+    // $ANTLR end "rule__XXPropertyExpression__Group__3"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__3__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8142:1: rule__XPropertyExpression__Group__3__Impl : ( '~>' ) ;
-    public final void rule__XPropertyExpression__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__3__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8142:1: rule__XXPropertyExpression__Group__3__Impl : ( '~>' ) ;
+    public final void rule__XXPropertyExpression__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -25365,11 +25365,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8148:1: '~>'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getTildeGreaterThanSignKeyword_3()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getTildeGreaterThanSignKeyword_3()); 
             }
-            match(input,93,FOLLOW_93_in_rule__XPropertyExpression__Group__3__Impl17194); if (state.failed) return ;
+            match(input,93,FOLLOW_93_in_rule__XXPropertyExpression__Group__3__Impl17194); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getTildeGreaterThanSignKeyword_3()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getTildeGreaterThanSignKeyword_3()); 
             }
 
             }
@@ -25389,26 +25389,26 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__3__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__3__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__4"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8161:1: rule__XPropertyExpression__Group__4 : rule__XPropertyExpression__Group__4__Impl rule__XPropertyExpression__Group__5 ;
-    public final void rule__XPropertyExpression__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__4"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8161:1: rule__XXPropertyExpression__Group__4 : rule__XXPropertyExpression__Group__4__Impl rule__XXPropertyExpression__Group__5 ;
+    public final void rule__XXPropertyExpression__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8165:1: ( rule__XPropertyExpression__Group__4__Impl rule__XPropertyExpression__Group__5 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8166:2: rule__XPropertyExpression__Group__4__Impl rule__XPropertyExpression__Group__5
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8165:1: ( rule__XXPropertyExpression__Group__4__Impl rule__XXPropertyExpression__Group__5 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8166:2: rule__XXPropertyExpression__Group__4__Impl rule__XXPropertyExpression__Group__5
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__4__Impl_in_rule__XPropertyExpression__Group__417225);
-            rule__XPropertyExpression__Group__4__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__4__Impl_in_rule__XXPropertyExpression__Group__417225);
+            rule__XXPropertyExpression__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__5_in_rule__XPropertyExpression__Group__417228);
-            rule__XPropertyExpression__Group__5();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__5_in_rule__XXPropertyExpression__Group__417228);
+            rule__XXPropertyExpression__Group__5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25427,30 +25427,30 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__4"
+    // $ANTLR end "rule__XXPropertyExpression__Group__4"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__4__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8173:1: rule__XPropertyExpression__Group__4__Impl : ( ( rule__XPropertyExpression__NameAssignment_4 ) ) ;
-    public final void rule__XPropertyExpression__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__4__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8173:1: rule__XXPropertyExpression__Group__4__Impl : ( ( rule__XXPropertyExpression__NameAssignment_4 ) ) ;
+    public final void rule__XXPropertyExpression__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8177:1: ( ( ( rule__XPropertyExpression__NameAssignment_4 ) ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8178:1: ( ( rule__XPropertyExpression__NameAssignment_4 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8177:1: ( ( ( rule__XXPropertyExpression__NameAssignment_4 ) ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8178:1: ( ( rule__XXPropertyExpression__NameAssignment_4 ) )
             {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8178:1: ( ( rule__XPropertyExpression__NameAssignment_4 ) )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8179:1: ( rule__XPropertyExpression__NameAssignment_4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8178:1: ( ( rule__XXPropertyExpression__NameAssignment_4 ) )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8179:1: ( rule__XXPropertyExpression__NameAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getNameAssignment_4()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getNameAssignment_4()); 
             }
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8180:1: ( rule__XPropertyExpression__NameAssignment_4 )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8180:2: rule__XPropertyExpression__NameAssignment_4
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8180:1: ( rule__XXPropertyExpression__NameAssignment_4 )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8180:2: rule__XXPropertyExpression__NameAssignment_4
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__NameAssignment_4_in_rule__XPropertyExpression__Group__4__Impl17255);
-            rule__XPropertyExpression__NameAssignment_4();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__NameAssignment_4_in_rule__XXPropertyExpression__Group__4__Impl17255);
+            rule__XXPropertyExpression__NameAssignment_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25458,7 +25458,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getNameAssignment_4()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getNameAssignment_4()); 
             }
 
             }
@@ -25478,21 +25478,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__4__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__4__Impl"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__5"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8190:1: rule__XPropertyExpression__Group__5 : rule__XPropertyExpression__Group__5__Impl ;
-    public final void rule__XPropertyExpression__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__5"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8190:1: rule__XXPropertyExpression__Group__5 : rule__XXPropertyExpression__Group__5__Impl ;
+    public final void rule__XXPropertyExpression__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8194:1: ( rule__XPropertyExpression__Group__5__Impl )
-            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8195:2: rule__XPropertyExpression__Group__5__Impl
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8194:1: ( rule__XXPropertyExpression__Group__5__Impl )
+            // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8195:2: rule__XXPropertyExpression__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__XPropertyExpression__Group__5__Impl_in_rule__XPropertyExpression__Group__517285);
-            rule__XPropertyExpression__Group__5__Impl();
+            pushFollow(FOLLOW_rule__XXPropertyExpression__Group__5__Impl_in_rule__XXPropertyExpression__Group__517285);
+            rule__XXPropertyExpression__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25511,12 +25511,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__5"
+    // $ANTLR end "rule__XXPropertyExpression__Group__5"
 
 
-    // $ANTLR start "rule__XPropertyExpression__Group__5__Impl"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8201:1: rule__XPropertyExpression__Group__5__Impl : ( ']]' ) ;
-    public final void rule__XPropertyExpression__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__Group__5__Impl"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8201:1: rule__XXPropertyExpression__Group__5__Impl : ( ']]' ) ;
+    public final void rule__XXPropertyExpression__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -25528,11 +25528,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:8207:1: ']]'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getRightSquareBracketRightSquareBracketKeyword_5()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getRightSquareBracketRightSquareBracketKeyword_5()); 
             }
-            match(input,94,FOLLOW_94_in_rule__XPropertyExpression__Group__5__Impl17313); if (state.failed) return ;
+            match(input,94,FOLLOW_94_in_rule__XXPropertyExpression__Group__5__Impl17313); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getRightSquareBracketRightSquareBracketKeyword_5()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getRightSquareBracketRightSquareBracketKeyword_5()); 
             }
 
             }
@@ -25552,7 +25552,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__Group__5__Impl"
+    // $ANTLR end "rule__XXPropertyExpression__Group__5__Impl"
 
 
     // $ANTLR start "rule__Quantification__Group__0"
@@ -69712,9 +69712,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArgumentList__ArgumentsAssignment_1_1"
 
 
-    // $ANTLR start "rule__Assignment__NodeAssignment_2"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24312:1: rule__Assignment__NodeAssignment_2 : ( ( RULE_ID ) ) ;
-    public final void rule__Assignment__NodeAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__NodeAssignment_2"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24312:1: rule__XXAssignment__NodeAssignment_2 : ( ( RULE_ID ) ) ;
+    public final void rule__XXAssignment__NodeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69726,23 +69726,23 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24318:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getNodeNodeDefinitionCrossReference_2_0()); 
+               before(grammarAccess.getXXAssignmentAccess().getNodeNodeDefinitionCrossReference_2_0()); 
             }
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24319:1: ( RULE_ID )
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24320:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
+               before(grammarAccess.getXXAssignmentAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Assignment__NodeAssignment_249032); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XXAssignment__NodeAssignment_249032); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
+               after(grammarAccess.getXXAssignmentAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getNodeNodeDefinitionCrossReference_2_0()); 
+               after(grammarAccess.getXXAssignmentAccess().getNodeNodeDefinitionCrossReference_2_0()); 
             }
 
             }
@@ -69762,12 +69762,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__NodeAssignment_2"
+    // $ANTLR end "rule__XXAssignment__NodeAssignment_2"
 
 
-    // $ANTLR start "rule__Assignment__PropertyAssignment_4"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24331:1: rule__Assignment__PropertyAssignment_4 : ( RULE_ID ) ;
-    public final void rule__Assignment__PropertyAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__PropertyAssignment_4"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24331:1: rule__XXAssignment__PropertyAssignment_4 : ( RULE_ID ) ;
+    public final void rule__XXAssignment__PropertyAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69779,11 +69779,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24337:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getPropertyIDTerminalRuleCall_4_0()); 
+               before(grammarAccess.getXXAssignmentAccess().getPropertyIDTerminalRuleCall_4_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Assignment__PropertyAssignment_449067); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XXAssignment__PropertyAssignment_449067); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getPropertyIDTerminalRuleCall_4_0()); 
+               after(grammarAccess.getXXAssignmentAccess().getPropertyIDTerminalRuleCall_4_0()); 
             }
 
             }
@@ -69803,12 +69803,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__PropertyAssignment_4"
+    // $ANTLR end "rule__XXAssignment__PropertyAssignment_4"
 
 
-    // $ANTLR start "rule__Assignment__ExpressionAssignment_6"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24346:1: rule__Assignment__ExpressionAssignment_6 : ( ruleXPrimaryExpression ) ;
-    public final void rule__Assignment__ExpressionAssignment_6() throws RecognitionException {
+    // $ANTLR start "rule__XXAssignment__ExpressionAssignment_6"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24346:1: rule__XXAssignment__ExpressionAssignment_6 : ( ruleXPrimaryExpression ) ;
+    public final void rule__XXAssignment__ExpressionAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69820,15 +69820,15 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24352:1: ruleXPrimaryExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getExpressionXPrimaryExpressionParserRuleCall_6_0()); 
+               before(grammarAccess.getXXAssignmentAccess().getExpressionXPrimaryExpressionParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleXPrimaryExpression_in_rule__Assignment__ExpressionAssignment_649098);
+            pushFollow(FOLLOW_ruleXPrimaryExpression_in_rule__XXAssignment__ExpressionAssignment_649098);
             ruleXPrimaryExpression();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getExpressionXPrimaryExpressionParserRuleCall_6_0()); 
+               after(grammarAccess.getXXAssignmentAccess().getExpressionXPrimaryExpressionParserRuleCall_6_0()); 
             }
 
             }
@@ -69848,12 +69848,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Assignment__ExpressionAssignment_6"
+    // $ANTLR end "rule__XXAssignment__ExpressionAssignment_6"
 
 
-    // $ANTLR start "rule__XPropertyExpression__NodeAssignment_2"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24361:1: rule__XPropertyExpression__NodeAssignment_2 : ( ( RULE_ID ) ) ;
-    public final void rule__XPropertyExpression__NodeAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__NodeAssignment_2"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24361:1: rule__XXPropertyExpression__NodeAssignment_2 : ( ( RULE_ID ) ) ;
+    public final void rule__XXPropertyExpression__NodeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69865,23 +69865,23 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24367:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionCrossReference_2_0()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getNodeNodeDefinitionCrossReference_2_0()); 
             }
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24368:1: ( RULE_ID )
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24369:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XPropertyExpression__NodeAssignment_249133); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XXPropertyExpression__NodeAssignment_249133); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_2_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getNodeNodeDefinitionCrossReference_2_0()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getNodeNodeDefinitionCrossReference_2_0()); 
             }
 
             }
@@ -69901,12 +69901,12 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__NodeAssignment_2"
+    // $ANTLR end "rule__XXPropertyExpression__NodeAssignment_2"
 
 
-    // $ANTLR start "rule__XPropertyExpression__NameAssignment_4"
-    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24380:1: rule__XPropertyExpression__NameAssignment_4 : ( RULE_ID ) ;
-    public final void rule__XPropertyExpression__NameAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__XXPropertyExpression__NameAssignment_4"
+    // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24380:1: rule__XXPropertyExpression__NameAssignment_4 : ( RULE_ID ) ;
+    public final void rule__XXPropertyExpression__NameAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69918,11 +69918,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // ../com.isax.validation.dsl.ui/src-gen/com/isax/validation/dsl/ui/contentassist/antlr/internal/InternalDsl.g:24386:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0()); 
+               before(grammarAccess.getXXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XPropertyExpression__NameAssignment_449168); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__XXPropertyExpression__NameAssignment_449168); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0()); 
+               after(grammarAccess.getXXPropertyExpressionAccess().getNameIDTerminalRuleCall_4_0()); 
             }
 
             }
@@ -69942,7 +69942,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XPropertyExpression__NameAssignment_4"
+    // $ANTLR end "rule__XXPropertyExpression__NameAssignment_4"
 
 
     // $ANTLR start "rule__Quantification__QuantorAssignment_0"
@@ -78945,7 +78945,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "3505:1: rule__XPrimaryExpression__Alternatives : ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXPropertyExpression ) | ( ruleAssignment ) );";
+            return "3505:1: rule__XPrimaryExpression__Alternatives : ( ( ruleXConstructorCall ) | ( ruleXBlockExpression ) | ( ruleXSwitchExpression ) | ( ( ruleXSynchronizedExpression ) ) | ( ruleXFeatureCall ) | ( ruleXLiteral ) | ( ruleXIfExpression ) | ( ( ruleXForLoopExpression ) ) | ( ruleXBasicForLoopExpression ) | ( ruleXWhileExpression ) | ( ruleXDoWhileExpression ) | ( ruleXThrowExpression ) | ( ruleXReturnExpression ) | ( ruleXTryCatchFinallyExpression ) | ( ruleXParenthesizedExpression ) | ( ruleXXPropertyExpression ) | ( ruleXXAssignment ) );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -82838,15 +82838,15 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleArgumentList_in_entryRuleArgumentList1568 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArgumentList1575 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArgumentList__Group__0_in_ruleArgumentList1601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignment_in_entryRuleAssignment1628 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAssignment1635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__0_in_ruleAssignment1661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXXAssignment_in_entryRuleXXAssignment1628 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXXAssignment1635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__0_in_ruleXXAssignment1661 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression1688 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXPrimaryExpression1695 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__XPrimaryExpression__Alternatives_in_ruleXPrimaryExpression1721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXPropertyExpression_in_entryRuleXPropertyExpression1748 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXPropertyExpression1755 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__0_in_ruleXPropertyExpression1781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXXPropertyExpression_in_entryRuleXXPropertyExpression1748 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXXPropertyExpression1755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__0_in_ruleXXPropertyExpression1781 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQuantification_in_entryRuleQuantification1808 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQuantification1815 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Quantification__Group__0_in_ruleQuantification1841 = new BitSet(new long[]{0x0000000000000002L});
@@ -83135,8 +83135,8 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleXReturnExpression_in_rule__XPrimaryExpression__Alternatives7643 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_rule__XPrimaryExpression__Alternatives7660 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_rule__XPrimaryExpression__Alternatives7677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXPropertyExpression_in_rule__XPrimaryExpression__Alternatives7694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignment_in_rule__XPrimaryExpression__Alternatives7711 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXXPropertyExpression_in_rule__XPrimaryExpression__Alternatives7694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXXAssignment_in_rule__XPrimaryExpression__Alternatives7711 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyValueExpression_in_rule__PropertyExpression__Alternatives7743 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyReferenceExpression_in_rule__PropertyExpression__Alternatives7760 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__XAnnotation__Group_3_1_0__0_in_rule__XAnnotation__Alternatives_3_17792 = new BitSet(new long[]{0x0000000000000002L});
@@ -83505,41 +83505,41 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_17_in_rule__ArgumentList__Group_1__0__Impl16450 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArgumentList__Group_1__1__Impl_in_rule__ArgumentList__Group_1__116481 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArgumentList__ArgumentsAssignment_1_1_in_rule__ArgumentList__Group_1__1__Impl16508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__016542 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__016545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__116603 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__116606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_rule__Assignment__Group__1__Impl16634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__216665 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__216668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__NodeAssignment_2_in_rule__Assignment__Group__2__Impl16695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__316725 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__4_in_rule__Assignment__Group__316728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Assignment__Group__3__Impl16756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__4__Impl_in_rule__Assignment__Group__416787 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__5_in_rule__Assignment__Group__416790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__PropertyAssignment_4_in_rule__Assignment__Group__4__Impl16817 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__5__Impl_in_rule__Assignment__Group__516847 = new BitSet(new long[]{0x00FF0000800001F0L,0x0805FE5215208800L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__6_in_rule__Assignment__Group__516850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_rule__Assignment__Group__5__Impl16878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__6__Impl_in_rule__Assignment__Group__616909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__ExpressionAssignment_6_in_rule__Assignment__Group__6__Impl16936 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__0__Impl_in_rule__XPropertyExpression__Group__016980 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__1_in_rule__XPropertyExpression__Group__016983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__1__Impl_in_rule__XPropertyExpression__Group__117041 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__2_in_rule__XPropertyExpression__Group__117044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_rule__XPropertyExpression__Group__1__Impl17072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__2__Impl_in_rule__XPropertyExpression__Group__217103 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__3_in_rule__XPropertyExpression__Group__217106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__NodeAssignment_2_in_rule__XPropertyExpression__Group__2__Impl17133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__3__Impl_in_rule__XPropertyExpression__Group__317163 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__4_in_rule__XPropertyExpression__Group__317166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_rule__XPropertyExpression__Group__3__Impl17194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__4__Impl_in_rule__XPropertyExpression__Group__417225 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__5_in_rule__XPropertyExpression__Group__417228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__NameAssignment_4_in_rule__XPropertyExpression__Group__4__Impl17255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__XPropertyExpression__Group__5__Impl_in_rule__XPropertyExpression__Group__517285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_rule__XPropertyExpression__Group__5__Impl17313 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__0__Impl_in_rule__XXAssignment__Group__016542 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__1_in_rule__XXAssignment__Group__016545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__1__Impl_in_rule__XXAssignment__Group__116603 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__2_in_rule__XXAssignment__Group__116606 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_rule__XXAssignment__Group__1__Impl16634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__2__Impl_in_rule__XXAssignment__Group__216665 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__3_in_rule__XXAssignment__Group__216668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__NodeAssignment_2_in_rule__XXAssignment__Group__2__Impl16695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__3__Impl_in_rule__XXAssignment__Group__316725 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__4_in_rule__XXAssignment__Group__316728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__XXAssignment__Group__3__Impl16756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__4__Impl_in_rule__XXAssignment__Group__416787 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__5_in_rule__XXAssignment__Group__416790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__PropertyAssignment_4_in_rule__XXAssignment__Group__4__Impl16817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__5__Impl_in_rule__XXAssignment__Group__516847 = new BitSet(new long[]{0x00FF0000800001F0L,0x0805FE5215208800L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__6_in_rule__XXAssignment__Group__516850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_rule__XXAssignment__Group__5__Impl16878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__Group__6__Impl_in_rule__XXAssignment__Group__616909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXAssignment__ExpressionAssignment_6_in_rule__XXAssignment__Group__6__Impl16936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__0__Impl_in_rule__XXPropertyExpression__Group__016980 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__1_in_rule__XXPropertyExpression__Group__016983 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__1__Impl_in_rule__XXPropertyExpression__Group__117041 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__2_in_rule__XXPropertyExpression__Group__117044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_rule__XXPropertyExpression__Group__1__Impl17072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__2__Impl_in_rule__XXPropertyExpression__Group__217103 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__3_in_rule__XXPropertyExpression__Group__217106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__NodeAssignment_2_in_rule__XXPropertyExpression__Group__2__Impl17133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__3__Impl_in_rule__XXPropertyExpression__Group__317163 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__4_in_rule__XXPropertyExpression__Group__317166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_rule__XXPropertyExpression__Group__3__Impl17194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__4__Impl_in_rule__XXPropertyExpression__Group__417225 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__5_in_rule__XXPropertyExpression__Group__417228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__NameAssignment_4_in_rule__XXPropertyExpression__Group__4__Impl17255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__XXPropertyExpression__Group__5__Impl_in_rule__XXPropertyExpression__Group__517285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_rule__XXPropertyExpression__Group__5__Impl17313 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Quantification__Group__0__Impl_in_rule__Quantification__Group__017356 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__Quantification__Group__1_in_rule__Quantification__Group__017359 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Quantification__QuantorAssignment_0_in_rule__Quantification__Group__0__Impl17386 = new BitSet(new long[]{0x0000000000000002L});
@@ -84805,11 +84805,11 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_ID_in_rule__Argument__NodeAssignment48931 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArgument_in_rule__ArgumentList__ArgumentsAssignment_048966 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArgument_in_rule__ArgumentList__ArgumentsAssignment_1_148997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Assignment__NodeAssignment_249032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Assignment__PropertyAssignment_449067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_rule__Assignment__ExpressionAssignment_649098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__XPropertyExpression__NodeAssignment_249133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__XPropertyExpression__NameAssignment_449168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__XXAssignment__NodeAssignment_249032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__XXAssignment__PropertyAssignment_449067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_rule__XXAssignment__ExpressionAssignment_649098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__XXPropertyExpression__NodeAssignment_249133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__XXPropertyExpression__NameAssignment_449168 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQuantor_in_rule__Quantification__QuantorAssignment_049199 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNodeDefinition_in_rule__Quantification__NodeAssignment_149230 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__Quantification__NodeSetAssignment_349265 = new BitSet(new long[]{0x0000000000000002L});

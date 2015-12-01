@@ -1,8 +1,8 @@
 package com.isax.validation.dsl.compilation;
 
-import com.isax.validation.dsl.dsl.Assignment;
 import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.XPropertyExpression;
+import com.isax.validation.dsl.dsl.XXAssignment;
+import com.isax.validation.dsl.dsl.XXPropertyExpression;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
@@ -11,11 +11,11 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 public class DslCompiler extends XbaseCompiler {
   @Override
   protected void doInternalToJavaStatement(final XExpression obj, final ITreeAppendable it, final boolean isReferenced) {
-    if ((obj instanceof XPropertyExpression)) {
-      this._toJavaStatement(((XPropertyExpression) obj), it, isReferenced);
+    if ((obj instanceof XXPropertyExpression)) {
+      this._toJavaStatement(((XXPropertyExpression) obj), it, isReferenced);
     } else {
-      if ((obj instanceof Assignment)) {
-        this._toJavaStatement(((Assignment) obj), it, isReferenced);
+      if ((obj instanceof XXAssignment)) {
+        this._toJavaStatement(((XXAssignment) obj), it, isReferenced);
       } else {
         super.doInternalToJavaStatement(obj, it, isReferenced);
       }
@@ -24,18 +24,18 @@ public class DslCompiler extends XbaseCompiler {
   
   @Override
   protected void internalToConvertedExpression(final XExpression obj, final ITreeAppendable it) {
-    if ((obj instanceof XPropertyExpression)) {
-      this._toJavaExpression(((XPropertyExpression) obj), it);
+    if ((obj instanceof XXPropertyExpression)) {
+      this._toJavaExpression(((XXPropertyExpression) obj), it);
     } else {
-      if ((obj instanceof Assignment)) {
-        this._toJavaExpression(((Assignment) obj), it);
+      if ((obj instanceof XXAssignment)) {
+        this._toJavaExpression(((XXAssignment) obj), it);
       } else {
         super.internalToConvertedExpression(obj, it);
       }
     }
   }
   
-  protected ITreeAppendable _toJavaStatement(final XPropertyExpression expr, final ITreeAppendable outerAppendable, final boolean isReferenced) {
+  protected ITreeAppendable _toJavaStatement(final XXPropertyExpression expr, final ITreeAppendable outerAppendable, final boolean isReferenced) {
     ITreeAppendable _xblockexpression = null;
     {
       final ITreeAppendable b = outerAppendable.trace(expr, false);
@@ -73,7 +73,7 @@ public class DslCompiler extends XbaseCompiler {
     return _xblockexpression;
   }
   
-  protected ITreeAppendable _toJavaStatement(final Assignment expr, final ITreeAppendable outerAppendable, final boolean isReferenced) {
+  protected ITreeAppendable _toJavaStatement(final XXAssignment expr, final ITreeAppendable outerAppendable, final boolean isReferenced) {
     ITreeAppendable _xblockexpression = null;
     {
       final ITreeAppendable b = outerAppendable.trace(expr, false);
@@ -110,7 +110,18 @@ public class DslCompiler extends XbaseCompiler {
           _append.append(" = ");
           XExpression _expression_2 = expr.getExpression();
           this.internalToConvertedExpression(_expression_2, b);
-          _xblockexpression_1 = b.append(";");
+          b.append(";");
+          ITreeAppendable _newLine_1 = b.newLine();
+          NodeDefinition _node = expr.getNode();
+          String _name = _node.getName();
+          ITreeAppendable _append_1 = _newLine_1.append(_name);
+          _append_1.append(".setProperty(\"");
+          String _property = expr.getProperty();
+          ITreeAppendable _append_2 = b.append(_property);
+          ITreeAppendable _append_3 = _append_2.append("\", ");
+          String _varName_1 = this.getVarName(expr, b);
+          _append_3.append(_varName_1);
+          _xblockexpression_1 = b.append(");");
         }
         _xifexpression = _xblockexpression_1;
       }
@@ -119,13 +130,13 @@ public class DslCompiler extends XbaseCompiler {
     return _xblockexpression;
   }
   
-  protected ITreeAppendable _toJavaExpression(final XPropertyExpression expr, final ITreeAppendable b) {
+  protected ITreeAppendable _toJavaExpression(final XXPropertyExpression expr, final ITreeAppendable b) {
     ITreeAppendable _trace = b.trace(expr, false);
     String _varName = this.getVarName(expr, b);
     return _trace.append(_varName);
   }
   
-  protected ITreeAppendable _toJavaExpression(final Assignment expr, final ITreeAppendable b) {
+  protected ITreeAppendable _toJavaExpression(final XXAssignment expr, final ITreeAppendable b) {
     ITreeAppendable _trace = b.trace(expr, false);
     String _varName = this.getVarName(expr, b);
     return _trace.append(_varName);

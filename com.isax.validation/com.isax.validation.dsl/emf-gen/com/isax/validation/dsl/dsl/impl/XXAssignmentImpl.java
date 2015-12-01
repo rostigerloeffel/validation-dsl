@@ -4,31 +4,47 @@ package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
-import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
+import com.isax.validation.dsl.dsl.XXAssignment;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.xtext.xbase.XExpression;
+
+import org.eclipse.xtext.xbase.impl.XExpressionImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Property Reference Expression</b></em>'.
+ * An implementation of the model object '<em><b>XX Assignment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.PropertyReferenceExpressionImpl#getNode <em>Node</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.PropertyReferenceExpressionImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.XXAssignmentImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.XXAssignmentImpl#getNode <em>Node</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.XXAssignmentImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl implements PropertyReferenceExpression
+public class XXAssignmentImpl extends XExpressionImpl implements XXAssignment
 {
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected XExpression expression;
+
 	/**
 	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -64,7 +80,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PropertyReferenceExpressionImpl()
+	protected XXAssignmentImpl()
 	{
 		super();
 	}
@@ -77,7 +93,55 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	@Override
 	protected EClass eStaticClass()
 	{
-		return DslPackage.Literals.PROPERTY_REFERENCE_EXPRESSION;
+		return DslPackage.Literals.XX_ASSIGNMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XExpression getExpression()
+	{
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExpression(XExpression newExpression, NotificationChain msgs)
+	{
+		XExpression oldExpression = expression;
+		expression = newExpression;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.XX_ASSIGNMENT__EXPRESSION, oldExpression, newExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExpression(XExpression newExpression)
+	{
+		if (newExpression != expression)
+		{
+			NotificationChain msgs = null;
+			if (expression != null)
+				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.XX_ASSIGNMENT__EXPRESSION, null, msgs);
+			if (newExpression != null)
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.XX_ASSIGNMENT__EXPRESSION, null, msgs);
+			msgs = basicSetExpression(newExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.XX_ASSIGNMENT__EXPRESSION, newExpression, newExpression));
 	}
 
 	/**
@@ -94,7 +158,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 			if (node != oldNode)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE, oldNode, node));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslPackage.XX_ASSIGNMENT__NODE, oldNode, node));
 			}
 		}
 		return node;
@@ -120,7 +184,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 		NodeDefinition oldNode = node;
 		node = newNode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE, oldNode, node));
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.XX_ASSIGNMENT__NODE, oldNode, node));
 	}
 
 	/**
@@ -143,7 +207,23 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 		String oldProperty = property;
 		property = newProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, oldProperty, property));
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.XX_ASSIGNMENT__PROPERTY, oldProperty, property));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case DslPackage.XX_ASSIGNMENT__EXPRESSION:
+				return basicSetExpression(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -156,10 +236,12 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	{
 		switch (featureID)
 		{
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE:
+			case DslPackage.XX_ASSIGNMENT__EXPRESSION:
+				return getExpression();
+			case DslPackage.XX_ASSIGNMENT__NODE:
 				if (resolve) return getNode();
 				return basicGetNode();
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
+			case DslPackage.XX_ASSIGNMENT__PROPERTY:
 				return getProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -175,10 +257,13 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	{
 		switch (featureID)
 		{
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE:
+			case DslPackage.XX_ASSIGNMENT__EXPRESSION:
+				setExpression((XExpression)newValue);
+				return;
+			case DslPackage.XX_ASSIGNMENT__NODE:
 				setNode((NodeDefinition)newValue);
 				return;
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
+			case DslPackage.XX_ASSIGNMENT__PROPERTY:
 				setProperty((String)newValue);
 				return;
 		}
@@ -195,10 +280,13 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	{
 		switch (featureID)
 		{
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE:
+			case DslPackage.XX_ASSIGNMENT__EXPRESSION:
+				setExpression((XExpression)null);
+				return;
+			case DslPackage.XX_ASSIGNMENT__NODE:
 				setNode((NodeDefinition)null);
 				return;
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
+			case DslPackage.XX_ASSIGNMENT__PROPERTY:
 				setProperty(PROPERTY_EDEFAULT);
 				return;
 		}
@@ -215,9 +303,11 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	{
 		switch (featureID)
 		{
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE:
+			case DslPackage.XX_ASSIGNMENT__EXPRESSION:
+				return expression != null;
+			case DslPackage.XX_ASSIGNMENT__NODE:
 				return node != null;
-			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
+			case DslPackage.XX_ASSIGNMENT__PROPERTY:
 				return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
 		}
 		return super.eIsSet(featureID);
@@ -234,10 +324,10 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (Property: ");
+		result.append(" (property: ");
 		result.append(property);
 		result.append(')');
 		return result.toString();
 	}
 
-} //PropertyReferenceExpressionImpl
+} //XXAssignmentImpl
