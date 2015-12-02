@@ -17,11 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.validation.Check;
 
-/**
- * Custom validation rules.
- * 
- * see http://www.eclipse.org/Xtext/documentation.html#validation
- */
 @SuppressWarnings("all")
 public class DslValidator extends AbstractDslValidator {
   @Check

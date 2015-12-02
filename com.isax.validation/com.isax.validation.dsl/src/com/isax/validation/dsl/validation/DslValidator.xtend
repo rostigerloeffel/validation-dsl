@@ -12,13 +12,8 @@ import org.eclipse.xtext.validation.Check
 
 import static extension com.isax.validation.dsl.util.DslUtil.collectionAxis
 
-/**
- * Custom validation rules. 
- *
- * see http://www.eclipse.org/Xtext/documentation.html#validation
- */
 class DslValidator extends AbstractDslValidator {
-	
+
 	@Check
 	def refersSet(Quantification quantification) {
 		if (!quantification.nodeSet.collection) {

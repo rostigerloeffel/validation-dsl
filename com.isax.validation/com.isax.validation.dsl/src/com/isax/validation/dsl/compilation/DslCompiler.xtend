@@ -49,7 +49,6 @@ class DslCompiler extends XbaseCompiler {
 			b.newLine.append(getVarName(expr, b)).append(" = ")
 			internalToConvertedExpression(expr.expression, b)
 			b.append(";")
-			
 			b.newLine.append(expr.node.name).append(".setProperty(\"")
 			b.append(expr.property).append("\", ").append(getVarName(expr, b))
 			b.append(");")
