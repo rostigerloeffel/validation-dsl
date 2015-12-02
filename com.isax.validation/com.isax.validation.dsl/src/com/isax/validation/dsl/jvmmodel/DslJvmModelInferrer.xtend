@@ -243,7 +243,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		DefinitionSentence sentence
 	) '''
 		«val target = sentence.target»
-		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, target.axis, sentence.node, target.definition.selectors, target.body)»
+		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, target.axis, sentence.node, target.definition.selectors, target.body, target)»
 	'''
 
 	def quantifiedDefinition(
@@ -253,31 +253,54 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			boolean «SATISFIED»«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for («ResolvingNode.simpleName» «sentence.quantification.node.uniqueName» : «sentence.quantification.nodeSet.uniqueName») {
 				«val target = sentence.target»
-				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body)»
+				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body, sentence.target)»
 				«SATISFIED»«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
 			}
 			if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
 		}
 	'''
 
-	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, Axis axis, NodeDefinition source, SelectorList types, BodySentences body) '''
+	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, Axis axis, NodeDefinition source, SelectorList types, BodySentences body, TargetDefinition target) '''
 		«val localName = if (local != null) local.uniqueName else INPUT_NODE + assignee.uniqueSuffix»
-		«TRAVERSER_FIELD».«axis.getName().toLowerCase»(«source.uniqueName», («ResolvingNode.simpleName» «localName») -> {		
-			«names.map(assignee, localName)»
-			boolean «SATISFIED»«assignee.uniqueSuffix» = true;
-			«IF types != null»
-				«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
-			«ENDIF»
-			«IF body != null»
-				«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {
-					«compileBody(body, true)»
-					return true;
-				});
-			«ENDIF»
-			return «SATISFIED»«assignee.uniqueSuffix»;
-			«names.unmap(assignee)»
-		});
+		«TRAVERSER_FIELD».«axis.getName().toLowerCase»(«source.uniqueName», 
+			(«ResolvingNode.simpleName» «localName») -> {		
+				«names.map(assignee, localName)»
+				boolean «SATISFIED»«assignee.uniqueSuffix» = true;
+				«IF types != null»
+					«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
+				«ENDIF»
+				«IF body != null»
+					«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {
+						«compileBody(body, true)»
+						return true;
+					});
+				«ENDIF»
+				return «SATISFIED»«assignee.uniqueSuffix»;
+				«names.unmap(assignee)»
+			}, 
+			(«ResolvingNode.simpleName» «localName») -> { 
+				«IF target?.then != null»
+					«ASSIGNMENT_CLASS»«target.then.hashCode».«ASSIGMENT_METHOD»(«parameterLineCall(target, localName)»);
+				«ENDIF»
+			});
 	'''
+	
+	def parameters(TargetDefinition target) {
+		target.visibleDefinitions[true].allElements.map[d|d.EObjectOrProxy].filter(NodeDefinition)
+	}
+	
+	def parameterLineCall(TargetDefinition target, String localName) {
+		parameters(target).map[d|
+			if (target.local == null && d.equals(target.definition)) 
+				localName 
+			else 
+				d.uniqueName
+		].join(", ")
+	}
+	
+//	def parameterLineDef(TargetDefinition target) {
+//		parameters(target).map[d|definitionTypeRef(d).simpleName + " " + d.uniqueName].join(", ")
+//	}
 
 	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier) {
 		switch (qualifier) {

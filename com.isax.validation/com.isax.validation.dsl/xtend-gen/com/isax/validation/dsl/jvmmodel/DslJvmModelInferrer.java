@@ -685,7 +685,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     NodeDefinition _definition_3 = target.getDefinition();
     SelectorList _selectors = _definition_3.getSelectors();
     BodySentences _body = target.getBody();
-    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node, _selectors, _body);
+    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node, _selectors, _body, target);
     _builder.append(_nodeAssignmentStatement, "");
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -749,7 +749,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     SelectorList _selectors = _definition_3.getSelectors();
     TargetDefinition _target_4 = sentence.getTarget();
     BodySentences _body = _target_4.getBody();
-    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node_1, _selectors, _body);
+    TargetDefinition _target_5 = sentence.getTarget();
+    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node_1, _selectors, _body, _target_5);
     _builder.append(_nodeAssignmentStatement, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -762,8 +763,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _quantorSatisfactionRelation = this.quantorSatisfactionRelation(_quantor);
     _builder.append(_quantorSatisfactionRelation, "\t\t");
     _builder.append(" ");
-    TargetDefinition _target_5 = sentence.getTarget();
-    NodeDefinition _definition_4 = _target_5.getDefinition();
+    TargetDefinition _target_6 = sentence.getTarget();
+    NodeDefinition _definition_4 = _target_6.getDefinition();
     RelationQualifier _qualifier_1 = sentence.getQualifier();
     String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition_4, _qualifier_1);
     _builder.append(_qualifierSatisfiedStatement, "\t\t");
@@ -788,7 +789,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
-  public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final NodeDefinition local, final Axis axis, final NodeDefinition source, final SelectorList types, final BodySentences body) {
+  public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final NodeDefinition local, final Axis axis, final NodeDefinition source, final SelectorList types, final BodySentences body, final TargetDefinition target) {
     StringConcatenation _builder = new StringConcatenation();
     String _xifexpression = null;
     boolean _notEquals = (!Objects.equal(local, null));
@@ -808,35 +809,38 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("(");
     String _uniqueName = this.names.uniqueName(source);
     _builder.append(_uniqueName, "");
-    _builder.append(", (");
+    _builder.append(", ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("(");
     String _simpleName = ResolvingNode.class.getSimpleName();
-    _builder.append(_simpleName, "");
+    _builder.append(_simpleName, "\t");
     _builder.append(" ");
-    _builder.append(localName, "");
+    _builder.append(localName, "\t");
     _builder.append(") -> {\t\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
+    _builder.append("\t\t");
     Object _map = this.names.map(assignee, localName);
-    _builder.append(_map, "\t");
+    _builder.append(_map, "\t\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
+    _builder.append("\t\t");
     _builder.append("boolean ");
-    _builder.append(DslJvmModelInferrer.SATISFIED, "\t");
+    _builder.append(DslJvmModelInferrer.SATISFIED, "\t\t");
     String _uniqueSuffix_1 = this.names.uniqueSuffix(assignee);
-    _builder.append(_uniqueSuffix_1, "\t");
+    _builder.append(_uniqueSuffix_1, "\t\t");
     _builder.append(" = true;");
     _builder.newLineIfNotEmpty();
     {
       boolean _notEquals_1 = (!Objects.equal(types, null));
       if (_notEquals_1) {
-        _builder.append("\t");
-        _builder.append(DslJvmModelInferrer.SATISFIED, "\t");
+        _builder.append("\t\t");
+        _builder.append(DslJvmModelInferrer.SATISFIED, "\t\t");
         String _uniqueSuffix_2 = this.names.uniqueSuffix(assignee);
-        _builder.append(_uniqueSuffix_2, "\t");
+        _builder.append(_uniqueSuffix_2, "\t\t");
         _builder.append(" &= ");
-        _builder.append(DslJvmModelInferrer.PREDICATES_FIELD, "\t");
+        _builder.append(DslJvmModelInferrer.PREDICATES_FIELD, "\t\t");
         _builder.append(".hasType(");
-        _builder.append(localName, "\t");
+        _builder.append(localName, "\t\t");
         _builder.append(", \"");
         SelectorListDef _selectors = types.getSelectors();
         EList<Selector> _selectors_1 = _selectors.getSelectors();
@@ -844,7 +848,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           return s.getType();
         };
         String _join = IterableExtensions.<Selector>join(_selectors_1, "\", \"", _function);
-        _builder.append(_join, "\t");
+        _builder.append(_join, "\t\t");
         _builder.append("\");");
         _builder.newLineIfNotEmpty();
       }
@@ -852,40 +856,111 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     {
       boolean _notEquals_2 = (!Objects.equal(body, null));
       if (_notEquals_2) {
-        _builder.append("\t");
-        _builder.append(DslJvmModelInferrer.SATISFIED, "\t");
+        _builder.append("\t\t");
+        _builder.append(DslJvmModelInferrer.SATISFIED, "\t\t");
         String _uniqueSuffix_3 = this.names.uniqueSuffix(assignee);
-        _builder.append(_uniqueSuffix_3, "\t");
+        _builder.append(_uniqueSuffix_3, "\t\t");
         _builder.append(" &= eval(() -> {");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
+        _builder.append("\t\t");
         _builder.append("\t");
         CharSequence _compileBody = this.compileBody(body, true);
-        _builder.append(_compileBody, "\t\t");
+        _builder.append(_compileBody, "\t\t\t");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
+        _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("return true;");
         _builder.newLine();
-        _builder.append("\t");
+        _builder.append("\t\t");
         _builder.append("});");
         _builder.newLine();
       }
     }
-    _builder.append("\t");
+    _builder.append("\t\t");
     _builder.append("return ");
-    _builder.append(DslJvmModelInferrer.SATISFIED, "\t");
+    _builder.append(DslJvmModelInferrer.SATISFIED, "\t\t");
     String _uniqueSuffix_4 = this.names.uniqueSuffix(assignee);
-    _builder.append(_uniqueSuffix_4, "\t");
+    _builder.append(_uniqueSuffix_4, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
+    _builder.append("\t\t");
     Object _unmap = this.names.unmap(assignee);
-    _builder.append(_unmap, "\t");
+    _builder.append(_unmap, "\t\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}, ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("(");
+    String _simpleName_1 = ResolvingNode.class.getSimpleName();
+    _builder.append(_simpleName_1, "\t");
+    _builder.append(" ");
+    _builder.append(localName, "\t");
+    _builder.append(") -> { ");
+    _builder.newLineIfNotEmpty();
+    {
+      XExpression _then = null;
+      if (target!=null) {
+        _then=target.getThen();
+      }
+      boolean _notEquals_3 = (!Objects.equal(_then, null));
+      if (_notEquals_3) {
+        _builder.append("\t\t");
+        _builder.append(DslJvmModelInferrer.ASSIGNMENT_CLASS, "\t\t");
+        XExpression _then_1 = target.getThen();
+        int _hashCode = _then_1.hashCode();
+        _builder.append(_hashCode, "\t\t");
+        _builder.append(".");
+        _builder.append(DslJvmModelInferrer.ASSIGMENT_METHOD, "\t\t");
+        _builder.append("(");
+        String _parameterLineCall = this.parameterLineCall(target, localName);
+        _builder.append(_parameterLineCall, "\t\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
     _builder.append("});");
     _builder.newLine();
     return _builder;
+  }
+  
+  public Iterable<NodeDefinition> parameters(final TargetDefinition target) {
+    final Function1<NodeDefinition, Boolean> _function = (NodeDefinition it) -> {
+      return Boolean.valueOf(true);
+    };
+    IScope _visibleDefinitions = DslUtil.visibleDefinitions(target, _function);
+    Iterable<IEObjectDescription> _allElements = _visibleDefinitions.getAllElements();
+    final Function1<IEObjectDescription, EObject> _function_1 = (IEObjectDescription d) -> {
+      return d.getEObjectOrProxy();
+    };
+    Iterable<EObject> _map = IterableExtensions.<IEObjectDescription, EObject>map(_allElements, _function_1);
+    return Iterables.<NodeDefinition>filter(_map, NodeDefinition.class);
+  }
+  
+  public String parameterLineCall(final TargetDefinition target, final String localName) {
+    Iterable<NodeDefinition> _parameters = this.parameters(target);
+    final Function1<NodeDefinition, String> _function = (NodeDefinition d) -> {
+      String _xifexpression = null;
+      boolean _and = false;
+      NodeDefinition _local = target.getLocal();
+      boolean _equals = Objects.equal(_local, null);
+      if (!_equals) {
+        _and = false;
+      } else {
+        NodeDefinition _definition = target.getDefinition();
+        boolean _equals_1 = d.equals(_definition);
+        _and = _equals_1;
+      }
+      if (_and) {
+        _xifexpression = localName;
+      } else {
+        _xifexpression = this.names.uniqueName(d);
+      }
+      return _xifexpression;
+    };
+    Iterable<String> _map = IterableExtensions.<NodeDefinition, String>map(_parameters, _function);
+    return IterableExtensions.join(_map, ", ");
   }
   
   public String qualifierSatisfiedStatement(final NodeDefinition node, final RelationQualifier qualifier) {

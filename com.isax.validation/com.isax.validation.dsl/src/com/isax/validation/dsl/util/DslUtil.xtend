@@ -78,7 +78,11 @@ class DslUtil {
 	}
 	
 	private def static dispatch sentenceDefinitions(DefinitionSentence sentence) {
-		Arrays.asList(sentence.quantification?.node, sentence.target?.definition, sentence.target?.local).filterNull
+		val target = sentence.target
+		Arrays.asList(
+			sentence.quantification?.node, 
+			if (target?.definition?.collection != true) target.definition else null,  
+			target?.local
+		).filterNull
 	}
-
 }

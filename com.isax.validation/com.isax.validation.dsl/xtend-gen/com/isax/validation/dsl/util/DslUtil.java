@@ -189,23 +189,37 @@ public class DslUtil {
   }
   
   private static Iterable<NodeDefinition> _sentenceDefinitions(final DefinitionSentence sentence) {
-    Quantification _quantification = sentence.getQuantification();
-    NodeDefinition _node = null;
-    if (_quantification!=null) {
-      _node=_quantification.getNode();
+    Iterable<NodeDefinition> _xblockexpression = null;
+    {
+      final TargetDefinition target = sentence.getTarget();
+      Quantification _quantification = sentence.getQuantification();
+      NodeDefinition _node = null;
+      if (_quantification!=null) {
+        _node=_quantification.getNode();
+      }
+      NodeDefinition _xifexpression = null;
+      NodeDefinition _definition = null;
+      if (target!=null) {
+        _definition=target.getDefinition();
+      }
+      boolean _isCollection = false;
+      if (_definition!=null) {
+        _isCollection=_definition.isCollection();
+      }
+      boolean _notEquals = (_isCollection != true);
+      if (_notEquals) {
+        _xifexpression = target.getDefinition();
+      } else {
+        _xifexpression = null;
+      }
+      NodeDefinition _local = null;
+      if (target!=null) {
+        _local=target.getLocal();
+      }
+      List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_node, _xifexpression, _local);
+      _xblockexpression = IterableExtensions.<NodeDefinition>filterNull(_asList);
     }
-    TargetDefinition _target = sentence.getTarget();
-    NodeDefinition _definition = null;
-    if (_target!=null) {
-      _definition=_target.getDefinition();
-    }
-    TargetDefinition _target_1 = sentence.getTarget();
-    NodeDefinition _local = null;
-    if (_target_1!=null) {
-      _local=_target_1.getLocal();
-    }
-    List<NodeDefinition> _asList = Arrays.<NodeDefinition>asList(_node, _definition, _local);
-    return IterableExtensions.<NodeDefinition>filterNull(_asList);
+    return _xblockexpression;
   }
   
   private static IScope scopeForSentence(final Sentence startOn, final Function1<? super NodeDefinition, Boolean> predicate) {
