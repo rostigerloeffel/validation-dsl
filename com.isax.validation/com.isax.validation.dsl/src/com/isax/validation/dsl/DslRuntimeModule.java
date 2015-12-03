@@ -4,6 +4,7 @@
 package com.isax.validation.dsl;
 
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
+import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
@@ -11,6 +12,7 @@ import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import com.google.inject.Binder;
 import com.isax.validation.dsl.compilation.DslCompiler;
 import com.isax.validation.dsl.scoping.DslScopeProvider;
+import com.isax.validation.dsl.scoping.NullGlobalScopeProvider;
 import com.isax.validation.types.DslTypeComputer;
 
 /**
@@ -24,6 +26,11 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 		return DslScopeProvider.class;
 	}
 
+	@Override
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return NullGlobalScopeProvider.class;
+	}
+	
 	@Override
 	public void configureLinkingIScopeProvider(Binder binder) {
 		binder.bind(IScopeProvider.class).annotatedWith(LinkingScopeProviderBinding.class).to(DslScopeProvider.class);
