@@ -1,10 +1,20 @@
 package com.isax.validation.dsl.util
 
-import com.isax.validation.dsl.dsl.Axis
+import com.isax.validation.dsl.dsl.Ancestor
 import com.isax.validation.dsl.dsl.BodySentences
+import com.isax.validation.dsl.dsl.CanHave
+import com.isax.validation.dsl.dsl.Child
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.Descendant
+import com.isax.validation.dsl.dsl.MustHave
+import com.isax.validation.dsl.dsl.MustNotHave
 import com.isax.validation.dsl.dsl.NodeDefinition
+import com.isax.validation.dsl.dsl.One
+import com.isax.validation.dsl.dsl.Parent
+import com.isax.validation.dsl.dsl.RelationAxis
+import com.isax.validation.dsl.dsl.RelationQualifier
+import com.isax.validation.dsl.dsl.RelationQuantifier
 import com.isax.validation.dsl.dsl.Sentence
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.Validator
@@ -24,9 +34,9 @@ class DslUtil {
 		object.hashCode
 	}
 	
-	def static collectionAxis(Axis axis) {
-		axis == Axis.ANCESTORS || axis == Axis.DESCENDANTS || axis == Axis.CHILDREN || axis == Axis.PARENTS
-	}
+//	def static collectionAxis(Axis axis) {
+//		axis == Axis.ANCESTORS || axis == Axis.DESCENDANTS || axis == Axis.CHILDREN || axis == Axis.PARENTS
+//	}
 	
 	def static path(EObject object) {
 		var path = new ArrayList<Integer>();
@@ -66,10 +76,10 @@ class DslUtil {
 		siblings += parentBody.sentences.indexed
 				.filter[s|s.key < index].map[s|s.value]
 				.filter(DefinitionSentence).map[s|s.target.definition]
-		siblings += parentBody.sentences.indexed
-				.filter[s|s.key < index].map[s|s.value]
-				.filter(DefinitionSentence)
-				.filter[s|s.target.local != null].map[s|s.target.local]
+//		siblings += parentBody.sentences.indexed
+//				.filter[s|s.key < index].map[s|s.value]
+//				.filter(DefinitionSentence)
+//				.filter[s|s.target.local != null].map[s|s.target.local]
 		siblings
 	}
 	
@@ -84,5 +94,42 @@ class DslUtil {
 			if (target?.definition?.collection != true) target.definition else null,  
 			target?.local
 		).filterNull
+	}
+	
+	public def static dispatch name(RelationQualifier qualifier) {
+		return switch (qualifier) {
+			MustHave: "mustHave"
+			MustNotHave: "mustNotHave"
+			CanHave: "canHave"
+			default: ""
+		}
+	}
+	
+	public def static dispatch name(RelationAxis axis) {
+		return switch (axis) {
+			Parent: "parent"
+			Child: "child"
+			Ancestor: "ancestor"
+			Descendant:  "descendant"
+			default: ""
+		}
+	}
+	
+	public def static dispatch name(RelationAxis axis, RelationQuantifier quantifier) {
+		return switch (quantifier) {
+			One: switch (axis) {
+				Parent: "parent"
+				Child: "child"
+				Ancestor: "ancestor"
+				Descendant:  "descendant"
+			}
+			
+			default: switch (axis) {
+				Parent: "parents"
+				Child: "children"
+				Ancestor: "ancestors"
+				Descendant:  "descendants"
+			}
+		}
 	}
 }

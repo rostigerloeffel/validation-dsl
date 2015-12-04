@@ -22,8 +22,13 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected DslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Ancestor_AncestorKeyword_1_0_or_AncestorsKeyword_1_1;
 	protected AbstractElementAlias match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1;
+	protected AbstractElementAlias match_Child_ChildKeyword_1_0_or_ChildrenKeyword_1_1;
+	protected AbstractElementAlias match_Descendant_DescendantKeyword_1_0_or_DescendantsKeyword_1_1;
 	protected AbstractElementAlias match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0;
+	protected AbstractElementAlias match_One_OneKeyword_1_q;
+	protected AbstractElementAlias match_Parent_ParentKeyword_1_0_or_ParentsKeyword_1_1;
 	protected AbstractElementAlias match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
 	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
@@ -35,8 +40,13 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (DslGrammarAccess) access;
+		match_Ancestor_AncestorKeyword_1_0_or_AncestorsKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAncestorAccess().getAncestorKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAncestorAccess().getAncestorsKeyword_1_1()));
 		match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndExpressionAccess().getAndKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getAndExpressionAccess().getCommaKeyword_1_1_1()));
+		match_Child_ChildKeyword_1_0_or_ChildrenKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getChildAccess().getChildKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getChildAccess().getChildrenKeyword_1_1()));
+		match_Descendant_DescendantKeyword_1_0_or_DescendantsKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getDescendantAccess().getDescendantKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDescendantAccess().getDescendantsKeyword_1_1()));
 		match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getEqualsSignGreaterThanSignKeyword_1_1_1()), new TokenAlias(false, false, grammarAccess.getImpliesExpressionAccess().getImpliesKeyword_1_1_0()));
+		match_One_OneKeyword_1_q = new TokenAlias(false, true, grammarAccess.getOneAccess().getOneKeyword_1());
+		match_Parent_ParentKeyword_1_0_or_ParentsKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getParentAccess().getParentKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getParentAccess().getParentsKeyword_1_1()));
 		match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getRightParenthesisKeyword_3_2()));
 		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
@@ -48,9 +58,9 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if(ruleCall.getRule() == grammarAccess.getArrayBracketsRule())
+		if (ruleCall.getRule() == grammarAccess.getArrayBracketsRule())
 			return getArrayBracketsToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
+		else if (ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
 			return getOpSingleAssignToken(semanticObject, ruleCall, node);
 		return "";
 	}
@@ -83,28 +93,49 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1.equals(syntax))
+			if (match_Ancestor_AncestorKeyword_1_0_or_AncestorsKeyword_1_1.equals(syntax))
+				emit_Ancestor_AncestorKeyword_1_0_or_AncestorsKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1.equals(syntax))
 				emit_AndExpression_AndKeyword_1_1_0_or_CommaKeyword_1_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0.equals(syntax))
+			else if (match_Child_ChildKeyword_1_0_or_ChildrenKeyword_1_1.equals(syntax))
+				emit_Child_ChildKeyword_1_0_or_ChildrenKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Descendant_DescendantKeyword_1_0_or_DescendantsKeyword_1_1.equals(syntax))
+				emit_Descendant_DescendantKeyword_1_0_or_DescendantsKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0.equals(syntax))
 				emit_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
+			else if (match_One_OneKeyword_1_q.equals(syntax))
+				emit_One_OneKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parent_ParentKeyword_1_0_or_ParentsKeyword_1_1.equals(syntax))
+				emit_Parent_ParentKeyword_1_0_or_ParentsKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
 				emit_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
+			else if (match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
 				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
+			else if (match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
 				emit_XExpressionInClosure_SemicolonKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q.equals(syntax))
+			else if (match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q.equals(syntax))
 				emit_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XImportDeclaration_SemicolonKeyword_2_q.equals(syntax))
+			else if (match_XImportDeclaration_SemicolonKeyword_2_q.equals(syntax))
 				emit_XImportDeclaration_SemicolonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
+			else if (match_XParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
 				emit_XParenthesizedExpression_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
+			else if (match_XParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
 				emit_XParenthesizedExpression_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     'ancestor' | 'ancestors'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Ancestor_AncestorKeyword_1_0_or_AncestorsKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     'and' | ','
@@ -118,12 +149,56 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'child' | 'children'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Child_ChildKeyword_1_0_or_ChildrenKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'descendant' | 'descendants'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Descendant_DescendantKeyword_1_0_or_DescendantsKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'implies' | '=>'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     {ImpliesExpression.lhs=} (ambiguity) rhs=PrimaryExpression
+	 *     {ImpliesExpression.lhs=} (ambiguity) rhs=NotExpression
 	 */
 	protected void emit_ImpliesExpression_EqualsSignGreaterThanSignKeyword_1_1_1_or_ImpliesKeyword_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'one'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_One_OneKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'parent' | 'parents'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Parent_ParentKeyword_1_0_or_ParentsKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -8,6 +8,10 @@ public class ResolvingNodeSet implements Iterable<ResolvingNode>, Resolvable {
 		return true;
 	}
 	
+	public int size() {
+		return 0;
+	}
+	
 	public Object getProperty(String name) {
 		return null;
 	}

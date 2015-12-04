@@ -11,14 +11,20 @@ import com.isax.validation.dsl.api.Traverser;
 import com.isax.validation.dsl.dsl.AndExpression;
 import com.isax.validation.dsl.dsl.Argument;
 import com.isax.validation.dsl.dsl.ArgumentList;
-import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.AtLeast;
+import com.isax.validation.dsl.dsl.AtMost;
 import com.isax.validation.dsl.dsl.BodySentences;
+import com.isax.validation.dsl.dsl.CanHave;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
+import com.isax.validation.dsl.dsl.Multiple;
+import com.isax.validation.dsl.dsl.MustHave;
+import com.isax.validation.dsl.dsl.MustNotHave;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.NodeReferenceList;
+import com.isax.validation.dsl.dsl.One;
 import com.isax.validation.dsl.dsl.OrExpression;
 import com.isax.validation.dsl.dsl.Parameter;
 import com.isax.validation.dsl.dsl.ParameterList;
@@ -35,7 +41,9 @@ import com.isax.validation.dsl.dsl.PropertyValueExpression;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.QuantificationList;
 import com.isax.validation.dsl.dsl.Quantor;
+import com.isax.validation.dsl.dsl.RelationAxis;
 import com.isax.validation.dsl.dsl.RelationQualifier;
+import com.isax.validation.dsl.dsl.RelationQuantifier;
 import com.isax.validation.dsl.dsl.Selector;
 import com.isax.validation.dsl.dsl.SelectorList;
 import com.isax.validation.dsl.dsl.SelectorListDef;
@@ -149,7 +157,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(_compileStartOn, "");
             _builder.newLineIfNotEmpty();
             BodySentences _body = validator.getBody();
-            CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_body, false);
+            CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_body);
             _builder.append(_compileBody, "");
             _builder.newLineIfNotEmpty();
             _builder.append("return true;");
@@ -225,7 +233,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
-  public CharSequence compileBody(final BodySentences body, final boolean withDeclarations) {
+  public CharSequence compileBody(final BodySentences body) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _notEquals = (!Objects.equal(body, null));
@@ -281,7 +289,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         TargetDefinition _target = sentence.getTarget();
         NodeDefinition _definition = _target.getDefinition();
         RelationQualifier _qualifier = sentence.getQualifier();
-        String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
+        RelationQuantifier _quantifier = sentence.getQuantifier();
+        String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier, _quantifier);
         _builder.append(_qualifierSatisfiedStatement, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -425,7 +434,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
             BodySentences _body = s.getBody();
-            CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_body, true);
+            CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_body);
             _builder.append(_compileBody, "");
             _builder.newLineIfNotEmpty();
             _builder.append("return true;");
@@ -680,12 +689,13 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append(" = ");
     NodeDefinition _definition_2 = target.getDefinition();
     NodeDefinition _local = target.getLocal();
-    Axis _axis = target.getAxis();
+    RelationAxis _axis = sentence.getAxis();
+    RelationQuantifier _quantifier = sentence.getQuantifier();
     NodeDefinition _node = sentence.getNode();
     NodeDefinition _definition_3 = target.getDefinition();
     SelectorList _selectors = _definition_3.getSelectors();
     BodySentences _body = target.getBody();
-    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node, _selectors, _body, target);
+    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _quantifier, _node, _selectors, _body, target);
     _builder.append(_nodeAssignmentStatement, "");
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -740,17 +750,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     NodeDefinition _definition_2 = _target.getDefinition();
     TargetDefinition _target_1 = sentence.getTarget();
     NodeDefinition _local = _target_1.getLocal();
-    TargetDefinition _target_2 = sentence.getTarget();
-    Axis _axis = _target_2.getAxis();
+    RelationAxis _axis = sentence.getAxis();
+    RelationQuantifier _quantifier = sentence.getQuantifier();
     Quantification _quantification_2 = sentence.getQuantification();
     NodeDefinition _node_1 = _quantification_2.getNode();
-    TargetDefinition _target_3 = sentence.getTarget();
-    NodeDefinition _definition_3 = _target_3.getDefinition();
+    TargetDefinition _target_2 = sentence.getTarget();
+    NodeDefinition _definition_3 = _target_2.getDefinition();
     SelectorList _selectors = _definition_3.getSelectors();
+    TargetDefinition _target_3 = sentence.getTarget();
+    BodySentences _body = _target_3.getBody();
     TargetDefinition _target_4 = sentence.getTarget();
-    BodySentences _body = _target_4.getBody();
-    TargetDefinition _target_5 = sentence.getTarget();
-    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _node_1, _selectors, _body, _target_5);
+    CharSequence _nodeAssignmentStatement = this.nodeAssignmentStatement(_definition_2, _local, _axis, _quantifier, _node_1, _selectors, _body, _target_4);
     _builder.append(_nodeAssignmentStatement, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -763,10 +773,11 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _quantorSatisfactionRelation = this.quantorSatisfactionRelation(_quantor);
     _builder.append(_quantorSatisfactionRelation, "\t\t");
     _builder.append(" ");
-    TargetDefinition _target_6 = sentence.getTarget();
-    NodeDefinition _definition_4 = _target_6.getDefinition();
+    TargetDefinition _target_5 = sentence.getTarget();
+    NodeDefinition _definition_4 = _target_5.getDefinition();
     RelationQualifier _qualifier_1 = sentence.getQualifier();
-    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition_4, _qualifier_1);
+    RelationQuantifier _quantifier_1 = sentence.getQuantifier();
+    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition_4, _qualifier_1, _quantifier_1);
     _builder.append(_qualifierSatisfiedStatement, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -789,7 +800,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _builder;
   }
   
-  public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final NodeDefinition local, final Axis axis, final NodeDefinition source, final SelectorList types, final BodySentences body, final TargetDefinition target) {
+  public CharSequence nodeAssignmentStatement(final NodeDefinition assignee, final NodeDefinition local, final RelationAxis axis, final RelationQuantifier quantifier, final NodeDefinition source, final SelectorList types, final BodySentences body, final TargetDefinition target) {
     StringConcatenation _builder = new StringConcatenation();
     String _xifexpression = null;
     boolean _notEquals = (!Objects.equal(local, null));
@@ -803,9 +814,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append(DslJvmModelInferrer.TRAVERSER_FIELD, "");
     _builder.append(".");
-    String _name = axis.getName();
-    String _lowerCase = _name.toLowerCase();
-    _builder.append(_lowerCase, "");
+    String _name = DslUtil.name(axis, quantifier);
+    _builder.append(_name, "");
     _builder.append("(");
     String _uniqueName = this.names.uniqueName(source);
     _builder.append(_uniqueName, "");
@@ -864,7 +874,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
-        CharSequence _compileBody = this.compileBody(body, true);
+        CharSequence _compileBody = this.compileBody(body);
         _builder.append(_compileBody, "\t\t\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -963,36 +973,80 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return IterableExtensions.join(_map, ", ");
   }
   
-  public String qualifierSatisfiedStatement(final NodeDefinition node, final RelationQualifier qualifier) {
-    if (qualifier != null) {
-      switch (qualifier) {
-        case CAN:
-          return "true";
-        case MUST:
-          String _uniqueName = this.names.uniqueName(node);
-          return (_uniqueName + ".hasCandidates()");
-        case MUST_NOT:
-          String _uniqueName_1 = this.names.uniqueName(node);
-          String _plus = ("!" + _uniqueName_1);
-          return (_plus + ".hasCandidates()");
-        default:
-          break;
+  public String qualifierSatisfiedStatement(final NodeDefinition node, final RelationQualifier qualifier, final RelationQuantifier quantifier) {
+    boolean _matched = false;
+    if (!_matched) {
+      if (qualifier instanceof CanHave) {
+        _matched=true;
+        return "true";
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof MustHave) {
+        _matched=true;
+        String _uniqueName = this.names.uniqueName(node);
+        String _plus = (_uniqueName + ".size() ");
+        String _switchResult_1 = null;
+        boolean _matched_1 = false;
+        if (!_matched_1) {
+          if (quantifier instanceof One) {
+            _matched_1=true;
+            _switchResult_1 = "== 1";
+          }
+        }
+        if (!_matched_1) {
+          if (quantifier instanceof Multiple) {
+            _matched_1=true;
+            _switchResult_1 = "> 0";
+          }
+        }
+        if (!_matched_1) {
+          if (quantifier instanceof AtLeast) {
+            _matched_1=true;
+            int _quantity = ((AtLeast)quantifier).getQuantity();
+            _switchResult_1 = (">= " + Integer.valueOf(_quantity));
+          }
+        }
+        if (!_matched_1) {
+          if (quantifier instanceof AtMost) {
+            _matched_1=true;
+            int _quantity = ((AtMost)quantifier).getQuantity();
+            _switchResult_1 = ("<= " + Integer.valueOf(_quantity));
+          }
+        }
+        if (!_matched_1) {
+          _switchResult_1 = ">= 1";
+        }
+        return (_plus + _switchResult_1);
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof MustNotHave) {
+        _matched=true;
+        return ".size() == 0";
       }
     }
     return null;
   }
   
   public String initialQualifierSatisfaction(final RelationQualifier qualifier) {
-    if (qualifier != null) {
-      switch (qualifier) {
-        case CAN:
-          return "true";
-        case MUST:
-          return "true";
-        case MUST_NOT:
-          return "false";
-        default:
-          break;
+    boolean _matched = false;
+    if (!_matched) {
+      if (qualifier instanceof CanHave) {
+        _matched=true;
+        return "true";
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof MustHave) {
+        _matched=true;
+        return "true";
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof MustNotHave) {
+        _matched=true;
+        return "false";
       }
     }
     return null;
@@ -1204,16 +1258,12 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected CharSequence _propertyExpression(final PropertyReferenceExpression expression) {
-    StringConcatenation _builder = new StringConcatenation();
     NodeDefinition _node = expression.getNode();
     String _uniqueName = this.names.uniqueName(_node);
-    _builder.append(_uniqueName, "");
-    _builder.append(".getProperty(\"");
+    String _plus = (_uniqueName + ".getProperty(\"");
     String _property = expression.getProperty();
-    _builder.append(_property, "");
-    _builder.append("\")");
-    _builder.newLineIfNotEmpty();
-    return _builder;
+    String _plus_1 = (_plus + _property);
+    return (_plus_1 + "\")");
   }
   
   protected CharSequence _predicateCall(final PropertyRelationPredicate relation) {
@@ -1253,7 +1303,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     TargetDefinition _target = sentence.getTarget();
     NodeDefinition _definition = _target.getDefinition();
     RelationQualifier _qualifier = sentence.getQualifier();
-    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier);
+    RelationQuantifier _quantifier = sentence.getQuantifier();
+    String _qualifierSatisfiedStatement = this.qualifierSatisfiedStatement(_definition, _qualifier, _quantifier);
     _builder.append(_qualifierSatisfiedStatement, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();

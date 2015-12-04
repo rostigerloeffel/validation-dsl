@@ -8,6 +8,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
         eType="#//PredicateDefinitionSentence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" eType="ecore:EClass ../../../org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="errors" upperBound="-1"
+        eType="#//ErrorDefinition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BodySentences">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
@@ -26,8 +30,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantification" eType="#//Quantification"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//NodeDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifier" eType="#//RelationQualifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//TargetDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" lowerBound="1"
+        eType="#//RelationQualifier" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifier" lowerBound="1"
+        eType="#//RelationQuantifier" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axis" lowerBound="1" eType="#//RelationAxis"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintSentence" eSuperTypes="#//Sentence">
@@ -56,7 +65,6 @@
         eType="#//NodeDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetDefinition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" eType="#//Axis"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="local" eType="#//NodeDefinition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//NodeDefinition"
@@ -89,7 +97,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateCall">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="error" eType="#//ErrorDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateXExpression" eSuperTypes="#//PredicateCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass ../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
@@ -165,21 +173,6 @@
     <eLiterals name="Each" literal="each"/>
     <eLiterals name="Any" value="1" literal="any"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="RelationQualifier">
-    <eLiterals name="Must" literal="must have"/>
-    <eLiterals name="MustNot" value="1" literal="must not have"/>
-    <eLiterals name="Can" value="2" literal="can have"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Axis">
-    <eLiterals name="Parent" literal="parent"/>
-    <eLiterals name="Child" value="1" literal="child"/>
-    <eLiterals name="Ancestor" value="2" literal="ancestor"/>
-    <eLiterals name="Descendant" value="3" literal="descendant"/>
-    <eLiterals name="Parents" value="4" literal="multiple parents"/>
-    <eLiterals name="Children" value="5" literal="multiple children"/>
-    <eLiterals name="Ancestors" value="6" literal="multiple ancestors"/>
-    <eLiterals name="Descendants" value="7" literal="multiple descendants"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PropertyRelation">
     <eLiterals name="Equals" literal="equals"/>
     <eLiterals name="NotEquals" value="1" literal="not equals"/>
@@ -187,6 +180,10 @@
     <eLiterals name="Lesser" value="3" literal="lesser than"/>
     <eLiterals name="GreaterEquals" value="4" literal="greater or equals than"/>
     <eLiterals name="LesserEquals" value="5" literal="lesser or equals than"/>
+    <eLiterals name="Contains" value="6"/>
+    <eLiterals name="NotContains" value="7"/>
+    <eLiterals name="Intersects" value="8"/>
+    <eLiterals name="SubsetOf" value="9"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//PredicateExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//PredicateExpression"/>
@@ -194,5 +191,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="XXPropertyExpression" eSuperTypes="../../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="#//NodeDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationQualifier" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MustHave" eSuperTypes="#//RelationQualifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MustNotHave" eSuperTypes="#//RelationQualifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CanHave" eSuperTypes="#//RelationQualifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationQuantifier" abstract="true"
+      interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="One" eSuperTypes="#//RelationQuantifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiple" eSuperTypes="#//RelationQuantifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AtLeast" eSuperTypes="#//RelationQuantifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AtMost" eSuperTypes="#//RelationQuantifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Exactly" eSuperTypes="#//RelationQuantifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationAxis" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parent" eSuperTypes="#//RelationAxis"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Child" eSuperTypes="#//RelationAxis"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Ancestor" eSuperTypes="#//RelationAxis"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Descendant" eSuperTypes="#//RelationAxis"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ErrorDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

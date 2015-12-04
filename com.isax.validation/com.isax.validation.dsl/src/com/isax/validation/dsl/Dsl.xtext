@@ -4,12 +4,19 @@ import "http://www.isax.com/validation/dsl/Dsl"
 
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
+import "http://www.eclipse.org/xtext/xbase/Xtype" as xtype
 
 Validator:
+	//imports = XImportSection?	
 	startOn = StartOnSentence
 	body = BodySentences
-	predicates += PredicateDefinitionSentence*;
-	
+	predicates += PredicateDefinitionSentence*
+	errors += ErrorDefinition*;
+
+ErrorDefinition:
+	'[' name=ID ']'
+	text = STRING;
+
 BodySentences:
 	{BodySentences}
 	(sentences += DefinitionSentence | sentences += ConstraintSentence)*;
@@ -23,6 +30,8 @@ StartOnSentence:
 DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 
 	qualifier=RelationQualifier
+	quantifier=RelationQuantifier
+	axis=RelationAxis
 	target=TargetDefinition;
 
 ConstraintSentence:
@@ -35,7 +44,6 @@ ConstraintSentence:
 PredicateDefinitionSentence:
 	'define' name=ID parameters=ParameterList? 'as' '{' body = BodySentences '}';
 
-
 NodeDefinition:
 	name=ID collection?='*'? selectors=SelectorList?;
 	
@@ -44,7 +52,7 @@ NodeReferenceList:
 
 
 TargetDefinition:
-	axis=Axis (local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('then' then=XBlockExpression)?;
+	(local=NodeDefinition ':')? definition=NodeDefinition ('where' '{' body=BodySentences '}')? ('then' then=XBlockExpression)?;
 
 
 SelectorList:
@@ -67,13 +75,16 @@ OrExpression returns PredicateExpression:
 	ImpliesExpression ({OrExpression.lhs=current} 'or' rhs=ImpliesExpression)*;
 
 ImpliesExpression returns PredicateExpression:
-	lhs=PrimaryExpression ({ImpliesExpression.lhs=current} ('implies' | '=>') rhs=PrimaryExpression)?;
+	NotExpression ({ImpliesExpression.lhs=current} ('implies' | '=>') rhs=NotExpression)?;
+
+NotExpression returns PredicateExpression:
+	(=>negated?='not')? inner=PrimaryExpression;
 
 PrimaryExpression returns PredicateExpression:
-	(negated?='not')? (call=PredicateCall | ('(' inner=PredicateExpression ')'));
+	(call=PredicateCall | ('(' inner=PredicateExpression ')'));
 
 PredicateCall:
-	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ('[' label=ID ']')?;
+	(PropertyRelationPredicate | DefinitionSentencePredicate | PredicateReference | PredicateXExpression) ('[' error=[ErrorDefinition] ']')?;
 	
 PredicateXExpression:
 	expression = XBlockExpression;	
@@ -143,16 +154,72 @@ PropertyValueExpression:
 PropertyReferenceExpression:
 	node=[NodeDefinition] '.' Property=ID;
 
+RelationQualifier:
+	MustHave | MustNotHave | CanHave;
+
+MustHave returns RelationQualifier:
+	{MustHave}
+	'must have';
+
+MustNotHave returns RelationQualifier:
+	{MustNotHave}
+	'must not have';
+
+CanHave returns RelationQualifier:
+	{CanHave}
+	'can have';
+
+RelationQuantifier:
+	One | Multiple | AtLeast | AtMost | Exactly;
+
+One returns RelationQuantifier:
+	{One}
+	('one')?;
+
+Multiple returns RelationQuantifier:
+	{Multiple}
+	'multiple';
+	
+AtLeast returns RelationQuantifier:
+	{AtLeast}
+	'at least'
+	quantity = INT;
+
+AtMost returns RelationQuantifier:
+	{AtMost}
+	'at most'
+	quantity = INT;
+
+Exactly returns RelationQuantifier:
+	{Exactly}
+	'exactly'
+	quantity = INT;
+
+RelationAxis:
+	Parent | Child | Ancestor | Descendant;
+
+Parent returns RelationAxis:
+	{Parent}
+	('parent' | 'parents');
+
+Child returns RelationAxis:
+	{Parent}
+	('child' | 'children');
+	
+Ancestor returns RelationAxis:
+	{Ancestor}
+	('ancestor' | 'ancestors');
+
+Descendant returns RelationAxis:
+	{Descendant}
+	('descendant' | 'descendants');
+
 enum Quantor:
 	Each='each' | Any='any';
-
-enum RelationQualifier:
-	Must='must have' | MustNot='must not have' | Can='can have';
-	
-enum Axis:
-	Parent='parent' | Child='child' | Ancestor='ancestor' | Descendant='descendant' |
-	Parents='multiple parents' | Children='multiple children' | Ancestors='multiple ancestors' | Descendants='multiple descendants';
 	
 enum PropertyRelation:
-	Equals='equals' | NotEquals='not equals' | Greater='greater than' | Lesser='lesser than' | GreaterEquals='greater or equals than' | LesserEquals='lesser or equals than';
+	Equals='equals' | NotEquals='not equals' | 
+	Greater='greater than' | Lesser='lesser than' | GreaterEquals='greater or equals than' | LesserEquals='lesser or equals than' |
+	Contains = 'contains' | NotContains='not contains' | 
+	Intersects='intersects' | SubsetOf='subset of';
 	

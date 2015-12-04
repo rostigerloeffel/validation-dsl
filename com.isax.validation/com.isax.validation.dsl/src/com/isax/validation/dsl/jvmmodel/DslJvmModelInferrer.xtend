@@ -9,14 +9,20 @@ import com.isax.validation.dsl.api.Traverser
 import com.isax.validation.dsl.dsl.AndExpression
 import com.isax.validation.dsl.dsl.Argument
 import com.isax.validation.dsl.dsl.ArgumentList
-import com.isax.validation.dsl.dsl.Axis
+import com.isax.validation.dsl.dsl.AtLeast
+import com.isax.validation.dsl.dsl.AtMost
 import com.isax.validation.dsl.dsl.BodySentences
+import com.isax.validation.dsl.dsl.CanHave
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
 import com.isax.validation.dsl.dsl.ImpliesExpression
+import com.isax.validation.dsl.dsl.Multiple
+import com.isax.validation.dsl.dsl.MustHave
+import com.isax.validation.dsl.dsl.MustNotHave
 import com.isax.validation.dsl.dsl.NodeDefinition
 import com.isax.validation.dsl.dsl.NodeReferenceList
+import com.isax.validation.dsl.dsl.One
 import com.isax.validation.dsl.dsl.OrExpression
 import com.isax.validation.dsl.dsl.PredicateDefinitionSentence
 import com.isax.validation.dsl.dsl.PredicateExpression
@@ -27,7 +33,9 @@ import com.isax.validation.dsl.dsl.PropertyRelationPredicate
 import com.isax.validation.dsl.dsl.PropertyValueExpression
 import com.isax.validation.dsl.dsl.Quantification
 import com.isax.validation.dsl.dsl.Quantor
+import com.isax.validation.dsl.dsl.RelationAxis
 import com.isax.validation.dsl.dsl.RelationQualifier
+import com.isax.validation.dsl.dsl.RelationQuantifier
 import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
 import com.isax.validation.dsl.dsl.StartOnSentence
@@ -41,6 +49,7 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+import static extension com.isax.validation.dsl.util.DslUtil.name
 import static extension com.isax.validation.dsl.util.DslUtil.path
 import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
 
@@ -75,7 +84,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				parameters += validator.toParameter(INPUT_NODE, typeRef(ResolvingNode))
 				body = '''
 					«compileStartOn(validator.startOn)»
-					«compileBody(validator.body, false)»
+					«compileBody(validator.body)»
 					return true;
 				'''
 			]
@@ -100,7 +109,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		}
 	'''
 
-	def CharSequence compileBody(BodySentences body, boolean withDeclarations) '''
+	def CharSequence compileBody(BodySentences body) '''
 		«IF body != null»
 			«FOR definition : body?.definitions»
 				«compileDefinition(definition)»
@@ -116,7 +125,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«IF sentence.node != null»
 			«singleNodeDefinition(sentence)»
 			{
-				boolean «SATISFIED»«sentence.uniqueSuffix» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+				boolean «SATISFIED»«sentence.uniqueSuffix» = «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier, sentence.quantifier)»;
 				if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
 			}
 		«ENDIF»
@@ -147,7 +156,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				visibility = JvmVisibility.PRIVATE
 				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, definitionTypeRef(p.node))]
 				body = '''
-				«compileBody(s.body, true)»
+				«compileBody(s.body)»
 				return true;'''
 			]
 		]
@@ -243,7 +252,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		DefinitionSentence sentence
 	) '''
 		«val target = sentence.target»
-		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, target.axis, sentence.node, target.definition.selectors, target.body, target)»
+		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, sentence.axis, sentence.quantifier, sentence.node, target.definition.selectors, target.body, target)»
 	'''
 
 	def quantifiedDefinition(
@@ -253,16 +262,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			boolean «SATISFIED»«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for («ResolvingNode.simpleName» «sentence.quantification.node.uniqueName» : «sentence.quantification.nodeSet.uniqueName») {
 				«val target = sentence.target»
-				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.target.axis, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body, sentence.target)»
-				«SATISFIED»«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier)»;
+				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.axis, sentence.quantifier, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body, sentence.target)»
+				«SATISFIED»«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier, sentence.quantifier)»;
 			}
 			if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
 		}
 	'''
 
-	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, Axis axis, NodeDefinition source, SelectorList types, BodySentences body, TargetDefinition target) '''
+	def nodeAssignmentStatement(NodeDefinition assignee, NodeDefinition local, RelationAxis axis, RelationQuantifier quantifier, NodeDefinition source, SelectorList types, BodySentences body, TargetDefinition target) '''
 		«val localName = if (local != null) local.uniqueName else INPUT_NODE + assignee.uniqueSuffix»
-		«TRAVERSER_FIELD».«axis.getName().toLowerCase»(«source.uniqueName», 
+		«TRAVERSER_FIELD».«axis.name(quantifier)»(«source.uniqueName», 
 			(«ResolvingNode.simpleName» «localName») -> {		
 				«names.map(assignee, localName)»
 				boolean «SATISFIED»«assignee.uniqueSuffix» = true;
@@ -271,7 +280,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				«ENDIF»
 				«IF body != null»
 					«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {
-						«compileBody(body, true)»
+						«compileBody(body)»
 						return true;
 					});
 				«ENDIF»
@@ -302,19 +311,25 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 //		parameters(target).map[d|definitionTypeRef(d).simpleName + " " + d.uniqueName].join(", ")
 //	}
 
-	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier) {
+	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier, RelationQuantifier quantifier) {
 		switch (qualifier) {
-			case CAN: return "true"
-			case MUST: return node.uniqueName + ".hasCandidates()"
-			case MUST_NOT: return "!" + node.uniqueName + ".hasCandidates()"
+			CanHave: return "true"
+			MustHave: return node.uniqueName + ".size() " + switch (quantifier) {
+				One: "== 1"
+				Multiple: "> 0"
+				AtLeast: ">= " + quantifier.quantity
+				AtMost: "<= " + quantifier.quantity
+				default: ">= 1"
+			}
+			MustNotHave: return ".size() == 0"
 		}
 	}
 
 	def initialQualifierSatisfaction(RelationQualifier qualifier) {
 		switch (qualifier) {
-			case CAN: return "true"
-			case MUST: return "true"
-			case MUST_NOT: return "false"
+			CanHave: return "true"
+			MustHave: return "true"
+			MustNotHave: return "false"
 		}
 	}
 
@@ -367,9 +382,9 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		«expression.value»
 	'''
 
-	def dispatch propertyExpression(PropertyReferenceExpression expression) '''
-		«expression.node.uniqueName».getProperty("«expression.property»")
-	'''
+	def dispatch propertyExpression(PropertyReferenceExpression expression) {
+		expression.node.uniqueName + ".getProperty(\"" + expression.property + "\")"
+	}
 
 	def dispatch predicateCall(PropertyRelationPredicate relation) '''
 		«PREDICATES_FIELD».«relation.relation.getName().toFirstLower»(«propertyExpression(relation.lhs)», «propertyExpression(relation.rhs)»);
@@ -379,7 +394,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		eval(() -> {
 			«val sentence = definition.sentence»
 			«compileDefinition(sentence)»
-			return «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier)»;
+			return «qualifierSatisfiedStatement(sentence.target.definition, sentence.qualifier, sentence.quantifier)»;
 		});
 	'''
 

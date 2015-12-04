@@ -91,7 +91,7 @@ ruleValidator returns [EObject current=null]
        			$current, 
        			"startOn",
         		lv_startOn_0_0, 
-        		"StartOnSentence");
+        		"com.isax.validation.dsl.Dsl.StartOnSentence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -109,7 +109,7 @@ ruleValidator returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_1_0, 
-        		"BodySentences");
+        		"com.isax.validation.dsl.Dsl.BodySentences");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -127,12 +127,95 @@ ruleValidator returns [EObject current=null]
        			$current, 
        			"predicates",
         		lv_predicates_2_0, 
-        		"PredicateDefinitionSentence");
+        		"com.isax.validation.dsl.Dsl.PredicateDefinitionSentence");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getErrorsErrorDefinitionParserRuleCall_3_0()); 
+	    }
+		lv_errors_3_0=ruleErrorDefinition		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
+	        }
+       		add(
+       			$current, 
+       			"errors",
+        		lv_errors_3_0, 
+        		"com.isax.validation.dsl.Dsl.ErrorDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )*)
+;
+
+
+
+
+
+// Entry rule entryRuleErrorDefinition
+entryRuleErrorDefinition returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getErrorDefinitionRule()); }
+	 iv_ruleErrorDefinition=ruleErrorDefinition 
+	 { $current=$iv_ruleErrorDefinition.current; } 
+	 EOF 
+;
+
+// Rule ErrorDefinition
+ruleErrorDefinition returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='[' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getErrorDefinitionAccess().getLeftSquareBracketKeyword_0());
+    }
+(
+(
+		lv_name_1_0=RULE_ID
+		{
+			newLeafNode(lv_name_1_0, grammarAccess.getErrorDefinitionAccess().getNameIDTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getErrorDefinitionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"org.eclipse.xtext.xbase.Xtype.ID");
+	    }
+
+)
+)	otherlv_2=']' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getErrorDefinitionAccess().getRightSquareBracketKeyword_2());
+    }
+(
+(
+		lv_text_3_0=RULE_STRING
+		{
+			newLeafNode(lv_text_3_0, grammarAccess.getErrorDefinitionAccess().getTextSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getErrorDefinitionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"text",
+        		lv_text_3_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+))
 ;
 
 
@@ -172,7 +255,7 @@ ruleBodySentences returns [EObject current=null]
        			$current, 
        			"sentences",
         		lv_sentences_1_0, 
-        		"DefinitionSentence");
+        		"com.isax.validation.dsl.Dsl.DefinitionSentence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -191,7 +274,7 @@ ruleBodySentences returns [EObject current=null]
        			$current, 
        			"sentences",
         		lv_sentences_2_0, 
-        		"ConstraintSentence");
+        		"com.isax.validation.dsl.Dsl.ConstraintSentence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -240,7 +323,7 @@ ruleStartOnSentence returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_2_0, 
-        		"NodeDefinition");
+        		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -279,7 +362,7 @@ ruleDefinitionSentence returns [EObject current=null]
        			$current, 
        			"quantification",
         		lv_quantification_0_0, 
-        		"Quantification");
+        		"com.isax.validation.dsl.Dsl.Quantification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -301,7 +384,7 @@ ruleDefinitionSentence returns [EObject current=null]
 ))(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getQualifierRelationQualifierEnumRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getQualifierRelationQualifierParserRuleCall_1_0()); 
 	    }
 		lv_qualifier_2_0=ruleRelationQualifier		{
 	        if ($current==null) {
@@ -311,7 +394,7 @@ ruleDefinitionSentence returns [EObject current=null]
        			$current, 
        			"qualifier",
         		lv_qualifier_2_0, 
-        		"RelationQualifier");
+        		"com.isax.validation.dsl.Dsl.RelationQualifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -319,17 +402,53 @@ ruleDefinitionSentence returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getTargetTargetDefinitionParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getQuantifierRelationQuantifierParserRuleCall_2_0()); 
 	    }
-		lv_target_3_0=ruleTargetDefinition		{
+		lv_quantifier_3_0=ruleRelationQuantifier		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDefinitionSentenceRule());
+	        }
+       		set(
+       			$current, 
+       			"quantifier",
+        		lv_quantifier_3_0, 
+        		"com.isax.validation.dsl.Dsl.RelationQuantifier");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getAxisRelationAxisParserRuleCall_3_0()); 
+	    }
+		lv_axis_4_0=ruleRelationAxis		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDefinitionSentenceRule());
+	        }
+       		set(
+       			$current, 
+       			"axis",
+        		lv_axis_4_0, 
+        		"com.isax.validation.dsl.Dsl.RelationAxis");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDefinitionSentenceAccess().getTargetTargetDefinitionParserRuleCall_4_0()); 
+	    }
+		lv_target_5_0=ruleTargetDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDefinitionSentenceRule());
 	        }
        		set(
        			$current, 
        			"target",
-        		lv_target_3_0, 
-        		"TargetDefinition");
+        		lv_target_5_0, 
+        		"com.isax.validation.dsl.Dsl.TargetDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -372,7 +491,7 @@ ruleConstraintSentence returns [EObject current=null]
        			$current, 
        			"quantifications",
         		lv_quantifications_1_0, 
-        		"QuantificationList");
+        		"com.isax.validation.dsl.Dsl.QuantificationList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -390,7 +509,7 @@ ruleConstraintSentence returns [EObject current=null]
        			$current, 
        			"nodes",
         		lv_nodes_2_0, 
-        		"NodeReferenceList");
+        		"com.isax.validation.dsl.Dsl.NodeReferenceList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -412,7 +531,7 @@ ruleConstraintSentence returns [EObject current=null]
        			$current, 
        			"predicate",
         		lv_predicate_4_0, 
-        		"PredicateExpression");
+        		"com.isax.validation.dsl.Dsl.PredicateExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -456,7 +575,7 @@ rulePredicateDefinitionSentence returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
@@ -473,7 +592,7 @@ rulePredicateDefinitionSentence returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_2_0, 
-        		"ParameterList");
+        		"com.isax.validation.dsl.Dsl.ParameterList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -499,7 +618,7 @@ rulePredicateDefinitionSentence returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_5_0, 
-        		"BodySentences");
+        		"com.isax.validation.dsl.Dsl.BodySentences");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -543,7 +662,7 @@ ruleNodeDefinition returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
@@ -575,7 +694,7 @@ ruleNodeDefinition returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_2_0, 
-        		"SelectorList");
+        		"com.isax.validation.dsl.Dsl.SelectorList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -652,112 +771,94 @@ ruleTargetDefinition returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getAxisAxisEnumRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getLocalNodeDefinitionParserRuleCall_0_0_0()); 
 	    }
-		lv_axis_0_0=ruleAxis		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTargetDefinitionRule());
-	        }
-       		set(
-       			$current, 
-       			"axis",
-        		lv_axis_0_0, 
-        		"Axis");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getLocalNodeDefinitionParserRuleCall_1_0_0()); 
-	    }
-		lv_local_1_0=ruleNodeDefinition		{
+		lv_local_0_0=ruleNodeDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTargetDefinitionRule());
 	        }
        		set(
        			$current, 
        			"local",
-        		lv_local_1_0, 
-        		"NodeDefinition");
+        		lv_local_0_0, 
+        		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_2=':' 
+)	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getTargetDefinitionAccess().getColonKeyword_1_1());
+    	newLeafNode(otherlv_1, grammarAccess.getTargetDefinitionAccess().getColonKeyword_0_1());
     }
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getDefinitionNodeDefinitionParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getDefinitionNodeDefinitionParserRuleCall_1_0()); 
 	    }
-		lv_definition_3_0=ruleNodeDefinition		{
+		lv_definition_2_0=ruleNodeDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTargetDefinitionRule());
 	        }
        		set(
        			$current, 
        			"definition",
-        		lv_definition_3_0, 
-        		"NodeDefinition");
+        		lv_definition_2_0, 
+        		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_4='where' 
+)(	otherlv_3='where' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getTargetDefinitionAccess().getWhereKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getTargetDefinitionAccess().getWhereKeyword_2_0());
     }
-	otherlv_5='{' 
+	otherlv_4='{' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getTargetDefinitionAccess().getLeftCurlyBracketKeyword_3_1());
+    	newLeafNode(otherlv_4, grammarAccess.getTargetDefinitionAccess().getLeftCurlyBracketKeyword_2_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getBodyBodySentencesParserRuleCall_3_2_0()); 
+	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getBodyBodySentencesParserRuleCall_2_2_0()); 
 	    }
-		lv_body_6_0=ruleBodySentences		{
+		lv_body_5_0=ruleBodySentences		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTargetDefinitionRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_6_0, 
-        		"BodySentences");
+        		lv_body_5_0, 
+        		"com.isax.validation.dsl.Dsl.BodySentences");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_7='}' 
+)	otherlv_6='}' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getTargetDefinitionAccess().getRightCurlyBracketKeyword_3_3());
+    	newLeafNode(otherlv_6, grammarAccess.getTargetDefinitionAccess().getRightCurlyBracketKeyword_2_3());
     }
-)?(	otherlv_8='then' 
+)?(	otherlv_7='then' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getTargetDefinitionAccess().getThenKeyword_4_0());
+    	newLeafNode(otherlv_7, grammarAccess.getTargetDefinitionAccess().getThenKeyword_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getThenXBlockExpressionParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getTargetDefinitionAccess().getThenXBlockExpressionParserRuleCall_3_1_0()); 
 	    }
-		lv_then_9_0=ruleXBlockExpression		{
+		lv_then_8_0=ruleXBlockExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTargetDefinitionRule());
 	        }
        		set(
        			$current, 
        			"then",
-        		lv_then_9_0, 
-        		"XBlockExpression");
+        		lv_then_8_0, 
+        		"org.eclipse.xtext.xbase.Xbase.XBlockExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -800,7 +901,7 @@ ruleSelectorList returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_1_0, 
-        		"SelectorListDef");
+        		"com.isax.validation.dsl.Dsl.SelectorListDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -823,7 +924,7 @@ ruleSelectorList returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_3_0, 
-        		"SelectorListDef");
+        		"com.isax.validation.dsl.Dsl.SelectorListDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -866,7 +967,7 @@ ruleSelectorListDef returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_0_0, 
-        		"Selector");
+        		"com.isax.validation.dsl.Dsl.Selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -888,7 +989,7 @@ ruleSelectorListDef returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_2_0, 
-        		"Selector");
+        		"com.isax.validation.dsl.Dsl.Selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -928,7 +1029,7 @@ ruleSelector returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
@@ -953,7 +1054,13 @@ rulePredicateExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+((
+(
+	'not' 
+ 
 
+)
+)=>
     { 
         newCompositeNode(grammarAccess.getPredicateExpressionAccess().getAndExpressionParserRuleCall()); 
     }
@@ -962,7 +1069,7 @@ rulePredicateExpression returns [EObject current=null]
         $current = $this_AndExpression_0.current; 
         afterParserOrEnumRuleCall();
     }
-
+)
 ;
 
 
@@ -983,7 +1090,13 @@ ruleAndExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(((
 (
+	'not' 
+ 
+
+)
+)=>
     { 
         newCompositeNode(grammarAccess.getAndExpressionAccess().getOrExpressionParserRuleCall_0()); 
     }
@@ -992,7 +1105,7 @@ ruleAndExpression returns [EObject current=null]
         $current = $this_OrExpression_0.current; 
         afterParserOrEnumRuleCall();
     }
-((
+)((
     {
         $current = forceCreateModelElementAndSet(
             grammarAccess.getAndExpressionAccess().getAndExpressionLhsAction_1_0(),
@@ -1007,7 +1120,13 @@ ruleAndExpression returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getAndExpressionAccess().getCommaKeyword_1_1_1());
     }
-)(
+)((
+(
+	'not' 
+ 
+
+)
+)=>
 (
 		{ 
 	        newCompositeNode(grammarAccess.getAndExpressionAccess().getRhsOrExpressionParserRuleCall_1_2_0()); 
@@ -1020,7 +1139,7 @@ ruleAndExpression returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_4_0, 
-        		"OrExpression");
+        		"com.isax.validation.dsl.Dsl.OrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1046,7 +1165,13 @@ ruleOrExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(((
 (
+	'not' 
+ 
+
+)
+)=>
     { 
         newCompositeNode(grammarAccess.getOrExpressionAccess().getImpliesExpressionParserRuleCall_0()); 
     }
@@ -1055,7 +1180,7 @@ ruleOrExpression returns [EObject current=null]
         $current = $this_ImpliesExpression_0.current; 
         afterParserOrEnumRuleCall();
     }
-((
+)((
     {
         $current = forceCreateModelElementAndSet(
             grammarAccess.getOrExpressionAccess().getOrExpressionLhsAction_1_0(),
@@ -1065,7 +1190,13 @@ ruleOrExpression returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getOrExpressionAccess().getOrKeyword_1_1());
     }
+((
 (
+	'not' 
+ 
+
+)
+)=>
 (
 		{ 
 	        newCompositeNode(grammarAccess.getOrExpressionAccess().getRhsImpliesExpressionParserRuleCall_1_2_0()); 
@@ -1078,7 +1209,7 @@ ruleOrExpression returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_3_0, 
-        		"ImpliesExpression");
+        		"com.isax.validation.dsl.Dsl.ImpliesExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1104,24 +1235,21 @@ ruleImpliesExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getLhsPrimaryExpressionParserRuleCall_0_0()); 
-	    }
-		lv_lhs_0_0=rulePrimaryExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getImpliesExpressionRule());
-	        }
-       		set(
-       			$current, 
-       			"lhs",
-        		lv_lhs_0_0, 
-        		"PrimaryExpression");
-	        afterParserOrEnumRuleCall();
-	    }
+	'not' 
+ 
 
 )
+)=>
+    { 
+        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getNotExpressionParserRuleCall_0()); 
+    }
+    this_NotExpression_0=ruleNotExpression
+    { 
+        $current = $this_NotExpression_0.current; 
+        afterParserOrEnumRuleCall();
+    }
 )((
     {
         $current = forceCreateModelElementAndSet(
@@ -1137,12 +1265,18 @@ ruleImpliesExpression returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getImpliesExpressionAccess().getEqualsSignGreaterThanSignKeyword_1_1_1());
     }
-)(
+)((
+(
+	'not' 
+ 
+
+)
+)=>
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getRhsPrimaryExpressionParserRuleCall_1_2_0()); 
+	        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getRhsNotExpressionParserRuleCall_1_2_0()); 
 	    }
-		lv_rhs_4_0=rulePrimaryExpression		{
+		lv_rhs_4_0=ruleNotExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImpliesExpressionRule());
 	        }
@@ -1150,12 +1284,72 @@ ruleImpliesExpression returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_4_0, 
-        		"PrimaryExpression");
+        		"com.isax.validation.dsl.Dsl.NotExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))?)
+;
+
+
+
+
+
+// Entry rule entryRuleNotExpression
+entryRuleNotExpression returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getNotExpressionRule()); }
+	 iv_ruleNotExpression=ruleNotExpression 
+	 { $current=$iv_ruleNotExpression.current; } 
+	 EOF 
+;
+
+// Rule NotExpression
+ruleNotExpression returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+(
+	'not' 
+ 
+
+)
+)=>
+(
+		lv_negated_0_0=	'not' 
+    {
+        newLeafNode(lv_negated_0_0, grammarAccess.getNotExpressionAccess().getNegatedNotKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNotExpressionRule());
+	        }
+       		setWithLastConsumed($current, "negated", true, "not");
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getNotExpressionAccess().getInnerPrimaryExpressionParserRuleCall_1_0()); 
+	    }
+		lv_inner_1_0=rulePrimaryExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getNotExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"inner",
+        		lv_inner_1_0, 
+        		"com.isax.validation.dsl.Dsl.PrimaryExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 
@@ -1178,65 +1372,50 @@ rulePrimaryExpression returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_negated_0_0=	'not' 
-    {
-        newLeafNode(lv_negated_0_0, grammarAccess.getPrimaryExpressionAccess().getNegatedNotKeyword_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrimaryExpressionRule());
-	        }
-       		setWithLastConsumed($current, "negated", true, "not");
-	    }
-
-)
-)?((
-(
 		{ 
-	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getCallPredicateCallParserRuleCall_1_0_0()); 
+	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getCallPredicateCallParserRuleCall_0_0()); 
 	    }
-		lv_call_1_0=rulePredicateCall		{
+		lv_call_0_0=rulePredicateCall		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"call",
-        		lv_call_1_0, 
-        		"PredicateCall");
+        		lv_call_0_0, 
+        		"com.isax.validation.dsl.Dsl.PredicateCall");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )
-    |(	otherlv_2='(' 
+    |(	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_1_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getInnerPredicateExpressionParserRuleCall_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getInnerPredicateExpressionParserRuleCall_1_1_0()); 
 	    }
-		lv_inner_3_0=rulePredicateExpression		{
+		lv_inner_2_0=rulePredicateExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"inner",
-        		lv_inner_3_0, 
-        		"PredicateExpression");
+        		lv_inner_2_0, 
+        		"com.isax.validation.dsl.Dsl.PredicateExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4=')' 
+)	otherlv_3=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_1_1_2());
+    	newLeafNode(otherlv_3, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_1_2());
     }
-)))
+))
 ;
 
 
@@ -1302,20 +1481,15 @@ rulePredicateCall returns [EObject current=null]
     }
 (
 (
-		lv_label_5_0=RULE_ID
 		{
-			newLeafNode(lv_label_5_0, grammarAccess.getPredicateCallAccess().getLabelIDTerminalRuleCall_1_1_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPredicateCallRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"label",
-        		lv_label_5_0, 
-        		"ID");
-	    }
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getPredicateCallAccess().getErrorErrorDefinitionCrossReference_1_1_0()); 
+	}
 
 )
 )	otherlv_6=']' 
@@ -1356,7 +1530,7 @@ rulePredicateXExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_0_0, 
-        		"XBlockExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XBlockExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1395,7 +1569,7 @@ rulePropertyRelationPredicate returns [EObject current=null]
        			$current, 
        			"lhs",
         		lv_lhs_0_0, 
-        		"PropertyExpression");
+        		"com.isax.validation.dsl.Dsl.PropertyExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1413,7 +1587,7 @@ rulePropertyRelationPredicate returns [EObject current=null]
        			$current, 
        			"relation",
         		lv_relation_1_0, 
-        		"PropertyRelation");
+        		"com.isax.validation.dsl.Dsl.PropertyRelation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1431,7 +1605,7 @@ rulePropertyRelationPredicate returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_2_0, 
-        		"PropertyExpression");
+        		"com.isax.validation.dsl.Dsl.PropertyExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1470,7 +1644,7 @@ ruleDefinitionSentencePredicate returns [EObject current=null]
        			$current, 
        			"sentence",
         		lv_sentence_0_0, 
-        		"DefinitionSentence");
+        		"com.isax.validation.dsl.Dsl.DefinitionSentence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1522,7 +1696,7 @@ rulePredicateReference returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_1_0, 
-        		"ArgumentList");
+        		"com.isax.validation.dsl.Dsl.ArgumentList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1561,7 +1735,7 @@ ruleParameter returns [EObject current=null]
        			$current, 
        			"node",
         		lv_node_0_0, 
-        		"NodeDefinition");
+        		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1600,7 +1774,7 @@ ruleParameterList returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_0_0, 
-        		"Parameter");
+        		"com.isax.validation.dsl.Dsl.Parameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1622,7 +1796,7 @@ ruleParameterList returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_2_0, 
-        		"Parameter");
+        		"com.isax.validation.dsl.Dsl.Parameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1695,7 +1869,7 @@ ruleArgumentList returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_0_0, 
-        		"Argument");
+        		"com.isax.validation.dsl.Dsl.Argument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1717,7 +1891,7 @@ ruleArgumentList returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_2_0, 
-        		"Argument");
+        		"com.isax.validation.dsl.Dsl.Argument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1784,7 +1958,7 @@ ruleXXAssignment returns [EObject current=null]
        			$current, 
        			"property",
         		lv_property_4_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
@@ -1805,7 +1979,7 @@ ruleXXAssignment returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_6_0, 
-        		"XPrimaryExpression");
+        		"com.isax.validation.dsl.Dsl.XPrimaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2073,7 +2247,7 @@ ruleXXPropertyExpression returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
@@ -2115,7 +2289,7 @@ ruleQuantification returns [EObject current=null]
        			$current, 
        			"quantor",
         		lv_quantor_0_0, 
-        		"Quantor");
+        		"com.isax.validation.dsl.Dsl.Quantor");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2133,7 +2307,7 @@ ruleQuantification returns [EObject current=null]
        			$current, 
        			"node",
         		lv_node_1_0, 
-        		"NodeDefinition");
+        		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2189,7 +2363,7 @@ ruleQuantificationList returns [EObject current=null]
        			$current, 
        			"quantifications",
         		lv_quantifications_0_0, 
-        		"Quantification");
+        		"com.isax.validation.dsl.Dsl.Quantification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2211,7 +2385,7 @@ ruleQuantificationList returns [EObject current=null]
        			$current, 
        			"quantifications",
         		lv_quantifications_2_0, 
-        		"Quantification");
+        		"com.isax.validation.dsl.Dsl.Quantification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2291,7 +2465,7 @@ rulePropertyValueExpression returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"STRING");
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
 	    }
 
 )
@@ -2347,10 +2521,636 @@ rulePropertyReferenceExpression returns [EObject current=null]
        			$current, 
        			"Property",
         		lv_Property_2_0, 
-        		"ID");
+        		"org.eclipse.xtext.xbase.Xtype.ID");
 	    }
 
 )
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRelationQualifier
+entryRuleRelationQualifier returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRelationQualifierRule()); }
+	 iv_ruleRelationQualifier=ruleRelationQualifier 
+	 { $current=$iv_ruleRelationQualifier.current; } 
+	 EOF 
+;
+
+// Rule RelationQualifier
+ruleRelationQualifier returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getRelationQualifierAccess().getMustHaveParserRuleCall_0()); 
+    }
+    this_MustHave_0=ruleMustHave
+    { 
+        $current = $this_MustHave_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQualifierAccess().getMustNotHaveParserRuleCall_1()); 
+    }
+    this_MustNotHave_1=ruleMustNotHave
+    { 
+        $current = $this_MustNotHave_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQualifierAccess().getCanHaveParserRuleCall_2()); 
+    }
+    this_CanHave_2=ruleCanHave
+    { 
+        $current = $this_CanHave_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleMustHave
+entryRuleMustHave returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMustHaveRule()); }
+	 iv_ruleMustHave=ruleMustHave 
+	 { $current=$iv_ruleMustHave.current; } 
+	 EOF 
+;
+
+// Rule MustHave
+ruleMustHave returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getMustHaveAccess().getMustHaveAction_0(),
+            $current);
+    }
+)	otherlv_1='must have' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMustHaveAccess().getMustHaveKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleMustNotHave
+entryRuleMustNotHave returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMustNotHaveRule()); }
+	 iv_ruleMustNotHave=ruleMustNotHave 
+	 { $current=$iv_ruleMustNotHave.current; } 
+	 EOF 
+;
+
+// Rule MustNotHave
+ruleMustNotHave returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getMustNotHaveAccess().getMustNotHaveAction_0(),
+            $current);
+    }
+)	otherlv_1='must not have' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMustNotHaveAccess().getMustNotHaveKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleCanHave
+entryRuleCanHave returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCanHaveRule()); }
+	 iv_ruleCanHave=ruleCanHave 
+	 { $current=$iv_ruleCanHave.current; } 
+	 EOF 
+;
+
+// Rule CanHave
+ruleCanHave returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getCanHaveAccess().getCanHaveAction_0(),
+            $current);
+    }
+)	otherlv_1='can have' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getCanHaveAccess().getCanHaveKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleRelationQuantifier
+entryRuleRelationQuantifier returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRelationQuantifierRule()); }
+	 iv_ruleRelationQuantifier=ruleRelationQuantifier 
+	 { $current=$iv_ruleRelationQuantifier.current; } 
+	 EOF 
+;
+
+// Rule RelationQuantifier
+ruleRelationQuantifier returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getRelationQuantifierAccess().getOneParserRuleCall_0()); 
+    }
+    this_One_0=ruleOne
+    { 
+        $current = $this_One_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQuantifierAccess().getMultipleParserRuleCall_1()); 
+    }
+    this_Multiple_1=ruleMultiple
+    { 
+        $current = $this_Multiple_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQuantifierAccess().getAtLeastParserRuleCall_2()); 
+    }
+    this_AtLeast_2=ruleAtLeast
+    { 
+        $current = $this_AtLeast_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQuantifierAccess().getAtMostParserRuleCall_3()); 
+    }
+    this_AtMost_3=ruleAtMost
+    { 
+        $current = $this_AtMost_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationQuantifierAccess().getExactlyParserRuleCall_4()); 
+    }
+    this_Exactly_4=ruleExactly
+    { 
+        $current = $this_Exactly_4.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleOne
+entryRuleOne returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOneRule()); }
+	 iv_ruleOne=ruleOne 
+	 { $current=$iv_ruleOne.current; } 
+	 EOF 
+;
+
+// Rule One
+ruleOne returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getOneAccess().getOneAction_0(),
+            $current);
+    }
+)(	otherlv_1='one' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getOneAccess().getOneKeyword_1());
+    }
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleMultiple
+entryRuleMultiple returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMultipleRule()); }
+	 iv_ruleMultiple=ruleMultiple 
+	 { $current=$iv_ruleMultiple.current; } 
+	 EOF 
+;
+
+// Rule Multiple
+ruleMultiple returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getMultipleAccess().getMultipleAction_0(),
+            $current);
+    }
+)	otherlv_1='multiple' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMultipleAccess().getMultipleKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleAtLeast
+entryRuleAtLeast returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAtLeastRule()); }
+	 iv_ruleAtLeast=ruleAtLeast 
+	 { $current=$iv_ruleAtLeast.current; } 
+	 EOF 
+;
+
+// Rule AtLeast
+ruleAtLeast returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAtLeastAccess().getAtLeastAction_0(),
+            $current);
+    }
+)	otherlv_1='at least' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getAtLeastAccess().getAtLeastKeyword_1());
+    }
+(
+(
+		lv_quantity_2_0=RULE_INT
+		{
+			newLeafNode(lv_quantity_2_0, grammarAccess.getAtLeastAccess().getQuantityINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAtLeastRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"quantity",
+        		lv_quantity_2_0, 
+        		"org.eclipse.xtext.xbase.Xbase.INT");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleAtMost
+entryRuleAtMost returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAtMostRule()); }
+	 iv_ruleAtMost=ruleAtMost 
+	 { $current=$iv_ruleAtMost.current; } 
+	 EOF 
+;
+
+// Rule AtMost
+ruleAtMost returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAtMostAccess().getAtMostAction_0(),
+            $current);
+    }
+)	otherlv_1='at most' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getAtMostAccess().getAtMostKeyword_1());
+    }
+(
+(
+		lv_quantity_2_0=RULE_INT
+		{
+			newLeafNode(lv_quantity_2_0, grammarAccess.getAtMostAccess().getQuantityINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAtMostRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"quantity",
+        		lv_quantity_2_0, 
+        		"org.eclipse.xtext.xbase.Xbase.INT");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleExactly
+entryRuleExactly returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExactlyRule()); }
+	 iv_ruleExactly=ruleExactly 
+	 { $current=$iv_ruleExactly.current; } 
+	 EOF 
+;
+
+// Rule Exactly
+ruleExactly returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getExactlyAccess().getExactlyAction_0(),
+            $current);
+    }
+)	otherlv_1='exactly' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getExactlyAccess().getExactlyKeyword_1());
+    }
+(
+(
+		lv_quantity_2_0=RULE_INT
+		{
+			newLeafNode(lv_quantity_2_0, grammarAccess.getExactlyAccess().getQuantityINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getExactlyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"quantity",
+        		lv_quantity_2_0, 
+        		"org.eclipse.xtext.xbase.Xbase.INT");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRelationAxis
+entryRuleRelationAxis returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRelationAxisRule()); }
+	 iv_ruleRelationAxis=ruleRelationAxis 
+	 { $current=$iv_ruleRelationAxis.current; } 
+	 EOF 
+;
+
+// Rule RelationAxis
+ruleRelationAxis returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getRelationAxisAccess().getParentParserRuleCall_0()); 
+    }
+    this_Parent_0=ruleParent
+    { 
+        $current = $this_Parent_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationAxisAccess().getChildParserRuleCall_1()); 
+    }
+    this_Child_1=ruleChild
+    { 
+        $current = $this_Child_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationAxisAccess().getAncestorParserRuleCall_2()); 
+    }
+    this_Ancestor_2=ruleAncestor
+    { 
+        $current = $this_Ancestor_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getRelationAxisAccess().getDescendantParserRuleCall_3()); 
+    }
+    this_Descendant_3=ruleDescendant
+    { 
+        $current = $this_Descendant_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleParent
+entryRuleParent returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getParentRule()); }
+	 iv_ruleParent=ruleParent 
+	 { $current=$iv_ruleParent.current; } 
+	 EOF 
+;
+
+// Rule Parent
+ruleParent returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getParentAccess().getParentAction_0(),
+            $current);
+    }
+)(	otherlv_1='parent' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getParentAccess().getParentKeyword_1_0());
+    }
+
+    |	otherlv_2='parents' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getParentAccess().getParentsKeyword_1_1());
+    }
+))
+;
+
+
+
+
+
+// Entry rule entryRuleChild
+entryRuleChild returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getChildRule()); }
+	 iv_ruleChild=ruleChild 
+	 { $current=$iv_ruleChild.current; } 
+	 EOF 
+;
+
+// Rule Child
+ruleChild returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getChildAccess().getParentAction_0(),
+            $current);
+    }
+)(	otherlv_1='child' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getChildAccess().getChildKeyword_1_0());
+    }
+
+    |	otherlv_2='children' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getChildAccess().getChildrenKeyword_1_1());
+    }
+))
+;
+
+
+
+
+
+// Entry rule entryRuleAncestor
+entryRuleAncestor returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAncestorRule()); }
+	 iv_ruleAncestor=ruleAncestor 
+	 { $current=$iv_ruleAncestor.current; } 
+	 EOF 
+;
+
+// Rule Ancestor
+ruleAncestor returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAncestorAccess().getAncestorAction_0(),
+            $current);
+    }
+)(	otherlv_1='ancestor' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getAncestorAccess().getAncestorKeyword_1_0());
+    }
+
+    |	otherlv_2='ancestors' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getAncestorAccess().getAncestorsKeyword_1_1());
+    }
+))
+;
+
+
+
+
+
+// Entry rule entryRuleDescendant
+entryRuleDescendant returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDescendantRule()); }
+	 iv_ruleDescendant=ruleDescendant 
+	 { $current=$iv_ruleDescendant.current; } 
+	 EOF 
+;
+
+// Rule Descendant
+ruleDescendant returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getDescendantAccess().getDescendantAction_0(),
+            $current);
+    }
+)(	otherlv_1='descendant' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getDescendantAccess().getDescendantKeyword_1_0());
+    }
+
+    |	otherlv_2='descendants' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getDescendantAccess().getDescendantsKeyword_1_1());
+    }
 ))
 ;
 
@@ -2420,7 +3220,7 @@ ruleXAnnotation returns [EObject current=null]
        			$current, 
        			"elementValuePairs",
         		lv_elementValuePairs_4_0, 
-        		"XAnnotationElementValuePair");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationElementValuePair");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2447,7 +3247,7 @@ ruleXAnnotation returns [EObject current=null]
        			$current, 
        			"elementValuePairs",
         		lv_elementValuePairs_6_0, 
-        		"XAnnotationElementValuePair");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationElementValuePair");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2466,7 +3266,7 @@ ruleXAnnotation returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_7_0, 
-        		"XAnnotationElementValueOrCommaList");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationElementValueOrCommaList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2533,7 +3333,7 @@ ruleXAnnotationElementValuePair returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_2_0, 
-        		"XAnnotationElementValue");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationElementValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2589,7 +3389,7 @@ ruleXAnnotationElementValueOrCommaList returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_3_0, 
-        		"XAnnotationOrExpression");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2611,7 +3411,7 @@ ruleXAnnotationElementValueOrCommaList returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_5_0, 
-        		"XAnnotationOrExpression");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2653,7 +3453,7 @@ ruleXAnnotationElementValueOrCommaList returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_10_0, 
-        		"XAnnotationOrExpression");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2709,7 +3509,7 @@ ruleXAnnotationElementValue returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_3_0, 
-        		"XAnnotationOrExpression");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2731,7 +3531,7 @@ ruleXAnnotationElementValue returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_5_0, 
-        		"XAnnotationOrExpression");
+        		"org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations.XAnnotationOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2883,7 +3683,7 @@ ruleOpSingleAssign
        			$current, 
        			"value",
         		lv_value_3_0, 
-        		"XAssignment");
+        		"org.eclipse.xtext.xbase.Xbase.XAssignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2937,7 +3737,7 @@ ruleOpSingleAssign
        			$current, 
        			"rightOperand",
         		lv_rightOperand_7_0, 
-        		"XAssignment");
+        		"org.eclipse.xtext.xbase.Xbase.XAssignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3131,7 +3931,7 @@ ruleXOrExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XAndExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XAndExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3232,7 +4032,7 @@ ruleXAndExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XEqualityExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XEqualityExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3333,7 +4133,7 @@ ruleXEqualityExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XRelationalExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XRelationalExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3441,7 +4241,7 @@ ruleXRelationalExpression returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3486,7 +4286,7 @@ ruleXRelationalExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_6_0, 
-        		"XOtherOperatorExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XOtherOperatorExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3614,7 +4414,7 @@ ruleXOtherOperatorExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XAdditiveExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XAdditiveExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3830,7 +4630,7 @@ ruleXAdditiveExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XMultiplicativeExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XMultiplicativeExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3938,7 +4738,7 @@ ruleXMultiplicativeExpression returns [EObject current=null]
        			$current, 
        			"rightOperand",
         		lv_rightOperand_3_0, 
-        		"XUnaryOperation");
+        		"org.eclipse.xtext.xbase.Xbase.XUnaryOperation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4046,7 +4846,7 @@ ruleXUnaryOperation returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_2_0, 
-        		"XUnaryOperation");
+        		"org.eclipse.xtext.xbase.Xbase.XUnaryOperation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4157,7 +4957,7 @@ ruleXCastedExpression returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4357,7 +5157,7 @@ ruleOpSingleAssign
        			$current, 
        			"value",
         		lv_value_6_0, 
-        		"XAssignment");
+        		"org.eclipse.xtext.xbase.Xbase.XAssignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4438,7 +5238,7 @@ ruleOpSingleAssign
        			$current, 
        			"typeArguments",
         		lv_typeArguments_12_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4460,7 +5260,7 @@ ruleOpSingleAssign
        			$current, 
        			"typeArguments",
         		lv_typeArguments_14_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4534,7 +5334,7 @@ ruleJvmFormalParameter
        			$current, 
        			"memberCallArguments",
         		lv_memberCallArguments_18_0, 
-        		"XShortClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XShortClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4553,7 +5353,7 @@ ruleJvmFormalParameter
        			$current, 
        			"memberCallArguments",
         		lv_memberCallArguments_19_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4575,7 +5375,7 @@ ruleJvmFormalParameter
        			$current, 
        			"memberCallArguments",
         		lv_memberCallArguments_21_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4599,7 +5399,7 @@ ruleJvmFormalParameter
        			$current, 
        			"memberCallArguments",
         		lv_memberCallArguments_23_0, 
-        		"XClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4784,7 +5584,7 @@ ruleXSetLiteral returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4806,7 +5606,7 @@ ruleXSetLiteral returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4863,7 +5663,7 @@ ruleXListLiteral returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4885,7 +5685,7 @@ ruleXListLiteral returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4955,7 +5755,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredFormalParameters",
         		lv_declaredFormalParameters_2_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4977,7 +5777,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredFormalParameters",
         		lv_declaredFormalParameters_4_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5010,7 +5810,7 @@ ruleJvmFormalParameter
        			$current, 
        			"expression",
         		lv_expression_6_0, 
-        		"XExpressionInClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XExpressionInClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5059,7 +5859,7 @@ ruleXExpressionInClosure returns [EObject current=null]
        			$current, 
        			"expressions",
         		lv_expressions_1_0, 
-        		"XExpressionOrVarDeclaration");
+        		"org.eclipse.xtext.xbase.Xbase.XExpressionOrVarDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5124,7 +5924,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredFormalParameters",
         		lv_declaredFormalParameters_1_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5146,7 +5946,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredFormalParameters",
         		lv_declaredFormalParameters_3_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5179,7 +5979,7 @@ ruleJvmFormalParameter
        			$current, 
        			"expression",
         		lv_expression_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5270,7 +6070,7 @@ ruleXIfExpression returns [EObject current=null]
        			$current, 
        			"if",
         		lv_if_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5292,7 +6092,7 @@ ruleXIfExpression returns [EObject current=null]
        			$current, 
        			"then",
         		lv_then_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5315,7 +6115,7 @@ ruleXIfExpression returns [EObject current=null]
        			$current, 
        			"else",
         		lv_else_7_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5374,7 +6174,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredParam",
         		lv_declaredParam_3_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5396,7 +6196,7 @@ ruleJvmFormalParameter
        			$current, 
        			"switch",
         		lv_switch_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5424,7 +6224,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredParam",
         		lv_declaredParam_7_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5446,7 +6246,7 @@ ruleJvmFormalParameter
        			$current, 
        			"switch",
         		lv_switch_9_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5468,7 +6268,7 @@ ruleJvmFormalParameter
        			$current, 
        			"cases",
         		lv_cases_11_0, 
-        		"XCasePart");
+        		"org.eclipse.xtext.xbase.Xbase.XCasePart");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5494,7 +6294,7 @@ ruleJvmFormalParameter
        			$current, 
        			"default",
         		lv_default_14_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5543,7 +6343,7 @@ ruleXCasePart returns [EObject current=null]
        			$current, 
        			"typeGuard",
         		lv_typeGuard_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5565,7 +6365,7 @@ ruleXCasePart returns [EObject current=null]
        			$current, 
        			"case",
         		lv_case_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5587,7 +6387,7 @@ ruleXCasePart returns [EObject current=null]
        			$current, 
        			"then",
         		lv_then_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5664,7 +6464,7 @@ ruleJvmFormalParameter
        			$current, 
        			"declaredParam",
         		lv_declaredParam_3_0, 
-        		"JvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.JvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5686,7 +6486,7 @@ ruleJvmFormalParameter
        			$current, 
        			"forExpression",
         		lv_forExpression_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5708,7 +6508,7 @@ ruleJvmFormalParameter
        			$current, 
        			"eachExpression",
         		lv_eachExpression_7_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5761,7 +6561,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"initExpressions",
         		lv_initExpressions_3_0, 
-        		"XExpressionOrVarDeclaration");
+        		"org.eclipse.xtext.xbase.Xbase.XExpressionOrVarDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5783,7 +6583,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"initExpressions",
         		lv_initExpressions_5_0, 
-        		"XExpressionOrVarDeclaration");
+        		"org.eclipse.xtext.xbase.Xbase.XExpressionOrVarDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5805,7 +6605,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_7_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5827,7 +6627,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"updateExpressions",
         		lv_updateExpressions_9_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5849,7 +6649,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"updateExpressions",
         		lv_updateExpressions_11_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5871,7 +6671,7 @@ ruleXBasicForLoopExpression returns [EObject current=null]
        			$current, 
        			"eachExpression",
         		lv_eachExpression_13_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5924,7 +6724,7 @@ ruleXWhileExpression returns [EObject current=null]
        			$current, 
        			"predicate",
         		lv_predicate_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5946,7 +6746,7 @@ ruleXWhileExpression returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5995,7 +6795,7 @@ ruleXDoWhileExpression returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_2_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6021,7 +6821,7 @@ ruleXDoWhileExpression returns [EObject current=null]
        			$current, 
        			"predicate",
         		lv_predicate_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6074,7 +6874,7 @@ ruleXBlockExpression returns [EObject current=null]
        			$current, 
        			"expressions",
         		lv_expressions_2_0, 
-        		"XExpressionOrVarDeclaration");
+        		"org.eclipse.xtext.xbase.Xbase.XExpressionOrVarDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6195,7 +6995,7 @@ ruleValidID
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6213,7 +7013,7 @@ ruleValidID
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"ValidID");
+        		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6232,7 +7032,7 @@ ruleValidID
        			$current, 
        			"name",
         		lv_name_5_0, 
-        		"ValidID");
+        		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6254,7 +7054,7 @@ ruleValidID
        			$current, 
        			"right",
         		lv_right_7_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6293,7 +7093,7 @@ ruleJvmFormalParameter returns [EObject current=null]
        			$current, 
        			"parameterType",
         		lv_parameterType_0_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6311,7 +7111,7 @@ ruleJvmFormalParameter returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ValidID");
+        		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6350,7 +7150,7 @@ ruleFullJvmFormalParameter returns [EObject current=null]
        			$current, 
        			"parameterType",
         		lv_parameterType_0_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6368,7 +7168,7 @@ ruleFullJvmFormalParameter returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ValidID");
+        		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6417,7 +7217,7 @@ ruleXFeatureCall returns [EObject current=null]
        			$current, 
        			"typeArguments",
         		lv_typeArguments_2_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6439,7 +7239,7 @@ ruleXFeatureCall returns [EObject current=null]
        			$current, 
        			"typeArguments",
         		lv_typeArguments_4_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6513,7 +7313,7 @@ ruleJvmFormalParameter
        			$current, 
        			"featureCallArguments",
         		lv_featureCallArguments_8_0, 
-        		"XShortClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XShortClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6532,7 +7332,7 @@ ruleJvmFormalParameter
        			$current, 
        			"featureCallArguments",
         		lv_featureCallArguments_9_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6554,7 +7354,7 @@ ruleJvmFormalParameter
        			$current, 
        			"featureCallArguments",
         		lv_featureCallArguments_11_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6578,7 +7378,7 @@ ruleJvmFormalParameter
        			$current, 
        			"featureCallArguments",
         		lv_featureCallArguments_13_0, 
-        		"XClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6746,7 +7546,7 @@ ruleXConstructorCall returns [EObject current=null]
        			$current, 
        			"typeArguments",
         		lv_typeArguments_4_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6768,7 +7568,7 @@ ruleXConstructorCall returns [EObject current=null]
        			$current, 
        			"typeArguments",
         		lv_typeArguments_6_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6827,7 +7627,7 @@ ruleJvmFormalParameter
        			$current, 
        			"arguments",
         		lv_arguments_9_0, 
-        		"XShortClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XShortClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6846,7 +7646,7 @@ ruleJvmFormalParameter
        			$current, 
        			"arguments",
         		lv_arguments_10_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6868,7 +7668,7 @@ ruleJvmFormalParameter
        			$current, 
        			"arguments",
         		lv_arguments_12_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6892,7 +7692,7 @@ ruleJvmFormalParameter
        			$current, 
        			"arguments",
         		lv_arguments_14_0, 
-        		"XClosure");
+        		"org.eclipse.xtext.xbase.Xbase.XClosure");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7015,7 +7815,7 @@ ruleXNumberLiteral returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"Number");
+        		"org.eclipse.xtext.xbase.Xbase.Number");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7061,7 +7861,7 @@ ruleXStringLiteral returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"STRING");
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
 	    }
 
 )
@@ -7128,7 +7928,7 @@ ruleXTypeLiteral returns [EObject current=null]
        			$current, 
        			"arrayDimensions",
         		lv_arrayDimensions_4_0, 
-        		"ArrayBrackets");
+        		"org.eclipse.xtext.xbase.Xtype.ArrayBrackets");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7181,7 +7981,7 @@ ruleXThrowExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7259,7 +8059,7 @@ ruleXReturnExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7308,7 +8108,7 @@ ruleXTryCatchFinallyExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7327,7 +8127,7 @@ ruleXTryCatchFinallyExpression returns [EObject current=null]
        			$current, 
        			"catchClauses",
         		lv_catchClauses_3_0, 
-        		"XCatchClause");
+        		"org.eclipse.xtext.xbase.Xbase.XCatchClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7350,7 +8150,7 @@ ruleXTryCatchFinallyExpression returns [EObject current=null]
        			$current, 
        			"finallyExpression",
         		lv_finallyExpression_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7373,7 +8173,7 @@ ruleXTryCatchFinallyExpression returns [EObject current=null]
        			$current, 
        			"finallyExpression",
         		lv_finallyExpression_7_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7429,7 +8229,7 @@ ruleXSynchronizedExpression returns [EObject current=null]
        			$current, 
        			"param",
         		lv_param_3_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7451,7 +8251,7 @@ ruleXSynchronizedExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_5_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7499,7 +8299,7 @@ ruleXCatchClause returns [EObject current=null]
        			$current, 
        			"declaredParam",
         		lv_declaredParam_2_0, 
-        		"FullJvmFormalParameter");
+        		"org.eclipse.xtext.xbase.Xbase.FullJvmFormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7521,7 +8321,7 @@ ruleXCatchClause returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_4_0, 
-        		"XExpression");
+        		"org.eclipse.xtext.xbase.Xbase.XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7780,7 +8580,7 @@ ruleXFunctionTypeRef returns [EObject current=null]
        			$current, 
        			"paramTypes",
         		lv_paramTypes_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7802,7 +8602,7 @@ ruleXFunctionTypeRef returns [EObject current=null]
        			$current, 
        			"paramTypes",
         		lv_paramTypes_3_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7828,7 +8628,7 @@ ruleXFunctionTypeRef returns [EObject current=null]
        			$current, 
        			"returnType",
         		lv_returnType_6_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7887,7 +8687,7 @@ ruleJvmParameterizedTypeReference returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_2_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7909,7 +8709,7 @@ ruleJvmParameterizedTypeReference returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_4_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7963,7 +8763,7 @@ ruleJvmParameterizedTypeReference returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_10_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7985,7 +8785,7 @@ ruleJvmParameterizedTypeReference returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_12_0, 
-        		"JvmArgumentTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmArgumentTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8078,7 +8878,7 @@ ruleJvmWildcardTypeReference returns [EObject current=null]
        			$current, 
        			"constraints",
         		lv_constraints_2_0, 
-        		"JvmUpperBound");
+        		"org.eclipse.xtext.xbase.Xtype.JvmUpperBound");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8096,7 +8896,7 @@ ruleJvmWildcardTypeReference returns [EObject current=null]
        			$current, 
        			"constraints",
         		lv_constraints_3_0, 
-        		"JvmUpperBoundAnded");
+        		"org.eclipse.xtext.xbase.Xtype.JvmUpperBoundAnded");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8115,7 +8915,7 @@ ruleJvmWildcardTypeReference returns [EObject current=null]
        			$current, 
        			"constraints",
         		lv_constraints_4_0, 
-        		"JvmLowerBound");
+        		"org.eclipse.xtext.xbase.Xtype.JvmLowerBound");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8133,7 +8933,7 @@ ruleJvmWildcardTypeReference returns [EObject current=null]
        			$current, 
        			"constraints",
         		lv_constraints_5_0, 
-        		"JvmLowerBoundAnded");
+        		"org.eclipse.xtext.xbase.Xtype.JvmLowerBoundAnded");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8176,7 +8976,7 @@ ruleJvmUpperBound returns [EObject current=null]
        			$current, 
        			"typeReference",
         		lv_typeReference_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8219,7 +9019,7 @@ ruleJvmUpperBoundAnded returns [EObject current=null]
        			$current, 
        			"typeReference",
         		lv_typeReference_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8262,7 +9062,7 @@ ruleJvmLowerBound returns [EObject current=null]
        			$current, 
        			"typeReference",
         		lv_typeReference_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8305,7 +9105,7 @@ ruleJvmLowerBoundAnded returns [EObject current=null]
        			$current, 
        			"typeReference",
         		lv_typeReference_1_0, 
-        		"JvmTypeReference");
+        		"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8485,7 +9285,7 @@ ruleXImportDeclaration returns [EObject current=null]
        			$current, 
        			"memberName",
         		lv_memberName_5_0, 
-        		"ValidID");
+        		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8520,7 +9320,7 @@ ruleXImportDeclaration returns [EObject current=null]
        			$current, 
        			"importedNamespace",
         		lv_importedNamespace_7_0, 
-        		"QualifiedNameWithWildcard");
+        		"org.eclipse.xtext.xbase.Xtype.QualifiedNameWithWildcard");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8593,86 +9393,6 @@ ruleQuantor returns [Enumerator current=null]
 
 
 
-// Rule RelationQualifier
-ruleRelationQualifier returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='must have' 
-	{
-        $current = grammarAccess.getRelationQualifierAccess().getMustEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getRelationQualifierAccess().getMustEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='must not have' 
-	{
-        $current = grammarAccess.getRelationQualifierAccess().getMustNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getRelationQualifierAccess().getMustNotEnumLiteralDeclaration_1()); 
-    }
-)
-    |(	enumLiteral_2='can have' 
-	{
-        $current = grammarAccess.getRelationQualifierAccess().getCanEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getRelationQualifierAccess().getCanEnumLiteralDeclaration_2()); 
-    }
-));
-
-
-
-// Rule Axis
-ruleAxis returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='parent' 
-	{
-        $current = grammarAccess.getAxisAccess().getParentEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getAxisAccess().getParentEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='child' 
-	{
-        $current = grammarAccess.getAxisAccess().getChildEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getAxisAccess().getChildEnumLiteralDeclaration_1()); 
-    }
-)
-    |(	enumLiteral_2='ancestor' 
-	{
-        $current = grammarAccess.getAxisAccess().getAncestorEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getAxisAccess().getAncestorEnumLiteralDeclaration_2()); 
-    }
-)
-    |(	enumLiteral_3='descendant' 
-	{
-        $current = grammarAccess.getAxisAccess().getDescendantEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getAxisAccess().getDescendantEnumLiteralDeclaration_3()); 
-    }
-)
-    |(	enumLiteral_4='multiple parents' 
-	{
-        $current = grammarAccess.getAxisAccess().getParentsEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_4, grammarAccess.getAxisAccess().getParentsEnumLiteralDeclaration_4()); 
-    }
-)
-    |(	enumLiteral_5='multiple children' 
-	{
-        $current = grammarAccess.getAxisAccess().getChildrenEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_5, grammarAccess.getAxisAccess().getChildrenEnumLiteralDeclaration_5()); 
-    }
-)
-    |(	enumLiteral_6='multiple ancestors' 
-	{
-        $current = grammarAccess.getAxisAccess().getAncestorsEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_6, grammarAccess.getAxisAccess().getAncestorsEnumLiteralDeclaration_6()); 
-    }
-)
-    |(	enumLiteral_7='multiple descendants' 
-	{
-        $current = grammarAccess.getAxisAccess().getDescendantsEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_7, grammarAccess.getAxisAccess().getDescendantsEnumLiteralDeclaration_7()); 
-    }
-));
-
-
-
 // Rule PropertyRelation
 rulePropertyRelation returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -8711,6 +9431,30 @@ rulePropertyRelation returns [Enumerator current=null]
 	{
         $current = grammarAccess.getPropertyRelationAccess().getLesserEqualsEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_5, grammarAccess.getPropertyRelationAccess().getLesserEqualsEnumLiteralDeclaration_5()); 
+    }
+)
+    |(	enumLiteral_6='contains' 
+	{
+        $current = grammarAccess.getPropertyRelationAccess().getContainsEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_6, grammarAccess.getPropertyRelationAccess().getContainsEnumLiteralDeclaration_6()); 
+    }
+)
+    |(	enumLiteral_7='not contains' 
+	{
+        $current = grammarAccess.getPropertyRelationAccess().getNotContainsEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_7, grammarAccess.getPropertyRelationAccess().getNotContainsEnumLiteralDeclaration_7()); 
+    }
+)
+    |(	enumLiteral_8='intersects' 
+	{
+        $current = grammarAccess.getPropertyRelationAccess().getIntersectsEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_8, grammarAccess.getPropertyRelationAccess().getIntersectsEnumLiteralDeclaration_8()); 
+    }
+)
+    |(	enumLiteral_9='subset of' 
+	{
+        $current = grammarAccess.getPropertyRelationAccess().getSubsetOfEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_9, grammarAccess.getPropertyRelationAccess().getSubsetOfEnumLiteralDeclaration_9()); 
     }
 ));
 

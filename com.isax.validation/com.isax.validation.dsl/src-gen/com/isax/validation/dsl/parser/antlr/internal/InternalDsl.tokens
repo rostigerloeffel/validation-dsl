@@ -1,119 +1,128 @@
-'!'=71
-'!='=57
-'!=='=59
-'#'=45
-'%'=70
-'%='=50
-'&&'=55
-'&'=104
-'('=27
-')'=28
-'*'=21
-'**'=68
-'*='=48
-'+'=66
-'++'=72
-'+='=46
-','=22
-'-'=67
-'--'=73
-'-='=47
-'->'=61
+'!'=87
+'!='=73
+'!=='=75
+'#'=61
+'%'=86
+'%='=66
+'&&'=71
+'&'=120
+'('=29
+')'=30
+'*'=23
+'**'=84
+'*='=64
+'+'=82
+'++'=88
+'+='=62
+','=24
+'-'=83
+'--'=89
+'-='=63
+'->'=77
 '.'=37
-'..'=63
-'..<'=62
-'/'=69
-'/='=49
-':'=23
-'::'=74
-';'=77
-'<'=51
-'<>'=64
-'='=44
-'=='=56
-'==='=58
-'=>'=32
-'>'=52
-'>='=53
-'?'=103
-'?.'=75
-'?:'=65
-'@'=43
-'['=34
+'..'=79
+'..<'=78
+'/'=85
+'/='=65
+':'=25
+'::'=90
+';'=93
+'<'=67
+'<>'=80
+'='=60
+'=='=72
+'==='=74
+'=>'=34
+'>'=68
+'>='=69
+'?'=119
+'?.'=91
+'?:'=81
+'@'=59
+'['=13
 '[['=39
-']'=35
+']'=14
 ']]'=41
-'ancestor'=112
-'and'=30
-'any'=106
-'as'=18
-'being'=26
-'can have'=109
-'case'=82
-'catch'=102
-'child'=111
-'default'=81
-'define'=17
-'descendant'=113
-'do'=84
-'each'=105
-'else'=79
-'equals'=118
-'extends'=87
-'extension'=90
-'false'=93
-'finally'=100
-'for'=15
-'greater or equals than'=122
-'greater than'=120
-'holds'=16
-'if'=78
-'implies'=31
-'import'=89
+'ancestor'=55
+'ancestors'=56
+'and'=32
+'any'=122
+'as'=20
+'at least'=48
+'at most'=49
+'being'=28
+'can have'=45
+'case'=98
+'catch'=118
+'child'=53
+'children'=54
+'contains'=129
+'default'=97
+'define'=19
+'descendant'=57
+'descendants'=58
+'do'=100
+'each'=121
+'else'=95
+'equals'=123
+'exactly'=50
+'extends'=103
+'extension'=106
+'false'=109
+'finally'=116
+'for'=17
+'greater or equals than'=127
+'greater than'=125
+'holds'=18
+'if'=94
+'implies'=33
+'import'=105
 'in'=42
-'instanceof'=60
-'lesser or equals than'=123
-'lesser than'=121
-'multiple ancestors'=116
-'multiple children'=115
-'multiple descendants'=117
-'multiple parents'=114
-'must have'=107
-'must not have'=108
-'new'=92
-'not equals'=119
-'not'=33
-'null'=95
-'on'=14
-'or'=29
-'parent'=110
-'return'=98
+'instanceof'=76
+'intersects'=131
+'lesser or equals than'=128
+'lesser than'=126
+'multiple'=47
+'must have'=43
+'must not have'=44
+'new'=108
+'not contains'=130
+'not equals'=124
+'not'=35
+'null'=111
+'on'=16
+'one'=46
+'or'=31
+'parent'=51
+'parents'=52
+'return'=114
 'set'=36
-'start'=13
-'static'=88
-'super'=91
-'switch'=80
-'synchronized'=101
-'then'=25
-'throw'=97
+'start'=15
+'static'=104
+'subset of'=132
+'super'=107
+'switch'=96
+'synchronized'=117
+'then'=27
+'throw'=113
 'to'=38
-'true'=94
-'try'=99
-'typeof'=96
-'val'=86
-'var'=85
-'where'=24
-'while'=83
-'{'=19
-'|'=76
-'||'=54
-'}'=20
+'true'=110
+'try'=115
+'typeof'=112
+'val'=102
+'var'=101
+'where'=26
+'while'=99
+'{'=21
+'|'=92
+'||'=70
+'}'=22
 '~>'=40
 RULE_ANY_OTHER=12
 RULE_DECIMAL=8
-RULE_HEX=6
+RULE_HEX=7
 RULE_ID=4
-RULE_INT=7
+RULE_INT=6
 RULE_ML_COMMENT=9
 RULE_SL_COMMENT=10
 RULE_STRING=5
@@ -142,6 +151,15 @@ T__120=120
 T__121=121
 T__122=122
 T__123=123
+T__124=124
+T__125=125
+T__126=126
+T__127=127
+T__128=128
+T__129=129
+T__130=130
+T__131=131
+T__132=132
 T__13=13
 T__14=14
 T__15=15

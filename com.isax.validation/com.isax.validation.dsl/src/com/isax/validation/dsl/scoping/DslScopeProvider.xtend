@@ -4,10 +4,14 @@
 package com.isax.validation.dsl.scoping
 
 import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.DslFactory
+import com.isax.validation.dsl.dsl.One
 import com.isax.validation.dsl.dsl.PredicateReference
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.Quantification
+import java.util.Arrays
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions

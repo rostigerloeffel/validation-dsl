@@ -2,13 +2,23 @@ package com.isax.validation.dsl.util;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import com.isax.validation.dsl.dsl.Axis;
+import com.isax.validation.dsl.dsl.Ancestor;
 import com.isax.validation.dsl.dsl.BodySentences;
+import com.isax.validation.dsl.dsl.CanHave;
+import com.isax.validation.dsl.dsl.Child;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
+import com.isax.validation.dsl.dsl.Descendant;
+import com.isax.validation.dsl.dsl.MustHave;
+import com.isax.validation.dsl.dsl.MustNotHave;
 import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.One;
+import com.isax.validation.dsl.dsl.Parent;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.QuantificationList;
+import com.isax.validation.dsl.dsl.RelationAxis;
+import com.isax.validation.dsl.dsl.RelationQualifier;
+import com.isax.validation.dsl.dsl.RelationQuantifier;
 import com.isax.validation.dsl.dsl.Sentence;
 import com.isax.validation.dsl.dsl.StartOnSentence;
 import com.isax.validation.dsl.dsl.TargetDefinition;
@@ -30,32 +40,6 @@ import org.eclipse.xtext.xbase.lib.Pair;
 public class DslUtil {
   public static int uniqueSuffix(final EObject object) {
     return object.hashCode();
-  }
-  
-  public static boolean collectionAxis(final Axis axis) {
-    boolean _or = false;
-    boolean _or_1 = false;
-    boolean _or_2 = false;
-    boolean _equals = Objects.equal(axis, Axis.ANCESTORS);
-    if (_equals) {
-      _or_2 = true;
-    } else {
-      boolean _equals_1 = Objects.equal(axis, Axis.DESCENDANTS);
-      _or_2 = _equals_1;
-    }
-    if (_or_2) {
-      _or_1 = true;
-    } else {
-      boolean _equals_2 = Objects.equal(axis, Axis.CHILDREN);
-      _or_1 = _equals_2;
-    }
-    if (_or_1) {
-      _or = true;
-    } else {
-      boolean _equals_3 = Objects.equal(axis, Axis.PARENTS);
-      _or = _equals_3;
-    }
-    return _or;
   }
   
   public static String path(final EObject object) {
@@ -150,30 +134,6 @@ public class DslUtil {
       };
       Iterable<NodeDefinition> _map_1 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_1, _function_2);
       Iterables.<NodeDefinition>addAll(siblings, _map_1);
-      EList<Sentence> _sentences_2 = parentBody.getSentences();
-      Iterable<Pair<Integer, Sentence>> _indexed_1 = IterableExtensions.<Sentence>indexed(_sentences_2);
-      final Function1<Pair<Integer, Sentence>, Boolean> _function_3 = (Pair<Integer, Sentence> s) -> {
-        Integer _key = s.getKey();
-        return Boolean.valueOf(((_key).intValue() < index));
-      };
-      Iterable<Pair<Integer, Sentence>> _filter_2 = IterableExtensions.<Pair<Integer, Sentence>>filter(_indexed_1, _function_3);
-      final Function1<Pair<Integer, Sentence>, Sentence> _function_4 = (Pair<Integer, Sentence> s) -> {
-        return s.getValue();
-      };
-      Iterable<Sentence> _map_2 = IterableExtensions.<Pair<Integer, Sentence>, Sentence>map(_filter_2, _function_4);
-      Iterable<DefinitionSentence> _filter_3 = Iterables.<DefinitionSentence>filter(_map_2, DefinitionSentence.class);
-      final Function1<DefinitionSentence, Boolean> _function_5 = (DefinitionSentence s) -> {
-        TargetDefinition _target = s.getTarget();
-        NodeDefinition _local = _target.getLocal();
-        return Boolean.valueOf((!Objects.equal(_local, null)));
-      };
-      Iterable<DefinitionSentence> _filter_4 = IterableExtensions.<DefinitionSentence>filter(_filter_3, _function_5);
-      final Function1<DefinitionSentence, NodeDefinition> _function_6 = (DefinitionSentence s) -> {
-        TargetDefinition _target = s.getTarget();
-        return _target.getLocal();
-      };
-      Iterable<NodeDefinition> _map_3 = IterableExtensions.<DefinitionSentence, NodeDefinition>map(_filter_4, _function_6);
-      Iterables.<NodeDefinition>addAll(siblings, _map_3);
       _xblockexpression = siblings;
     }
     return _xblockexpression;
@@ -222,6 +182,133 @@ public class DslUtil {
     return _xblockexpression;
   }
   
+  public static String _name(final RelationQualifier qualifier) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (!_matched) {
+      if (qualifier instanceof MustHave) {
+        _matched=true;
+        _switchResult = "mustHave";
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof MustNotHave) {
+        _matched=true;
+        _switchResult = "mustNotHave";
+      }
+    }
+    if (!_matched) {
+      if (qualifier instanceof CanHave) {
+        _matched=true;
+        _switchResult = "canHave";
+      }
+    }
+    if (!_matched) {
+      _switchResult = "";
+    }
+    return _switchResult;
+  }
+  
+  public static String _name(final RelationAxis axis) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (!_matched) {
+      if (axis instanceof Parent) {
+        _matched=true;
+        _switchResult = "parent";
+      }
+    }
+    if (!_matched) {
+      if (axis instanceof Child) {
+        _matched=true;
+        _switchResult = "child";
+      }
+    }
+    if (!_matched) {
+      if (axis instanceof Ancestor) {
+        _matched=true;
+        _switchResult = "ancestor";
+      }
+    }
+    if (!_matched) {
+      if (axis instanceof Descendant) {
+        _matched=true;
+        _switchResult = "descendant";
+      }
+    }
+    if (!_matched) {
+      _switchResult = "";
+    }
+    return _switchResult;
+  }
+  
+  public static String _name(final RelationAxis axis, final RelationQuantifier quantifier) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (!_matched) {
+      if (quantifier instanceof One) {
+        _matched=true;
+        String _switchResult_1 = null;
+        boolean _matched_1 = false;
+        if (!_matched_1) {
+          if (axis instanceof Parent) {
+            _matched_1=true;
+            _switchResult_1 = "parent";
+          }
+        }
+        if (!_matched_1) {
+          if (axis instanceof Child) {
+            _matched_1=true;
+            _switchResult_1 = "child";
+          }
+        }
+        if (!_matched_1) {
+          if (axis instanceof Ancestor) {
+            _matched_1=true;
+            _switchResult_1 = "ancestor";
+          }
+        }
+        if (!_matched_1) {
+          if (axis instanceof Descendant) {
+            _matched_1=true;
+            _switchResult_1 = "descendant";
+          }
+        }
+        _switchResult = _switchResult_1;
+      }
+    }
+    if (!_matched) {
+      String _switchResult_1 = null;
+      boolean _matched_1 = false;
+      if (!_matched_1) {
+        if (axis instanceof Parent) {
+          _matched_1=true;
+          _switchResult_1 = "parents";
+        }
+      }
+      if (!_matched_1) {
+        if (axis instanceof Child) {
+          _matched_1=true;
+          _switchResult_1 = "children";
+        }
+      }
+      if (!_matched_1) {
+        if (axis instanceof Ancestor) {
+          _matched_1=true;
+          _switchResult_1 = "ancestors";
+        }
+      }
+      if (!_matched_1) {
+        if (axis instanceof Descendant) {
+          _matched_1=true;
+          _switchResult_1 = "descendants";
+        }
+      }
+      _switchResult = _switchResult_1;
+    }
+    return _switchResult;
+  }
+  
   private static IScope scopeForSentence(final Sentence startOn, final Function1<? super NodeDefinition, Boolean> predicate) {
     if (startOn instanceof StartOnSentence) {
       return _scopeForSentence((StartOnSentence)startOn, predicate);
@@ -242,5 +329,20 @@ public class DslUtil {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(sentence).toString());
     }
+  }
+  
+  public static String name(final EObject axis) {
+    if (axis instanceof RelationAxis) {
+      return _name((RelationAxis)axis);
+    } else if (axis instanceof RelationQualifier) {
+      return _name((RelationQualifier)axis);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(axis).toString());
+    }
+  }
+  
+  public static String name(final RelationAxis axis, final RelationQuantifier quantifier) {
+    return _name(axis, quantifier);
   }
 }
