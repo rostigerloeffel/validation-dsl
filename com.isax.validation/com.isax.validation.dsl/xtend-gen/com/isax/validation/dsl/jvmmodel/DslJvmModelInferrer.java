@@ -334,51 +334,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    final String suffix = DslUtil.path(sentence);
-    _builder.newLineIfNotEmpty();
-    {
-      NodeReferenceList _nodes = null;
-      if (sentence!=null) {
-        _nodes=sentence.getNodes();
-      }
-      EList<NodeDefinition> _nodes_1 = null;
-      if (_nodes!=null) {
-        _nodes_1=_nodes.getNodes();
-      }
-      boolean _notEquals = (!Objects.equal(_nodes_1, null));
-      if (_notEquals) {
-        {
-          NodeReferenceList _nodes_2 = sentence.getNodes();
-          EList<NodeDefinition> _nodes_3 = null;
-          if (_nodes_2!=null) {
-            _nodes_3=_nodes_2.getNodes();
-          }
-          for(final NodeDefinition node : _nodes_3) {
-            _builder.append("\t");
-            _builder.append("final ");
-            String _simpleName = ResolvingNode.class.getSimpleName();
-            _builder.append(_simpleName, "\t");
-            _builder.append(" ");
-            String _name = node.getName();
-            String _plus = (_name + "$");
-            String _plus_1 = (_plus + suffix);
-            _builder.append(_plus_1, "\t");
-            _builder.append(" = ");
-            String _uniqueName = this.names.uniqueName(node);
-            _builder.append(_uniqueName, "\t");
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    _builder.append("\t");
-    NodeReferenceList _nodes_4 = sentence.getNodes();
-    if (_nodes_4!=null) {
-      this.map(_nodes_4, suffix);
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     _builder.append("boolean ");
     _builder.append(DslJvmModelInferrer.SATISFIED, "\t");
     String _uniqueSuffix = this.names.uniqueSuffix(sentence);
@@ -398,12 +353,6 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _uniqueSuffix_1 = this.names.uniqueSuffix(sentence);
     _builder.append(_uniqueSuffix_1, "\t");
     _builder.append(") return false;");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    NodeReferenceList _nodes_5 = sentence.getNodes();
-    if (_nodes_5!=null) {
-      this.unmap(_nodes_5);
-    }
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();

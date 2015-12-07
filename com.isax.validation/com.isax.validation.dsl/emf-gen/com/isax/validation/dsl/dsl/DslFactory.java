@@ -20,10 +20,9 @@ public interface DslFactory extends EFactory
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	DslFactory eINSTANCE = new DslFactoryImplCustom();
-//	DslFactory eINSTANCE = com.isax.validation.dsl.dsl.impl.DslFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Validator</em>'.

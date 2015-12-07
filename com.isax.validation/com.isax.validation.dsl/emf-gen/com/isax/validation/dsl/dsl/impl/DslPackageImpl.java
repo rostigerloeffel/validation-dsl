@@ -48,6 +48,7 @@ import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.QuantificationList;
 import com.isax.validation.dsl.dsl.Quantor;
 import com.isax.validation.dsl.dsl.RelationAxis;
+import com.isax.validation.dsl.dsl.RelationKind;
 import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.RelationQuantifier;
 import com.isax.validation.dsl.dsl.Selector;
@@ -466,6 +467,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	private EEnum propertyRelationEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum relationKindEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -737,6 +745,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDefinitionSentence_Kind()
+	{
+		return (EAttribute)definitionSentenceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstraintSentence()
 	{
 		return constraintSentenceEClass;
@@ -757,19 +775,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraintSentence_Nodes()
-	{
-		return (EReference)constraintSentenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getConstraintSentence_Predicate()
 	{
-		return (EReference)constraintSentenceEClass.getEStructuralFeatures().get(2);
+		return (EReference)constraintSentenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1767,6 +1775,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getRelationKind()
+	{
+		return relationKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DslFactory getDslFactory()
 	{
 		return (DslFactory)getEFactoryInstance();
@@ -1816,10 +1834,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEReference(definitionSentenceEClass, DEFINITION_SENTENCE__QUALIFIER);
 		createEReference(definitionSentenceEClass, DEFINITION_SENTENCE__QUANTIFIER);
 		createEReference(definitionSentenceEClass, DEFINITION_SENTENCE__AXIS);
+		createEAttribute(definitionSentenceEClass, DEFINITION_SENTENCE__KIND);
 
 		constraintSentenceEClass = createEClass(CONSTRAINT_SENTENCE);
 		createEReference(constraintSentenceEClass, CONSTRAINT_SENTENCE__QUANTIFICATIONS);
-		createEReference(constraintSentenceEClass, CONSTRAINT_SENTENCE__NODES);
 		createEReference(constraintSentenceEClass, CONSTRAINT_SENTENCE__PREDICATE);
 
 		predicateDefinitionSentenceEClass = createEClass(PREDICATE_DEFINITION_SENTENCE);
@@ -1969,6 +1987,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		// Create enums
 		quantorEEnum = createEEnum(QUANTOR);
 		propertyRelationEEnum = createEEnum(PROPERTY_RELATION);
+		relationKindEEnum = createEEnum(RELATION_KIND);
 	}
 
 	/**
@@ -2059,10 +2078,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getDefinitionSentence_Qualifier(), this.getRelationQualifier(), null, "qualifier", null, 1, 1, DefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefinitionSentence_Quantifier(), this.getRelationQuantifier(), null, "quantifier", null, 1, 1, DefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefinitionSentence_Axis(), this.getRelationAxis(), null, "axis", null, 1, 1, DefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDefinitionSentence_Kind(), this.getRelationKind(), "kind", null, 0, 1, DefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintSentenceEClass, ConstraintSentence.class, "ConstraintSentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraintSentence_Quantifications(), this.getQuantificationList(), null, "quantifications", null, 0, 1, ConstraintSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintSentence_Nodes(), this.getNodeReferenceList(), null, "nodes", null, 0, 1, ConstraintSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraintSentence_Predicate(), this.getPredicateExpression(), null, "predicate", null, 0, 1, ConstraintSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(predicateDefinitionSentenceEClass, PredicateDefinitionSentence.class, "PredicateDefinitionSentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2225,6 +2244,11 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		addEEnumLiteral(propertyRelationEEnum, PropertyRelation.NOT_CONTAINS);
 		addEEnumLiteral(propertyRelationEEnum, PropertyRelation.INTERSECTS);
 		addEEnumLiteral(propertyRelationEEnum, PropertyRelation.SUBSET_OF);
+
+		initEEnum(relationKindEEnum, RelationKind.class, "RelationKind");
+		addEEnumLiteral(relationKindEEnum, RelationKind.BOTH);
+		addEEnumLiteral(relationKindEEnum, RelationKind.SECONDARY);
+		addEEnumLiteral(relationKindEEnum, RelationKind.PRIMARY);
 
 		// Create resource
 		createResource(eNS_URI);

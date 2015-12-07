@@ -7,6 +7,7 @@ import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.RelationAxis;
+import com.isax.validation.dsl.dsl.RelationKind;
 import com.isax.validation.dsl.dsl.RelationQualifier;
 import com.isax.validation.dsl.dsl.RelationQuantifier;
 import com.isax.validation.dsl.dsl.TargetDefinition;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getQuantifier <em>Quantifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getAxis <em>Axis</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.DefinitionSentenceImpl#getKind <em>Kind</em>}</li>
  * </ul>
  *
  * @generated
@@ -98,6 +100,26 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 	 * @ordered
 	 */
 	protected RelationAxis axis;
+
+	/**
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final RelationKind KIND_EDEFAULT = RelationKind.BOTH;
+
+	/**
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected RelationKind kind = KIND_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -408,6 +430,29 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RelationKind getKind()
+	{
+		return kind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKind(RelationKind newKind)
+	{
+		RelationKind oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.DEFINITION_SENTENCE__KIND, oldKind, kind));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -450,6 +495,8 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 				return getQuantifier();
 			case DslPackage.DEFINITION_SENTENCE__AXIS:
 				return getAxis();
+			case DslPackage.DEFINITION_SENTENCE__KIND:
+				return getKind();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -481,6 +528,9 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 				return;
 			case DslPackage.DEFINITION_SENTENCE__AXIS:
 				setAxis((RelationAxis)newValue);
+				return;
+			case DslPackage.DEFINITION_SENTENCE__KIND:
+				setKind((RelationKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -514,6 +564,9 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 			case DslPackage.DEFINITION_SENTENCE__AXIS:
 				setAxis((RelationAxis)null);
 				return;
+			case DslPackage.DEFINITION_SENTENCE__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -540,8 +593,27 @@ public class DefinitionSentenceImpl extends SentenceImpl implements DefinitionSe
 				return quantifier != null;
 			case DslPackage.DEFINITION_SENTENCE__AXIS:
 				return axis != null;
+			case DslPackage.DEFINITION_SENTENCE__KIND:
+				return kind != KIND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (kind: ");
+		result.append(kind);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DefinitionSentenceImpl

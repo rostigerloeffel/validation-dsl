@@ -281,13 +281,22 @@ public interface DslPackage extends EPackage
 	int DEFINITION_SENTENCE__AXIS = SENTENCE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINITION_SENTENCE__KIND = SENTENCE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Definition Sentence</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_SENTENCE_FEATURE_COUNT = SENTENCE_FEATURE_COUNT + 6;
+	int DEFINITION_SENTENCE_FEATURE_COUNT = SENTENCE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl <em>Constraint Sentence</em>}' class.
@@ -309,22 +318,13 @@ public interface DslPackage extends EPackage
 	int CONSTRAINT_SENTENCE__QUANTIFICATIONS = SENTENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Nodes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_SENTENCE__NODES = SENTENCE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_SENTENCE__PREDICATE = SENTENCE_FEATURE_COUNT + 2;
+	int CONSTRAINT_SENTENCE__PREDICATE = SENTENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Constraint Sentence</em>' class.
@@ -333,7 +333,7 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_SENTENCE_FEATURE_COUNT = SENTENCE_FEATURE_COUNT + 3;
+	int CONSTRAINT_SENTENCE_FEATURE_COUNT = SENTENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PredicateDefinitionSentenceImpl <em>Predicate Definition Sentence</em>}' class.
@@ -1914,6 +1914,16 @@ public interface DslPackage extends EPackage
 	 */
 	int PROPERTY_RELATION = 54;
 
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationKind <em>Relation Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.RelationKind
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationKind()
+	 * @generated
+	 */
+	int RELATION_KIND = 55;
+
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.Validator <em>Validator</em>}'.
@@ -2131,6 +2141,17 @@ public interface DslPackage extends EPackage
 	EReference getDefinitionSentence_Axis();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.DefinitionSentence#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see com.isax.validation.dsl.dsl.DefinitionSentence#getKind()
+	 * @see #getDefinitionSentence()
+	 * @generated
+	 */
+	EAttribute getDefinitionSentence_Kind();
+
+	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.ConstraintSentence <em>Constraint Sentence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2150,17 +2171,6 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 */
 	EReference getConstraintSentence_Quantifications();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.ConstraintSentence#getNodes <em>Nodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Nodes</em>'.
-	 * @see com.isax.validation.dsl.dsl.ConstraintSentence#getNodes()
-	 * @see #getConstraintSentence()
-	 * @generated
-	 */
-	EReference getConstraintSentence_Nodes();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.ConstraintSentence#getPredicate <em>Predicate</em>}'.
@@ -3214,6 +3224,16 @@ public interface DslPackage extends EPackage
 	EEnum getPropertyRelation();
 
 	/**
+	 * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.RelationKind <em>Relation Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Relation Kind</em>'.
+	 * @see com.isax.validation.dsl.dsl.RelationKind
+	 * @generated
+	 */
+	EEnum getRelationKind();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3407,6 +3427,14 @@ public interface DslPackage extends EPackage
 		EReference DEFINITION_SENTENCE__AXIS = eINSTANCE.getDefinitionSentence_Axis();
 
 		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEFINITION_SENTENCE__KIND = eINSTANCE.getDefinitionSentence_Kind();
+
+		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl <em>Constraint Sentence</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3423,14 +3451,6 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EReference CONSTRAINT_SENTENCE__QUANTIFICATIONS = eINSTANCE.getConstraintSentence_Quantifications();
-
-		/**
-		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRAINT_SENTENCE__NODES = eINSTANCE.getConstraintSentence_Nodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
@@ -4329,6 +4349,16 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EEnum PROPERTY_RELATION = eINSTANCE.getPropertyRelation();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.RelationKind <em>Relation Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.RelationKind
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationKind()
+		 * @generated
+		 */
+		EEnum RELATION_KIND = eINSTANCE.getRelationKind();
 
 	}
 

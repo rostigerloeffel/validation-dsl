@@ -253,20 +253,23 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cQualifierRelationQualifierParserRuleCall_1_0 = (RuleCall)cQualifierAssignment_1.eContents().get(0);
 		private final Assignment cQuantifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cQuantifierRelationQuantifierParserRuleCall_2_0 = (RuleCall)cQuantifierAssignment_2.eContents().get(0);
-		private final Assignment cAxisAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cAxisRelationAxisParserRuleCall_3_0 = (RuleCall)cAxisAssignment_3.eContents().get(0);
-		private final Assignment cTargetAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cTargetTargetDefinitionParserRuleCall_4_0 = (RuleCall)cTargetAssignment_4.eContents().get(0);
+		private final Assignment cKindAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKindRelationKindEnumRuleCall_3_0 = (RuleCall)cKindAssignment_3.eContents().get(0);
+		private final Assignment cAxisAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cAxisRelationAxisParserRuleCall_4_0 = (RuleCall)cAxisAssignment_4.eContents().get(0);
+		private final Assignment cTargetAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTargetTargetDefinitionParserRuleCall_5_0 = (RuleCall)cTargetAssignment_5.eContents().get(0);
 		
 		//DefinitionSentence:
 		//	(quantification=Quantification | node=[NodeDefinition]) qualifier=RelationQualifier
 		//	quantifier=RelationQuantifier
+		//	kind=RelationKind?
 		//	axis=RelationAxis
 		//	target=TargetDefinition;
 		@Override public ParserRule getRule() { return rule; }
 
 		//(quantification=Quantification | node=[NodeDefinition]) qualifier=RelationQualifier quantifier=RelationQuantifier
-		//axis=RelationAxis target=TargetDefinition
+		//kind=RelationKind? axis=RelationAxis target=TargetDefinition
 		public Group getGroup() { return cGroup; }
 
 		//(quantification=Quantification | node=[NodeDefinition])
@@ -299,65 +302,77 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//RelationQuantifier
 		public RuleCall getQuantifierRelationQuantifierParserRuleCall_2_0() { return cQuantifierRelationQuantifierParserRuleCall_2_0; }
 
+		//kind=RelationKind?
+		public Assignment getKindAssignment_3() { return cKindAssignment_3; }
+
+		//RelationKind
+		public RuleCall getKindRelationKindEnumRuleCall_3_0() { return cKindRelationKindEnumRuleCall_3_0; }
+
 		//axis=RelationAxis
-		public Assignment getAxisAssignment_3() { return cAxisAssignment_3; }
+		public Assignment getAxisAssignment_4() { return cAxisAssignment_4; }
 
 		//RelationAxis
-		public RuleCall getAxisRelationAxisParserRuleCall_3_0() { return cAxisRelationAxisParserRuleCall_3_0; }
+		public RuleCall getAxisRelationAxisParserRuleCall_4_0() { return cAxisRelationAxisParserRuleCall_4_0; }
 
 		//target=TargetDefinition
-		public Assignment getTargetAssignment_4() { return cTargetAssignment_4; }
+		public Assignment getTargetAssignment_5() { return cTargetAssignment_5; }
 
 		//TargetDefinition
-		public RuleCall getTargetTargetDefinitionParserRuleCall_4_0() { return cTargetTargetDefinitionParserRuleCall_4_0; }
+		public RuleCall getTargetTargetDefinitionParserRuleCall_5_0() { return cTargetTargetDefinitionParserRuleCall_5_0; }
 	}
 
 	public class ConstraintSentenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.ConstraintSentence");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cForKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cQuantificationsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQuantificationsQuantificationListParserRuleCall_1_0 = (RuleCall)cQuantificationsAssignment_1.eContents().get(0);
-		private final Assignment cNodesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNodesNodeReferenceListParserRuleCall_2_0 = (RuleCall)cNodesAssignment_2.eContents().get(0);
-		private final Keyword cHoldsKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPredicateAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPredicatePredicateExpressionParserRuleCall_4_0 = (RuleCall)cPredicateAssignment_4.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cItKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final Keyword cForKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Assignment cQuantificationsAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cQuantificationsQuantificationListParserRuleCall_0_1_1_0 = (RuleCall)cQuantificationsAssignment_0_1_1.eContents().get(0);
+		private final Keyword cHoldsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cPredicateAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPredicatePredicateExpressionParserRuleCall_3_0 = (RuleCall)cPredicateAssignment_3.eContents().get(0);
 		
 		//ConstraintSentence:
-		//	'for'
-		//	quantifications=QuantificationList?
-		//	nodes=NodeReferenceList?
-		//	'holds'
+		//	('it' | 'for' quantifications=QuantificationList)
+		//	'holds' ':'
 		//	predicate=PredicateExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'for' quantifications=QuantificationList? nodes=NodeReferenceList? 'holds' predicate=PredicateExpression
+		//('it' | 'for' quantifications=QuantificationList) 'holds' ':' predicate=PredicateExpression
 		public Group getGroup() { return cGroup; }
 
-		//'for'
-		public Keyword getForKeyword_0() { return cForKeyword_0; }
+		//('it' | 'for' quantifications=QuantificationList)
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//quantifications=QuantificationList?
-		public Assignment getQuantificationsAssignment_1() { return cQuantificationsAssignment_1; }
+		//'it'
+		public Keyword getItKeyword_0_0() { return cItKeyword_0_0; }
+
+		//'for' quantifications=QuantificationList
+		public Group getGroup_0_1() { return cGroup_0_1; }
+
+		//'for'
+		public Keyword getForKeyword_0_1_0() { return cForKeyword_0_1_0; }
+
+		//quantifications=QuantificationList
+		public Assignment getQuantificationsAssignment_0_1_1() { return cQuantificationsAssignment_0_1_1; }
 
 		//QuantificationList
-		public RuleCall getQuantificationsQuantificationListParserRuleCall_1_0() { return cQuantificationsQuantificationListParserRuleCall_1_0; }
-
-		//nodes=NodeReferenceList?
-		public Assignment getNodesAssignment_2() { return cNodesAssignment_2; }
-
-		//NodeReferenceList
-		public RuleCall getNodesNodeReferenceListParserRuleCall_2_0() { return cNodesNodeReferenceListParserRuleCall_2_0; }
+		public RuleCall getQuantificationsQuantificationListParserRuleCall_0_1_1_0() { return cQuantificationsQuantificationListParserRuleCall_0_1_1_0; }
 
 		//'holds'
-		public Keyword getHoldsKeyword_3() { return cHoldsKeyword_3; }
+		public Keyword getHoldsKeyword_1() { return cHoldsKeyword_1; }
+
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
 		//predicate=PredicateExpression
-		public Assignment getPredicateAssignment_4() { return cPredicateAssignment_4; }
+		public Assignment getPredicateAssignment_3() { return cPredicateAssignment_3; }
 
 		//PredicateExpression
-		public RuleCall getPredicatePredicateExpressionParserRuleCall_4_0() { return cPredicatePredicateExpressionParserRuleCall_4_0; }
+		public RuleCall getPredicatePredicateExpressionParserRuleCall_3_0() { return cPredicatePredicateExpressionParserRuleCall_3_0; }
 	}
 
 	public class PredicateDefinitionSentenceElements extends AbstractParserRuleElementFinder {
@@ -2000,6 +2015,34 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//'subset of'
 		public Keyword getSubsetOfSubsetOfKeyword_9_0() { return cSubsetOfSubsetOfKeyword_9_0; }
 	}
+
+	public class RelationKindElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.RelationKind");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cPrimaryEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPrimaryPrimaryKeyword_0_0 = (Keyword)cPrimaryEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cSecondaryEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cSecondarySecondaryKeyword_1_0 = (Keyword)cSecondaryEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum RelationKind:
+		//	Primary='primary' | Secondary='secondary';
+		public EnumRule getRule() { return rule; }
+
+		//Primary='primary' | Secondary='secondary'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//Primary='primary'
+		public EnumLiteralDeclaration getPrimaryEnumLiteralDeclaration_0() { return cPrimaryEnumLiteralDeclaration_0; }
+
+		//'primary'
+		public Keyword getPrimaryPrimaryKeyword_0_0() { return cPrimaryPrimaryKeyword_0_0; }
+
+		//Secondary='secondary'
+		public EnumLiteralDeclaration getSecondaryEnumLiteralDeclaration_1() { return cSecondaryEnumLiteralDeclaration_1; }
+
+		//'secondary'
+		public Keyword getSecondarySecondaryKeyword_1_0() { return cSecondarySecondaryKeyword_1_0; }
+	}
 	
 	private final ModelElements pModel;
 	private final ValidatorElements pValidator;
@@ -2056,6 +2099,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final DescendantElements pDescendant;
 	private final QuantorElements eQuantor;
 	private final PropertyRelationElements ePropertyRelation;
+	private final RelationKindElements eRelationKind;
 	
 	private final Grammar grammar;
 
@@ -2129,6 +2173,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDescendant = new DescendantElements();
 		this.eQuantor = new QuantorElements();
 		this.ePropertyRelation = new PropertyRelationElements();
+		this.eRelationKind = new RelationKindElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -2236,6 +2281,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//DefinitionSentence:
 	//	(quantification=Quantification | node=[NodeDefinition]) qualifier=RelationQualifier
 	//	quantifier=RelationQuantifier
+	//	kind=RelationKind?
 	//	axis=RelationAxis
 	//	target=TargetDefinition;
 	public DefinitionSentenceElements getDefinitionSentenceAccess() {
@@ -2247,10 +2293,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstraintSentence:
-	//	'for'
-	//	quantifications=QuantificationList?
-	//	nodes=NodeReferenceList?
-	//	'holds'
+	//	('it' | 'for' quantifications=QuantificationList)
+	//	'holds' ':'
 	//	predicate=PredicateExpression;
 	public ConstraintSentenceElements getConstraintSentenceAccess() {
 		return pConstraintSentence;
@@ -2749,6 +2793,16 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getPropertyRelationRule() {
 		return getPropertyRelationAccess().getRule();
+	}
+
+	//enum RelationKind:
+	//	Primary='primary' | Secondary='secondary';
+	public RelationKindElements getRelationKindAccess() {
+		return eRelationKind;
+	}
+	
+	public EnumRule getRelationKindRule() {
+		return getRelationKindAccess().getRule();
 	}
 
 	//XAnnotation:

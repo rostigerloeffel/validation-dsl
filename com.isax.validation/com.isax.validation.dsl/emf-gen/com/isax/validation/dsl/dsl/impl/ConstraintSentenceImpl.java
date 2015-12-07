@@ -4,7 +4,6 @@ package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DslPackage;
-import com.isax.validation.dsl.dsl.NodeReferenceList;
 import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.QuantificationList;
 
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getQuantifications <em>Quantifications</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ConstraintSentenceImpl#getPredicate <em>Predicate</em>}</li>
  * </ul>
  *
@@ -42,16 +40,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 	 * @ordered
 	 */
 	protected QuantificationList quantifications;
-
-	/**
-	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNodes()
-	 * @generated
-	 * @ordered
-	 */
-	protected NodeReferenceList nodes;
 
 	/**
 	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference.
@@ -137,54 +125,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NodeReferenceList getNodes()
-	{
-		return nodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetNodes(NodeReferenceList newNodes, NotificationChain msgs)
-	{
-		NodeReferenceList oldNodes = nodes;
-		nodes = newNodes;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.CONSTRAINT_SENTENCE__NODES, oldNodes, newNodes);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNodes(NodeReferenceList newNodes)
-	{
-		if (newNodes != nodes)
-		{
-			NotificationChain msgs = null;
-			if (nodes != null)
-				msgs = ((InternalEObject)nodes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.CONSTRAINT_SENTENCE__NODES, null, msgs);
-			if (newNodes != null)
-				msgs = ((InternalEObject)newNodes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.CONSTRAINT_SENTENCE__NODES, null, msgs);
-			msgs = basicSetNodes(newNodes, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.CONSTRAINT_SENTENCE__NODES, newNodes, newNodes));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public PredicateExpression getPredicate()
 	{
 		return predicate;
@@ -240,8 +180,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 		{
 			case DslPackage.CONSTRAINT_SENTENCE__QUANTIFICATIONS:
 				return basicSetQuantifications(null, msgs);
-			case DslPackage.CONSTRAINT_SENTENCE__NODES:
-				return basicSetNodes(null, msgs);
 			case DslPackage.CONSTRAINT_SENTENCE__PREDICATE:
 				return basicSetPredicate(null, msgs);
 		}
@@ -260,8 +198,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 		{
 			case DslPackage.CONSTRAINT_SENTENCE__QUANTIFICATIONS:
 				return getQuantifications();
-			case DslPackage.CONSTRAINT_SENTENCE__NODES:
-				return getNodes();
 			case DslPackage.CONSTRAINT_SENTENCE__PREDICATE:
 				return getPredicate();
 		}
@@ -280,9 +216,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 		{
 			case DslPackage.CONSTRAINT_SENTENCE__QUANTIFICATIONS:
 				setQuantifications((QuantificationList)newValue);
-				return;
-			case DslPackage.CONSTRAINT_SENTENCE__NODES:
-				setNodes((NodeReferenceList)newValue);
 				return;
 			case DslPackage.CONSTRAINT_SENTENCE__PREDICATE:
 				setPredicate((PredicateExpression)newValue);
@@ -304,9 +237,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 			case DslPackage.CONSTRAINT_SENTENCE__QUANTIFICATIONS:
 				setQuantifications((QuantificationList)null);
 				return;
-			case DslPackage.CONSTRAINT_SENTENCE__NODES:
-				setNodes((NodeReferenceList)null);
-				return;
 			case DslPackage.CONSTRAINT_SENTENCE__PREDICATE:
 				setPredicate((PredicateExpression)null);
 				return;
@@ -326,8 +256,6 @@ public class ConstraintSentenceImpl extends SentenceImpl implements ConstraintSe
 		{
 			case DslPackage.CONSTRAINT_SENTENCE__QUANTIFICATIONS:
 				return quantifications != null;
-			case DslPackage.CONSTRAINT_SENTENCE__NODES:
-				return nodes != null;
 			case DslPackage.CONSTRAINT_SENTENCE__PREDICATE:
 				return predicate != null;
 		}

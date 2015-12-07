@@ -36,14 +36,13 @@ DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 
 	qualifier=RelationQualifier
 	quantifier=RelationQuantifier
+	kind=RelationKind?
 	axis=RelationAxis
 	target=TargetDefinition;
 
 ConstraintSentence:
-	'for'
-	(quantifications=QuantificationList ',')? 
-	nodes=NodeReferenceList? 
-	'holds'
+	('it' | 'for' quantifications=QuantificationList) 
+	'holds' ':'
 	predicate=PredicateExpression;
 
 PredicateDefinitionSentence:
@@ -227,4 +226,8 @@ enum PropertyRelation:
 	Greater='greater than' | Lesser='lesser than' | GreaterEquals='greater or equals than' | LesserEquals='lesser or equals than' |
 	Contains = 'contains' | NotContains='not contains' | 
 	Intersects='intersects' | SubsetOf='subset of';
+	
+enum RelationKind:
+	Primary='primary' | Secondary='secondary'
+;
 	

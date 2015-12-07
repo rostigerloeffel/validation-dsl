@@ -139,16 +139,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def compileConstraint(ConstraintSentence sentence) '''
 		// «serialize(sentence)»
 		{
-			«val suffix = sentence.path»
-			«IF sentence?.nodes?.nodes != null»
-				«FOR NodeDefinition node : sentence.nodes?.nodes»
-					final «ResolvingNode.simpleName» «node.name + '$' + suffix» = «node.uniqueName»;
-				«ENDFOR»
-			«ENDIF»
-			«sentence.nodes?.map(suffix)»
+«««			«val suffix = sentence.path»
+«««			«IF sentence?.nodes?.nodes != null»
+«««				«FOR NodeDefinition node : sentence.nodes?.nodes»
+«««					final «ResolvingNode.simpleName» «node.name + '$' + suffix» = «node.uniqueName»;
+«««				«ENDFOR»
+«««			«ENDIF»
+«««			«sentence.nodes?.map(suffix)»
 			boolean «SATISFIED»«sentence.uniqueSuffix» = «constraintDispatch(sentence.quantifications?.quantifications, 0, sentence)»
 			if (!«SATISFIED»«sentence.uniqueSuffix») return false;
-			«sentence.nodes?.unmap»
+«««			«sentence.nodes?.unmap»
 		}
 	'''
 

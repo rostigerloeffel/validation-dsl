@@ -746,7 +746,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     ConstraintSentence returns ConstraintSentence
 	 *
 	 * Constraint:
-	 *     (quantifications=QuantificationList? nodes=NodeReferenceList? predicate=PredicateExpression)
+	 *     (quantifications=QuantificationList? predicate=PredicateExpression)
 	 */
 	protected void sequence_ConstraintSentence(ISerializationContext context, ConstraintSentence semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -793,6 +793,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *         (quantification=Quantification | node=[NodeDefinition|ID]) 
 	 *         qualifier=RelationQualifier 
 	 *         quantifier=RelationQuantifier 
+	 *         kind=RelationKind? 
 	 *         axis=RelationAxis 
 	 *         target=TargetDefinition
 	 *     )

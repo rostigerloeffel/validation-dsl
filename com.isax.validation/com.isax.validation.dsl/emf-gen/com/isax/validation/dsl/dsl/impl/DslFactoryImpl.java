@@ -134,6 +134,8 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 				return createQuantorFromString(eDataType, initialValue);
 			case DslPackage.PROPERTY_RELATION:
 				return createPropertyRelationFromString(eDataType, initialValue);
+			case DslPackage.RELATION_KIND:
+				return createRelationKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -153,6 +155,8 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 				return convertQuantorToString(eDataType, instanceValue);
 			case DslPackage.PROPERTY_RELATION:
 				return convertPropertyRelationToString(eDataType, instanceValue);
+			case DslPackage.RELATION_KIND:
+				return convertRelationKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -748,6 +752,28 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 	 * @generated
 	 */
 	public String convertPropertyRelationToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelationKind createRelationKindFromString(EDataType eDataType, String initialValue)
+	{
+		RelationKind result = RelationKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRelationKindToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

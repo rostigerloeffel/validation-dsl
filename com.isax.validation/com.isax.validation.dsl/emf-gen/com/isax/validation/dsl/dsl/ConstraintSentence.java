@@ -13,7 +13,6 @@ package com.isax.validation.dsl.dsl;
  * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getQuantifications <em>Quantifications</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getNodes <em>Nodes</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.ConstraintSentence#getPredicate <em>Predicate</em>}</li>
  * </ul>
  *
@@ -48,32 +47,6 @@ public interface ConstraintSentence extends Sentence
 	 * @generated
 	 */
 	void setQuantifications(QuantificationList value);
-
-	/**
-	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nodes</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nodes</em>' containment reference.
-	 * @see #setNodes(NodeReferenceList)
-	 * @see com.isax.validation.dsl.dsl.DslPackage#getConstraintSentence_Nodes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	NodeReferenceList getNodes();
-
-	/**
-	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.ConstraintSentence#getNodes <em>Nodes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nodes</em>' containment reference.
-	 * @see #getNodes()
-	 * @generated
-	 */
-	void setNodes(NodeReferenceList value);
 
 	/**
 	 * Returns the value of the '<em><b>Predicate</b></em>' containment reference.

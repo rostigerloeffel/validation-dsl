@@ -18,6 +18,7 @@ package com.isax.validation.dsl.dsl;
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getQuantifier <em>Quantifier</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getAxis <em>Axis</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.DefinitionSentence#getKind <em>Kind</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getDefinitionSentence()
@@ -181,5 +182,34 @@ public interface DefinitionSentence extends Sentence
 	 * @generated
 	 */
 	void setAxis(RelationAxis value);
+
+	/**
+	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.isax.validation.dsl.dsl.RelationKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Kind</em>' attribute.
+	 * @see com.isax.validation.dsl.dsl.RelationKind
+	 * @see #setKind(RelationKind)
+	 * @see com.isax.validation.dsl.dsl.DslPackage#getDefinitionSentence_Kind()
+	 * @model
+	 * @generated
+	 */
+	RelationKind getKind();
+
+	/**
+	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.DefinitionSentence#getKind <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Kind</em>' attribute.
+	 * @see com.isax.validation.dsl.dsl.RelationKind
+	 * @see #getKind()
+	 * @generated
+	 */
+	void setKind(RelationKind value);
 
 } // DefinitionSentence
