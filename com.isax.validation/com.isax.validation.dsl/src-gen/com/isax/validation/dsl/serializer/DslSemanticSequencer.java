@@ -1306,7 +1306,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     Validator returns Validator
 	 *
 	 * Constraint:
-	 *     (startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence* errors+=ErrorDefinition*)
+	 *     (imports=XImportSection? startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence* errors+=ErrorDefinition*)
 	 */
 	protected void sequence_Validator(ISerializationContext context, Validator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

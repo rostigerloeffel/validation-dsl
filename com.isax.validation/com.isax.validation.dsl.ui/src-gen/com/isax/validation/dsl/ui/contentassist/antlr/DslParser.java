@@ -349,10 +349,11 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
-					put(grammarAccess.getValidatorAccess().getStartOnAssignment_0(), "rule__Validator__StartOnAssignment_0");
-					put(grammarAccess.getValidatorAccess().getBodyAssignment_1(), "rule__Validator__BodyAssignment_1");
-					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_2(), "rule__Validator__PredicatesAssignment_2");
-					put(grammarAccess.getValidatorAccess().getErrorsAssignment_3(), "rule__Validator__ErrorsAssignment_3");
+					put(grammarAccess.getValidatorAccess().getImportsAssignment_0(), "rule__Validator__ImportsAssignment_0");
+					put(grammarAccess.getValidatorAccess().getStartOnAssignment_1(), "rule__Validator__StartOnAssignment_1");
+					put(grammarAccess.getValidatorAccess().getBodyAssignment_2(), "rule__Validator__BodyAssignment_2");
+					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_3(), "rule__Validator__PredicatesAssignment_3");
+					put(grammarAccess.getValidatorAccess().getErrorsAssignment_4(), "rule__Validator__ErrorsAssignment_4");
 					put(grammarAccess.getErrorDefinitionAccess().getNameAssignment_1(), "rule__ErrorDefinition__NameAssignment_1");
 					put(grammarAccess.getErrorDefinitionAccess().getTextAssignment_3(), "rule__ErrorDefinition__TextAssignment_3");
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0(), "rule__BodySentences__SentencesAssignment_1_0");

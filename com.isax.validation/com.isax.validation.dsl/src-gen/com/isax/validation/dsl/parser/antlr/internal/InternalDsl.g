@@ -81,16 +81,34 @@ ruleValidator returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getStartOnStartOnSentenceParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getImportsXImportSectionParserRuleCall_0_0()); 
 	    }
-		lv_startOn_0_0=ruleStartOnSentence		{
+		lv_imports_0_0=ruleXImportSection		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
+	        }
+       		set(
+       			$current, 
+       			"imports",
+        		lv_imports_0_0, 
+        		"org.eclipse.xtext.xbase.Xtype.XImportSection");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getStartOnStartOnSentenceParserRuleCall_1_0()); 
+	    }
+		lv_startOn_1_0=ruleStartOnSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		set(
        			$current, 
        			"startOn",
-        		lv_startOn_0_0, 
+        		lv_startOn_1_0, 
         		"com.isax.validation.dsl.Dsl.StartOnSentence");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -99,16 +117,16 @@ ruleValidator returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getBodyBodySentencesParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getBodyBodySentencesParserRuleCall_2_0()); 
 	    }
-		lv_body_1_0=ruleBodySentences		{
+		lv_body_2_0=ruleBodySentences		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_1_0, 
+        		lv_body_2_0, 
         		"com.isax.validation.dsl.Dsl.BodySentences");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -117,16 +135,16 @@ ruleValidator returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getPredicatesPredicateDefinitionSentenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getPredicatesPredicateDefinitionSentenceParserRuleCall_3_0()); 
 	    }
-		lv_predicates_2_0=rulePredicateDefinitionSentence		{
+		lv_predicates_3_0=rulePredicateDefinitionSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		add(
        			$current, 
        			"predicates",
-        		lv_predicates_2_0, 
+        		lv_predicates_3_0, 
         		"com.isax.validation.dsl.Dsl.PredicateDefinitionSentence");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -135,16 +153,16 @@ ruleValidator returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getErrorsErrorDefinitionParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getErrorsErrorDefinitionParserRuleCall_4_0()); 
 	    }
-		lv_errors_3_0=ruleErrorDefinition		{
+		lv_errors_4_0=ruleErrorDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		add(
        			$current, 
        			"errors",
-        		lv_errors_3_0, 
+        		lv_errors_4_0, 
         		"com.isax.validation.dsl.Dsl.ErrorDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -9188,6 +9206,43 @@ ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
     ;
 
 
+
+
+
+// Entry rule entryRuleXImportSection
+entryRuleXImportSection returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getXImportSectionRule()); }
+	 iv_ruleXImportSection=ruleXImportSection 
+	 { $current=$iv_ruleXImportSection.current; } 
+	 EOF 
+;
+
+// Rule XImportSection
+ruleXImportSection returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getXImportSectionAccess().getImportDeclarationsXImportDeclarationParserRuleCall_0()); 
+	    }
+		lv_importDeclarations_0_0=ruleXImportDeclaration		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getXImportSectionRule());
+	        }
+       		add(
+       			$current, 
+       			"importDeclarations",
+        		lv_importDeclarations_0_0, 
+        		"org.eclipse.xtext.xbase.Xtype.XImportDeclaration");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)+
+;
 
 
 

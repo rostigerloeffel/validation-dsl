@@ -5,6 +5,7 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import com.isax.validation.dsl.api.AbstractValidator;
 import com.isax.validation.dsl.api.NodePredicates;
+import com.isax.validation.dsl.api.Resolvable;
 import com.isax.validation.dsl.api.ResolvingNode;
 import com.isax.validation.dsl.api.ResolvingNodeSet;
 import com.isax.validation.dsl.api.Traverser;
@@ -152,6 +153,12 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append(ResolvingNodeSet.class, "");
+            _builder.append(" nodeSetImportDummy$;");
+            _builder.newLineIfNotEmpty();
+            _builder.append(ResolvingNode.class, "");
+            _builder.append(" nodeImportDummy$;");
+            _builder.newLineIfNotEmpty();
             StartOnSentence _startOn = validator.getStartOn();
             CharSequence _compileStartOn = DslJvmModelInferrer.this.compileStartOn(_startOn);
             _builder.append(_compileStartOn, "");
@@ -182,14 +189,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     acceptor.<JvmGenericType>accept(_class, _function);
   }
   
-  public Object serialize(final EObject object) {
-    return null;
+  public String serialize(final EObject object) {
+    String _serialize = this.serializer.serialize(object);
+    String _trim = _serialize.trim();
+    String _replaceAll = _trim.replaceAll("\\n", "");
+    String _replaceAll_1 = _replaceAll.replaceAll("\\r", "");
+    return _replaceAll_1.replaceAll("\\s+", " ");
   }
   
   public CharSequence compileStartOn(final StartOnSentence startOn) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    Object _serialize = this.serialize(startOn);
+    String _serialize = this.serialize(startOn);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("final ");
@@ -268,7 +279,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public CharSequence compileDefinition(final DefinitionSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    Object _serialize = this.serialize(sentence);
+    String _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     {
@@ -324,7 +335,7 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   public CharSequence compileConstraint(final ConstraintSentence sentence) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
-    Object _serialize = this.serialize(sentence);
+    String _serialize = this.serialize(sentence);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
     _builder.append("{");
@@ -424,8 +435,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
             NodeDefinition _node = p.getNode();
             String _uniqueName = this.names.uniqueName(_node);
             NodeDefinition _node_1 = p.getNode();
-            JvmTypeReference _definitionTypeRef = this.definitionTypeRef(_node_1);
-            return this._jvmTypesBuilder.toParameter(p, _uniqueName, _definitionTypeRef);
+            Class<? extends Resolvable> _definitionType = this.definitionType(_node_1);
+            JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(_definitionType);
+            return this._jvmTypesBuilder.toParameter(p, _uniqueName, _typeRef_1);
           };
           _map=ListExtensions.<Parameter, JvmFormalParameter>map(_parameters_2, _function_2);
         }
@@ -497,8 +509,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
           Iterable<NodeDefinition> _filter_1 = Iterables.<NodeDefinition>filter(_map_1, NodeDefinition.class);
           final Function1<NodeDefinition, JvmFormalParameter> _function_6 = (NodeDefinition d) -> {
             String _name = d.getName();
-            JvmTypeReference _definitionTypeRef = this.definitionTypeRef(d);
-            return this._jvmTypesBuilder.toParameter(d, _name, _definitionTypeRef);
+            Class<? extends Resolvable> _definitionType = this.definitionType(d);
+            JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(_definitionType);
+            return this._jvmTypesBuilder.toParameter(d, _name, _typeRef);
           };
           Iterable<JvmFormalParameter> _map_2 = IterableExtensions.<NodeDefinition, JvmFormalParameter>map(_filter_1, _function_6);
           this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _map_2);
@@ -679,8 +692,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.newLineIfNotEmpty();
     _builder.append("final ");
     NodeDefinition _definition = target.getDefinition();
-    JvmTypeReference _definitionTypeRef = this.definitionTypeRef(_definition);
-    String _simpleName = _definitionTypeRef.getSimpleName();
+    Class<? extends Resolvable> _definitionType = this.definitionType(_definition);
+    String _simpleName = _definitionType.getSimpleName();
     _builder.append(_simpleName, "");
     _builder.append(" ");
     NodeDefinition _definition_1 = target.getDefinition();
@@ -738,8 +751,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     _builder.append("\t\t");
     _builder.append("final ");
     NodeDefinition _definition = target.getDefinition();
-    JvmTypeReference _definitionTypeRef = this.definitionTypeRef(_definition);
-    String _simpleName_1 = _definitionTypeRef.getSimpleName();
+    Class<? extends Resolvable> _definitionType = this.definitionType(_definition);
+    String _simpleName_1 = _definitionType.getSimpleName();
     _builder.append(_simpleName_1, "\t\t");
     _builder.append(" ");
     NodeDefinition _definition_1 = target.getDefinition();
@@ -1351,13 +1364,13 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _xifexpression;
   }
   
-  public JvmTypeReference definitionTypeRef(final NodeDefinition definition) {
-    JvmTypeReference _xifexpression = null;
+  public Class<? extends Resolvable> definitionType(final NodeDefinition definition) {
+    Class<? extends Resolvable> _xifexpression = null;
     boolean _isCollection = definition.isCollection();
     if (_isCollection) {
-      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+      _xifexpression = ResolvingNodeSet.class;
     } else {
-      _xifexpression = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+      _xifexpression = ResolvingNode.class;
     }
     return _xifexpression;
   }

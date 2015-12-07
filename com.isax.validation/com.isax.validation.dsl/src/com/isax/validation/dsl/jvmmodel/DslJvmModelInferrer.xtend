@@ -83,6 +83,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				visibility = JvmVisibility.PUBLIC
 				parameters += validator.toParameter(INPUT_NODE, typeRef(ResolvingNode))
 				body = '''
+					«ResolvingNodeSet» nodeSetImportDummy$;
+					«ResolvingNode» nodeImportDummy$;
 					«compileStartOn(validator.startOn)»
 					«compileBody(validator.body)»
 					return true;
@@ -96,7 +98,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def serialize(EObject object) {
-		//serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
+		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
 
 	def compileStartOn(
@@ -154,7 +156,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		sentences.map [ s |
 			s.toMethod(s.name, typeRef(boolean)) [
 				visibility = JvmVisibility.PRIVATE
-				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, definitionTypeRef(p.node))]
+				parameters += s.parameters?.parameters?.map[p|p.toParameter(p.node.uniqueName, typeRef(p.node.definitionType))]
 				body = '''
 				«compileBody(s.body)»
 				return true;'''
@@ -184,7 +186,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 						.allElements
 						.map[d|d.EObjectOrProxy]
 						.filter(NodeDefinition)
-						.map[d|d.toParameter(d.name, definitionTypeRef(d))]
+						.map[d|d.toParameter(d.name, typeRef(d.definitionType))]
 					body = e
 				]
 			]
@@ -252,7 +254,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		DefinitionSentence sentence
 	) '''
 		«val target = sentence.target»
-		final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, sentence.axis, sentence.quantifier, sentence.node, target.definition.selectors, target.body, target)»
+		final «target.definition.definitionType.simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(target.definition, target.local, sentence.axis, sentence.quantifier, sentence.node, target.definition.selectors, target.body, target)»
 	'''
 
 	def quantifiedDefinition(
@@ -262,7 +264,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			boolean «SATISFIED»«sentence.uniqueSuffix» = «initialQualifierSatisfaction(sentence.qualifier)»;
 			for («ResolvingNode.simpleName» «sentence.quantification.node.uniqueName» : «sentence.quantification.nodeSet.uniqueName») {
 				«val target = sentence.target»
-				final «definitionTypeRef(target.definition).simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.axis, sentence.quantifier, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body, sentence.target)»
+				final «target.definition.definitionType.simpleName» «target.definition.uniqueName» = «nodeAssignmentStatement(sentence.target.definition, sentence.target.local, sentence.axis, sentence.quantifier, sentence.quantification.node, sentence.target.definition.selectors, sentence.target.body, sentence.target)»
 				«SATISFIED»«sentence.uniqueSuffix» «quantorSatisfactionRelation(sentence.quantification.quantor)» «qualifierSatisfiedStatement(sentence.getTarget.definition, sentence.qualifier, sentence.quantifier)»;
 			}
 			if (!«SATISFIED»«sentence.uniqueSuffix») return «SATISFIED»«sentence.uniqueSuffix»;
@@ -410,8 +412,8 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 		if(list != null) list.arguments.join(", ", [Argument argument|argument.node.uniqueName])
 	}
 
-	def definitionTypeRef(NodeDefinition definition) {
-		if(definition.collection) typeRef(ResolvingNodeSet) else typeRef(ResolvingNode)
+	def definitionType(NodeDefinition definition) {
+		if(definition.collection) typeof(ResolvingNodeSet) else typeof(ResolvingNode)
 	}
 }
 

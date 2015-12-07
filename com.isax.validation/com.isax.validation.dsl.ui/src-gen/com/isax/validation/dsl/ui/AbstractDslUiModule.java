@@ -211,8 +211,18 @@ public abstract class AbstractDslUiModule extends org.eclipse.xtext.xbase.annota
 	}
 
 	// contributed by org.eclipse.xtext.generator.xbase.XbaseGeneratorFragment
-	public Class<? extends org.eclipse.xtext.xbase.ui.quickfix.JavaTypeQuickfixes> bindJavaTypeQuickfixes() {
-		return org.eclipse.xtext.xbase.ui.quickfix.JavaTypeQuickfixesNoImportSection.class;
+	public Class<? extends org.eclipse.xtext.xbase.imports.IUnresolvedTypeResolver> bindIUnresolvedTypeResolver() {
+		return org.eclipse.xtext.xbase.ui.imports.InteractiveUnresolvedTypeResolver.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.xbase.XbaseGeneratorFragment
+	public Class<? extends org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider> bindITypesProposalProvider() {
+		return org.eclipse.xtext.xbase.ui.contentassist.ImportingTypesProposalProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.xbase.XbaseGeneratorFragment
+	public Class<? extends  org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType> bindXtextTemplateContextType() {
+		return org.eclipse.xtext.xbase.ui.templates.XbaseTemplateContextType.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.templates.CodetemplatesGeneratorFragment

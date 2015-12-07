@@ -4,7 +4,7 @@
     editorDirectory="/com.isax.validation.dsl.editor/src" modelPluginID="com.isax.validation.dsl"
     forceOverwrite="true" modelName="Dsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="com.isax.validation.dsl.edit"
-    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.11" usedGenPackages="../../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase ../../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="com.isax.validation.dsl.editor" runtimeVersion="2.11" usedGenPackages="../../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase ../../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="Dsl" basePackage="com.isax.validation.dsl" disposableProviderFactory="true"
       fileExtensions="validator" ecorePackage="Dsl.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//Quantor">

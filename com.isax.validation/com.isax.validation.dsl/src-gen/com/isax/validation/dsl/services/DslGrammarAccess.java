@@ -23,50 +23,58 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class ValidatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.Validator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cStartOnAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cStartOnStartOnSentenceParserRuleCall_0_0 = (RuleCall)cStartOnAssignment_0.eContents().get(0);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyBodySentencesParserRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
-		private final Assignment cPredicatesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPredicatesPredicateDefinitionSentenceParserRuleCall_2_0 = (RuleCall)cPredicatesAssignment_2.eContents().get(0);
-		private final Assignment cErrorsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cErrorsErrorDefinitionParserRuleCall_3_0 = (RuleCall)cErrorsAssignment_3.eContents().get(0);
+		private final Assignment cImportsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cImportsXImportSectionParserRuleCall_0_0 = (RuleCall)cImportsAssignment_0.eContents().get(0);
+		private final Assignment cStartOnAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cStartOnStartOnSentenceParserRuleCall_1_0 = (RuleCall)cStartOnAssignment_1.eContents().get(0);
+		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodyBodySentencesParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		private final Assignment cPredicatesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPredicatesPredicateDefinitionSentenceParserRuleCall_3_0 = (RuleCall)cPredicatesAssignment_3.eContents().get(0);
+		private final Assignment cErrorsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cErrorsErrorDefinitionParserRuleCall_4_0 = (RuleCall)cErrorsAssignment_4.eContents().get(0);
 		
 		//Validator:
+		//	imports=XImportSection?
 		//	startOn=StartOnSentence
 		//	body=BodySentences
 		//	predicates+=PredicateDefinitionSentence*
 		//	errors+=ErrorDefinition*;
 		@Override public ParserRule getRule() { return rule; }
 
-		////imports = XImportSection?	
-		//startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence* errors+=ErrorDefinition*
+		//imports=XImportSection? startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence*
+		//errors+=ErrorDefinition*
 		public Group getGroup() { return cGroup; }
 
-		////imports = XImportSection?	
+		//imports=XImportSection?
+		public Assignment getImportsAssignment_0() { return cImportsAssignment_0; }
+
+		//XImportSection
+		public RuleCall getImportsXImportSectionParserRuleCall_0_0() { return cImportsXImportSectionParserRuleCall_0_0; }
+
 		//startOn=StartOnSentence
-		public Assignment getStartOnAssignment_0() { return cStartOnAssignment_0; }
+		public Assignment getStartOnAssignment_1() { return cStartOnAssignment_1; }
 
 		//StartOnSentence
-		public RuleCall getStartOnStartOnSentenceParserRuleCall_0_0() { return cStartOnStartOnSentenceParserRuleCall_0_0; }
+		public RuleCall getStartOnStartOnSentenceParserRuleCall_1_0() { return cStartOnStartOnSentenceParserRuleCall_1_0; }
 
 		//body=BodySentences
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
+		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
 
 		//BodySentences
-		public RuleCall getBodyBodySentencesParserRuleCall_1_0() { return cBodyBodySentencesParserRuleCall_1_0; }
+		public RuleCall getBodyBodySentencesParserRuleCall_2_0() { return cBodyBodySentencesParserRuleCall_2_0; }
 
 		//predicates+=PredicateDefinitionSentence*
-		public Assignment getPredicatesAssignment_2() { return cPredicatesAssignment_2; }
+		public Assignment getPredicatesAssignment_3() { return cPredicatesAssignment_3; }
 
 		//PredicateDefinitionSentence
-		public RuleCall getPredicatesPredicateDefinitionSentenceParserRuleCall_2_0() { return cPredicatesPredicateDefinitionSentenceParserRuleCall_2_0; }
+		public RuleCall getPredicatesPredicateDefinitionSentenceParserRuleCall_3_0() { return cPredicatesPredicateDefinitionSentenceParserRuleCall_3_0; }
 
 		//errors+=ErrorDefinition*
-		public Assignment getErrorsAssignment_3() { return cErrorsAssignment_3; }
+		public Assignment getErrorsAssignment_4() { return cErrorsAssignment_4; }
 
 		//ErrorDefinition
-		public RuleCall getErrorsErrorDefinitionParserRuleCall_3_0() { return cErrorsErrorDefinitionParserRuleCall_3_0; }
+		public RuleCall getErrorsErrorDefinitionParserRuleCall_4_0() { return cErrorsErrorDefinitionParserRuleCall_4_0; }
 	}
 
 	public class ErrorDefinitionElements extends AbstractParserRuleElementFinder {
@@ -2123,6 +2131,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Validator:
+	//	imports=XImportSection?
 	//	startOn=StartOnSentence
 	//	body=BodySentences
 	//	predicates+=PredicateDefinitionSentence*
