@@ -17,6 +17,11 @@
 	<repositories>
 		<!-- configure p2 repository to resolve against -->
 		<repository>
+			<id>xtext</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+		</repository>
+		<repository>
 			<id>eclipse-project-mars</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/mars</url>
