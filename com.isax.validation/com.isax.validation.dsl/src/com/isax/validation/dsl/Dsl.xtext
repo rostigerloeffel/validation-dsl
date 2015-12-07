@@ -6,8 +6,13 @@ import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 import "http://www.eclipse.org/xtext/xbase/Xtype" as xtype
 
-Validator:
+Model:
 	imports = XImportSection?	
+	validators += Validator*;
+
+Validator:
+	'validator'
+	name = QualifiedName
 	startOn = StartOnSentence
 	body = BodySentences
 	predicates += PredicateDefinitionSentence*
@@ -36,7 +41,7 @@ DefinitionSentence:
 
 ConstraintSentence:
 	'for'
-	quantifications=QuantificationList? 
+	(quantifications=QuantificationList ',')? 
 	nodes=NodeReferenceList? 
 	'holds'
 	predicate=PredicateExpression;

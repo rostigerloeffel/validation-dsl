@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xtype.XImportSection;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Validator</b></em>'.
@@ -38,8 +36,8 @@ import org.eclipse.xtext.xtype.XImportSection;
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getStartOn <em>Start On</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getBody <em>Body</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getPredicates <em>Predicates</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getErrors <em>Errors</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.ValidatorImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,16 +75,6 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 	protected EList<PredicateDefinitionSentence> predicates;
 
 	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected XImportSection imports;
-
-	/**
 	 * The cached value of the '{@link #getErrors() <em>Errors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,6 +83,26 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 	 * @ordered
 	 */
 	protected EList<ErrorDefinition> errors;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -232,54 +240,6 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XImportSection getImports()
-	{
-		return imports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetImports(XImportSection newImports, NotificationChain msgs)
-	{
-		XImportSection oldImports = imports;
-		imports = newImports;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.VALIDATOR__IMPORTS, oldImports, newImports);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImports(XImportSection newImports)
-	{
-		if (newImports != imports)
-		{
-			NotificationChain msgs = null;
-			if (imports != null)
-				msgs = ((InternalEObject)imports).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.VALIDATOR__IMPORTS, null, msgs);
-			if (newImports != null)
-				msgs = ((InternalEObject)newImports).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.VALIDATOR__IMPORTS, null, msgs);
-			msgs = basicSetImports(newImports, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.VALIDATOR__IMPORTS, newImports, newImports));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ErrorDefinition> getErrors()
 	{
 		if (errors == null)
@@ -287,6 +247,29 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 			errors = new EObjectContainmentEList<ErrorDefinition>(ErrorDefinition.class, this, DslPackage.VALIDATOR__ERRORS);
 		}
 		return errors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.VALIDATOR__NAME, oldName, name));
 	}
 
 	/**
@@ -305,8 +288,6 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 				return basicSetBody(null, msgs);
 			case DslPackage.VALIDATOR__PREDICATES:
 				return ((InternalEList<?>)getPredicates()).basicRemove(otherEnd, msgs);
-			case DslPackage.VALIDATOR__IMPORTS:
-				return basicSetImports(null, msgs);
 			case DslPackage.VALIDATOR__ERRORS:
 				return ((InternalEList<?>)getErrors()).basicRemove(otherEnd, msgs);
 		}
@@ -329,10 +310,10 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 				return getBody();
 			case DslPackage.VALIDATOR__PREDICATES:
 				return getPredicates();
-			case DslPackage.VALIDATOR__IMPORTS:
-				return getImports();
 			case DslPackage.VALIDATOR__ERRORS:
 				return getErrors();
+			case DslPackage.VALIDATOR__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -358,12 +339,12 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 				getPredicates().clear();
 				getPredicates().addAll((Collection<? extends PredicateDefinitionSentence>)newValue);
 				return;
-			case DslPackage.VALIDATOR__IMPORTS:
-				setImports((XImportSection)newValue);
-				return;
 			case DslPackage.VALIDATOR__ERRORS:
 				getErrors().clear();
 				getErrors().addAll((Collection<? extends ErrorDefinition>)newValue);
+				return;
+			case DslPackage.VALIDATOR__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -388,11 +369,11 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 			case DslPackage.VALIDATOR__PREDICATES:
 				getPredicates().clear();
 				return;
-			case DslPackage.VALIDATOR__IMPORTS:
-				setImports((XImportSection)null);
-				return;
 			case DslPackage.VALIDATOR__ERRORS:
 				getErrors().clear();
+				return;
+			case DslPackage.VALIDATOR__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -414,12 +395,29 @@ public class ValidatorImpl extends MinimalEObjectImpl.Container implements Valid
 				return body != null;
 			case DslPackage.VALIDATOR__PREDICATES:
 				return predicates != null && !predicates.isEmpty();
-			case DslPackage.VALIDATOR__IMPORTS:
-				return imports != null;
 			case DslPackage.VALIDATOR__ERRORS:
 				return errors != null && !errors.isEmpty();
+			case DslPackage.VALIDATOR__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ValidatorImpl

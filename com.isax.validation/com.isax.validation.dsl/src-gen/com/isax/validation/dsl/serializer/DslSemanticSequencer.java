@@ -20,6 +20,7 @@ import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
+import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
 import com.isax.validation.dsl.dsl.MustNotHave;
@@ -171,6 +172,9 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 				return; 
 			case DslPackage.IMPLIES_EXPRESSION:
 				sequence_ImpliesExpression(context, (ImpliesExpression) semanticObject); 
+				return; 
+			case DslPackage.MODEL:
+				sequence_Model(context, (Model) semanticObject); 
 				return; 
 			case DslPackage.MULTIPLE:
 				sequence_Multiple(context, (Multiple) semanticObject); 
@@ -879,6 +883,18 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Model returns Model
+	 *
+	 * Constraint:
+	 *     ((imports=XImportSection validators+=Validator+) | validators+=Validator+)?
+	 */
+	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RelationQuantifier returns Multiple
 	 *     Multiple returns Multiple
 	 *
@@ -1306,7 +1322,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     Validator returns Validator
 	 *
 	 * Constraint:
-	 *     (imports=XImportSection? startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence* errors+=ErrorDefinition*)
+	 *     (name=QualifiedName startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence* errors+=ErrorDefinition*)
 	 */
 	protected void sequence_Validator(ISerializationContext context, Validator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

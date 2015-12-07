@@ -114,6 +114,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 			case DslPackage.ANCESTOR: return createAncestor();
 			case DslPackage.DESCENDANT: return createDescendant();
 			case DslPackage.ERROR_DEFINITION: return createErrorDefinition();
+			case DslPackage.MODEL: return createModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -694,6 +695,17 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 	{
 		ErrorDefinitionImpl errorDefinition = new ErrorDefinitionImpl();
 		return errorDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model createModel()
+	{
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**

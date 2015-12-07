@@ -20,30 +20,20 @@ import org.eclipse.xtext.xbase.services.XtypeGrammarAccess;
 public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class ValidatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.Validator");
+	public class ModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cImportsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cImportsXImportSectionParserRuleCall_0_0 = (RuleCall)cImportsAssignment_0.eContents().get(0);
-		private final Assignment cStartOnAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cStartOnStartOnSentenceParserRuleCall_1_0 = (RuleCall)cStartOnAssignment_1.eContents().get(0);
-		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyBodySentencesParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
-		private final Assignment cPredicatesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPredicatesPredicateDefinitionSentenceParserRuleCall_3_0 = (RuleCall)cPredicatesAssignment_3.eContents().get(0);
-		private final Assignment cErrorsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cErrorsErrorDefinitionParserRuleCall_4_0 = (RuleCall)cErrorsAssignment_4.eContents().get(0);
+		private final Assignment cValidatorsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValidatorsValidatorParserRuleCall_1_0 = (RuleCall)cValidatorsAssignment_1.eContents().get(0);
 		
-		//Validator:
+		//Model:
 		//	imports=XImportSection?
-		//	startOn=StartOnSentence
-		//	body=BodySentences
-		//	predicates+=PredicateDefinitionSentence*
-		//	errors+=ErrorDefinition*;
+		//	validators+=Validator*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//imports=XImportSection? startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence*
-		//errors+=ErrorDefinition*
+		//imports=XImportSection? validators+=Validator*
 		public Group getGroup() { return cGroup; }
 
 		//imports=XImportSection?
@@ -52,29 +42,73 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//XImportSection
 		public RuleCall getImportsXImportSectionParserRuleCall_0_0() { return cImportsXImportSectionParserRuleCall_0_0; }
 
+		//validators+=Validator*
+		public Assignment getValidatorsAssignment_1() { return cValidatorsAssignment_1; }
+
+		//Validator
+		public RuleCall getValidatorsValidatorParserRuleCall_1_0() { return cValidatorsValidatorParserRuleCall_1_0; }
+	}
+
+	public class ValidatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.Validator");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cValidatorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cStartOnAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStartOnStartOnSentenceParserRuleCall_2_0 = (RuleCall)cStartOnAssignment_2.eContents().get(0);
+		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBodyBodySentencesParserRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
+		private final Assignment cPredicatesAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPredicatesPredicateDefinitionSentenceParserRuleCall_4_0 = (RuleCall)cPredicatesAssignment_4.eContents().get(0);
+		private final Assignment cErrorsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cErrorsErrorDefinitionParserRuleCall_5_0 = (RuleCall)cErrorsAssignment_5.eContents().get(0);
+		
+		//Validator:
+		//	'validator'
+		//	name=QualifiedName
+		//	startOn=StartOnSentence
+		//	body=BodySentences
+		//	predicates+=PredicateDefinitionSentence*
+		//	errors+=ErrorDefinition*;
+		@Override public ParserRule getRule() { return rule; }
+
+		//'validator' name=QualifiedName startOn=StartOnSentence body=BodySentences predicates+=PredicateDefinitionSentence*
+		//errors+=ErrorDefinition*
+		public Group getGroup() { return cGroup; }
+
+		//'validator'
+		public Keyword getValidatorKeyword_0() { return cValidatorKeyword_0; }
+
+		//name=QualifiedName
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//QualifiedName
+		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+
 		//startOn=StartOnSentence
-		public Assignment getStartOnAssignment_1() { return cStartOnAssignment_1; }
+		public Assignment getStartOnAssignment_2() { return cStartOnAssignment_2; }
 
 		//StartOnSentence
-		public RuleCall getStartOnStartOnSentenceParserRuleCall_1_0() { return cStartOnStartOnSentenceParserRuleCall_1_0; }
+		public RuleCall getStartOnStartOnSentenceParserRuleCall_2_0() { return cStartOnStartOnSentenceParserRuleCall_2_0; }
 
 		//body=BodySentences
-		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
 
 		//BodySentences
-		public RuleCall getBodyBodySentencesParserRuleCall_2_0() { return cBodyBodySentencesParserRuleCall_2_0; }
+		public RuleCall getBodyBodySentencesParserRuleCall_3_0() { return cBodyBodySentencesParserRuleCall_3_0; }
 
 		//predicates+=PredicateDefinitionSentence*
-		public Assignment getPredicatesAssignment_3() { return cPredicatesAssignment_3; }
+		public Assignment getPredicatesAssignment_4() { return cPredicatesAssignment_4; }
 
 		//PredicateDefinitionSentence
-		public RuleCall getPredicatesPredicateDefinitionSentenceParserRuleCall_3_0() { return cPredicatesPredicateDefinitionSentenceParserRuleCall_3_0; }
+		public RuleCall getPredicatesPredicateDefinitionSentenceParserRuleCall_4_0() { return cPredicatesPredicateDefinitionSentenceParserRuleCall_4_0; }
 
 		//errors+=ErrorDefinition*
-		public Assignment getErrorsAssignment_4() { return cErrorsAssignment_4; }
+		public Assignment getErrorsAssignment_5() { return cErrorsAssignment_5; }
 
 		//ErrorDefinition
-		public RuleCall getErrorsErrorDefinitionParserRuleCall_4_0() { return cErrorsErrorDefinitionParserRuleCall_4_0; }
+		public RuleCall getErrorsErrorDefinitionParserRuleCall_5_0() { return cErrorsErrorDefinitionParserRuleCall_5_0; }
 	}
 
 	public class ErrorDefinitionElements extends AbstractParserRuleElementFinder {
@@ -1967,6 +2001,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSubsetOfSubsetOfKeyword_9_0() { return cSubsetOfSubsetOfKeyword_9_0; }
 	}
 	
+	private final ModelElements pModel;
 	private final ValidatorElements pValidator;
 	private final ErrorDefinitionElements pErrorDefinition;
 	private final BodySentencesElements pBodySentences;
@@ -2039,6 +2074,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaXbaseWithAnnotations = gaXbaseWithAnnotations;
 		this.gaXbase = gaXbase;
 		this.gaXtype = gaXtype;
+		this.pModel = new ModelElements();
 		this.pValidator = new ValidatorElements();
 		this.pErrorDefinition = new ErrorDefinitionElements();
 		this.pBodySentences = new BodySentencesElements();
@@ -2130,8 +2166,20 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//Validator:
+	//Model:
 	//	imports=XImportSection?
+	//	validators+=Validator*;
+	public ModelElements getModelAccess() {
+		return pModel;
+	}
+	
+	public ParserRule getModelRule() {
+		return getModelAccess().getRule();
+	}
+
+	//Validator:
+	//	'validator'
+	//	name=QualifiedName
 	//	startOn=StartOnSentence
 	//	body=BodySentences
 	//	predicates+=PredicateDefinitionSentence*

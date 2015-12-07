@@ -337,6 +337,11 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 				return createErrorDefinitionAdapter();
 			}
 			@Override
+			public Adapter caseModel(Model object)
+			{
+				return createModelAdapter();
+			}
+			@Override
 			public Adapter caseXExpression(XExpression object)
 			{
 				return createXExpressionAdapter();
@@ -1139,6 +1144,21 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createErrorDefinitionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.Model
+	 * @generated
+	 */
+	public Adapter createModelAdapter()
 	{
 		return null;
 	}

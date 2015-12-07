@@ -97,22 +97,22 @@ public interface DslPackage extends EPackage
 	int VALIDATOR__PREDICATES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Imports</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALIDATOR__IMPORTS = 3;
-
-	/**
 	 * The feature id for the '<em><b>Errors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDATOR__ERRORS = 4;
+	int VALIDATOR__ERRORS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDATOR__NAME = 4;
 
 	/**
 	 * The number of structural features of the '<em>Validator</em>' class.
@@ -1858,6 +1858,43 @@ public interface DslPackage extends EPackage
 	int ERROR_DEFINITION_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.ModelImpl <em>Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.ModelImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getModel()
+	 * @generated
+	 */
+	int MODEL = 52;
+
+	/**
+	 * The feature id for the '<em><b>Validators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__VALIDATORS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Imports</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__IMPORTS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1865,7 +1902,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
 	 * @generated
 	 */
-	int QUANTOR = 52;
+	int QUANTOR = 53;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1875,7 +1912,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
 	 * @generated
 	 */
-	int PROPERTY_RELATION = 53;
+	int PROPERTY_RELATION = 54;
 
 
 	/**
@@ -1922,17 +1959,6 @@ public interface DslPackage extends EPackage
 	EReference getValidator_Predicates();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Validator#getImports <em>Imports</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Imports</em>'.
-	 * @see com.isax.validation.dsl.dsl.Validator#getImports()
-	 * @see #getValidator()
-	 * @generated
-	 */
-	EReference getValidator_Imports();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.Validator#getErrors <em>Errors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1942,6 +1968,17 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 */
 	EReference getValidator_Errors();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.Validator#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.isax.validation.dsl.dsl.Validator#getName()
+	 * @see #getValidator()
+	 * @generated
+	 */
+	EAttribute getValidator_Name();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.BodySentences <em>Body Sentences</em>}'.
@@ -3125,6 +3162,38 @@ public interface DslPackage extends EPackage
 	EAttribute getErrorDefinition_Text();
 
 	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model</em>'.
+	 * @see com.isax.validation.dsl.dsl.Model
+	 * @generated
+	 */
+	EClass getModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.isax.validation.dsl.dsl.Model#getValidators <em>Validators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Validators</em>'.
+	 * @see com.isax.validation.dsl.dsl.Model#getValidators()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_Validators();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.Model#getImports <em>Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Imports</em>'.
+	 * @see com.isax.validation.dsl.dsl.Model#getImports()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_Imports();
+
+	/**
 	 * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3202,20 +3271,20 @@ public interface DslPackage extends EPackage
 		EReference VALIDATOR__PREDICATES = eINSTANCE.getValidator_Predicates();
 
 		/**
-		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VALIDATOR__IMPORTS = eINSTANCE.getValidator_Imports();
-
-		/**
 		 * The meta object literal for the '<em><b>Errors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference VALIDATOR__ERRORS = eINSTANCE.getValidator_Errors();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALIDATOR__NAME = eINSTANCE.getValidator_Name();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.BodySentencesImpl <em>Body Sentences</em>}' class.
@@ -4214,6 +4283,32 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ERROR_DEFINITION__TEXT = eINSTANCE.getErrorDefinition_Text();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.ModelImpl <em>Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.ModelImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getModel()
+		 * @generated
+		 */
+		EClass MODEL = eINSTANCE.getModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Validators</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__VALIDATORS = eINSTANCE.getModel_Validators();
+
+		/**
+		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__IMPORTS = eINSTANCE.getModel_Imports();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.

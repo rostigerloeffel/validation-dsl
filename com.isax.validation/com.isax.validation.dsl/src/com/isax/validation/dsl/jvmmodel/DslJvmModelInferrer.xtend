@@ -68,7 +68,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension NameProvider names = new NameProvider
 
 	def dispatch void infer(Validator validator, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		acceptor.accept(validator.toClass("de.dbsystem.avb." + validator.eResource.URI.lastSegment.split("\\.").get(0))) [
+		acceptor.accept(validator.toClass(validator.name)) [
 			superTypes += typeRef(AbstractValidator)
 
 			members += validator.toField(TRAVERSER_FIELD, typeRef(Traverser)) [
@@ -308,10 +308,6 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				d.uniqueName
 		].join(", ")
 	}
-	
-//	def parameterLineDef(TargetDefinition target) {
-//		parameters(target).map[d|definitionTypeRef(d).simpleName + " " + d.uniqueName].join(", ")
-//	}
 
 	def qualifierSatisfiedStatement(NodeDefinition node, RelationQualifier qualifier, RelationQuantifier quantifier) {
 		switch (qualifier) {
@@ -381,16 +377,16 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def dispatch propertyExpression(PropertyValueExpression expression) '''
-		«expression.value»
+		"«expression.value»"
 	'''
 
 	def dispatch propertyExpression(PropertyReferenceExpression expression) {
-		expression.node.uniqueName + ".getProperty(\"" + expression.property + "\")"
+		"(String) " + expression.node.uniqueName + ".getProperty(\"" + expression.property + "\")"
 	}
 
-	def dispatch predicateCall(PropertyRelationPredicate relation) '''
-		«PREDICATES_FIELD».«relation.relation.getName().toFirstLower»(«propertyExpression(relation.lhs)», «propertyExpression(relation.rhs)»);
-	'''
+	def dispatch predicateCall(PropertyRelationPredicate relation) {
+		PREDICATES_FIELD + "." + relation.relation.getName().toFirstLower + "(" + propertyExpression(relation.lhs) + ", " + propertyExpression(relation.rhs) + ");"
+	}
 
 	def dispatch predicateCall(DefinitionSentencePredicate definition) '''
 		eval(() -> {

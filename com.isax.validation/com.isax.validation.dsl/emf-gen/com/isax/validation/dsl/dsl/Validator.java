@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.xtype.XImportSection;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Validator</b></em>'.
@@ -20,8 +18,8 @@ import org.eclipse.xtext.xtype.XImportSection;
  *   <li>{@link com.isax.validation.dsl.dsl.Validator#getStartOn <em>Start On</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Validator#getBody <em>Body</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Validator#getPredicates <em>Predicates</em>}</li>
- *   <li>{@link com.isax.validation.dsl.dsl.Validator#getImports <em>Imports</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Validator#getErrors <em>Errors</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.Validator#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getValidator()
@@ -99,32 +97,6 @@ public interface Validator extends EObject
 	EList<PredicateDefinitionSentence> getPredicates();
 
 	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference.
-	 * @see #setImports(XImportSection)
-	 * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_Imports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	XImportSection getImports();
-
-	/**
-	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.Validator#getImports <em>Imports</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Imports</em>' containment reference.
-	 * @see #getImports()
-	 * @generated
-	 */
-	void setImports(XImportSection value);
-
-	/**
 	 * Returns the value of the '<em><b>Errors</b></em>' containment reference list.
 	 * The list contents are of type {@link com.isax.validation.dsl.dsl.ErrorDefinition}.
 	 * <!-- begin-user-doc -->
@@ -139,5 +111,31 @@ public interface Validator extends EObject
 	 * @generated
 	 */
 	EList<ErrorDefinition> getErrors();
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see com.isax.validation.dsl.dsl.DslPackage#getValidator_Name()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.Validator#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Validator

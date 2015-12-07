@@ -45,7 +45,7 @@ import com.isax.validation.dsl.services.DslGrammarAccess;
     
     @Override
     protected String getFirstRuleName() {
-    	return "Validator";	
+    	return "Model";	
    	}
    	
    	@Override
@@ -64,6 +64,63 @@ import com.isax.validation.dsl.services.DslGrammarAccess;
 
 
 
+// Entry rule entryRuleModel
+entryRuleModel returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getModelRule()); }
+	 iv_ruleModel=ruleModel 
+	 { $current=$iv_ruleModel.current; } 
+	 EOF 
+;
+
+// Rule Model
+ruleModel returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModelAccess().getImportsXImportSectionParserRuleCall_0_0()); 
+	    }
+		lv_imports_0_0=ruleXImportSection		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	        }
+       		set(
+       			$current, 
+       			"imports",
+        		lv_imports_0_0, 
+        		"org.eclipse.xtext.xbase.Xtype.XImportSection");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModelAccess().getValidatorsValidatorParserRuleCall_1_0()); 
+	    }
+		lv_validators_1_0=ruleValidator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	        }
+       		add(
+       			$current, 
+       			"validators",
+        		lv_validators_1_0, 
+        		"com.isax.validation.dsl.Dsl.Validator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)
+;
+
+
+
+
+
 // Entry rule entryRuleValidator
 entryRuleValidator returns [EObject current=null] 
 	:
@@ -78,37 +135,41 @@ ruleValidator returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(	otherlv_0='validator' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getValidatorAccess().getValidatorKeyword_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getImportsXImportSectionParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getNameQualifiedNameParserRuleCall_1_0()); 
 	    }
-		lv_imports_0_0=ruleXImportSection		{
+		lv_name_1_0=ruleQualifiedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		set(
        			$current, 
-       			"imports",
-        		lv_imports_0_0, 
-        		"org.eclipse.xtext.xbase.Xtype.XImportSection");
+       			"name",
+        		lv_name_1_0, 
+        		"org.eclipse.xtext.xbase.Xbase.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getStartOnStartOnSentenceParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getStartOnStartOnSentenceParserRuleCall_2_0()); 
 	    }
-		lv_startOn_1_0=ruleStartOnSentence		{
+		lv_startOn_2_0=ruleStartOnSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		set(
        			$current, 
        			"startOn",
-        		lv_startOn_1_0, 
+        		lv_startOn_2_0, 
         		"com.isax.validation.dsl.Dsl.StartOnSentence");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -117,16 +178,16 @@ ruleValidator returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getBodyBodySentencesParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getBodyBodySentencesParserRuleCall_3_0()); 
 	    }
-		lv_body_2_0=ruleBodySentences		{
+		lv_body_3_0=ruleBodySentences		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_2_0, 
+        		lv_body_3_0, 
         		"com.isax.validation.dsl.Dsl.BodySentences");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -135,16 +196,16 @@ ruleValidator returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getPredicatesPredicateDefinitionSentenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getPredicatesPredicateDefinitionSentenceParserRuleCall_4_0()); 
 	    }
-		lv_predicates_3_0=rulePredicateDefinitionSentence		{
+		lv_predicates_4_0=rulePredicateDefinitionSentence		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		add(
        			$current, 
        			"predicates",
-        		lv_predicates_3_0, 
+        		lv_predicates_4_0, 
         		"com.isax.validation.dsl.Dsl.PredicateDefinitionSentence");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -153,16 +214,16 @@ ruleValidator returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValidatorAccess().getErrorsErrorDefinitionParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getValidatorAccess().getErrorsErrorDefinitionParserRuleCall_5_0()); 
 	    }
-		lv_errors_4_0=ruleErrorDefinition		{
+		lv_errors_5_0=ruleErrorDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValidatorRule());
 	        }
        		add(
        			$current, 
        			"errors",
-        		lv_errors_4_0, 
+        		lv_errors_5_0, 
         		"com.isax.validation.dsl.Dsl.ErrorDefinition");
 	        afterParserOrEnumRuleCall();
 	    }

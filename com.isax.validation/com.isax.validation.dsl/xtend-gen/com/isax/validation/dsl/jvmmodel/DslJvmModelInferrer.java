@@ -58,9 +58,7 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
@@ -114,13 +112,8 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   private NameProvider names = new NameProvider();
   
   protected void _infer(final Validator validator, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    Resource _eResource = validator.eResource();
-    URI _uRI = _eResource.getURI();
-    String _lastSegment = _uRI.lastSegment();
-    String[] _split = _lastSegment.split("\\.");
-    String _get = _split[0];
-    String _plus = ("de.dbsystem.avb." + _get);
-    JvmGenericType _class = this._jvmTypesBuilder.toClass(validator, _plus);
+    String _name = validator.getName();
+    JvmGenericType _class = this._jvmTypesBuilder.toClass(validator, _name);
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       EList<JvmTypeReference> _superTypes = it.getSuperTypes();
       JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(AbstractValidator.class);
@@ -1264,8 +1257,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   
   protected CharSequence _propertyExpression(final PropertyValueExpression expression) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\"");
     String _value = expression.getValue();
     _builder.append(_value, "");
+    _builder.append("\"");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -1273,31 +1268,27 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   protected CharSequence _propertyExpression(final PropertyReferenceExpression expression) {
     NodeDefinition _node = expression.getNode();
     String _uniqueName = this.names.uniqueName(_node);
-    String _plus = (_uniqueName + ".getProperty(\"");
+    String _plus = ("(String) " + _uniqueName);
+    String _plus_1 = (_plus + ".getProperty(\"");
     String _property = expression.getProperty();
-    String _plus_1 = (_plus + _property);
-    return (_plus_1 + "\")");
+    String _plus_2 = (_plus_1 + _property);
+    return (_plus_2 + "\")");
   }
   
   protected CharSequence _predicateCall(final PropertyRelationPredicate relation) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append(DslJvmModelInferrer.PREDICATES_FIELD, "");
-    _builder.append(".");
     PropertyRelation _relation = relation.getRelation();
     String _name = _relation.getName();
     String _firstLower = StringExtensions.toFirstLower(_name);
-    _builder.append(_firstLower, "");
-    _builder.append("(");
+    String _plus = ((DslJvmModelInferrer.PREDICATES_FIELD + ".") + _firstLower);
+    String _plus_1 = (_plus + "(");
     PropertyExpression _lhs = relation.getLhs();
     CharSequence _propertyExpression = this.propertyExpression(_lhs);
-    _builder.append(_propertyExpression, "");
-    _builder.append(", ");
+    String _plus_2 = (_plus_1 + _propertyExpression);
+    String _plus_3 = (_plus_2 + ", ");
     PropertyExpression _rhs = relation.getRhs();
     CharSequence _propertyExpression_1 = this.propertyExpression(_rhs);
-    _builder.append(_propertyExpression_1, "");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    return _builder;
+    String _plus_4 = (_plus_3 + _propertyExpression_1);
+    return (_plus_4 + ");");
   }
   
   protected CharSequence _predicateCall(final DefinitionSentencePredicate definition) {

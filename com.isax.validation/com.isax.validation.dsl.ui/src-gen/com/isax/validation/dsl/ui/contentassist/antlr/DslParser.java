@@ -98,6 +98,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1_0_3(), "rule__XImportDeclaration__Alternatives_1_0_3");
 					put(grammarAccess.getQuantorAccess().getAlternatives(), "rule__Quantor__Alternatives");
 					put(grammarAccess.getPropertyRelationAccess().getAlternatives(), "rule__PropertyRelation__Alternatives");
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getValidatorAccess().getGroup(), "rule__Validator__Group__0");
 					put(grammarAccess.getErrorDefinitionAccess().getGroup(), "rule__ErrorDefinition__Group__0");
 					put(grammarAccess.getBodySentencesAccess().getGroup(), "rule__BodySentences__Group__0");
@@ -349,11 +350,13 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
-					put(grammarAccess.getValidatorAccess().getImportsAssignment_0(), "rule__Validator__ImportsAssignment_0");
-					put(grammarAccess.getValidatorAccess().getStartOnAssignment_1(), "rule__Validator__StartOnAssignment_1");
-					put(grammarAccess.getValidatorAccess().getBodyAssignment_2(), "rule__Validator__BodyAssignment_2");
-					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_3(), "rule__Validator__PredicatesAssignment_3");
-					put(grammarAccess.getValidatorAccess().getErrorsAssignment_4(), "rule__Validator__ErrorsAssignment_4");
+					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0");
+					put(grammarAccess.getModelAccess().getValidatorsAssignment_1(), "rule__Model__ValidatorsAssignment_1");
+					put(grammarAccess.getValidatorAccess().getNameAssignment_1(), "rule__Validator__NameAssignment_1");
+					put(grammarAccess.getValidatorAccess().getStartOnAssignment_2(), "rule__Validator__StartOnAssignment_2");
+					put(grammarAccess.getValidatorAccess().getBodyAssignment_3(), "rule__Validator__BodyAssignment_3");
+					put(grammarAccess.getValidatorAccess().getPredicatesAssignment_4(), "rule__Validator__PredicatesAssignment_4");
+					put(grammarAccess.getValidatorAccess().getErrorsAssignment_5(), "rule__Validator__ErrorsAssignment_5");
 					put(grammarAccess.getErrorDefinitionAccess().getNameAssignment_1(), "rule__ErrorDefinition__NameAssignment_1");
 					put(grammarAccess.getErrorDefinitionAccess().getTextAssignment_3(), "rule__ErrorDefinition__TextAssignment_3");
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0(), "rule__BodySentences__SentencesAssignment_1_0");
@@ -587,7 +590,7 @@ public class DslParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			com.isax.validation.dsl.ui.contentassist.antlr.internal.InternalDslParser typedParser = (com.isax.validation.dsl.ui.contentassist.antlr.internal.InternalDslParser) parser;
-			typedParser.entryRuleValidator();
+			typedParser.entryRuleModel();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

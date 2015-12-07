@@ -23,6 +23,7 @@ import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
+import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
 import com.isax.validation.dsl.dsl.MustNotHave;
@@ -448,6 +449,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass modelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum quantorEEnum = null;
 
 	/**
@@ -569,7 +577,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getValidator_Imports()
+	public EReference getValidator_Errors()
 	{
 		return (EReference)validatorEClass.getEStructuralFeatures().get(3);
 	}
@@ -579,9 +587,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getValidator_Errors()
+	public EAttribute getValidator_Name()
 	{
-		return (EReference)validatorEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)validatorEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1709,6 +1717,36 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModel()
+	{
+		return modelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_Validators()
+	{
+		return (EReference)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_Imports()
+	{
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getQuantor()
 	{
 		return quantorEEnum;
@@ -1758,8 +1796,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEReference(validatorEClass, VALIDATOR__START_ON);
 		createEReference(validatorEClass, VALIDATOR__BODY);
 		createEReference(validatorEClass, VALIDATOR__PREDICATES);
-		createEReference(validatorEClass, VALIDATOR__IMPORTS);
 		createEReference(validatorEClass, VALIDATOR__ERRORS);
+		createEAttribute(validatorEClass, VALIDATOR__NAME);
 
 		bodySentencesEClass = createEClass(BODY_SENTENCES);
 		createEReference(bodySentencesEClass, BODY_SENTENCES__DEFINITIONS);
@@ -1924,6 +1962,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEAttribute(errorDefinitionEClass, ERROR_DEFINITION__NAME);
 		createEAttribute(errorDefinitionEClass, ERROR_DEFINITION__TEXT);
 
+		modelEClass = createEClass(MODEL);
+		createEReference(modelEClass, MODEL__VALIDATORS);
+		createEReference(modelEClass, MODEL__IMPORTS);
+
 		// Create enums
 		quantorEEnum = createEEnum(QUANTOR);
 		propertyRelationEEnum = createEEnum(PROPERTY_RELATION);
@@ -1954,8 +1996,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		XtypePackage theXtypePackage = (XtypePackage)EPackage.Registry.INSTANCE.getEPackage(XtypePackage.eNS_URI);
 		XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
+		XtypePackage theXtypePackage = (XtypePackage)EPackage.Registry.INSTANCE.getEPackage(XtypePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1997,8 +2039,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getValidator_StartOn(), this.getStartOnSentence(), null, "startOn", null, 0, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValidator_Body(), this.getBodySentences(), null, "body", null, 0, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValidator_Predicates(), this.getPredicateDefinitionSentence(), null, "predicates", null, 0, -1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getValidator_Imports(), theXtypePackage.getXImportSection(), null, "imports", null, 0, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValidator_Errors(), this.getErrorDefinition(), null, "errors", null, 0, -1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValidator_Name(), ecorePackage.getEString(), "name", null, 1, 1, Validator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bodySentencesEClass, BodySentences.class, "BodySentences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBodySentences_Definitions(), this.getDefinitionSentence(), null, "definitions", null, 0, -1, BodySentences.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -2162,6 +2204,10 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEClass(errorDefinitionEClass, ErrorDefinition.class, "ErrorDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getErrorDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, ErrorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getErrorDefinition_Text(), ecorePackage.getEString(), "text", null, 1, 1, ErrorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModel_Validators(), this.getValidator(), null, "validators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_Imports(), theXtypePackage.getXImportSection(), null, "imports", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(quantorEEnum, Quantor.class, "Quantor");
