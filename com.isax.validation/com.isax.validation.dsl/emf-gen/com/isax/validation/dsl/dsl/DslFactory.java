@@ -4,8 +4,6 @@ package com.isax.validation.dsl.dsl;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import com.isax.validation.dsl.dsl.impl.custom.DslFactoryImplCustom;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -22,7 +20,7 @@ public interface DslFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	DslFactory eINSTANCE = new DslFactoryImplCustom();
+	DslFactory eINSTANCE = com.isax.validation.dsl.dsl.impl.DslFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Validator</em>'.
@@ -473,6 +471,24 @@ public interface DslFactory extends EFactory
 	 * @generated
 	 */
 	Model createModel();
+
+	/**
+	 * Returns a new object of class '<em>ID Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ID Selector</em>'.
+	 * @generated
+	 */
+	IDSelector createIDSelector();
+
+	/**
+	 * Returns a new object of class '<em>EClass Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EClass Selector</em>'.
+	 * @generated
+	 */
+	EClassSelector createEClassSelector();
 
 	/**
 	 * Returns the package supported by this factory.

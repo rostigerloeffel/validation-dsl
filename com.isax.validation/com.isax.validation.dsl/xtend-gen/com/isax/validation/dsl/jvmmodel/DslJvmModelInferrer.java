@@ -19,6 +19,8 @@ import com.isax.validation.dsl.dsl.CanHave;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
+import com.isax.validation.dsl.dsl.EClassSelector;
+import com.isax.validation.dsl.dsl.IDSelector;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
@@ -58,6 +60,7 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
@@ -223,7 +226,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     SelectorListDef _selectors_1 = _selectors.getSelectors();
     EList<Selector> _selectors_2 = _selectors_1.getSelectors();
     final Function1<Selector, CharSequence> _function = (Selector s) -> {
-      return s.getType();
+      String _xifexpression = null;
+      if ((s instanceof IDSelector)) {
+        _xifexpression = ((IDSelector)s).getId();
+      } else {
+        String _xifexpression_1 = null;
+        if ((s instanceof EClassSelector)) {
+          EClass _class_ = ((EClassSelector)s).getClass_();
+          _xifexpression_1 = _class_.getName();
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      return _xifexpression;
     };
     String _join = IterableExtensions.<Selector>join(_selectors_2, "\", \"", _function);
     _builder.append(_join, "");
@@ -810,7 +824,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         SelectorListDef _selectors = types.getSelectors();
         EList<Selector> _selectors_1 = _selectors.getSelectors();
         final Function1<Selector, CharSequence> _function = (Selector s) -> {
-          return s.getType();
+          String _xifexpression_1 = null;
+          if ((s instanceof IDSelector)) {
+            _xifexpression_1 = ((IDSelector)s).getId();
+          } else {
+            String _xifexpression_2 = null;
+            if ((s instanceof EClassSelector)) {
+              EClass _class_ = ((EClassSelector)s).getClass_();
+              _xifexpression_2 = _class_.getName();
+            }
+            _xifexpression_1 = _xifexpression_2;
+          }
+          return _xifexpression_1;
         };
         String _join = IterableExtensions.<Selector>join(_selectors_1, "\", \"", _function);
         _builder.append(_join, "\t\t");

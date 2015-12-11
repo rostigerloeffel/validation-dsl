@@ -5,6 +5,7 @@ package com.isax.validation.dsl.dsl;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.xtext.xtype.XImportSection;
 
@@ -19,6 +20,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.Model#getValidators <em>Validators</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.Model#getImports <em>Imports</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.Model#getReferred <em>Referred</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getModel()
@@ -68,5 +70,21 @@ public interface Model extends EObject
 	 * @generated
 	 */
 	void setImports(XImportSection value);
+
+	/**
+	 * Returns the value of the '<em><b>Referred</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referred</em>' reference list.
+	 * @see com.isax.validation.dsl.dsl.DslPackage#getModel_Referred()
+	 * @model
+	 * @generated
+	 */
+	EList<EPackage> getReferred();
 
 } // Model

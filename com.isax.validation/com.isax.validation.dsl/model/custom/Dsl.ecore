@@ -80,9 +80,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="selectors" upperBound="-1"
         eType="#//Selector" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Selector">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selector"/>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PredicateExpression"
         containment="true"/>
@@ -218,10 +216,18 @@
         eType="#//Validator" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" eType="ecore:EClass ../../../org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referred" upperBound="-1"
+        eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RelationKind">
     <eLiterals name="Both" literal="Both"/>
     <eLiterals name="Secondary" value="1"/>
     <eLiterals name="Primary" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IDSelector" eSuperTypes="#//Selector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClassSelector" eSuperTypes="#//Selector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
 </ecore:EPackage>

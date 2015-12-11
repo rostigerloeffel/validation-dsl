@@ -17,8 +17,10 @@ import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.Descendant;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.EClassSelector;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
+import com.isax.validation.dsl.dsl.IDSelector;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
@@ -39,7 +41,6 @@ import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
 import com.isax.validation.dsl.dsl.PropertyValueExpression;
 import com.isax.validation.dsl.dsl.Quantification;
 import com.isax.validation.dsl.dsl.QuantificationList;
-import com.isax.validation.dsl.dsl.Selector;
 import com.isax.validation.dsl.dsl.SelectorList;
 import com.isax.validation.dsl.dsl.SelectorListDef;
 import com.isax.validation.dsl.dsl.StartOnSentence;
@@ -164,11 +165,17 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 			case DslPackage.DESCENDANT:
 				sequence_Descendant(context, (Descendant) semanticObject); 
 				return; 
+			case DslPackage.ECLASS_SELECTOR:
+				sequence_EClassSelector(context, (EClassSelector) semanticObject); 
+				return; 
 			case DslPackage.ERROR_DEFINITION:
 				sequence_ErrorDefinition(context, (ErrorDefinition) semanticObject); 
 				return; 
 			case DslPackage.EXACTLY:
 				sequence_Exactly(context, (Exactly) semanticObject); 
+				return; 
+			case DslPackage.ID_SELECTOR:
+				sequence_IDSelector(context, (IDSelector) semanticObject); 
 				return; 
 			case DslPackage.IMPLIES_EXPRESSION:
 				sequence_ImpliesExpression(context, (ImpliesExpression) semanticObject); 
@@ -267,9 +274,6 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 				return; 
 			case DslPackage.QUANTIFICATION_LIST:
 				sequence_QuantificationList(context, (QuantificationList) semanticObject); 
-				return; 
-			case DslPackage.SELECTOR:
-				sequence_Selector(context, (Selector) semanticObject); 
 				return; 
 			case DslPackage.SELECTOR_LIST:
 				sequence_SelectorList(context, (SelectorList) semanticObject); 
@@ -818,6 +822,25 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Selector returns EClassSelector
+	 *     EClassSelector returns EClassSelector
+	 *
+	 * Constraint:
+	 *     class=[EClass|ID]
+	 */
+	protected void sequence_EClassSelector(ISerializationContext context, EClassSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.ECLASS_SELECTOR__CLASS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ECLASS_SELECTOR__CLASS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEClassSelectorAccess().getClassEClassIDTerminalRuleCall_0_1(), semanticObject.getClass_());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ErrorDefinition returns ErrorDefinition
 	 *
 	 * Constraint:
@@ -858,6 +881,25 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Selector returns IDSelector
+	 *     IDSelector returns IDSelector
+	 *
+	 * Constraint:
+	 *     id=STRING
+	 */
+	protected void sequence_IDSelector(ISerializationContext context, IDSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.ID_SELECTOR__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ID_SELECTOR__ID));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIDSelectorAccess().getIdSTRINGTerminalRuleCall_0(), semanticObject.getId());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PredicateExpression returns ImpliesExpression
 	 *     AndExpression returns ImpliesExpression
 	 *     AndExpression.AndExpression_1_0 returns ImpliesExpression
@@ -887,7 +929,11 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     ((imports=XImportSection validators+=Validator+) | validators+=Validator+)?
+	 *     (
+	 *         (imports=XImportSection? referred+=[EPackage|STRING]+ validators+=Validator+) | 
+	 *         (imports=XImportSection? validators+=Validator+) | 
+	 *         validators+=Validator+
+	 *     )?
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1271,24 +1317,6 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Selector returns Selector
-	 *
-	 * Constraint:
-	 *     type=ID
-	 */
-	protected void sequence_Selector(ISerializationContext context, Selector semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.SELECTOR__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.SELECTOR__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSelectorAccess().getTypeIDTerminalRuleCall_0(), semanticObject.getType());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Sentence returns StartOnSentence
 	 *     StartOnSentence returns StartOnSentence
 	 *
@@ -1301,7 +1329,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.START_ON_SENTENCE__DEFINITION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_2_0(), semanticObject.getDefinition());
+		feeder.accept(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_1_0(), semanticObject.getDefinition());
 		feeder.finish();
 	}
 	

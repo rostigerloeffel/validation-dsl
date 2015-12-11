@@ -42,6 +42,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionSentenceAccess().getAlternatives_0(), "rule__DefinitionSentence__Alternatives_0");
 					put(grammarAccess.getConstraintSentenceAccess().getAlternatives_0(), "rule__ConstraintSentence__Alternatives_0");
 					put(grammarAccess.getSelectorListAccess().getAlternatives(), "rule__SelectorList__Alternatives");
+					put(grammarAccess.getSelectorAccess().getAlternatives(), "rule__Selector__Alternatives");
 					put(grammarAccess.getAndExpressionAccess().getAlternatives_1_1(), "rule__AndExpression__Alternatives_1_1");
 					put(grammarAccess.getImpliesExpressionAccess().getAlternatives_1_1(), "rule__ImpliesExpression__Alternatives_1_1");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
@@ -101,6 +102,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyRelationAccess().getAlternatives(), "rule__PropertyRelation__Alternatives");
 					put(grammarAccess.getRelationKindAccess().getAlternatives(), "rule__RelationKind__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getModelAccess().getGroup_1(), "rule__Model__Group_1__0");
 					put(grammarAccess.getValidatorAccess().getGroup(), "rule__Validator__Group__0");
 					put(grammarAccess.getErrorDefinitionAccess().getGroup(), "rule__ErrorDefinition__Group__0");
 					put(grammarAccess.getBodySentencesAccess().getGroup(), "rule__BodySentences__Group__0");
@@ -354,7 +356,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0");
-					put(grammarAccess.getModelAccess().getValidatorsAssignment_1(), "rule__Model__ValidatorsAssignment_1");
+					put(grammarAccess.getModelAccess().getReferredAssignment_1_1(), "rule__Model__ReferredAssignment_1_1");
+					put(grammarAccess.getModelAccess().getValidatorsAssignment_2(), "rule__Model__ValidatorsAssignment_2");
 					put(grammarAccess.getValidatorAccess().getNameAssignment_1(), "rule__Validator__NameAssignment_1");
 					put(grammarAccess.getValidatorAccess().getStartOnAssignment_2(), "rule__Validator__StartOnAssignment_2");
 					put(grammarAccess.getValidatorAccess().getBodyAssignment_3(), "rule__Validator__BodyAssignment_3");
@@ -364,7 +367,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getErrorDefinitionAccess().getTextAssignment_3(), "rule__ErrorDefinition__TextAssignment_3");
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0(), "rule__BodySentences__SentencesAssignment_1_0");
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1(), "rule__BodySentences__SentencesAssignment_1_1");
-					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_2(), "rule__StartOnSentence__DefinitionAssignment_2");
+					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_1(), "rule__StartOnSentence__DefinitionAssignment_1");
 					put(grammarAccess.getDefinitionSentenceAccess().getQuantificationAssignment_0_0(), "rule__DefinitionSentence__QuantificationAssignment_0_0");
 					put(grammarAccess.getDefinitionSentenceAccess().getNodeAssignment_0_1(), "rule__DefinitionSentence__NodeAssignment_0_1");
 					put(grammarAccess.getDefinitionSentenceAccess().getQualifierAssignment_1(), "rule__DefinitionSentence__QualifierAssignment_1");
@@ -390,7 +393,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSelectorListAccess().getSelectorsAssignment_1_1(), "rule__SelectorList__SelectorsAssignment_1_1");
 					put(grammarAccess.getSelectorListDefAccess().getSelectorsAssignment_0(), "rule__SelectorListDef__SelectorsAssignment_0");
 					put(grammarAccess.getSelectorListDefAccess().getSelectorsAssignment_1_1(), "rule__SelectorListDef__SelectorsAssignment_1_1");
-					put(grammarAccess.getSelectorAccess().getTypeAssignment(), "rule__Selector__TypeAssignment");
+					put(grammarAccess.getIDSelectorAccess().getIdAssignment(), "rule__IDSelector__IdAssignment");
+					put(grammarAccess.getEClassSelectorAccess().getClassAssignment(), "rule__EClassSelector__ClassAssignment");
 					put(grammarAccess.getAndExpressionAccess().getRhsAssignment_1_2(), "rule__AndExpression__RhsAssignment_1_2");
 					put(grammarAccess.getOrExpressionAccess().getRhsAssignment_1_2(), "rule__OrExpression__RhsAssignment_1_2");
 					put(grammarAccess.getImpliesExpressionAccess().getRhsAssignment_1_2(), "rule__ImpliesExpression__RhsAssignment_1_2");

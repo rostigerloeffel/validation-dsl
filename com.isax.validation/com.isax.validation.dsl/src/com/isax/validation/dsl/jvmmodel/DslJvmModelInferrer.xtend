@@ -16,6 +16,8 @@ import com.isax.validation.dsl.dsl.CanHave
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
+import com.isax.validation.dsl.dsl.EClassSelector
+import com.isax.validation.dsl.dsl.IDSelector
 import com.isax.validation.dsl.dsl.ImpliesExpression
 import com.isax.validation.dsl.dsl.Multiple
 import com.isax.validation.dsl.dsl.MustHave
@@ -50,7 +52,6 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 import static extension com.isax.validation.dsl.util.DslUtil.name
-import static extension com.isax.validation.dsl.util.DslUtil.path
 import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
 
 class DslJvmModelInferrer extends AbstractModelInferrer {
@@ -106,7 +107,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		// «serialize(startOn)»
 		final «ResolvingNode.simpleName» «startOn.definition.uniqueName» = «INPUT_NODE»;
-		if («startOn.definition.uniqueName» == null || !«PREDICATES_FIELD».hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | s.type])»")) {
+		if («startOn.definition.uniqueName» == null || !«PREDICATES_FIELD».hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | if (s instanceof IDSelector) s.id else if (s instanceof EClassSelector) s.class_.getName])»")) {
 			return true;
 		}
 	'''
@@ -278,7 +279,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				«names.map(assignee, localName)»
 				boolean «SATISFIED»«assignee.uniqueSuffix» = true;
 				«IF types != null»
-					«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | s.type])»");
+					«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | if (s instanceof IDSelector) s.id else if (s instanceof EClassSelector) s.class_.getName])»");
 				«ENDIF»
 				«IF body != null»
 					«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {

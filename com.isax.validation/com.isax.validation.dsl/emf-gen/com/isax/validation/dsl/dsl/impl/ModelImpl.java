@@ -14,12 +14,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xtype.XImportSection;
@@ -34,6 +36,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ModelImpl#getValidators <em>Validators</em>}</li>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.ModelImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.ModelImpl#getReferred <em>Referred</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +62,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 	 * @ordered
 	 */
 	protected XImportSection imports;
+
+	/**
+	 * The cached value of the '{@link #getReferred() <em>Referred</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferred()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EPackage> referred;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,6 +161,20 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EPackage> getReferred()
+	{
+		if (referred == null)
+		{
+			referred = new EObjectResolvingEList<EPackage>(EPackage.class, this, DslPackage.MODEL__REFERRED);
+		}
+		return referred;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -175,6 +202,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 				return getValidators();
 			case DslPackage.MODEL__IMPORTS:
 				return getImports();
+			case DslPackage.MODEL__REFERRED:
+				return getReferred();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,6 +226,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 			case DslPackage.MODEL__IMPORTS:
 				setImports((XImportSection)newValue);
 				return;
+			case DslPackage.MODEL__REFERRED:
+				getReferred().clear();
+				getReferred().addAll((Collection<? extends EPackage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -217,6 +250,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 			case DslPackage.MODEL__IMPORTS:
 				setImports((XImportSection)null);
 				return;
+			case DslPackage.MODEL__REFERRED:
+				getReferred().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -235,6 +271,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 				return validators != null && !validators.isEmpty();
 			case DslPackage.MODEL__IMPORTS:
 				return imports != null;
+			case DslPackage.MODEL__REFERRED:
+				return referred != null && !referred.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

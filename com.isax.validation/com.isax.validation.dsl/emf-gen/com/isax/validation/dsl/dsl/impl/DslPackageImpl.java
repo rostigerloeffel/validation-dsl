@@ -20,8 +20,10 @@ import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.Descendant;
 import com.isax.validation.dsl.dsl.DslFactory;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.EClassSelector;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
+import com.isax.validation.dsl.dsl.IDSelector;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
@@ -66,6 +68,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -457,6 +460,20 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass idSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eClassSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum quantorEEnum = null;
 
 	/**
@@ -524,6 +541,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		// Initialize simple dependencies
 		XbasePackage.eINSTANCE.eClass();
 		XtypePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDslPackage.createPackageContents();
@@ -978,16 +996,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	public EClass getSelector()
 	{
 		return selectorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSelector_Type()
-	{
-		return (EAttribute)selectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1755,6 +1763,56 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getModel_Referred()
+	{
+		return (EReference)modelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIDSelector()
+	{
+		return idSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIDSelector_Id()
+	{
+		return (EAttribute)idSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEClassSelector()
+	{
+		return eClassSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEClassSelector_Class()
+	{
+		return (EReference)eClassSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getQuantor()
 	{
 		return quantorEEnum;
@@ -1866,7 +1924,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		createEReference(selectorListDefEClass, SELECTOR_LIST_DEF__SELECTORS);
 
 		selectorEClass = createEClass(SELECTOR);
-		createEAttribute(selectorEClass, SELECTOR__TYPE);
 
 		predicateExpressionEClass = createEClass(PREDICATE_EXPRESSION);
 		createEReference(predicateExpressionEClass, PREDICATE_EXPRESSION__LHS);
@@ -1983,6 +2040,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__VALIDATORS);
 		createEReference(modelEClass, MODEL__IMPORTS);
+		createEReference(modelEClass, MODEL__REFERRED);
+
+		idSelectorEClass = createEClass(ID_SELECTOR);
+		createEAttribute(idSelectorEClass, ID_SELECTOR__ID);
+
+		eClassSelectorEClass = createEClass(ECLASS_SELECTOR);
+		createEReference(eClassSelectorEClass, ECLASS_SELECTOR__CLASS);
 
 		// Create enums
 		quantorEEnum = createEEnum(QUANTOR);
@@ -2017,6 +2081,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		// Obtain other dependent packages
 		XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
 		XtypePackage theXtypePackage = (XtypePackage)EPackage.Registry.INSTANCE.getEPackage(XtypePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -2052,6 +2117,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		childEClass.getESuperTypes().add(this.getRelationAxis());
 		ancestorEClass.getESuperTypes().add(this.getRelationAxis());
 		descendantEClass.getESuperTypes().add(this.getRelationAxis());
+		idSelectorEClass.getESuperTypes().add(this.getSelector());
+		eClassSelectorEClass.getESuperTypes().add(this.getSelector());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(validatorEClass, Validator.class, "Validator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2110,7 +2177,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEReference(getSelectorListDef_Selectors(), this.getSelector(), null, "selectors", null, 0, -1, SelectorListDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectorEClass, Selector.class, "Selector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSelector_Type(), ecorePackage.getEString(), "type", null, 0, 1, Selector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(predicateExpressionEClass, PredicateExpression.class, "PredicateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPredicateExpression_Lhs(), this.getPredicateExpression(), null, "lhs", null, 0, 1, PredicateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2227,6 +2293,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModel_Validators(), this.getValidator(), null, "validators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Imports(), theXtypePackage.getXImportSection(), null, "imports", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_Referred(), theEcorePackage.getEPackage(), null, "referred", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(idSelectorEClass, IDSelector.class, "IDSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIDSelector_Id(), theEcorePackage.getEString(), "id", null, 1, 1, IDSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eClassSelectorEClass, EClassSelector.class, "EClassSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEClassSelector_Class(), theEcorePackage.getEClass(), null, "class", null, 1, 1, EClassSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(quantorEEnum, Quantor.class, "Quantor");

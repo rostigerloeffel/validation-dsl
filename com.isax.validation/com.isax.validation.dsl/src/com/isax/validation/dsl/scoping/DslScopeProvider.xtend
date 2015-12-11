@@ -4,19 +4,50 @@
 package com.isax.validation.dsl.scoping
 
 import com.isax.validation.dsl.dsl.DefinitionSentence
-import com.isax.validation.dsl.dsl.DslFactory
-import com.isax.validation.dsl.dsl.One
+import com.isax.validation.dsl.dsl.Model
 import com.isax.validation.dsl.dsl.PredicateReference
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression
 import com.isax.validation.dsl.dsl.Quantification
-import java.util.Arrays
+import org.eclipse.core.resources.IContainer
+import org.eclipse.core.resources.IFile
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
 
 class DslScopeProvider extends AbstractDeclarativeScopeProvider {
+
+	def private void loadEcores(IContainer container, ResourceSet resourceSet) {
+		for (IFile ecoreFile : container.members.filter(IFile)) {
+			if (ecoreFile.fileExtension.equals("ecore")) {
+				val resource = resourceSet.createResource(URI.createURI(ecoreFile.rawLocationURI.toASCIIString()));
+				resource.load(null)
+				
+				for (EPackage pkg : resource.allContents.filter(EPackage).toIterable) {
+					try {
+						EPackage.Registry.INSTANCE.put(pkg.nsURI, pkg)
+					} catch (Exception e) {}
+				}
+			
+			}
+		}
+		
+		for (IContainer child : container.members.filter(IContainer)) {
+			loadEcores(child, resourceSet);
+		}
+	}
+
+	def scope_Model_referred(Model model, EReference reference) {
+		loadEcores(ResourcesPlugin.workspace.root, new ResourceSetImpl())
+		Scopes.scopeFor(EPackage.Registry.INSTANCE.values.filter(EPackage))
+	}
+	
 	def scope_Quantification_nodeSet(Quantification quantification, EReference reference) {
 		quantification.visibleDefinitions [d|d.collection]
 	}

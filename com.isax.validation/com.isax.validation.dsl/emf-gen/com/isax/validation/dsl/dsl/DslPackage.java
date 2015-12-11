@@ -577,22 +577,13 @@ public interface DslPackage extends EPackage
 	int SELECTOR = 12;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR__TYPE = 0;
-
-	/**
 	 * The number of structural features of the '<em>Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTOR_FEATURE_COUNT = 1;
+	int SELECTOR_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl <em>Predicate Expression</em>}' class.
@@ -1886,13 +1877,78 @@ public interface DslPackage extends EPackage
 	int MODEL__IMPORTS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Referred</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__REFERRED = 2;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 2;
+	int MODEL_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.IDSelectorImpl <em>ID Selector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.IDSelectorImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getIDSelector()
+	 * @generated
+	 */
+	int ID_SELECTOR = 53;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_SELECTOR__ID = SELECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>ID Selector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_SELECTOR_FEATURE_COUNT = SELECTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.EClassSelectorImpl <em>EClass Selector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.EClassSelectorImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getEClassSelector()
+	 * @generated
+	 */
+	int ECLASS_SELECTOR = 54;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLASS_SELECTOR__CLASS = SELECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EClass Selector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLASS_SELECTOR_FEATURE_COUNT = SELECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.
@@ -1902,7 +1958,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
 	 * @generated
 	 */
-	int QUANTOR = 53;
+	int QUANTOR = 55;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1912,7 +1968,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
 	 * @generated
 	 */
-	int PROPERTY_RELATION = 54;
+	int PROPERTY_RELATION = 56;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationKind <em>Relation Kind</em>}' enum.
@@ -1922,7 +1978,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationKind()
 	 * @generated
 	 */
-	int RELATION_KIND = 55;
+	int RELATION_KIND = 57;
 
 
 	/**
@@ -2395,17 +2451,6 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 */
 	EClass getSelector();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.Selector#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see com.isax.validation.dsl.dsl.Selector#getType()
-	 * @see #getSelector()
-	 * @generated
-	 */
-	EAttribute getSelector_Type();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.PredicateExpression <em>Predicate Expression</em>}'.
@@ -3204,6 +3249,59 @@ public interface DslPackage extends EPackage
 	EReference getModel_Imports();
 
 	/**
+	 * Returns the meta object for the reference list '{@link com.isax.validation.dsl.dsl.Model#getReferred <em>Referred</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referred</em>'.
+	 * @see com.isax.validation.dsl.dsl.Model#getReferred()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_Referred();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.IDSelector <em>ID Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ID Selector</em>'.
+	 * @see com.isax.validation.dsl.dsl.IDSelector
+	 * @generated
+	 */
+	EClass getIDSelector();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.IDSelector#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see com.isax.validation.dsl.dsl.IDSelector#getId()
+	 * @see #getIDSelector()
+	 * @generated
+	 */
+	EAttribute getIDSelector_Id();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.EClassSelector <em>EClass Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EClass Selector</em>'.
+	 * @see com.isax.validation.dsl.dsl.EClassSelector
+	 * @generated
+	 */
+	EClass getEClassSelector();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.isax.validation.dsl.dsl.EClassSelector#getClass_ <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Class</em>'.
+	 * @see com.isax.validation.dsl.dsl.EClassSelector#getClass_()
+	 * @see #getEClassSelector()
+	 * @generated
+	 */
+	EReference getEClassSelector_Class();
+
+	/**
 	 * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3633,14 +3731,6 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EClass SELECTOR = eINSTANCE.getSelector();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SELECTOR__TYPE = eINSTANCE.getSelector_Type();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.PredicateExpressionImpl <em>Predicate Expression</em>}' class.
@@ -4329,6 +4419,50 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EReference MODEL__IMPORTS = eINSTANCE.getModel_Imports();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__REFERRED = eINSTANCE.getModel_Referred();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.IDSelectorImpl <em>ID Selector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.IDSelectorImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getIDSelector()
+		 * @generated
+		 */
+		EClass ID_SELECTOR = eINSTANCE.getIDSelector();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ID_SELECTOR__ID = eINSTANCE.getIDSelector_Id();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.EClassSelectorImpl <em>EClass Selector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.EClassSelectorImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getEClassSelector()
+		 * @generated
+		 */
+		EClass ECLASS_SELECTOR = eINSTANCE.getEClassSelector();
+
+		/**
+		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ECLASS_SELECTOR__CLASS = eINSTANCE.getEClassSelector_Class();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.

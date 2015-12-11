@@ -25,15 +25,20 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cImportsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cImportsXImportSectionParserRuleCall_0_0 = (RuleCall)cImportsAssignment_0.eContents().get(0);
-		private final Assignment cValidatorsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValidatorsValidatorParserRuleCall_1_0 = (RuleCall)cValidatorsAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRefersKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cReferredAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cReferredEPackageCrossReference_1_1_0 = (CrossReference)cReferredAssignment_1_1.eContents().get(0);
+		private final RuleCall cReferredEPackageSTRINGTerminalRuleCall_1_1_0_1 = (RuleCall)cReferredEPackageCrossReference_1_1_0.eContents().get(1);
+		private final Assignment cValidatorsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValidatorsValidatorParserRuleCall_2_0 = (RuleCall)cValidatorsAssignment_2.eContents().get(0);
 		
 		//Model:
-		//	imports=XImportSection?
+		//	imports=XImportSection? ('refers' referred+=[ecore::EPackage|STRING])*
 		//	validators+=Validator*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//imports=XImportSection? validators+=Validator*
+		//imports=XImportSection? ('refers' referred+=[ecore::EPackage|STRING])* validators+=Validator*
 		public Group getGroup() { return cGroup; }
 
 		//imports=XImportSection?
@@ -42,11 +47,26 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//XImportSection
 		public RuleCall getImportsXImportSectionParserRuleCall_0_0() { return cImportsXImportSectionParserRuleCall_0_0; }
 
+		//('refers' referred+=[ecore::EPackage|STRING])*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//'refers'
+		public Keyword getRefersKeyword_1_0() { return cRefersKeyword_1_0; }
+
+		//referred+=[ecore::EPackage|STRING]
+		public Assignment getReferredAssignment_1_1() { return cReferredAssignment_1_1; }
+
+		//[ecore::EPackage|STRING]
+		public CrossReference getReferredEPackageCrossReference_1_1_0() { return cReferredEPackageCrossReference_1_1_0; }
+
+		//STRING
+		public RuleCall getReferredEPackageSTRINGTerminalRuleCall_1_1_0_1() { return cReferredEPackageSTRINGTerminalRuleCall_1_1_0_1; }
+
 		//validators+=Validator*
-		public Assignment getValidatorsAssignment_1() { return cValidatorsAssignment_1; }
+		public Assignment getValidatorsAssignment_2() { return cValidatorsAssignment_2; }
 
 		//Validator
-		public RuleCall getValidatorsValidatorParserRuleCall_1_0() { return cValidatorsValidatorParserRuleCall_1_0; }
+		public RuleCall getValidatorsValidatorParserRuleCall_2_0() { return cValidatorsValidatorParserRuleCall_2_0; }
 	}
 
 	public class ValidatorElements extends AbstractParserRuleElementFinder {
@@ -215,29 +235,25 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class StartOnSentenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.StartOnSentence");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cStartKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cOnKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cDefinitionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cDefinitionNodeDefinitionParserRuleCall_2_0 = (RuleCall)cDefinitionAssignment_2.eContents().get(0);
+		private final Keyword cStartOnKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDefinitionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDefinitionNodeDefinitionParserRuleCall_1_0 = (RuleCall)cDefinitionAssignment_1.eContents().get(0);
 		
 		//StartOnSentence:
-		//	'start' 'on' definition=NodeDefinition;
+		//	'start on' definition=NodeDefinition;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'start' 'on' definition=NodeDefinition
+		//'start on' definition=NodeDefinition
 		public Group getGroup() { return cGroup; }
 
-		//'start'
-		public Keyword getStartKeyword_0() { return cStartKeyword_0; }
-
-		//'on'
-		public Keyword getOnKeyword_1() { return cOnKeyword_1; }
+		//'start on'
+		public Keyword getStartOnKeyword_0() { return cStartOnKeyword_0; }
 
 		//definition=NodeDefinition
-		public Assignment getDefinitionAssignment_2() { return cDefinitionAssignment_2; }
+		public Assignment getDefinitionAssignment_1() { return cDefinitionAssignment_1; }
 
 		//NodeDefinition
-		public RuleCall getDefinitionNodeDefinitionParserRuleCall_2_0() { return cDefinitionNodeDefinitionParserRuleCall_2_0; }
+		public RuleCall getDefinitionNodeDefinitionParserRuleCall_1_0() { return cDefinitionNodeDefinitionParserRuleCall_1_0; }
 	}
 
 	public class DefinitionSentenceElements extends AbstractParserRuleElementFinder {
@@ -671,18 +687,58 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class SelectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.Selector");
-		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cTypeIDTerminalRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIDSelectorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEClassSelectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Selector:
-		//	type=ID;
+		//	IDSelector | EClassSelector;
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=ID
-		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		//IDSelector | EClassSelector
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//IDSelector
+		public RuleCall getIDSelectorParserRuleCall_0() { return cIDSelectorParserRuleCall_0; }
+
+		//EClassSelector
+		public RuleCall getEClassSelectorParserRuleCall_1() { return cEClassSelectorParserRuleCall_1; }
+	}
+
+	public class IDSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.IDSelector");
+		private final Assignment cIdAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cIdSTRINGTerminalRuleCall_0 = (RuleCall)cIdAssignment.eContents().get(0);
+		
+		//IDSelector:
+		//	id=STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//id=STRING
+		public Assignment getIdAssignment() { return cIdAssignment; }
+
+		//STRING
+		public RuleCall getIdSTRINGTerminalRuleCall_0() { return cIdSTRINGTerminalRuleCall_0; }
+	}
+
+	public class EClassSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.EClassSelector");
+		private final Assignment cClassAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cClassEClassCrossReference_0 = (CrossReference)cClassAssignment.eContents().get(0);
+		private final RuleCall cClassEClassIDTerminalRuleCall_0_1 = (RuleCall)cClassEClassCrossReference_0.eContents().get(1);
+		
+		//EClassSelector:
+		//	class=[ecore::EClass];
+		@Override public ParserRule getRule() { return rule; }
+
+		//class=[ecore::EClass]
+		public Assignment getClassAssignment() { return cClassAssignment; }
+
+		//[ecore::EClass]
+		public CrossReference getClassEClassCrossReference_0() { return cClassEClassCrossReference_0; }
 
 		//ID
-		public RuleCall getTypeIDTerminalRuleCall_0() { return cTypeIDTerminalRuleCall_0; }
+		public RuleCall getClassEClassIDTerminalRuleCall_0_1() { return cClassEClassIDTerminalRuleCall_0_1; }
 	}
 
 	public class PredicateExpressionElements extends AbstractParserRuleElementFinder {
@@ -2059,6 +2115,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final SelectorListElements pSelectorList;
 	private final SelectorListDefElements pSelectorListDef;
 	private final SelectorElements pSelector;
+	private final IDSelectorElements pIDSelector;
+	private final EClassSelectorElements pEClassSelector;
 	private final PredicateExpressionElements pPredicateExpression;
 	private final AndExpressionElements pAndExpression;
 	private final OrExpressionElements pOrExpression;
@@ -2133,6 +2191,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSelectorList = new SelectorListElements();
 		this.pSelectorListDef = new SelectorListDefElements();
 		this.pSelector = new SelectorElements();
+		this.pIDSelector = new IDSelectorElements();
+		this.pEClassSelector = new EClassSelectorElements();
 		this.pPredicateExpression = new PredicateExpressionElements();
 		this.pAndExpression = new AndExpressionElements();
 		this.pOrExpression = new OrExpressionElements();
@@ -2212,7 +2272,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	imports=XImportSection?
+	//	imports=XImportSection? ('refers' referred+=[ecore::EPackage|STRING])*
 	//	validators+=Validator*;
 	public ModelElements getModelAccess() {
 		return pModel;
@@ -2269,7 +2329,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StartOnSentence:
-	//	'start' 'on' definition=NodeDefinition;
+	//	'start on' definition=NodeDefinition;
 	public StartOnSentenceElements getStartOnSentenceAccess() {
 		return pStartOnSentence;
 	}
@@ -2366,13 +2426,33 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Selector:
-	//	type=ID;
+	//	IDSelector | EClassSelector;
 	public SelectorElements getSelectorAccess() {
 		return pSelector;
 	}
 	
 	public ParserRule getSelectorRule() {
 		return getSelectorAccess().getRule();
+	}
+
+	//IDSelector:
+	//	id=STRING;
+	public IDSelectorElements getIDSelectorAccess() {
+		return pIDSelector;
+	}
+	
+	public ParserRule getIDSelectorRule() {
+		return getIDSelectorAccess().getRule();
+	}
+
+	//EClassSelector:
+	//	class=[ecore::EClass];
+	public EClassSelectorElements getEClassSelectorAccess() {
+		return pEClassSelector;
+	}
+	
+	public ParserRule getEClassSelectorRule() {
+		return getEClassSelectorAccess().getRule();
 	}
 
 	//PredicateExpression:

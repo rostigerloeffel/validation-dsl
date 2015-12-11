@@ -96,19 +96,36 @@ ruleModel returns [EObject current=null]
 	    }
 
 )
-)?(
+)?(	otherlv_1='refers' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getModelAccess().getRefersKeyword_1_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getModelRule());
+	        }
+        }
+	otherlv_2=RULE_STRING
+	{
+		newLeafNode(otherlv_2, grammarAccess.getModelAccess().getReferredEPackageCrossReference_1_1_0()); 
+	}
+
+)
+))*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getValidatorsValidatorParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getValidatorsValidatorParserRuleCall_2_0()); 
 	    }
-		lv_validators_1_0=ruleValidator		{
+		lv_validators_3_0=ruleValidator		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		add(
        			$current, 
        			"validators",
-        		lv_validators_1_0, 
+        		lv_validators_3_0, 
         		"com.isax.validation.dsl.Dsl.Validator");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -381,27 +398,23 @@ ruleStartOnSentence returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='start' 
+(	otherlv_0='start on' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getStartOnSentenceAccess().getStartKeyword_0());
-    }
-	otherlv_1='on' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getStartOnSentenceAccess().getOnKeyword_1());
+    	newLeafNode(otherlv_0, grammarAccess.getStartOnSentenceAccess().getStartOnKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_1_0()); 
 	    }
-		lv_definition_2_0=ruleNodeDefinition		{
+		lv_definition_1_0=ruleNodeDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStartOnSentenceRule());
 	        }
        		set(
        			$current, 
        			"definition",
-        		lv_definition_2_0, 
+        		lv_definition_1_0, 
         		"com.isax.validation.dsl.Dsl.NodeDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1055,21 +1068,95 @@ ruleSelector returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
+    { 
+        newCompositeNode(grammarAccess.getSelectorAccess().getIDSelectorParserRuleCall_0()); 
+    }
+    this_IDSelector_0=ruleIDSelector
+    { 
+        $current = $this_IDSelector_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSelectorAccess().getEClassSelectorParserRuleCall_1()); 
+    }
+    this_EClassSelector_1=ruleEClassSelector
+    { 
+        $current = $this_EClassSelector_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleIDSelector
+entryRuleIDSelector returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getIDSelectorRule()); }
+	 iv_ruleIDSelector=ruleIDSelector 
+	 { $current=$iv_ruleIDSelector.current; } 
+	 EOF 
+;
+
+// Rule IDSelector
+ruleIDSelector returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 (
-		lv_type_0_0=RULE_ID
+(
+		lv_id_0_0=RULE_STRING
 		{
-			newLeafNode(lv_type_0_0, grammarAccess.getSelectorAccess().getTypeIDTerminalRuleCall_0()); 
+			newLeafNode(lv_id_0_0, grammarAccess.getIDSelectorAccess().getIdSTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getSelectorRule());
+	            $current = createModelElement(grammarAccess.getIDSelectorRule());
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"type",
-        		lv_type_0_0, 
-        		"org.eclipse.xtext.xbase.Xtype.ID");
+       			"id",
+        		lv_id_0_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
 	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleEClassSelector
+entryRuleEClassSelector returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEClassSelectorRule()); }
+	 iv_ruleEClassSelector=ruleEClassSelector 
+	 { $current=$iv_ruleEClassSelector.current; } 
+	 EOF 
+;
+
+// Rule EClassSelector
+ruleEClassSelector returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEClassSelectorRule());
+	        }
+        }
+	otherlv_0=RULE_ID
+	{
+		newLeafNode(otherlv_0, grammarAccess.getEClassSelectorAccess().getClassEClassCrossReference_0()); 
+	}
 
 )
 )

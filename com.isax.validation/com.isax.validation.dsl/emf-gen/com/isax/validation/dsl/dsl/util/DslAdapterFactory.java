@@ -342,6 +342,16 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 				return createModelAdapter();
 			}
 			@Override
+			public Adapter caseIDSelector(IDSelector object)
+			{
+				return createIDSelectorAdapter();
+			}
+			@Override
+			public Adapter caseEClassSelector(EClassSelector object)
+			{
+				return createEClassSelectorAdapter();
+			}
+			@Override
 			public Adapter caseXExpression(XExpression object)
 			{
 				return createXExpressionAdapter();
@@ -1159,6 +1169,36 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createModelAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.IDSelector <em>ID Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.IDSelector
+	 * @generated
+	 */
+	public Adapter createIDSelectorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.EClassSelector <em>EClass Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.EClassSelector
+	 * @generated
+	 */
+	public Adapter createEClassSelectorAdapter()
 	{
 		return null;
 	}

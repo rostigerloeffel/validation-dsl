@@ -5,9 +5,11 @@ import "http://www.isax.com/validation/dsl/Dsl"
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 import "http://www.eclipse.org/xtext/xbase/Xtype" as xtype
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Model:
-	imports = XImportSection?	
+	imports = XImportSection?
+	('refers' referred+=[ecore::EPackage|STRING])*	
 	validators += Validator*;
 
 Validator:
@@ -30,7 +32,7 @@ Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;
 
 StartOnSentence:
-	'start' 'on' definition=NodeDefinition;
+	'start on' definition=NodeDefinition;
 
 DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 
@@ -65,9 +67,14 @@ SelectorList:
 SelectorListDef:
 	selectors+=Selector ('or' selectors+=Selector)*;
 
-Selector:
-	type=ID;
+Selector returns Selector:
+	IDSelector | EClassSelector;
 
+IDSelector:
+	id=STRING;
+
+EClassSelector:
+	class=[ecore::EClass|ID];
 
 PredicateExpression:
 	AndExpression;
