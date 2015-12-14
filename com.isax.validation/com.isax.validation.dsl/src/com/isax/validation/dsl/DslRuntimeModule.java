@@ -6,15 +6,13 @@ package com.isax.validation.dsl;
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 
 import com.google.inject.Binder;
 import com.isax.validation.dsl.compilation.DslCompiler;
+import com.isax.validation.dsl.scoping.DslGlobalScopeProvider;
 import com.isax.validation.dsl.scoping.DslScopeProvider;
-import com.isax.validation.dsl.scoping.NullGlobalScopeProvider;
-import com.isax.validation.dsl.serializing.DslSerializer;
 import com.isax.validation.types.DslTypeComputer;
 
 /**
@@ -30,7 +28,7 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return NullGlobalScopeProvider.class;
+		return DslGlobalScopeProvider.class;
 	}
 	
 	@Override

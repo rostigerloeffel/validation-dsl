@@ -40,6 +40,7 @@ import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.RelationQuantifier
 import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
+import com.isax.validation.dsl.dsl.SelectorListDef
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
@@ -107,7 +108,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	) '''
 		// «serialize(startOn)»
 		final «ResolvingNode.simpleName» «startOn.definition.uniqueName» = «INPUT_NODE»;
-		if («startOn.definition.uniqueName» == null || !«PREDICATES_FIELD».hasType(«startOn.definition.uniqueName», "«startOn.definition.selectors.selectors.selectors.join("\", \"", [Selector s | if (s instanceof IDSelector) s.id else if (s instanceof EClassSelector) s.class_.getName])»")) {
+		if («startOn.definition.uniqueName» == null || !«typeSelectors(startOn.definition)») {
 			return true;
 		}
 	'''
@@ -279,7 +280,7 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 				«names.map(assignee, localName)»
 				boolean «SATISFIED»«assignee.uniqueSuffix» = true;
 				«IF types != null»
-					«SATISFIED»«assignee.uniqueSuffix» &= «PREDICATES_FIELD».hasType(«localName», "«types.selectors.selectors.join("\", \"", [Selector s | if (s instanceof IDSelector) s.id else if (s instanceof EClassSelector) s.class_.getName])»");
+					«SATISFIED»«assignee.uniqueSuffix» &= «typeSelectors(assignee)»;
 				«ENDIF»
 				«IF body != null»
 					«SATISFIED»«assignee.uniqueSuffix» &= eval(() -> {
@@ -411,6 +412,13 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	def definitionType(NodeDefinition definition) {
 		if(definition.collection) typeof(ResolvingNodeSet) else typeof(ResolvingNode)
+	}
+	
+	def typeSelectors(NodeDefinition definition) {
+		PREDICATES_FIELD + ".hasType(" + definition.uniqueName + ", " + "\"" +
+			definition.selectors?.selectors?.selectors?.join("\", \"", 
+				[Selector s | if (s instanceof IDSelector) s.id else if (s instanceof EClassSelector) s.class_.name]
+			) + "\")"
 	}
 }
 

@@ -12,4 +12,5 @@ class NullGlobalScopeProvider implements IGlobalScopeProvider {
 	override IScope getScope(Resource context, EReference reference, Predicate<IEObjectDescription> filter) {
 		IScope.NULLSCOPE
 	}
+
 }

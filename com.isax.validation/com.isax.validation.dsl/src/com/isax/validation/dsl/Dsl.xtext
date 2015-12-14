@@ -67,7 +67,7 @@ SelectorList:
 SelectorListDef:
 	selectors+=Selector ('or' selectors+=Selector)*;
 
-Selector returns Selector:
+Selector:
 	IDSelector | EClassSelector;
 
 IDSelector:

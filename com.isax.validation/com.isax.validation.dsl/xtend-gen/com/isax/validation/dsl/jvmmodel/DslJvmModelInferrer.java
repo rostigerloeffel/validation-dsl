@@ -215,33 +215,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _uniqueName_1 = this.names.uniqueName(_definition_1);
     _builder.append(_uniqueName_1, "");
     _builder.append(" == null || !");
-    _builder.append(DslJvmModelInferrer.PREDICATES_FIELD, "");
-    _builder.append(".hasType(");
     NodeDefinition _definition_2 = startOn.getDefinition();
-    String _uniqueName_2 = this.names.uniqueName(_definition_2);
-    _builder.append(_uniqueName_2, "");
-    _builder.append(", \"");
-    NodeDefinition _definition_3 = startOn.getDefinition();
-    SelectorList _selectors = _definition_3.getSelectors();
-    SelectorListDef _selectors_1 = _selectors.getSelectors();
-    EList<Selector> _selectors_2 = _selectors_1.getSelectors();
-    final Function1<Selector, CharSequence> _function = (Selector s) -> {
-      String _xifexpression = null;
-      if ((s instanceof IDSelector)) {
-        _xifexpression = ((IDSelector)s).getId();
-      } else {
-        String _xifexpression_1 = null;
-        if ((s instanceof EClassSelector)) {
-          EClass _class_ = ((EClassSelector)s).getClass_();
-          _xifexpression_1 = _class_.getName();
-        }
-        _xifexpression = _xifexpression_1;
-      }
-      return _xifexpression;
-    };
-    String _join = IterableExtensions.<Selector>join(_selectors_2, "\", \"", _function);
-    _builder.append(_join, "");
-    _builder.append("\")) {");
+    String _typeSelectors = this.typeSelectors(_definition_2);
+    _builder.append(_typeSelectors, "");
+    _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return true;");
@@ -817,29 +794,9 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         String _uniqueSuffix_2 = this.names.uniqueSuffix(assignee);
         _builder.append(_uniqueSuffix_2, "\t\t");
         _builder.append(" &= ");
-        _builder.append(DslJvmModelInferrer.PREDICATES_FIELD, "\t\t");
-        _builder.append(".hasType(");
-        _builder.append(localName, "\t\t");
-        _builder.append(", \"");
-        SelectorListDef _selectors = types.getSelectors();
-        EList<Selector> _selectors_1 = _selectors.getSelectors();
-        final Function1<Selector, CharSequence> _function = (Selector s) -> {
-          String _xifexpression_1 = null;
-          if ((s instanceof IDSelector)) {
-            _xifexpression_1 = ((IDSelector)s).getId();
-          } else {
-            String _xifexpression_2 = null;
-            if ((s instanceof EClassSelector)) {
-              EClass _class_ = ((EClassSelector)s).getClass_();
-              _xifexpression_2 = _class_.getName();
-            }
-            _xifexpression_1 = _xifexpression_2;
-          }
-          return _xifexpression_1;
-        };
-        String _join = IterableExtensions.<Selector>join(_selectors_1, "\", \"", _function);
-        _builder.append(_join, "\t\t");
-        _builder.append("\");");
+        String _typeSelectors = this.typeSelectors(assignee);
+        _builder.append(_typeSelectors, "\t\t");
+        _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1338,6 +1295,42 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       _xifexpression = ResolvingNode.class;
     }
     return _xifexpression;
+  }
+  
+  public String typeSelectors(final NodeDefinition definition) {
+    String _uniqueName = this.names.uniqueName(definition);
+    String _plus = ((DslJvmModelInferrer.PREDICATES_FIELD + ".hasType(") + _uniqueName);
+    String _plus_1 = (_plus + ", ");
+    String _plus_2 = (_plus_1 + "\"");
+    SelectorList _selectors = definition.getSelectors();
+    SelectorListDef _selectors_1 = null;
+    if (_selectors!=null) {
+      _selectors_1=_selectors.getSelectors();
+    }
+    EList<Selector> _selectors_2 = null;
+    if (_selectors_1!=null) {
+      _selectors_2=_selectors_1.getSelectors();
+    }
+    String _join = null;
+    if (_selectors_2!=null) {
+      final Function1<Selector, CharSequence> _function = (Selector s) -> {
+        String _xifexpression = null;
+        if ((s instanceof IDSelector)) {
+          _xifexpression = ((IDSelector)s).getId();
+        } else {
+          String _xifexpression_1 = null;
+          if ((s instanceof EClassSelector)) {
+            EClass _class_ = ((EClassSelector)s).getClass_();
+            _xifexpression_1 = _class_.getName();
+          }
+          _xifexpression = _xifexpression_1;
+        }
+        return _xifexpression;
+      };
+      _join=IterableExtensions.<Selector>join(_selectors_2, "\", \"", _function);
+    }
+    String _plus_3 = (_plus_2 + _join);
+    return (_plus_3 + "\")");
   }
   
   public void infer(final EObject validator, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
