@@ -693,6 +693,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStartOnSentence_Where()
+	{
+		return (EReference)startOnSentenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDefinitionSentence()
 	{
 		return definitionSentenceEClass;
@@ -1884,6 +1894,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		startOnSentenceEClass = createEClass(START_ON_SENTENCE);
 		createEReference(startOnSentenceEClass, START_ON_SENTENCE__DEFINITION);
+		createEReference(startOnSentenceEClass, START_ON_SENTENCE__WHERE);
 
 		definitionSentenceEClass = createEClass(DEFINITION_SENTENCE);
 		createEReference(definitionSentenceEClass, DEFINITION_SENTENCE__QUANTIFICATION);
@@ -2137,6 +2148,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		initEClass(startOnSentenceEClass, StartOnSentence.class, "StartOnSentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStartOnSentence_Definition(), this.getNodeDefinition(), null, "definition", null, 0, 1, StartOnSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStartOnSentence_Where(), this.getBodySentences(), null, "where", null, 0, 1, StartOnSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(definitionSentenceEClass, DefinitionSentence.class, "DefinitionSentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDefinitionSentence_Quantification(), this.getQuantification(), null, "quantification", null, 0, 1, DefinitionSentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

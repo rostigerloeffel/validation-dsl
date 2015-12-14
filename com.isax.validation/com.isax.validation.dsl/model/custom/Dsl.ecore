@@ -24,6 +24,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="StartOnSentence" eSuperTypes="#//Sentence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//NodeDefinition"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//BodySentences"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefinitionSentence" eSuperTypes="#//Sentence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantification" eType="#//Quantification"

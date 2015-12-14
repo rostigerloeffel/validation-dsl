@@ -13,6 +13,7 @@ package com.isax.validation.dsl.dsl;
  * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.StartOnSentence#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.StartOnSentence#getWhere <em>Where</em>}</li>
  * </ul>
  *
  * @see com.isax.validation.dsl.dsl.DslPackage#getStartOnSentence()
@@ -46,5 +47,31 @@ public interface StartOnSentence extends Sentence
 	 * @generated
 	 */
 	void setDefinition(NodeDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Where</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Where</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Where</em>' containment reference.
+	 * @see #setWhere(BodySentences)
+	 * @see com.isax.validation.dsl.dsl.DslPackage#getStartOnSentence_Where()
+	 * @model containment="true"
+	 * @generated
+	 */
+	BodySentences getWhere();
+
+	/**
+	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.StartOnSentence#getWhere <em>Where</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Where</em>' containment reference.
+	 * @see #getWhere()
+	 * @generated
+	 */
+	void setWhere(BodySentences value);
 
 } // StartOnSentence

@@ -238,12 +238,18 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStartOnKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cDefinitionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDefinitionNodeDefinitionParserRuleCall_1_0 = (RuleCall)cDefinitionAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cWhereKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cWhereAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cWhereBodySentencesParserRuleCall_2_2_0 = (RuleCall)cWhereAssignment_2_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
 		//StartOnSentence:
-		//	'start on' definition=NodeDefinition;
+		//	'start on' definition=NodeDefinition ('where' '{' where=BodySentences '}')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'start on' definition=NodeDefinition
+		//'start on' definition=NodeDefinition ('where' '{' where=BodySentences '}')?
 		public Group getGroup() { return cGroup; }
 
 		//'start on'
@@ -254,6 +260,24 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//NodeDefinition
 		public RuleCall getDefinitionNodeDefinitionParserRuleCall_1_0() { return cDefinitionNodeDefinitionParserRuleCall_1_0; }
+
+		//('where' '{' where=BodySentences '}')?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//'where'
+		public Keyword getWhereKeyword_2_0() { return cWhereKeyword_2_0; }
+
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2_1() { return cLeftCurlyBracketKeyword_2_1; }
+
+		//where=BodySentences
+		public Assignment getWhereAssignment_2_2() { return cWhereAssignment_2_2; }
+
+		//BodySentences
+		public RuleCall getWhereBodySentencesParserRuleCall_2_2_0() { return cWhereBodySentencesParserRuleCall_2_2_0; }
+
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_2_3() { return cRightCurlyBracketKeyword_2_3; }
 	}
 
 	public class DefinitionSentenceElements extends AbstractParserRuleElementFinder {
@@ -2329,7 +2353,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StartOnSentence:
-	//	'start on' definition=NodeDefinition;
+	//	'start on' definition=NodeDefinition ('where' '{' where=BodySentences '}')?;
 	public StartOnSentenceElements getStartOnSentenceAccess() {
 		return pStartOnSentence;
 	}

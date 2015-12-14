@@ -24,7 +24,7 @@
 '..<'=42
 '/'=50
 '/='=32
-':'=83
+':'=86
 '::'=132
 ';'=112
 '<'=40
@@ -47,7 +47,7 @@
 'ancestors'=26
 'and'=17
 'any'=64
-'as'=86
+'as'=89
 'at least'=106
 'at most'=107
 'being'=91
@@ -58,7 +58,7 @@
 'children'=24
 'contains'=71
 'default'=116
-'define'=85
+'define'=88
 'descendant'=27
 'descendants'=28
 'do'=119
@@ -70,10 +70,10 @@
 'extension'=60
 'false'=62
 'finally'=126
-'for'=84
+'for'=87
 'greater or equals than'=69
 'greater than'=67
-'holds'=82
+'holds'=85
 'if'=113
 'implies'=19
 'import'=59
@@ -115,12 +115,12 @@
 'val'=56
 'validator'=78
 'var'=135
-'where'=89
+'where'=82
 'while'=118
-'{'=87
+'{'=83
 '|'=134
 '||'=14
-'}'=88
+'}'=84
 '~>'=98
 RULE_ANY_OTHER=12
 RULE_DECIMAL=7

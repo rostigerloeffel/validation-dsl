@@ -420,7 +420,37 @@ ruleStartOnSentence returns [EObject current=null]
 	    }
 
 )
-))
+)(	otherlv_2='where' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getStartOnSentenceAccess().getWhereKeyword_2_0());
+    }
+	otherlv_3='{' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getStartOnSentenceAccess().getLeftCurlyBracketKeyword_2_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStartOnSentenceAccess().getWhereBodySentencesParserRuleCall_2_2_0()); 
+	    }
+		lv_where_4_0=ruleBodySentences		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStartOnSentenceRule());
+	        }
+       		set(
+       			$current, 
+       			"where",
+        		lv_where_4_0, 
+        		"com.isax.validation.dsl.Dsl.BodySentences");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_5='}' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getStartOnSentenceAccess().getRightCurlyBracketKeyword_2_3());
+    }
+)?)
 ;
 
 

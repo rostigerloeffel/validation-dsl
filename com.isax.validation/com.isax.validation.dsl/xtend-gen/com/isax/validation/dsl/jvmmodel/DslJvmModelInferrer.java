@@ -93,6 +93,10 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
   
   private final static String PREDICATES_FIELD = "predicates$";
   
+  private final static String NODESET_DUMMY = "nodeSetImportDummy$";
+  
+  private final static String NODE_DUMMY = "nodeImportDummy$";
+  
   private final static String ASSIGNMENT_CLASS = "Assignment$";
   
   private final static String ASSIGMENT_METHOD = "method";
@@ -136,28 +140,73 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
       JvmField _field_1 = this._jvmTypesBuilder.toField(validator, DslJvmModelInferrer.PREDICATES_FIELD, _typeRef_2, _function_2);
       this._jvmTypesBuilder.<JvmField>operator_add(_members_1, _field_1);
       EList<JvmMember> _members_2 = it.getMembers();
-      JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(boolean.class);
-      final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
+      JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(ResolvingNodeSet.class);
+      final Procedure1<JvmField> _function_3 = (JvmField it_1) -> {
+        it_1.setVisibility(JvmVisibility.PRIVATE);
+      };
+      JvmField _field_2 = this._jvmTypesBuilder.toField(validator, DslJvmModelInferrer.NODESET_DUMMY, _typeRef_3, _function_3);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members_2, _field_2);
+      EList<JvmMember> _members_3 = it.getMembers();
+      JvmTypeReference _typeRef_4 = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+      final Procedure1<JvmField> _function_4 = (JvmField it_1) -> {
+        it_1.setVisibility(JvmVisibility.PRIVATE);
+      };
+      JvmField _field_3 = this._jvmTypesBuilder.toField(validator, DslJvmModelInferrer.NODE_DUMMY, _typeRef_4, _function_4);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members_3, _field_3);
+      EList<JvmMember> _members_4 = it.getMembers();
+      JvmTypeReference _typeRef_5 = this._typeReferenceBuilder.typeRef(boolean.class);
+      final Procedure1<JvmOperation> _function_5 = (JvmOperation it_1) -> {
         EList<JvmAnnotationReference> _annotations = it_1.getAnnotations();
         JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Override.class);
         this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
         it_1.setVisibility(JvmVisibility.PUBLIC);
         EList<JvmFormalParameter> _parameters = it_1.getParameters();
-        JvmTypeReference _typeRef_4 = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
-        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, DslJvmModelInferrer.INPUT_NODE, _typeRef_4);
+        JvmTypeReference _typeRef_6 = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, DslJvmModelInferrer.INPUT_NODE, _typeRef_6);
         this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-            _builder.append(ResolvingNodeSet.class, "");
-            _builder.append(" nodeSetImportDummy$;");
-            _builder.newLineIfNotEmpty();
-            _builder.append(ResolvingNode.class, "");
-            _builder.append(" nodeImportDummy$;");
-            _builder.newLineIfNotEmpty();
             StartOnSentence _startOn = validator.getStartOn();
-            CharSequence _compileStartOn = DslJvmModelInferrer.this.compileStartOn(_startOn);
+            NodeDefinition _definition = _startOn.getDefinition();
+            CharSequence _compileInputNode = DslJvmModelInferrer.this.compileInputNode(_definition);
+            _builder.append(_compileInputNode, "");
+            _builder.newLineIfNotEmpty();
+            StartOnSentence _startOn_1 = validator.getStartOn();
+            CharSequence _compileStartOn = DslJvmModelInferrer.this.compileStartOn(_startOn_1);
             _builder.append(_compileStartOn, "");
+            _builder.newLineIfNotEmpty();
+            StartOnSentence _startOn_2 = validator.getStartOn();
+            BodySentences _where = _startOn_2.getWhere();
+            CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_where);
+            _builder.append(_compileBody, "");
+            _builder.newLineIfNotEmpty();
+            _builder.append("return true;");
+            _builder.newLine();
+          }
+        };
+        this._jvmTypesBuilder.setBody(it_1, _client);
+      };
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(validator, "isActive", _typeRef_5, _function_5);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method);
+      EList<JvmMember> _members_5 = it.getMembers();
+      JvmTypeReference _typeRef_6 = this._typeReferenceBuilder.typeRef(boolean.class);
+      final Procedure1<JvmOperation> _function_6 = (JvmOperation it_1) -> {
+        EList<JvmAnnotationReference> _annotations = it_1.getAnnotations();
+        JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Override.class);
+        this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
+        it_1.setVisibility(JvmVisibility.PUBLIC);
+        EList<JvmFormalParameter> _parameters = it_1.getParameters();
+        JvmTypeReference _typeRef_7 = this._typeReferenceBuilder.typeRef(ResolvingNode.class);
+        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(validator, DslJvmModelInferrer.INPUT_NODE, _typeRef_7);
+        this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            StartOnSentence _startOn = validator.getStartOn();
+            NodeDefinition _definition = _startOn.getDefinition();
+            CharSequence _compileInputNode = DslJvmModelInferrer.this.compileInputNode(_definition);
+            _builder.append(_compileInputNode, "");
             _builder.newLineIfNotEmpty();
             BodySentences _body = validator.getBody();
             CharSequence _compileBody = DslJvmModelInferrer.this.compileBody(_body);
@@ -169,18 +218,18 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
         };
         this._jvmTypesBuilder.setBody(it_1, _client);
       };
-      JvmOperation _method = this._jvmTypesBuilder.toMethod(validator, "validate", _typeRef_3, _function_3);
-      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method);
-      EList<JvmMember> _members_3 = it.getMembers();
+      JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(validator, "validate", _typeRef_6, _function_6);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_5, _method_1);
+      EList<JvmMember> _members_6 = it.getMembers();
       EList<PredicateDefinitionSentence> _predicates = validator.getPredicates();
       List<JvmOperation> _compilePredicates = this.compilePredicates(_predicates);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_3, _compilePredicates);
-      EList<JvmMember> _members_4 = it.getMembers();
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_6, _compilePredicates);
+      EList<JvmMember> _members_7 = it.getMembers();
       Iterable<JvmOperation> _compileXExpressionPredicates = this.compileXExpressionPredicates(validator);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_4, _compileXExpressionPredicates);
-      EList<JvmMember> _members_5 = it.getMembers();
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_7, _compileXExpressionPredicates);
+      EList<JvmMember> _members_8 = it.getMembers();
       Iterable<JvmGenericType> _compileThenClauses = this.compileThenClauses(validator);
-      this._jvmTypesBuilder.<JvmMember>operator_add(_members_5, _compileThenClauses);
+      this._jvmTypesBuilder.<JvmMember>operator_add(_members_8, _compileThenClauses);
     };
     acceptor.<JvmGenericType>accept(_class, _function);
   }
@@ -193,30 +242,34 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     return _replaceAll_1.replaceAll("\\s+", " ");
   }
   
+  public CharSequence compileInputNode(final NodeDefinition definition) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("final ");
+    String _simpleName = ResolvingNode.class.getSimpleName();
+    _builder.append(_simpleName, "");
+    _builder.append(" ");
+    String _uniqueName = this.names.uniqueName(definition);
+    _builder.append(_uniqueName, "");
+    _builder.append(" = ");
+    _builder.append(DslJvmModelInferrer.INPUT_NODE, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   public CharSequence compileStartOn(final StartOnSentence startOn) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("// ");
     String _serialize = this.serialize(startOn);
     _builder.append(_serialize, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("final ");
-    String _simpleName = ResolvingNode.class.getSimpleName();
-    _builder.append(_simpleName, "");
-    _builder.append(" ");
+    _builder.append("if (");
     NodeDefinition _definition = startOn.getDefinition();
     String _uniqueName = this.names.uniqueName(_definition);
     _builder.append(_uniqueName, "");
-    _builder.append(" = ");
-    _builder.append(DslJvmModelInferrer.INPUT_NODE, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("if (");
-    NodeDefinition _definition_1 = startOn.getDefinition();
-    String _uniqueName_1 = this.names.uniqueName(_definition_1);
-    _builder.append(_uniqueName_1, "");
     _builder.append(" == null || !");
-    NodeDefinition _definition_2 = startOn.getDefinition();
-    String _typeSelectors = this.typeSelectors(_definition_2);
+    NodeDefinition _definition_1 = startOn.getDefinition();
+    String _typeSelectors = this.typeSelectors(_definition_1);
     _builder.append(_typeSelectors, "");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();

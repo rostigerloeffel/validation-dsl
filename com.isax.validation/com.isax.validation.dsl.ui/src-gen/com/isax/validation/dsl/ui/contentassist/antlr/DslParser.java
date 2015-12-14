@@ -107,6 +107,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getErrorDefinitionAccess().getGroup(), "rule__ErrorDefinition__Group__0");
 					put(grammarAccess.getBodySentencesAccess().getGroup(), "rule__BodySentences__Group__0");
 					put(grammarAccess.getStartOnSentenceAccess().getGroup(), "rule__StartOnSentence__Group__0");
+					put(grammarAccess.getStartOnSentenceAccess().getGroup_2(), "rule__StartOnSentence__Group_2__0");
 					put(grammarAccess.getDefinitionSentenceAccess().getGroup(), "rule__DefinitionSentence__Group__0");
 					put(grammarAccess.getConstraintSentenceAccess().getGroup(), "rule__ConstraintSentence__Group__0");
 					put(grammarAccess.getConstraintSentenceAccess().getGroup_0_1(), "rule__ConstraintSentence__Group_0_1__0");
@@ -368,6 +369,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_0(), "rule__BodySentences__SentencesAssignment_1_0");
 					put(grammarAccess.getBodySentencesAccess().getSentencesAssignment_1_1(), "rule__BodySentences__SentencesAssignment_1_1");
 					put(grammarAccess.getStartOnSentenceAccess().getDefinitionAssignment_1(), "rule__StartOnSentence__DefinitionAssignment_1");
+					put(grammarAccess.getStartOnSentenceAccess().getWhereAssignment_2_2(), "rule__StartOnSentence__WhereAssignment_2_2");
 					put(grammarAccess.getDefinitionSentenceAccess().getQuantificationAssignment_0_0(), "rule__DefinitionSentence__QuantificationAssignment_0_0");
 					put(grammarAccess.getDefinitionSentenceAccess().getNodeAssignment_0_1(), "rule__DefinitionSentence__NodeAssignment_0_1");
 					put(grammarAccess.getDefinitionSentenceAccess().getQualifierAssignment_1(), "rule__DefinitionSentence__QualifierAssignment_1");

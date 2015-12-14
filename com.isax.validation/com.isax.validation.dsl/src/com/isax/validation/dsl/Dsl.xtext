@@ -32,7 +32,7 @@ Sentence:
 	StartOnSentence | DefinitionSentence | ConstraintSentence | PredicateDefinitionSentence;
 
 StartOnSentence:
-	'start on' definition=NodeDefinition;
+	'start on' definition=NodeDefinition ('where' '{' where=BodySentences '}')?;
 
 DefinitionSentence:
 	(quantification=Quantification | node=[NodeDefinition]) 

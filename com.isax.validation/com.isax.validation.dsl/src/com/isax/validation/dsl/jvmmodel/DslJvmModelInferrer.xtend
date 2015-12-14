@@ -58,7 +58,9 @@ import static extension com.isax.validation.dsl.util.DslUtil.visibleDefinitions
 class DslJvmModelInferrer extends AbstractModelInferrer {
 
 	private final static val TRAVERSER_FIELD = "traverser$" 
-	private final static val PREDICATES_FIELD = "predicates$" 
+	private final static val PREDICATES_FIELD = "predicates$"
+	private final static val NODESET_DUMMY = "nodeSetImportDummy$" 
+	private final static val NODE_DUMMY = "nodeImportDummy$" 
 	private final static val ASSIGNMENT_CLASS = "Assignment$"
 	private final static val ASSIGMENT_METHOD = "method"
 	private final static val PREDICATE_METHOD = "predicate$"
@@ -79,15 +81,33 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 			members += validator.toField(PREDICATES_FIELD, typeRef(NodePredicates)) [
 				visibility = JvmVisibility.PRIVATE
 			]
+			
+			members += validator.toField(NODESET_DUMMY, typeRef(ResolvingNodeSet)) [
+				visibility = JvmVisibility.PRIVATE
+			]
+			
+			members += validator.toField(NODE_DUMMY, typeRef(ResolvingNode)) [
+				visibility = JvmVisibility.PRIVATE
+			]
+
+			members += validator.toMethod("isActive", typeRef(boolean)) [
+				annotations += annotationRef(Override)
+				visibility = JvmVisibility.PUBLIC
+				parameters += validator.toParameter(INPUT_NODE, typeRef(ResolvingNode))
+				body = '''
+					«compileInputNode(validator.startOn.definition)»
+					«compileStartOn(validator.startOn)»
+					«compileBody(validator.startOn.where)»
+					return true;
+				'''
+			]
 
 			members += validator.toMethod("validate", typeRef(boolean)) [
 				annotations += annotationRef(Override)
 				visibility = JvmVisibility.PUBLIC
 				parameters += validator.toParameter(INPUT_NODE, typeRef(ResolvingNode))
-				body = '''
-					«ResolvingNodeSet» nodeSetImportDummy$;
-					«ResolvingNode» nodeImportDummy$;
-					«compileStartOn(validator.startOn)»
+				body = '''					
+					«compileInputNode(validator.startOn.definition)»
 					«compileBody(validator.body)»
 					return true;
 				'''
@@ -102,12 +122,15 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	def serialize(EObject object) {
 		serializer.serialize(object).trim.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\s+", " ")
 	}
+	
+	def compileInputNode(NodeDefinition definition) '''
+		final «ResolvingNode.simpleName» «definition.uniqueName» = «INPUT_NODE»;
+	'''
 
 	def compileStartOn(
 		StartOnSentence startOn
 	) '''
 		// «serialize(startOn)»
-		final «ResolvingNode.simpleName» «startOn.definition.uniqueName» = «INPUT_NODE»;
 		if («startOn.definition.uniqueName» == null || !«typeSelectors(startOn.definition)») {
 			return true;
 		}

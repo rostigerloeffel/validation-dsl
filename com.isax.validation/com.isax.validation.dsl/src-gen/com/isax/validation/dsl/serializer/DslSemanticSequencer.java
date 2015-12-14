@@ -1321,16 +1321,10 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     StartOnSentence returns StartOnSentence
 	 *
 	 * Constraint:
-	 *     definition=NodeDefinition
+	 *     (definition=NodeDefinition where=BodySentences?)
 	 */
 	protected void sequence_StartOnSentence(ISerializationContext context, StartOnSentence semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.START_ON_SENTENCE__DEFINITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.START_ON_SENTENCE__DEFINITION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStartOnSentenceAccess().getDefinitionNodeDefinitionParserRuleCall_1_0(), semanticObject.getDefinition());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

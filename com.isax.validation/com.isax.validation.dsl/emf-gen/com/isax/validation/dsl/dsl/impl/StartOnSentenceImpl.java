@@ -2,6 +2,7 @@
  */
 package com.isax.validation.dsl.dsl.impl;
 
+import com.isax.validation.dsl.dsl.BodySentences;
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.StartOnSentence;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.isax.validation.dsl.dsl.impl.StartOnSentenceImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link com.isax.validation.dsl.dsl.impl.StartOnSentenceImpl#getWhere <em>Where</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +40,16 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 	 * @ordered
 	 */
 	protected NodeDefinition definition;
+
+	/**
+	 * The cached value of the '{@link #getWhere() <em>Where</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWhere()
+	 * @generated
+	 * @ordered
+	 */
+	protected BodySentences where;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,6 +125,54 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BodySentences getWhere()
+	{
+		return where;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetWhere(BodySentences newWhere, NotificationChain msgs)
+	{
+		BodySentences oldWhere = where;
+		where = newWhere;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.START_ON_SENTENCE__WHERE, oldWhere, newWhere);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWhere(BodySentences newWhere)
+	{
+		if (newWhere != where)
+		{
+			NotificationChain msgs = null;
+			if (where != null)
+				msgs = ((InternalEObject)where).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.START_ON_SENTENCE__WHERE, null, msgs);
+			if (newWhere != null)
+				msgs = ((InternalEObject)newWhere).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.START_ON_SENTENCE__WHERE, null, msgs);
+			msgs = basicSetWhere(newWhere, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.START_ON_SENTENCE__WHERE, newWhere, newWhere));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -120,6 +180,8 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 		{
 			case DslPackage.START_ON_SENTENCE__DEFINITION:
 				return basicSetDefinition(null, msgs);
+			case DslPackage.START_ON_SENTENCE__WHERE:
+				return basicSetWhere(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -136,6 +198,8 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 		{
 			case DslPackage.START_ON_SENTENCE__DEFINITION:
 				return getDefinition();
+			case DslPackage.START_ON_SENTENCE__WHERE:
+				return getWhere();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,6 +216,9 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 		{
 			case DslPackage.START_ON_SENTENCE__DEFINITION:
 				setDefinition((NodeDefinition)newValue);
+				return;
+			case DslPackage.START_ON_SENTENCE__WHERE:
+				setWhere((BodySentences)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,6 +237,9 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 			case DslPackage.START_ON_SENTENCE__DEFINITION:
 				setDefinition((NodeDefinition)null);
 				return;
+			case DslPackage.START_ON_SENTENCE__WHERE:
+				setWhere((BodySentences)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -186,6 +256,8 @@ public class StartOnSentenceImpl extends SentenceImpl implements StartOnSentence
 		{
 			case DslPackage.START_ON_SENTENCE__DEFINITION:
 				return definition != null;
+			case DslPackage.START_ON_SENTENCE__WHERE:
+				return where != null;
 		}
 		return super.eIsSet(featureID);
 	}
