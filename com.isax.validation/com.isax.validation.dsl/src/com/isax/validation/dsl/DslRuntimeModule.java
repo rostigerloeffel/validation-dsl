@@ -44,10 +44,5 @@ public class DslRuntimeModule extends com.isax.validation.dsl.AbstractDslRuntime
 	public Class<? extends ITypeComputer> bindITypeComputer() {
 		return DslTypeComputer.class;
 	}
-	
-//	@Override
-//	public Class<? extends ISerializer> bindISerializer() {
-//		return DslSerializer.class;
-//	}
 
 }

@@ -4,12 +4,28 @@
 package com.isax.validation.dsl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+
+import com.isax.validation.dsl.ui.contentassist.DslHighlightingConfiguration;
+import com.isax.validation.dsl.ui.contentassist.DslSemanticHighlighting;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class DslUiModule extends com.isax.validation.dsl.ui.AbstractDslUiModule {
+	
 	public DslUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	@Override
+	public Class<? extends ISemanticHighlightingCalculator> bindIdeSemanticHighlightingCalculator() {
+		return DslSemanticHighlighting.class;
+	}
+	
+	@Override
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return DslHighlightingConfiguration.class;
 	}
 }
