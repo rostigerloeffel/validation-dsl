@@ -494,6 +494,33 @@ public interface DslFactory extends EFactory
 	EClassSelector createEClassSelector();
 
 	/**
+	 * Returns a new object of class '<em>Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Reference</em>'.
+	 * @generated
+	 */
+	PropertyReference createPropertyReference();
+
+	/**
+	 * Returns a new object of class '<em>Named Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Property Reference</em>'.
+	 * @generated
+	 */
+	NamedPropertyReference createNamedPropertyReference();
+
+	/**
+	 * Returns a new object of class '<em>EAttribute Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EAttribute Property Reference</em>'.
+	 * @generated
+	 */
+	EAttributePropertyReference createEAttributePropertyReference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

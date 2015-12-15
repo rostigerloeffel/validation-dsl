@@ -17,6 +17,7 @@ import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.Descendant;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.EAttributePropertyReference;
 import com.isax.validation.dsl.dsl.EClassSelector;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
@@ -26,6 +27,7 @@ import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
 import com.isax.validation.dsl.dsl.MustNotHave;
+import com.isax.validation.dsl.dsl.NamedPropertyReference;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.NodeReferenceList;
 import com.isax.validation.dsl.dsl.One;
@@ -165,6 +167,9 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 			case DslPackage.DESCENDANT:
 				sequence_Descendant(context, (Descendant) semanticObject); 
 				return; 
+			case DslPackage.EATTRIBUTE_PROPERTY_REFERENCE:
+				sequence_EAttributePropertyReference(context, (EAttributePropertyReference) semanticObject); 
+				return; 
 			case DslPackage.ECLASS_SELECTOR:
 				sequence_EClassSelector(context, (EClassSelector) semanticObject); 
 				return; 
@@ -191,6 +196,9 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 				return; 
 			case DslPackage.MUST_NOT_HAVE:
 				sequence_MustNotHave(context, (MustNotHave) semanticObject); 
+				return; 
+			case DslPackage.NAMED_PROPERTY_REFERENCE:
+				sequence_NamedPropertyReference(context, (NamedPropertyReference) semanticObject); 
 				return; 
 			case DslPackage.NODE_DEFINITION:
 				sequence_NodeDefinition(context, (NodeDefinition) semanticObject); 
@@ -822,6 +830,25 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     PropertyReference returns EAttributePropertyReference
+	 *     EAttributePropertyReference returns EAttributePropertyReference
+	 *
+	 * Constraint:
+	 *     attribute=[EAttribute|ID]
+	 */
+	protected void sequence_EAttributePropertyReference(ISerializationContext context, EAttributePropertyReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.EATTRIBUTE_PROPERTY_REFERENCE__ATTRIBUTE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.EATTRIBUTE_PROPERTY_REFERENCE__ATTRIBUTE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeIDTerminalRuleCall_0_1(), semanticObject.getAttribute());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Selector returns EClassSelector
 	 *     EClassSelector returns EClassSelector
 	 *
@@ -976,6 +1003,25 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 */
 	protected void sequence_MustNotHave(ISerializationContext context, MustNotHave semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PropertyReference returns NamedPropertyReference
+	 *     NamedPropertyReference returns NamedPropertyReference
+	 *
+	 * Constraint:
+	 *     name=STRING
+	 */
+	protected void sequence_NamedPropertyReference(ISerializationContext context, NamedPropertyReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.NAMED_PROPERTY_REFERENCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.NAMED_PROPERTY_REFERENCE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNamedPropertyReferenceAccess().getNameSTRINGTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -1196,7 +1242,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 	 *     PropertyReferenceExpression returns PropertyReferenceExpression
 	 *
 	 * Constraint:
-	 *     (node=[NodeDefinition|ID] Property=ID)
+	 *     (node=[NodeDefinition|ID] property=PropertyReference)
 	 */
 	protected void sequence_PropertyReferenceExpression(ISerializationContext context, PropertyReferenceExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -1207,7 +1253,7 @@ public class DslSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getNodeNodeDefinitionIDTerminalRuleCall_0_0_1(), semanticObject.getNode());
-		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0(), semanticObject.getProperty());
+		feeder.accept(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyPropertyReferenceParserRuleCall_2_0(), semanticObject.getProperty());
 		feeder.finish();
 	}
 	

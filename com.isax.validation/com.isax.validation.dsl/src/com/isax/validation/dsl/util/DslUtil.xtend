@@ -96,7 +96,7 @@ class DslUtil {
 		).filterNull
 	}
 	
-	public def static dispatch name(RelationQualifier qualifier) {
+	def static dispatch name(RelationQualifier qualifier) {
 		return switch (qualifier) {
 			MustHave: "mustHave"
 			MustNotHave: "mustNotHave"
@@ -105,7 +105,7 @@ class DslUtil {
 		}
 	}
 	
-	public def static dispatch name(RelationAxis axis) {
+	def static dispatch name(RelationAxis axis) {
 		return switch (axis) {
 			Parent: "parent"
 			Child: "child"
@@ -115,7 +115,7 @@ class DslUtil {
 		}
 	}
 	
-	public def static dispatch name(RelationAxis axis, RelationQuantifier quantifier) {
+	def static name(RelationAxis axis, RelationQuantifier quantifier) {
 		return switch (quantifier) {
 			One: switch (axis) {
 				Parent: "parent"

@@ -2665,23 +2665,136 @@ rulePropertyReferenceExpression returns [EObject current=null]
     }
 (
 (
-		lv_Property_2_0=RULE_ID
-		{
-			newLeafNode(lv_Property_2_0, grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyPropertyReferenceParserRuleCall_2_0()); 
+	    }
+		lv_property_2_0=rulePropertyReference		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPropertyReferenceExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getPropertyReferenceExpressionRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
-       			"Property",
-        		lv_Property_2_0, 
-        		"org.eclipse.xtext.xbase.Xtype.ID");
+       			"property",
+        		lv_property_2_0, 
+        		"com.isax.validation.dsl.Dsl.PropertyReference");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRulePropertyReference
+entryRulePropertyReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPropertyReferenceRule()); }
+	 iv_rulePropertyReference=rulePropertyReference 
+	 { $current=$iv_rulePropertyReference.current; } 
+	 EOF 
+;
+
+// Rule PropertyReference
+rulePropertyReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getPropertyReferenceAccess().getNamedPropertyReferenceParserRuleCall_0()); 
+    }
+    this_NamedPropertyReference_0=ruleNamedPropertyReference
+    { 
+        $current = $this_NamedPropertyReference_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getPropertyReferenceAccess().getEAttributePropertyReferenceParserRuleCall_1()); 
+    }
+    this_EAttributePropertyReference_1=ruleEAttributePropertyReference
+    { 
+        $current = $this_EAttributePropertyReference_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleNamedPropertyReference
+entryRuleNamedPropertyReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getNamedPropertyReferenceRule()); }
+	 iv_ruleNamedPropertyReference=ruleNamedPropertyReference 
+	 { $current=$iv_ruleNamedPropertyReference.current; } 
+	 EOF 
+;
+
+// Rule NamedPropertyReference
+ruleNamedPropertyReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_name_0_0=RULE_STRING
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getNamedPropertyReferenceAccess().getNameSTRINGTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNamedPropertyReferenceRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleEAttributePropertyReference
+entryRuleEAttributePropertyReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEAttributePropertyReferenceRule()); }
+	 iv_ruleEAttributePropertyReference=ruleEAttributePropertyReference 
+	 { $current=$iv_ruleEAttributePropertyReference.current; } 
+	 EOF 
+;
+
+// Rule EAttributePropertyReference
+ruleEAttributePropertyReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEAttributePropertyReferenceRule());
+	        }
+        }
+	otherlv_0=RULE_ID
+	{
+		newLeafNode(otherlv_0, grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeCrossReference_0()); 
+	}
+
+)
+)
 ;
 
 

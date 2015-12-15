@@ -117,6 +117,9 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 			case DslPackage.MODEL: return createModel();
 			case DslPackage.ID_SELECTOR: return createIDSelector();
 			case DslPackage.ECLASS_SELECTOR: return createEClassSelector();
+			case DslPackage.PROPERTY_REFERENCE: return createPropertyReference();
+			case DslPackage.NAMED_PROPERTY_REFERENCE: return createNamedPropertyReference();
+			case DslPackage.EATTRIBUTE_PROPERTY_REFERENCE: return createEAttributePropertyReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -734,6 +737,39 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
 	{
 		EClassSelectorImpl eClassSelector = new EClassSelectorImpl();
 		return eClassSelector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference createPropertyReference()
+	{
+		PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
+		return propertyReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamedPropertyReference createNamedPropertyReference()
+	{
+		NamedPropertyReferenceImpl namedPropertyReference = new NamedPropertyReferenceImpl();
+		return namedPropertyReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttributePropertyReference createEAttributePropertyReference()
+	{
+		EAttributePropertyReferenceImpl eAttributePropertyReference = new EAttributePropertyReferenceImpl();
+		return eAttributePropertyReference;
 	}
 
 	/**

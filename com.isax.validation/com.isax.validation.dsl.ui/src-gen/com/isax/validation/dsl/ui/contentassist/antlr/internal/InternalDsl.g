@@ -1125,6 +1125,90 @@ finally {
 
 
 
+// Entry rule entryRulePropertyReference
+entryRulePropertyReference 
+:
+{ before(grammarAccess.getPropertyReferenceRule()); }
+	 rulePropertyReference
+{ after(grammarAccess.getPropertyReferenceRule()); } 
+	 EOF 
+;
+
+// Rule PropertyReference
+rulePropertyReference
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getPropertyReferenceAccess().getAlternatives()); }
+(rule__PropertyReference__Alternatives)
+{ after(grammarAccess.getPropertyReferenceAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleNamedPropertyReference
+entryRuleNamedPropertyReference 
+:
+{ before(grammarAccess.getNamedPropertyReferenceRule()); }
+	 ruleNamedPropertyReference
+{ after(grammarAccess.getNamedPropertyReferenceRule()); } 
+	 EOF 
+;
+
+// Rule NamedPropertyReference
+ruleNamedPropertyReference
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getNamedPropertyReferenceAccess().getNameAssignment()); }
+(rule__NamedPropertyReference__NameAssignment)
+{ after(grammarAccess.getNamedPropertyReferenceAccess().getNameAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleEAttributePropertyReference
+entryRuleEAttributePropertyReference 
+:
+{ before(grammarAccess.getEAttributePropertyReferenceRule()); }
+	 ruleEAttributePropertyReference
+{ after(grammarAccess.getEAttributePropertyReferenceRule()); } 
+	 EOF 
+;
+
+// Rule EAttributePropertyReference
+ruleEAttributePropertyReference
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeAssignment()); }
+(rule__EAttributePropertyReference__AttributeAssignment)
+{ after(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleRelationQualifier
 entryRuleRelationQualifier 
 :
@@ -4223,6 +4307,28 @@ rule__PropertyExpression__Alternatives
 { before(grammarAccess.getPropertyExpressionAccess().getPropertyReferenceExpressionParserRuleCall_1()); }
 	rulePropertyReferenceExpression
 { after(grammarAccess.getPropertyExpressionAccess().getPropertyReferenceExpressionParserRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PropertyReference__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyReferenceAccess().getNamedPropertyReferenceParserRuleCall_0()); }
+	ruleNamedPropertyReference
+{ after(grammarAccess.getPropertyReferenceAccess().getNamedPropertyReferenceParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getPropertyReferenceAccess().getEAttributePropertyReferenceParserRuleCall_1()); }
+	ruleEAttributePropertyReference
+{ after(grammarAccess.getPropertyReferenceAccess().getEAttributePropertyReferenceParserRuleCall_1()); }
 )
 
 ;
@@ -26733,8 +26839,42 @@ rule__PropertyReferenceExpression__PropertyAssignment_2
     }
 :
 (
-{ before(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); }
-	RULE_ID{ after(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); }
+{ before(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyPropertyReferenceParserRuleCall_2_0()); }
+	rulePropertyReference{ after(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyPropertyReferenceParserRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__NamedPropertyReference__NameAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getNamedPropertyReferenceAccess().getNameSTRINGTerminalRuleCall_0()); }
+	RULE_STRING{ after(grammarAccess.getNamedPropertyReferenceAccess().getNameSTRINGTerminalRuleCall_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EAttributePropertyReference__AttributeAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeCrossReference_0()); }
+(
+{ before(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeIDTerminalRuleCall_0_1()); }
+	RULE_ID{ after(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeIDTerminalRuleCall_0_1()); }
+)
+{ after(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeEAttributeCrossReference_0()); }
 )
 
 ;

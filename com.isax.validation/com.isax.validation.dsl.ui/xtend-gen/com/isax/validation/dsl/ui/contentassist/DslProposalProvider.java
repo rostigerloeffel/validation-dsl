@@ -3,14 +3,24 @@
  */
 package com.isax.validation.dsl.ui.contentassist;
 
+import com.isax.validation.dsl.dsl.DefinitionSentence;
+import com.isax.validation.dsl.dsl.One;
+import com.isax.validation.dsl.dsl.RelationQuantifier;
 import com.isax.validation.dsl.ui.contentassist.AbstractDslProposalProvider;
+import java.util.ArrayList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
  */
 @SuppressWarnings("all")
 public class DslProposalProvider extends AbstractDslProposalProvider {
+  private final static ArrayList<String> SINGLE_AXIS = CollectionLiterals.<String>newArrayList("parent", "child", "ancestor", "descendant");
+  
+  private final static ArrayList<String> MULTI_AXIS = CollectionLiterals.<String>newArrayList("parents", "children", "ancestors", "descendants");
+  
   @Override
   protected boolean isValidProposal(final String proposal, final String prefix, final ContentAssistContext context) {
     boolean _and = false;
@@ -26,10 +36,38 @@ public class DslProposalProvider extends AbstractDslProposalProvider {
     if (!_and_1) {
       _and = false;
     } else {
-      boolean _contains_1 = prefix.contains("$");
-      boolean _not_1 = (!_contains_1);
-      _and = _not_1;
+      boolean _xifexpression = false;
+      boolean _contains_1 = DslProposalProvider.SINGLE_AXIS.contains(proposal);
+      if (_contains_1) {
+        _xifexpression = this.singleAxisContext(context);
+      } else {
+        boolean _and_2 = false;
+        if (!true) {
+          _and_2 = false;
+        } else {
+          boolean _xifexpression_1 = false;
+          boolean _contains_2 = DslProposalProvider.MULTI_AXIS.contains(proposal);
+          if (_contains_2) {
+            boolean _singleAxisContext = this.singleAxisContext(context);
+            _xifexpression_1 = (!_singleAxisContext);
+          } else {
+            _xifexpression_1 = true;
+          }
+          _and_2 = _xifexpression_1;
+        }
+        _xifexpression = _and_2;
+      }
+      _and = _xifexpression;
     }
     return _and;
+  }
+  
+  public boolean singleAxisContext(final ContentAssistContext context) {
+    final EObject element = context.getCurrentModel();
+    if ((element instanceof DefinitionSentence)) {
+      RelationQuantifier _quantifier = ((DefinitionSentence)element).getQuantifier();
+      return (_quantifier instanceof One);
+    }
+    return false;
   }
 }

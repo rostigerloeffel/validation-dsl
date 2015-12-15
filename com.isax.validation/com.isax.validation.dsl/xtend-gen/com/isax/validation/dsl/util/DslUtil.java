@@ -182,7 +182,7 @@ public class DslUtil {
     return _xblockexpression;
   }
   
-  public static String _name(final RelationQualifier qualifier) {
+  protected static String _name(final RelationQualifier qualifier) {
     String _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
@@ -209,7 +209,7 @@ public class DslUtil {
     return _switchResult;
   }
   
-  public static String _name(final RelationAxis axis) {
+  protected static String _name(final RelationAxis axis) {
     String _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
@@ -242,7 +242,7 @@ public class DslUtil {
     return _switchResult;
   }
   
-  public static String _name(final RelationAxis axis, final RelationQuantifier quantifier) {
+  public static String name(final RelationAxis axis, final RelationQuantifier quantifier) {
     String _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
@@ -340,9 +340,5 @@ public class DslUtil {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(axis).toString());
     }
-  }
-  
-  public static String name(final RelationAxis axis, final RelationQuantifier quantifier) {
-    return _name(axis, quantifier);
   }
 }

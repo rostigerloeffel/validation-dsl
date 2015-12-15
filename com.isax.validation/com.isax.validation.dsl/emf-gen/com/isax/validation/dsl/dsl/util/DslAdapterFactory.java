@@ -352,6 +352,21 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 				return createEClassSelectorAdapter();
 			}
 			@Override
+			public Adapter casePropertyReference(PropertyReference object)
+			{
+				return createPropertyReferenceAdapter();
+			}
+			@Override
+			public Adapter caseNamedPropertyReference(NamedPropertyReference object)
+			{
+				return createNamedPropertyReferenceAdapter();
+			}
+			@Override
+			public Adapter caseEAttributePropertyReference(EAttributePropertyReference object)
+			{
+				return createEAttributePropertyReferenceAdapter();
+			}
+			@Override
 			public Adapter caseXExpression(XExpression object)
 			{
 				return createXExpressionAdapter();
@@ -1199,6 +1214,51 @@ public class DslAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createEClassSelectorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.PropertyReference <em>Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.PropertyReference
+	 * @generated
+	 */
+	public Adapter createPropertyReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.NamedPropertyReference <em>Named Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.NamedPropertyReference
+	 * @generated
+	 */
+	public Adapter createNamedPropertyReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.isax.validation.dsl.dsl.EAttributePropertyReference <em>EAttribute Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.isax.validation.dsl.dsl.EAttributePropertyReference
+	 * @generated
+	 */
+	public Adapter createEAttributePropertyReferenceAdapter()
 	{
 		return null;
 	}

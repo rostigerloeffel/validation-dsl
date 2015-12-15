@@ -4,9 +4,11 @@ package com.isax.validation.dsl.dsl.impl;
 
 import com.isax.validation.dsl.dsl.DslPackage;
 import com.isax.validation.dsl.dsl.NodeDefinition;
+import com.isax.validation.dsl.dsl.PropertyReference;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -40,24 +42,14 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	protected NodeDefinition node;
 
 	/**
-	 * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProperty()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROPERTY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
-	protected String property = PROPERTY_EDEFAULT;
+	protected PropertyReference property;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,7 +120,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getProperty()
+	public PropertyReference getProperty()
 	{
 		return property;
 	}
@@ -138,12 +130,53 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProperty(String newProperty)
+	public NotificationChain basicSetProperty(PropertyReference newProperty, NotificationChain msgs)
 	{
-		String oldProperty = property;
+		PropertyReference oldProperty = property;
 		property = newProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, oldProperty, property));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, oldProperty, newProperty);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperty(PropertyReference newProperty)
+	{
+		if (newProperty != property)
+		{
+			NotificationChain msgs = null;
+			if (property != null)
+				msgs = ((InternalEObject)property).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, null, msgs);
+			if (newProperty != null)
+				msgs = ((InternalEObject)newProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, null, msgs);
+			msgs = basicSetProperty(newProperty, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY, newProperty, newProperty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
+				return basicSetProperty(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -179,7 +212,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 				setNode((NodeDefinition)newValue);
 				return;
 			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
-				setProperty((String)newValue);
+				setProperty((PropertyReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,7 +232,7 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 				setNode((NodeDefinition)null);
 				return;
 			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
-				setProperty(PROPERTY_EDEFAULT);
+				setProperty((PropertyReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -218,26 +251,9 @@ public class PropertyReferenceExpressionImpl extends PropertyExpressionImpl impl
 			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__NODE:
 				return node != null;
 			case DslPackage.PROPERTY_REFERENCE_EXPRESSION__PROPERTY:
-				return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
+				return property != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (Property: ");
-		result.append(property);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PropertyReferenceExpressionImpl

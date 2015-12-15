@@ -156,6 +156,7 @@ Quantification:
 QuantificationList:
 	quantifications+=Quantification (',' quantifications+=Quantification)*;
 
+// Fix this
 PropertyExpression:
 	PropertyValueExpression | PropertyReferenceExpression;
 	
@@ -163,7 +164,16 @@ PropertyValueExpression:
 	value=STRING;
 
 PropertyReferenceExpression:
-	node=[NodeDefinition] '.' Property=ID;
+	node=[NodeDefinition] '.' property=PropertyReference;
+	
+PropertyReference:
+	NamedPropertyReference | EAttributePropertyReference;
+
+NamedPropertyReference:
+	name=STRING;
+	
+EAttributePropertyReference:
+	attribute=[ecore::EAttribute|ID];
 
 RelationQualifier:
 	MustHave | MustNotHave | CanHave;

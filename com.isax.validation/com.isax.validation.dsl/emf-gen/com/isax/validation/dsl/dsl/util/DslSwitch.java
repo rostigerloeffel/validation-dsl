@@ -492,6 +492,29 @@ public class DslSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DslPackage.PROPERTY_REFERENCE:
+			{
+				PropertyReference propertyReference = (PropertyReference)theEObject;
+				T result = casePropertyReference(propertyReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DslPackage.NAMED_PROPERTY_REFERENCE:
+			{
+				NamedPropertyReference namedPropertyReference = (NamedPropertyReference)theEObject;
+				T result = caseNamedPropertyReference(namedPropertyReference);
+				if (result == null) result = casePropertyReference(namedPropertyReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DslPackage.EATTRIBUTE_PROPERTY_REFERENCE:
+			{
+				EAttributePropertyReference eAttributePropertyReference = (EAttributePropertyReference)theEObject;
+				T result = caseEAttributePropertyReference(eAttributePropertyReference);
+				if (result == null) result = casePropertyReference(eAttributePropertyReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1372,6 +1395,54 @@ public class DslSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseEClassSelector(EClassSelector object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyReference(PropertyReference object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Property Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedPropertyReference(NamedPropertyReference object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EAttribute Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EAttribute Property Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEAttributePropertyReference(EAttributePropertyReference object)
 	{
 		return null;
 	}

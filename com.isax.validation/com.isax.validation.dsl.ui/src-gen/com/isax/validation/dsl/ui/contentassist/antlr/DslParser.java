@@ -49,6 +49,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPredicateCallAccess().getAlternatives_0(), "rule__PredicateCall__Alternatives_0");
 					put(grammarAccess.getXPrimaryExpressionAccess().getAlternatives(), "rule__XPrimaryExpression__Alternatives");
 					put(grammarAccess.getPropertyExpressionAccess().getAlternatives(), "rule__PropertyExpression__Alternatives");
+					put(grammarAccess.getPropertyReferenceAccess().getAlternatives(), "rule__PropertyReference__Alternatives");
 					put(grammarAccess.getRelationQualifierAccess().getAlternatives(), "rule__RelationQualifier__Alternatives");
 					put(grammarAccess.getRelationQuantifierAccess().getAlternatives(), "rule__RelationQuantifier__Alternatives");
 					put(grammarAccess.getRelationAxisAccess().getAlternatives(), "rule__RelationAxis__Alternatives");
@@ -431,6 +432,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyValueExpressionAccess().getValueAssignment(), "rule__PropertyValueExpression__ValueAssignment");
 					put(grammarAccess.getPropertyReferenceExpressionAccess().getNodeAssignment_0(), "rule__PropertyReferenceExpression__NodeAssignment_0");
 					put(grammarAccess.getPropertyReferenceExpressionAccess().getPropertyAssignment_2(), "rule__PropertyReferenceExpression__PropertyAssignment_2");
+					put(grammarAccess.getNamedPropertyReferenceAccess().getNameAssignment(), "rule__NamedPropertyReference__NameAssignment");
+					put(grammarAccess.getEAttributePropertyReferenceAccess().getAttributeAssignment(), "rule__EAttributePropertyReference__AttributeAssignment");
 					put(grammarAccess.getAtLeastAccess().getQuantityAssignment_2(), "rule__AtLeast__QuantityAssignment_2");
 					put(grammarAccess.getAtMostAccess().getQuantityAssignment_2(), "rule__AtMost__QuantityAssignment_2");
 					put(grammarAccess.getExactlyAccess().getQuantityAssignment_2(), "rule__Exactly__QuantityAssignment_2");

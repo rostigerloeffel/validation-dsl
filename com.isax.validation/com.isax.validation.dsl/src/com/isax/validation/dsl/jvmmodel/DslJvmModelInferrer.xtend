@@ -16,12 +16,14 @@ import com.isax.validation.dsl.dsl.CanHave
 import com.isax.validation.dsl.dsl.ConstraintSentence
 import com.isax.validation.dsl.dsl.DefinitionSentence
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate
+import com.isax.validation.dsl.dsl.EAttributePropertyReference
 import com.isax.validation.dsl.dsl.EClassSelector
 import com.isax.validation.dsl.dsl.IDSelector
 import com.isax.validation.dsl.dsl.ImpliesExpression
 import com.isax.validation.dsl.dsl.Multiple
 import com.isax.validation.dsl.dsl.MustHave
 import com.isax.validation.dsl.dsl.MustNotHave
+import com.isax.validation.dsl.dsl.NamedPropertyReference
 import com.isax.validation.dsl.dsl.NodeDefinition
 import com.isax.validation.dsl.dsl.NodeReferenceList
 import com.isax.validation.dsl.dsl.One
@@ -40,7 +42,6 @@ import com.isax.validation.dsl.dsl.RelationQualifier
 import com.isax.validation.dsl.dsl.RelationQuantifier
 import com.isax.validation.dsl.dsl.Selector
 import com.isax.validation.dsl.dsl.SelectorList
-import com.isax.validation.dsl.dsl.SelectorListDef
 import com.isax.validation.dsl.dsl.StartOnSentence
 import com.isax.validation.dsl.dsl.TargetDefinition
 import com.isax.validation.dsl.dsl.Validator
@@ -398,7 +399,15 @@ class DslJvmModelInferrer extends AbstractModelInferrer {
 	'''
 
 	def dispatch propertyExpression(PropertyReferenceExpression expression) {
-		"(String) " + expression.node.uniqueName + ".getProperty(\"" + expression.property + "\")"
+		"(String) " + expression.node.uniqueName + ".getProperty(\"" + propertyReference(expression.property) + "\")"
+	}
+
+	def dispatch propertyReference(NamedPropertyReference reference) {
+		reference.getName
+	}
+	
+	def dispatch propertyReference(EAttributePropertyReference reference) {
+		reference.attribute.getName
 	}
 
 	def dispatch predicateCall(PropertyRelationPredicate relation) {

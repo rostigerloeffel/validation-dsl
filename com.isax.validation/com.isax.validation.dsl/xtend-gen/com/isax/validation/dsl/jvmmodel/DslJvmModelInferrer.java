@@ -19,12 +19,14 @@ import com.isax.validation.dsl.dsl.CanHave;
 import com.isax.validation.dsl.dsl.ConstraintSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentence;
 import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
+import com.isax.validation.dsl.dsl.EAttributePropertyReference;
 import com.isax.validation.dsl.dsl.EClassSelector;
 import com.isax.validation.dsl.dsl.IDSelector;
 import com.isax.validation.dsl.dsl.ImpliesExpression;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
 import com.isax.validation.dsl.dsl.MustNotHave;
+import com.isax.validation.dsl.dsl.NamedPropertyReference;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.NodeReferenceList;
 import com.isax.validation.dsl.dsl.One;
@@ -37,6 +39,7 @@ import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
 import com.isax.validation.dsl.dsl.PredicateXExpression;
 import com.isax.validation.dsl.dsl.PropertyExpression;
+import com.isax.validation.dsl.dsl.PropertyReference;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.PropertyRelation;
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
@@ -60,6 +63,7 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -1254,9 +1258,19 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     String _uniqueName = this.names.uniqueName(_node);
     String _plus = ("(String) " + _uniqueName);
     String _plus_1 = (_plus + ".getProperty(\"");
-    String _property = expression.getProperty();
-    String _plus_2 = (_plus_1 + _property);
+    PropertyReference _property = expression.getProperty();
+    String _propertyReference = this.propertyReference(_property);
+    String _plus_2 = (_plus_1 + _propertyReference);
     return (_plus_2 + "\")");
+  }
+  
+  protected String _propertyReference(final NamedPropertyReference reference) {
+    return reference.getName();
+  }
+  
+  protected String _propertyReference(final EAttributePropertyReference reference) {
+    EAttribute _attribute = reference.getAttribute();
+    return _attribute.getName();
   }
   
   protected CharSequence _predicateCall(final PropertyRelationPredicate relation) {
@@ -1424,6 +1438,17 @@ public class DslJvmModelInferrer extends AbstractModelInferrer {
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(expression).toString());
+    }
+  }
+  
+  public String propertyReference(final PropertyReference reference) {
+    if (reference instanceof EAttributePropertyReference) {
+      return _propertyReference((EAttributePropertyReference)reference);
+    } else if (reference instanceof NamedPropertyReference) {
+      return _propertyReference((NamedPropertyReference)reference);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(reference).toString());
     }
   }
   

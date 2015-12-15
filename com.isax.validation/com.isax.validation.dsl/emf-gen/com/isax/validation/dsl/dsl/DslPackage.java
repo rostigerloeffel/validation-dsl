@@ -1235,7 +1235,7 @@ public interface DslPackage extends EPackage
 	int PROPERTY_REFERENCE_EXPRESSION__NODE = PROPERTY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' attribute.
+	 * The feature id for the '<em><b>Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1960,6 +1960,81 @@ public interface DslPackage extends EPackage
 	int ECLASS_SELECTOR_FEATURE_COUNT = SELECTOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.PropertyReferenceImpl <em>Property Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.PropertyReferenceImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyReference()
+	 * @generated
+	 */
+	int PROPERTY_REFERENCE = 55;
+
+	/**
+	 * The number of structural features of the '<em>Property Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REFERENCE_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.NamedPropertyReferenceImpl <em>Named Property Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.NamedPropertyReferenceImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getNamedPropertyReference()
+	 * @generated
+	 */
+	int NAMED_PROPERTY_REFERENCE = 56;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_PROPERTY_REFERENCE__NAME = PROPERTY_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Property Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_PROPERTY_REFERENCE_FEATURE_COUNT = PROPERTY_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.impl.EAttributePropertyReferenceImpl <em>EAttribute Property Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.isax.validation.dsl.dsl.impl.EAttributePropertyReferenceImpl
+	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getEAttributePropertyReference()
+	 * @generated
+	 */
+	int EATTRIBUTE_PROPERTY_REFERENCE = 57;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EATTRIBUTE_PROPERTY_REFERENCE__ATTRIBUTE = PROPERTY_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EAttribute Property Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EATTRIBUTE_PROPERTY_REFERENCE_FEATURE_COUNT = PROPERTY_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1967,7 +2042,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getQuantor()
 	 * @generated
 	 */
-	int QUANTOR = 55;
+	int QUANTOR = 58;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.PropertyRelation <em>Property Relation</em>}' enum.
@@ -1977,7 +2052,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyRelation()
 	 * @generated
 	 */
-	int PROPERTY_RELATION = 56;
+	int PROPERTY_RELATION = 59;
 
 	/**
 	 * The meta object id for the '{@link com.isax.validation.dsl.dsl.RelationKind <em>Relation Kind</em>}' enum.
@@ -1987,7 +2062,7 @@ public interface DslPackage extends EPackage
 	 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getRelationKind()
 	 * @generated
 	 */
-	int RELATION_KIND = 57;
+	int RELATION_KIND = 60;
 
 
 	/**
@@ -2971,15 +3046,15 @@ public interface DslPackage extends EPackage
 	EReference getPropertyReferenceExpression_Node();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.PropertyReferenceExpression#getProperty <em>Property</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.isax.validation.dsl.dsl.PropertyReferenceExpression#getProperty <em>Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Property</em>'.
+	 * @return the meta object for the containment reference '<em>Property</em>'.
 	 * @see com.isax.validation.dsl.dsl.PropertyReferenceExpression#getProperty()
 	 * @see #getPropertyReferenceExpression()
 	 * @generated
 	 */
-	EAttribute getPropertyReferenceExpression_Property();
+	EReference getPropertyReferenceExpression_Property();
 
 	/**
 	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.AndExpression <em>And Expression</em>}'.
@@ -3320,6 +3395,58 @@ public interface DslPackage extends EPackage
 	 * @generated
 	 */
 	EReference getEClassSelector_Class();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.PropertyReference <em>Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Property Reference</em>'.
+	 * @see com.isax.validation.dsl.dsl.PropertyReference
+	 * @generated
+	 */
+	EClass getPropertyReference();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.NamedPropertyReference <em>Named Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Property Reference</em>'.
+	 * @see com.isax.validation.dsl.dsl.NamedPropertyReference
+	 * @generated
+	 */
+	EClass getNamedPropertyReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.isax.validation.dsl.dsl.NamedPropertyReference#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.isax.validation.dsl.dsl.NamedPropertyReference#getName()
+	 * @see #getNamedPropertyReference()
+	 * @generated
+	 */
+	EAttribute getNamedPropertyReference_Name();
+
+	/**
+	 * Returns the meta object for class '{@link com.isax.validation.dsl.dsl.EAttributePropertyReference <em>EAttribute Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EAttribute Property Reference</em>'.
+	 * @see com.isax.validation.dsl.dsl.EAttributePropertyReference
+	 * @generated
+	 */
+	EClass getEAttributePropertyReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.isax.validation.dsl.dsl.EAttributePropertyReference#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see com.isax.validation.dsl.dsl.EAttributePropertyReference#getAttribute()
+	 * @see #getEAttributePropertyReference()
+	 * @generated
+	 */
+	EReference getEAttributePropertyReference_Attribute();
 
 	/**
 	 * Returns the meta object for enum '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}'.
@@ -4175,12 +4302,12 @@ public interface DslPackage extends EPackage
 		EReference PROPERTY_REFERENCE_EXPRESSION__NODE = eINSTANCE.getPropertyReferenceExpression_Node();
 
 		/**
-		 * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Property</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROPERTY_REFERENCE_EXPRESSION__PROPERTY = eINSTANCE.getPropertyReferenceExpression_Property();
+		EReference PROPERTY_REFERENCE_EXPRESSION__PROPERTY = eINSTANCE.getPropertyReferenceExpression_Property();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.AndExpressionImpl <em>And Expression</em>}' class.
@@ -4491,6 +4618,52 @@ public interface DslPackage extends EPackage
 		 * @generated
 		 */
 		EReference ECLASS_SELECTOR__CLASS = eINSTANCE.getEClassSelector_Class();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.PropertyReferenceImpl <em>Property Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.PropertyReferenceImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getPropertyReference()
+		 * @generated
+		 */
+		EClass PROPERTY_REFERENCE = eINSTANCE.getPropertyReference();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.NamedPropertyReferenceImpl <em>Named Property Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.NamedPropertyReferenceImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getNamedPropertyReference()
+		 * @generated
+		 */
+		EClass NAMED_PROPERTY_REFERENCE = eINSTANCE.getNamedPropertyReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_PROPERTY_REFERENCE__NAME = eINSTANCE.getNamedPropertyReference_Name();
+
+		/**
+		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.impl.EAttributePropertyReferenceImpl <em>EAttribute Property Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.isax.validation.dsl.dsl.impl.EAttributePropertyReferenceImpl
+		 * @see com.isax.validation.dsl.dsl.impl.DslPackageImpl#getEAttributePropertyReference()
+		 * @generated
+		 */
+		EClass EATTRIBUTE_PROPERTY_REFERENCE = eINSTANCE.getEAttributePropertyReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EATTRIBUTE_PROPERTY_REFERENCE__ATTRIBUTE = eINSTANCE.getEAttributePropertyReference_Attribute();
 
 		/**
 		 * The meta object literal for the '{@link com.isax.validation.dsl.dsl.Quantor <em>Quantor</em>}' enum.

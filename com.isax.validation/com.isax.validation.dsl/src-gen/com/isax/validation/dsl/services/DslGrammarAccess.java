@@ -1513,6 +1513,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyValueExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPropertyReferenceExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		//// Fix this
 		//PropertyExpression:
 		//	PropertyValueExpression | PropertyReferenceExpression;
 		@Override public ParserRule getRule() { return rule; }
@@ -1551,13 +1552,13 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNodeNodeDefinitionIDTerminalRuleCall_0_0_1 = (RuleCall)cNodeNodeDefinitionCrossReference_0_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
+		private final RuleCall cPropertyPropertyReferenceParserRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
 		
 		//PropertyReferenceExpression:
-		//	node=[NodeDefinition] '.' Property=ID;
+		//	node=[NodeDefinition] '.' property=PropertyReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//node=[NodeDefinition] '.' Property=ID
+		//node=[NodeDefinition] '.' property=PropertyReference
 		public Group getGroup() { return cGroup; }
 
 		//node=[NodeDefinition]
@@ -1572,11 +1573,67 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//'.'
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 
-		//Property=ID
+		//property=PropertyReference
 		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
 
+		//PropertyReference
+		public RuleCall getPropertyPropertyReferenceParserRuleCall_2_0() { return cPropertyPropertyReferenceParserRuleCall_2_0; }
+	}
+
+	public class PropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.PropertyReference");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNamedPropertyReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEAttributePropertyReferenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//PropertyReference:
+		//	NamedPropertyReference | EAttributePropertyReference;
+		@Override public ParserRule getRule() { return rule; }
+
+		//NamedPropertyReference | EAttributePropertyReference
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//NamedPropertyReference
+		public RuleCall getNamedPropertyReferenceParserRuleCall_0() { return cNamedPropertyReferenceParserRuleCall_0; }
+
+		//EAttributePropertyReference
+		public RuleCall getEAttributePropertyReferenceParserRuleCall_1() { return cEAttributePropertyReferenceParserRuleCall_1; }
+	}
+
+	public class NamedPropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.NamedPropertyReference");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//NamedPropertyReference:
+		//	name=STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//name=STRING
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_0() { return cNameSTRINGTerminalRuleCall_0; }
+	}
+
+	public class EAttributePropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.isax.validation.dsl.Dsl.EAttributePropertyReference");
+		private final Assignment cAttributeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cAttributeEAttributeCrossReference_0 = (CrossReference)cAttributeAssignment.eContents().get(0);
+		private final RuleCall cAttributeEAttributeIDTerminalRuleCall_0_1 = (RuleCall)cAttributeEAttributeCrossReference_0.eContents().get(1);
+		
+		//EAttributePropertyReference:
+		//	attribute=[ecore::EAttribute];
+		@Override public ParserRule getRule() { return rule; }
+
+		//attribute=[ecore::EAttribute]
+		public Assignment getAttributeAssignment() { return cAttributeAssignment; }
+
+		//[ecore::EAttribute]
+		public CrossReference getAttributeEAttributeCrossReference_0() { return cAttributeEAttributeCrossReference_0; }
+
 		//ID
-		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
+		public RuleCall getAttributeEAttributeIDTerminalRuleCall_0_1() { return cAttributeEAttributeIDTerminalRuleCall_0_1; }
 	}
 
 	public class RelationQualifierElements extends AbstractParserRuleElementFinder {
@@ -2164,6 +2221,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final PropertyExpressionElements pPropertyExpression;
 	private final PropertyValueExpressionElements pPropertyValueExpression;
 	private final PropertyReferenceExpressionElements pPropertyReferenceExpression;
+	private final PropertyReferenceElements pPropertyReference;
+	private final NamedPropertyReferenceElements pNamedPropertyReference;
+	private final EAttributePropertyReferenceElements pEAttributePropertyReference;
 	private final RelationQualifierElements pRelationQualifier;
 	private final MustHaveElements pMustHave;
 	private final MustNotHaveElements pMustNotHave;
@@ -2240,6 +2300,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPropertyExpression = new PropertyExpressionElements();
 		this.pPropertyValueExpression = new PropertyValueExpressionElements();
 		this.pPropertyReferenceExpression = new PropertyReferenceExpressionElements();
+		this.pPropertyReference = new PropertyReferenceElements();
+		this.pNamedPropertyReference = new NamedPropertyReferenceElements();
+		this.pEAttributePropertyReference = new EAttributePropertyReferenceElements();
 		this.pRelationQualifier = new RelationQualifierElements();
 		this.pMustHave = new MustHaveElements();
 		this.pMustNotHave = new MustNotHaveElements();
@@ -2685,6 +2748,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		return getQuantificationListAccess().getRule();
 	}
 
+	//// Fix this
 	//PropertyExpression:
 	//	PropertyValueExpression | PropertyReferenceExpression;
 	public PropertyExpressionElements getPropertyExpressionAccess() {
@@ -2706,13 +2770,43 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyReferenceExpression:
-	//	node=[NodeDefinition] '.' Property=ID;
+	//	node=[NodeDefinition] '.' property=PropertyReference;
 	public PropertyReferenceExpressionElements getPropertyReferenceExpressionAccess() {
 		return pPropertyReferenceExpression;
 	}
 	
 	public ParserRule getPropertyReferenceExpressionRule() {
 		return getPropertyReferenceExpressionAccess().getRule();
+	}
+
+	//PropertyReference:
+	//	NamedPropertyReference | EAttributePropertyReference;
+	public PropertyReferenceElements getPropertyReferenceAccess() {
+		return pPropertyReference;
+	}
+	
+	public ParserRule getPropertyReferenceRule() {
+		return getPropertyReferenceAccess().getRule();
+	}
+
+	//NamedPropertyReference:
+	//	name=STRING;
+	public NamedPropertyReferenceElements getNamedPropertyReferenceAccess() {
+		return pNamedPropertyReference;
+	}
+	
+	public ParserRule getNamedPropertyReferenceRule() {
+		return getNamedPropertyReferenceAccess().getRule();
+	}
+
+	//EAttributePropertyReference:
+	//	attribute=[ecore::EAttribute];
+	public EAttributePropertyReferenceElements getEAttributePropertyReferenceAccess() {
+		return pEAttributePropertyReference;
+	}
+	
+	public ParserRule getEAttributePropertyReferenceRule() {
+		return getEAttributePropertyReferenceAccess().getRule();
 	}
 
 	//RelationQualifier:

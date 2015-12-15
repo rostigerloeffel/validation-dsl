@@ -49,29 +49,29 @@ public interface PropertyReferenceExpression extends PropertyExpression
 	void setNode(NodeDefinition value);
 
 	/**
-	 * Returns the value of the '<em><b>Property</b></em>' attribute.
+	 * Returns the value of the '<em><b>Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Property</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Property</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' attribute.
-	 * @see #setProperty(String)
+	 * @return the value of the '<em>Property</em>' containment reference.
+	 * @see #setProperty(PropertyReference)
 	 * @see com.isax.validation.dsl.dsl.DslPackage#getPropertyReferenceExpression_Property()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getProperty();
+	PropertyReference getProperty();
 
 	/**
-	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.PropertyReferenceExpression#getProperty <em>Property</em>}' attribute.
+	 * Sets the value of the '{@link com.isax.validation.dsl.dsl.PropertyReferenceExpression#getProperty <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property</em>' attribute.
+	 * @param value the new value of the '<em>Property</em>' containment reference.
 	 * @see #getProperty()
 	 * @generated
 	 */
-	void setProperty(String value);
+	void setProperty(PropertyReference value);
 
 } // PropertyReferenceExpression

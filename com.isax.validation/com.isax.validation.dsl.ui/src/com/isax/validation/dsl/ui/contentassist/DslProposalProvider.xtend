@@ -3,17 +3,31 @@
  */
 package com.isax.validation.dsl.ui.contentassist
 
+import com.isax.validation.dsl.dsl.DefinitionSentence
+import com.isax.validation.dsl.dsl.One
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
  */
 class DslProposalProvider extends AbstractDslProposalProvider {
+
+	private static final val SINGLE_AXIS = newArrayList("parent", "child", "ancestor", "descendant")	
+	private static final val MULTI_AXIS = newArrayList("parents", "children", "ancestors", "descendants")
 	
 	override protected isValidProposal(String proposal, String prefix, ContentAssistContext context) {
-		super.isValidProposal(proposal, prefix, context) && !proposal.contains('$') && !prefix.contains('$')
+		super.isValidProposal(proposal, prefix, context) && 
+			!proposal.contains('$') &&
+			if (SINGLE_AXIS.contains(proposal)) singleAxisContext(context) else true &&
+			if (MULTI_AXIS.contains(proposal)) !singleAxisContext(context) else true
+	}
+	
+	def singleAxisContext(ContentAssistContext context) {
+		val element = context.currentModel
+		if (element instanceof DefinitionSentence) {
+			return element.quantifier instanceof One
+		}
+		return false
 	}
 
-	
-	
 }

@@ -20,6 +20,7 @@ import com.isax.validation.dsl.dsl.DefinitionSentencePredicate;
 import com.isax.validation.dsl.dsl.Descendant;
 import com.isax.validation.dsl.dsl.DslFactory;
 import com.isax.validation.dsl.dsl.DslPackage;
+import com.isax.validation.dsl.dsl.EAttributePropertyReference;
 import com.isax.validation.dsl.dsl.EClassSelector;
 import com.isax.validation.dsl.dsl.ErrorDefinition;
 import com.isax.validation.dsl.dsl.Exactly;
@@ -29,6 +30,7 @@ import com.isax.validation.dsl.dsl.Model;
 import com.isax.validation.dsl.dsl.Multiple;
 import com.isax.validation.dsl.dsl.MustHave;
 import com.isax.validation.dsl.dsl.MustNotHave;
+import com.isax.validation.dsl.dsl.NamedPropertyReference;
 import com.isax.validation.dsl.dsl.NodeDefinition;
 import com.isax.validation.dsl.dsl.NodeReferenceList;
 import com.isax.validation.dsl.dsl.One;
@@ -42,6 +44,7 @@ import com.isax.validation.dsl.dsl.PredicateExpression;
 import com.isax.validation.dsl.dsl.PredicateReference;
 import com.isax.validation.dsl.dsl.PredicateXExpression;
 import com.isax.validation.dsl.dsl.PropertyExpression;
+import com.isax.validation.dsl.dsl.PropertyReference;
 import com.isax.validation.dsl.dsl.PropertyReferenceExpression;
 import com.isax.validation.dsl.dsl.PropertyRelation;
 import com.isax.validation.dsl.dsl.PropertyRelationPredicate;
@@ -468,6 +471,27 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * @generated
 	 */
 	private EClass eClassSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedPropertyReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eAttributePropertyReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1483,9 +1507,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyReferenceExpression_Property()
+	public EReference getPropertyReferenceExpression_Property()
 	{
-		return (EAttribute)propertyReferenceExpressionEClass.getEStructuralFeatures().get(1);
+		return (EReference)propertyReferenceExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1823,6 +1847,56 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPropertyReference()
+	{
+		return propertyReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNamedPropertyReference()
+	{
+		return namedPropertyReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedPropertyReference_Name()
+	{
+		return (EAttribute)namedPropertyReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEAttributePropertyReference()
+	{
+		return eAttributePropertyReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEAttributePropertyReference_Attribute()
+	{
+		return (EReference)eAttributePropertyReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getQuantor()
 	{
 		return quantorEEnum;
@@ -2001,7 +2075,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		propertyReferenceExpressionEClass = createEClass(PROPERTY_REFERENCE_EXPRESSION);
 		createEReference(propertyReferenceExpressionEClass, PROPERTY_REFERENCE_EXPRESSION__NODE);
-		createEAttribute(propertyReferenceExpressionEClass, PROPERTY_REFERENCE_EXPRESSION__PROPERTY);
+		createEReference(propertyReferenceExpressionEClass, PROPERTY_REFERENCE_EXPRESSION__PROPERTY);
 
 		andExpressionEClass = createEClass(AND_EXPRESSION);
 
@@ -2058,6 +2132,14 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		eClassSelectorEClass = createEClass(ECLASS_SELECTOR);
 		createEReference(eClassSelectorEClass, ECLASS_SELECTOR__CLASS);
+
+		propertyReferenceEClass = createEClass(PROPERTY_REFERENCE);
+
+		namedPropertyReferenceEClass = createEClass(NAMED_PROPERTY_REFERENCE);
+		createEAttribute(namedPropertyReferenceEClass, NAMED_PROPERTY_REFERENCE__NAME);
+
+		eAttributePropertyReferenceEClass = createEClass(EATTRIBUTE_PROPERTY_REFERENCE);
+		createEReference(eAttributePropertyReferenceEClass, EATTRIBUTE_PROPERTY_REFERENCE__ATTRIBUTE);
 
 		// Create enums
 		quantorEEnum = createEEnum(QUANTOR);
@@ -2130,6 +2212,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 		descendantEClass.getESuperTypes().add(this.getRelationAxis());
 		idSelectorEClass.getESuperTypes().add(this.getSelector());
 		eClassSelectorEClass.getESuperTypes().add(this.getSelector());
+		namedPropertyReferenceEClass.getESuperTypes().add(this.getPropertyReference());
+		eAttributePropertyReferenceEClass.getESuperTypes().add(this.getPropertyReference());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(validatorEClass, Validator.class, "Validator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2255,7 +2339,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		initEClass(propertyReferenceExpressionEClass, PropertyReferenceExpression.class, "PropertyReferenceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyReferenceExpression_Node(), this.getNodeDefinition(), null, "node", null, 0, 1, PropertyReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPropertyReferenceExpression_Property(), ecorePackage.getEString(), "Property", null, 0, 1, PropertyReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferenceExpression_Property(), this.getPropertyReference(), null, "property", null, 1, 1, PropertyReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andExpressionEClass, AndExpression.class, "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2312,6 +2396,14 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
 		initEClass(eClassSelectorEClass, EClassSelector.class, "EClassSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEClassSelector_Class(), theEcorePackage.getEClass(), null, "class", null, 1, 1, EClassSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namedPropertyReferenceEClass, NamedPropertyReference.class, "NamedPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedPropertyReference_Name(), theEcorePackage.getEString(), "name", null, 1, 1, NamedPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eAttributePropertyReferenceEClass, EAttributePropertyReference.class, "EAttributePropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEAttributePropertyReference_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 1, 1, EAttributePropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(quantorEEnum, Quantor.class, "Quantor");
